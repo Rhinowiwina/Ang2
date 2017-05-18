@@ -1,0 +1,3297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Address_Standardize">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_Address_Standardize" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_Address_Standardize">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="BypassRestraints" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ClientInput">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ApplicationID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ApplicationPassword" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LocationID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="EmployeeName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Address_StandardizeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Address_StandardizeResult" nillable="true" type="tns:Address_Standardize" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Address_Standardize">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Validated_Address1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Validated_Address2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Validated_City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Validated_State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Validated_Zip" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Validated_AddressId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DPV_Code" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DPV_Desc" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="IsValidated" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ResponseMsg">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Errors" type="tns:Errors" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsError" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Errors">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="ErrorCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorDescription" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Order_Enter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_Order_Enter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_Order_Enter">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order_ID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Lifeline" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="TribalLifeline" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="Lifeline_Program" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Cellular_Plan" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Model" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="First_Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Last_Name" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Validated_AddressId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="SSN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Contact" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="UserPassword" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ReferringMobileNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PrequalifiedCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DOB" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AuthorizationCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EmployeeAcount" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TradeInDeviceID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TemporaryAddress" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="ExternalAgentID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingAddress2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingCity" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingState" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingZip" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Sales_Channel" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="StateRegCode" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="NoDeviceOnOrder" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="BypassIdentity" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="BypassIdentityNotes" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AlternateIDDesc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AlternateIDValue" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Beneficiary" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="AccountCreditAwarded" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentVerification" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryFirstName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryLastName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BeneficiarySSN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryDOB" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="VoiceOnly" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="Lifeline_ProgramValue" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="StateRegCode2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="RuralAddress" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ByPassDuplicate" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="HOHC" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="IMSI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LexID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Gender" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Race" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MaritalStatus" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MilitaryStatus" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Order_EnterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Order_EnterResult" nillable="true" type="tns:Order_Enter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Order_Enter">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="AdditionalCharges" type="tns:ArrayOfAdditionalCharge" />
+              <s:element minOccurs="0" maxOccurs="1" name="TaxItems" type="tns:ArrayOfTaxItem" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReferenceID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="AccountCreditsAwarded" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="OrderTotal" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="1" name="ServicePlanDescription" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ServicePlanCost" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="AdditionalChargesApply" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="TaxesApply" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfAdditionalCharge">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AdditionalCharge" nillable="true" type="tns:AdditionalCharge" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AdditionalCharge">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AdditionalChargeDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AdditionalChargeAmount" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTaxItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaxItem" nillable="true" type="tns:TaxItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaxItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TaxItemDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaxItemAmount" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Order_Commit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_Order_Commit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_Order_Commit">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="OverPayment" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReferenceID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CCPayment" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="HOHC" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Order_CommitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Order_CommitResult" nillable="true" type="tns:Order_Commit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Order_Commit">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ServiceStartDate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ServiceEndDate" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Devices">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_Devices" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_Devices">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="DevicesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DevicesResult" nillable="true" type="tns:Devices" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Devices">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Handsets" type="tns:ArrayOfHandset" />
+              <s:element minOccurs="1" maxOccurs="1" name="HandsetsAvailable" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfHandset">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Handset" nillable="true" type="tns:Handset" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Handset">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="HandsetID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Model" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SRP" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Category" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Quantity" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="HandsetTotal" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Zip_Coverage">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_Zip_Coverage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_Zip_Coverage">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Zip_CoverageResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Zip_CoverageResult" nillable="true" type="tns:Zip_Coverage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Zip_Coverage">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ValidForVerizon" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ValidForSprint" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ValidForTmobile" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Address_VerifyLifeline">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_Address_VerifyLifeline" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_Address_VerifyLifeline">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="HOHC" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="Lifeline" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ByPassDuplicate" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Address_VerifyLifelineResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Address_VerifyLifelineResult" nillable="true" type="tns:Address_VerifyLifeline" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Address_VerifyLifeline">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Validated_Address1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Validated_Address2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Validated_City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Validated_State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Validated_Zip" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Validated_AddressId" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DPV_Code" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DPV_Desc" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="HOHC" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ByPassDuplicate" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Lifeline" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Handset_Commit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_Handset_Commit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_Handset_Commit">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="ReferenceID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CCPayment" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Handset_CommitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Handset_CommitResult" nillable="true" type="tns:Handset_Commit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Handset_Commit">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="HandsetOrderID" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Handset_Enter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_Handset_Enter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_Handset_Enter">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Handsets" type="tns:ArrayOfHandsetOrderItem" />
+              <s:element minOccurs="0" maxOccurs="1" name="Order_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EmployeeAccount" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Sales_Channel" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PreOrder" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="HandsetPrice" type="s:double" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfHandsetOrderItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="HandsetOrderItem" nillable="true" type="tns:HandsetOrderItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="HandsetOrderItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="HandsetID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Model" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="SRP" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="HandsetTotal" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="Category" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="Handset_EnterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Handset_EnterResult" nillable="true" type="tns:Handset_Enter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Handset_Enter">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Handsets" type="tns:ArrayOfHandset" />
+              <s:element minOccurs="0" maxOccurs="1" name="TaxItems" type="tns:ArrayOfTaxItem" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReferenceID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="OrderTotal" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="TaxesApply" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ActivateVerizonDevice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_ActivateVerizonDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_ActivateVerizonDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ZIP" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="PreOrderActivation" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="SpecialProvisioningCode" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ActivateVerizonDeviceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ActivateVerizonDeviceResult" nillable="true" type="tns:ActivateVerizonDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ActivateVerizonDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupVerizonActivationStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_LookupVerizonActivationStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_LookupVerizonActivationStatus">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order_ID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupVerizonActivationStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LookupVerizonActivationStatusResult" nillable="true" type="tns:LookupVerizonActivationStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookupVerizonActivationStatus">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ActivateSprintDevice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_ActivateSprintDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_ActivateSprintDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SpecialProvisioningCode" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ActivateSprintDeviceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ActivateSprintDeviceResult" nillable="true" type="tns:ActivateSprintDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ActivateSprintDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MSID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="CSA" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EffectiveDate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceInfo" type="tns:DeviceInfo_Output" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DeviceInfo_Output">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SerialNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MasterSubsidyLock" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ActivateTmobileDevice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_ActivateTmobileDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_ActivateTmobileDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IMSI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ZIP" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SpecialProvisioningCode" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ActivateTmobileDeviceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ActivateTmobileDeviceResult" nillable="true" type="tns:ActivateTmobileDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ActivateTmobileDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="TMobile_RetrPreactivatedHandsetByDeviceID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_TMobile_RetrPreactivatedHandsetByDeviceID" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_TMobile_RetrPreactivatedHandsetByDeviceID">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="TMobile_RetrPreactivatedHandsetByDeviceIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TMobile_RetrPreactivatedHandsetByDeviceIDResult" nillable="true" type="tns:TMobile_RetrPreactivatedHandsetByDeviceID" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TMobile_RetrPreactivatedHandsetByDeviceID">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Active" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:short" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Sprint_RetrSingleDeviceActivationDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_Sprint_RetrSingleDeviceActivationDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_Sprint_RetrSingleDeviceActivationDetails">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Sprint_RetrSingleDeviceActivationDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Sprint_RetrSingleDeviceActivationDetailsResult" nillable="true" type="tns:Sprint_RetrSingleDeviceActivationDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Sprint_RetrSingleDeviceActivationDetails">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MSID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MSL" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Verizon_RetrSingleDeviceActivationDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_Verizon_RetrSingleDeviceActivationDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_Verizon_RetrSingleDeviceActivationDetails">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Verizon_RetrSingleDeviceActivationDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Verizon_RetrSingleDeviceActivationDetailsResult" nillable="true" type="tns:Verizon_RetrSingleDeviceActivationDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Verizon_RetrSingleDeviceActivationDetails">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MIN" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="RetrPreactivatedHandsetByDeviceID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_RetrPreactivatedHandsetByDeviceID" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_RetrPreactivatedHandsetByDeviceID">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="VerizonValidateDay" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="RetrPreactivatedHandsetByDeviceIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RetrPreactivatedHandsetByDeviceIDResult" nillable="true" type="tns:RetrPreactivatedHandsetByDeviceID" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RetrPreactivatedHandsetByDeviceID">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="UpgradeHandset" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="VerizonActivationDate" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="HandsetPrice" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ComboPlanProvisioned" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="BudgetMobile_CompleteFulfillment">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_BudgetMobile_CompleteFulfillment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_BudgetMobile_CompleteFulfillment">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IntraUser" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MSID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="OriginalCSA" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="IMSI" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="BudgetMobile_CompleteFulfillmentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="BudgetMobile_CompleteFulfillmentResult" nillable="true" type="tns:BudgetMobile_CompleteFulfillment" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BudgetMobile_CompleteFulfillment">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="TMobile_SwapIMSI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_TMobile_SwapIMSI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_TMobile_SwapIMSI">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="orderID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="oldIMSI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="NewIMSI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="TMobile_SwapIMSIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TMobile_SwapIMSIResult" nillable="true" type="tns:TMobile_SwapIMSI" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TMobile_SwapIMSI">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ChangeESN_Verizon">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_ChangeESN_Verizon" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_ChangeESN_Verizon">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="BudgetMobileID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Order_ID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ChangeESN_VerizonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ChangeESN_VerizonResult" nillable="true" type="tns:ChangeESN_Verizon" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ChangeESN_Verizon">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupVerizonChangeESNStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_LookupVerizonChangeESNStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_LookupVerizonChangeESNStatus">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order_ID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupVerizonChangeESNStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LookupVerizonChangeESNStatusResult" nillable="true" type="tns:LookupVerizonChangeESNStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookupVerizonChangeESNStatus">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Verizon_Discrete_DeviceInquiry">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_Verizon_Discrete_DeviceInquiry" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_Verizon_Discrete_DeviceInquiry">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Order_Id" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Verizon_Discrete_DeviceInquiryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="Verizon_Discrete_DeviceInquiryResult" nillable="true" type="tns:Verizon_Discrete_DeviceInquiry" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Verizon_Discrete_DeviceInquiry">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Success" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookUpVerizonDiscreteDeviceInquiryStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_LookUpVerizonDiscreteDeviceInquiryStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_LookUpVerizonDiscreteDeviceInquiryStatus">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order_Id" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookUpVerizonDiscreteDeviceInquiryStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LookUpVerizonDiscreteDeviceInquiryStatusResult" nillable="true" type="tns:LookUpVerizonDiscreteDeviceInquiryStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookUpVerizonDiscreteDeviceInquiryStatus">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DetailCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DetailCodeMessage" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="activationEligibility" type="s:short" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="DeactivateVerizonDevice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_DeactivateVerizonDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_DeactivateVerizonDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Order_Id" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="DeactivateVerizonDeviceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeactivateVerizonDeviceResult" nillable="true" type="tns:DeactivateVerizonDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DeactivateVerizonDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupVerizonDeactivateDeviceStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_LookupVerizonDeactivateDeviceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_LookupVerizonDeactivateDeviceStatus">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order_Id" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupVerizonDeactivateDeviceStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LookupVerizonDeactivateDeviceStatusResult" nillable="true" type="tns:LookupVerizonDeactivateDeviceStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookupVerizonDeactivateDeviceStatus">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="DeactivateSprintDevice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_DeactivateSprintDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_DeactivateSprintDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ExpireDate" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="DeactivateSprintDeviceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeactivateSprintDeviceResult" nillable="true" type="tns:DeactivateSprintDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DeactivateSprintDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="ConfirmMsg" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="CheckTmobileBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_CheckTmobileBalance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_CheckTmobileBalance">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MobileNumber" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="CheckTmobileBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckTmobileBalanceResult" nillable="true" type="tns:CheckTmobileBalance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CheckTmobileBalance">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="WirelessNumber" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="planBalance_Voice" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="planBalance_Text" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="topUpBalance_Voice" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="topUpBalance_Text" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="ServiceEndDate" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TopUpExpirationSet" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="TopUpExpiration" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="topUpBalance_Data" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="CheckVerizonBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_CheckVerizonBalance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_CheckVerizonBalance">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MobileNumber" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="CheckVerizonBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckVerizonBalanceResult" nillable="true" type="tns:CheckVerizonBalance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="CheckVerizonBalance">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="WirelessNumber" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="planBalance_Voice" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="planBalance_Text" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="topUpBalance_Voice" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="topUpBalance_Text" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="ServiceEndDate" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TopUpExpirationSet" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="TopUpExpiration" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="planBalance_Combo_VS" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TopUpBalance_Combo_VS" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="planBalance_Data" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="topUpBalance_Data" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="planBalance_MMS" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="topUpBalance_MMS" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="RetrVoiceandTextBalance">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_RetrVoiceandTextBalance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_RetrVoiceandTextBalance">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileID" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="RetrVoiceandTextBalanceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="RetrVoiceandTextBalanceResult" nillable="true" type="tns:RetrVoiceandTextBalance" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RetrVoiceandTextBalance">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="WirelessNumber" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="planBalance_Voice" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="planBalance_Text" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="topUpBalance_Voice" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="topUpBalance_Text" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="ServiceEndDate" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TopUpExpirationSet" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="TopUpExpiration" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="planBalance_Combo_VS" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TopUpBalance_Combo_VS" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="planBalance_Data" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="topUpBalance_Data" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupAvailableTopUp_Existing">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_LookupAvailableTopUp_Existing" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_LookupAvailableTopUp_Existing">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="Sales_Channel" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupAvailableTopUp_ExistingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LookupAvailableTopUp_ExistingResult" nillable="true" type="tns:LookupAvailableTopUp_Existing" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookupAvailableTopUp_Existing">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="TopUpProducts" type="tns:ArrayOfTopUpProduct" />
+              <s:element minOccurs="1" maxOccurs="1" name="TopUpProductsAvailable" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfTopUpProduct">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TopUpProduct" nillable="true" type="tns:TopUpProduct" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TopUpProduct">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TopUpProductID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FaceValue" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountCreditsRequired" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CommisionCategory" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="AccountCreditEligible" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OfferingType" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="TopUp_Enter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_TopUp_Enter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_TopUp_Enter">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order_ID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="TopUpProductID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="PurchaseWithAccountCredits" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="Sales_Channel" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Advance" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CouponAmount" type="s:double" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="TopUp_EnterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TopUp_EnterResult" nillable="true" type="tns:TopUp_Enter" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TopUp_Enter">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="TaxItems" type="tns:ArrayOfTaxItem" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReferenceID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="OrderTotal" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="1" name="TopUpDescription" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TopUpCost" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="TaxesApply" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CouponAmount" type="s:double" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="TopUp_Commit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_TopUp_Commit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_TopUp_Commit">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Sales_Channel" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ReferenceID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="CCPayment" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="TopUp_CommitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TopUp_CommitResult" nillable="true" type="tns:TopUp_Commit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TopUp_Commit">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="TopUpID" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupAccountByMDN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_LookupAccountByMDN" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_LookupAccountByMDN">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Sales_Channel" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupAccountByMDNResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LookupAccountByMDNResult" nillable="true" type="tns:LookupAccountByMDN" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookupAccountByMDN">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileId" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="AccountCredits" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="MobileNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SSN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Birthdate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ZIP" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContactNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LifeLineCodeName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Lifeline_Expiration" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingAddress2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingCity" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingState" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingZip" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="LifelineCode" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="TopUpExpiration" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LastCallDateTime" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FromOrToNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AlternateIDDesc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AlternateIDValue" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Lifeline" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="Beneficiary" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LastBasePlanPurchase" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="Balance" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="RestrictUTT" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="AccountCompleted" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="DateCompleted" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="VoiceOnly" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="TT_PendingConversion" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="TT_ConversionProhibited" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="RatePlanPurchaseEligible_Immediate" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="RatePlanPurchaseEligible_Advance" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="ServiceEndDate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RatePlanDisplay" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ValidForPayment" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="RecertificationMustUpdate" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ValidForRecertification" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CommissionableRecertification" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="ValidForTopup" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="RecertificationCreditEarned" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ValidForAccountDetails" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="RuralAddress" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="StateRegCode2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IMSI" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ValidForPlanChange" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="MigrationInProgress" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="UpdateDeviceID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_UpdateDeviceID" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_UpdateDeviceID">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileID" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="UpdateDeviceIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateDeviceIDResult" nillable="true" type="tns:UpdateDeviceID" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UpdateDeviceID">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupCustomerDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_LookupCustomerDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_LookupCustomerDetails">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileID" type="s:long" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupCustomerDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LookupCustomerDetailsResult" type="tns:LookupCustomerDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookupCustomerDetails">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="CustomerDetailsAvailable" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetmobileID" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProviderID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProviderName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AccountCredits" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MobileNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SSN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BirthDate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address1" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Address2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="EmailAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ContactNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Lifeline" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Lifeline_Expiration" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingAddress2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingCity" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingState" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingZip" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="TopUpExpiration" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AlternateIDDesc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AlternateIDValue" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Beneficiary" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Balance" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AccountCompleted" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DateCompleted" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="VoiceOnly" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RatePlanPurchaseEligible_Immediate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RatePlanPurchaseEligible_Advance" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ServiceEndDate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RatePlanDisplay" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ServiceStartDate" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IMEI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SIM" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ServicePlan" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Employee" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="PrequalificationCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="HOHC" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LastCallDateTime" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FromOrToNumber" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="StateRegCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DocumentVerification" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryFirstName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryLastName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BeneficiaryDOB" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BeneficiarySSN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LifelineCodeName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LifelineCode" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="GatewayUse" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="StatusID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DirectNonLifeline" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ProductID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RuralAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="StateRegCode2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IMSI" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ValidForPlanChange" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="MigrationInProgress" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupTopUpDetails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_LookupTopUpDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_LookupTopUpDetails">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="TopUpProductID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CouponAmount" type="s:double" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupTopUpDetailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LookupTopUpDetailsResult" nillable="true" type="tns:LookupTopUpDetails" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookupTopUpDetails">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="TaxItems" type="tns:ArrayOfTaxItem" />
+              <s:element minOccurs="1" maxOccurs="1" name="OrderTotal" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="1" name="TopUpDescription" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TopUpCost" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="TaxesApply" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CouponAmount" type="s:double" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Recertify_BudgetMobile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_Recertify_BudgetMobile" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_Recertify_BudgetMobile">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Agent_ID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="UpdateAccountDetails" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="First_Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Last_Name" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SSN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DOB" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Contact" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Email" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="LifelineProgram" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="ValidatedAddressID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingAddress" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingAddress2" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingCity" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingState" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="BillingZip" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Sales_Channel" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TemporaryAddress" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="BypassIdentity" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="BypassIdentityNotes" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AlternateIDDesc" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="AlternateIDValue" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Beneficiary" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="StateRegCode" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="EditedWithoutAddress" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="Recertify_BudgetMobileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Recertify_BudgetMobileResult" type="tns:Recertify_BudgetMobile" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Recertify_BudgetMobile">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="NewLifeLineExpiration" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RecertificationCredits" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CommissionableRecertification" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="DiscreteRestoreTMobileDevice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_DiscreteRestoreTMobileDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_DiscreteRestoreTMobileDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileID" type="s:long" />
+              <s:element minOccurs="0" maxOccurs="1" name="IMSI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Order_ID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="DiscreteRestoreTMobileDeviceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DiscreteRestoreTMobileDeviceResult" type="tns:DiscreteRestoreTMobileDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DiscreteRestoreTMobileDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="VerifyDevice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_VerifyDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_VerifyDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="VerifyDeviceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VerifyDeviceResult" type="tns:VerifyDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="VerifyDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="UpdateProviderDeviceID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_UpdateProviderDeviceID" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_UpdateProviderDeviceID">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileID" type="s:long" />
+              <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="DeviceID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IMSI" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="UpdateProviderDeviceIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UpdateProviderDeviceIDResult" nillable="true" type="tns:UpdateProviderDeviceID" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UpdateProviderDeviceID">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="TMobile_PortInActivateDevice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_TMobile_PortInActivateDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_TMobile_PortInActivateDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IMSI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ZIP" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="TMobile_PortInActivateDeviceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="TMobile_PortInActivateDeviceResult" nillable="true" type="tns:TMobile_PortInActivateDevice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TMobile_PortInActivateDevice">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ActivateTmobileDevice_ITG">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_ActivateTmobileDevice_ITG" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_ActivateTmobileDevice_ITG">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Order_ID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="IMSI" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="ZIP" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="SpecialProvisioningCode" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="ActivateTmobileDevice_ITGResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ActivateTmobileDevice_ITGResult" nillable="true" type="tns:ActivateTmobileDevice_ITG" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ActivateTmobileDevice_ITG">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupTopUpTotalDue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_LookupTopUpTotalDue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_LookupTopUpTotalDue">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="TopUpProductID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="CouponAmount" type="s:double" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupTopUpTotalDueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LookupTopUpTotalDueResult" nillable="true" type="tns:LookupTopUpTotalDue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookupTopUpTotalDue">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="TaxItems" type="tns:ArrayOfTaxItem" />
+              <s:element minOccurs="1" maxOccurs="1" name="OrderTotal" type="s:double" />
+              <s:element minOccurs="0" maxOccurs="1" name="TopUpDescription" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="TopUpCost" type="s:double" />
+              <s:element minOccurs="1" maxOccurs="1" name="TaxesApply" type="s:boolean" />
+              <s:element minOccurs="1" maxOccurs="1" name="CouponAmount" type="s:double" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupBasePlan">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_LookUpBasePlan" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_LookUpBasePlan">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupBasePlanResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LookupBasePlanResult" type="tns:LookUpBasePlan" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookUpBasePlan">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="BasePlanDetailsAvailable" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="PlanDescription" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Voice" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Text" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupAvailableTopUp_New">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_LookupAvailableTopUp_New" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_LookupAvailableTopUp_New">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="ProviderID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="Lifeline" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupAvailableTopUp_NewResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LookupAvailableTopUp_NewResult" nillable="true" type="tns:LookupAvailableTopUp_New" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookupAvailableTopUp_New">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="TopUpProducts" type="tns:ArrayOfTopUpProduct" />
+              <s:element minOccurs="1" maxOccurs="1" name="TopUpProductsAvailable" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupCustomer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_LookUpCustomer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_LookUpCustomer">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="LookupCustomerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LookupCustomerResult" type="tns:LookUpCustomer" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LookUpCustomer">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="CustomerDetails" type="tns:ArrayOfCustomerDetail" />
+              <s:element minOccurs="1" maxOccurs="1" name="CustomerDetailsAvailable" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfCustomerDetail">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CustomerDetail" nillable="true" type="tns:CustomerDetail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomerDetail">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BudgetMobileID" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MDN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DuplicateCheck">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MyCreds" type="tns:Credentials_DuplicateChecks" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Credentials_DuplicateChecks">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ClientInput">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="SSN" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="DOB" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="LexID" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="DuplicateCheckResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DuplicateCheckResult" nillable="true" type="tns:DuplicateCheck" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DuplicateCheck">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:ResponseMsg">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IsDuplicate" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="Address_StandardizeSoapIn">
+    <wsdl:part name="parameters" element="tns:Address_Standardize" />
+  </wsdl:message>
+  <wsdl:message name="Address_StandardizeSoapOut">
+    <wsdl:part name="parameters" element="tns:Address_StandardizeResponse" />
+  </wsdl:message>
+  <wsdl:message name="Order_EnterSoapIn">
+    <wsdl:part name="parameters" element="tns:Order_Enter" />
+  </wsdl:message>
+  <wsdl:message name="Order_EnterSoapOut">
+    <wsdl:part name="parameters" element="tns:Order_EnterResponse" />
+  </wsdl:message>
+  <wsdl:message name="Order_CommitSoapIn">
+    <wsdl:part name="parameters" element="tns:Order_Commit" />
+  </wsdl:message>
+  <wsdl:message name="Order_CommitSoapOut">
+    <wsdl:part name="parameters" element="tns:Order_CommitResponse" />
+  </wsdl:message>
+  <wsdl:message name="DevicesSoapIn">
+    <wsdl:part name="parameters" element="tns:Devices" />
+  </wsdl:message>
+  <wsdl:message name="DevicesSoapOut">
+    <wsdl:part name="parameters" element="tns:DevicesResponse" />
+  </wsdl:message>
+  <wsdl:message name="Zip_CoverageSoapIn">
+    <wsdl:part name="parameters" element="tns:Zip_Coverage" />
+  </wsdl:message>
+  <wsdl:message name="Zip_CoverageSoapOut">
+    <wsdl:part name="parameters" element="tns:Zip_CoverageResponse" />
+  </wsdl:message>
+  <wsdl:message name="Address_VerifyLifelineSoapIn">
+    <wsdl:part name="parameters" element="tns:Address_VerifyLifeline" />
+  </wsdl:message>
+  <wsdl:message name="Address_VerifyLifelineSoapOut">
+    <wsdl:part name="parameters" element="tns:Address_VerifyLifelineResponse" />
+  </wsdl:message>
+  <wsdl:message name="Handset_CommitSoapIn">
+    <wsdl:part name="parameters" element="tns:Handset_Commit" />
+  </wsdl:message>
+  <wsdl:message name="Handset_CommitSoapOut">
+    <wsdl:part name="parameters" element="tns:Handset_CommitResponse" />
+  </wsdl:message>
+  <wsdl:message name="Handset_EnterSoapIn">
+    <wsdl:part name="parameters" element="tns:Handset_Enter" />
+  </wsdl:message>
+  <wsdl:message name="Handset_EnterSoapOut">
+    <wsdl:part name="parameters" element="tns:Handset_EnterResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActivateVerizonDeviceSoapIn">
+    <wsdl:part name="parameters" element="tns:ActivateVerizonDevice" />
+  </wsdl:message>
+  <wsdl:message name="ActivateVerizonDeviceSoapOut">
+    <wsdl:part name="parameters" element="tns:ActivateVerizonDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupVerizonActivationStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupVerizonActivationStatus" />
+  </wsdl:message>
+  <wsdl:message name="LookupVerizonActivationStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupVerizonActivationStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActivateSprintDeviceSoapIn">
+    <wsdl:part name="parameters" element="tns:ActivateSprintDevice" />
+  </wsdl:message>
+  <wsdl:message name="ActivateSprintDeviceSoapOut">
+    <wsdl:part name="parameters" element="tns:ActivateSprintDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActivateTmobileDeviceSoapIn">
+    <wsdl:part name="parameters" element="tns:ActivateTmobileDevice" />
+  </wsdl:message>
+  <wsdl:message name="ActivateTmobileDeviceSoapOut">
+    <wsdl:part name="parameters" element="tns:ActivateTmobileDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="TMobile_RetrPreactivatedHandsetByDeviceIDSoapIn">
+    <wsdl:part name="parameters" element="tns:TMobile_RetrPreactivatedHandsetByDeviceID" />
+  </wsdl:message>
+  <wsdl:message name="TMobile_RetrPreactivatedHandsetByDeviceIDSoapOut">
+    <wsdl:part name="parameters" element="tns:TMobile_RetrPreactivatedHandsetByDeviceIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="Sprint_RetrSingleDeviceActivationDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Sprint_RetrSingleDeviceActivationDetails" />
+  </wsdl:message>
+  <wsdl:message name="Sprint_RetrSingleDeviceActivationDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Sprint_RetrSingleDeviceActivationDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Verizon_RetrSingleDeviceActivationDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:Verizon_RetrSingleDeviceActivationDetails" />
+  </wsdl:message>
+  <wsdl:message name="Verizon_RetrSingleDeviceActivationDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:Verizon_RetrSingleDeviceActivationDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrPreactivatedHandsetByDeviceIDSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrPreactivatedHandsetByDeviceID" />
+  </wsdl:message>
+  <wsdl:message name="RetrPreactivatedHandsetByDeviceIDSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrPreactivatedHandsetByDeviceIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="BudgetMobile_CompleteFulfillmentSoapIn">
+    <wsdl:part name="parameters" element="tns:BudgetMobile_CompleteFulfillment" />
+  </wsdl:message>
+  <wsdl:message name="BudgetMobile_CompleteFulfillmentSoapOut">
+    <wsdl:part name="parameters" element="tns:BudgetMobile_CompleteFulfillmentResponse" />
+  </wsdl:message>
+  <wsdl:message name="TMobile_SwapIMSISoapIn">
+    <wsdl:part name="parameters" element="tns:TMobile_SwapIMSI" />
+  </wsdl:message>
+  <wsdl:message name="TMobile_SwapIMSISoapOut">
+    <wsdl:part name="parameters" element="tns:TMobile_SwapIMSIResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeESN_VerizonSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeESN_Verizon" />
+  </wsdl:message>
+  <wsdl:message name="ChangeESN_VerizonSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeESN_VerizonResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupVerizonChangeESNStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupVerizonChangeESNStatus" />
+  </wsdl:message>
+  <wsdl:message name="LookupVerizonChangeESNStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupVerizonChangeESNStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="Verizon_Discrete_DeviceInquirySoapIn">
+    <wsdl:part name="parameters" element="tns:Verizon_Discrete_DeviceInquiry" />
+  </wsdl:message>
+  <wsdl:message name="Verizon_Discrete_DeviceInquirySoapOut">
+    <wsdl:part name="parameters" element="tns:Verizon_Discrete_DeviceInquiryResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookUpVerizonDiscreteDeviceInquiryStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:LookUpVerizonDiscreteDeviceInquiryStatus" />
+  </wsdl:message>
+  <wsdl:message name="LookUpVerizonDiscreteDeviceInquiryStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:LookUpVerizonDiscreteDeviceInquiryStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeactivateVerizonDeviceSoapIn">
+    <wsdl:part name="parameters" element="tns:DeactivateVerizonDevice" />
+  </wsdl:message>
+  <wsdl:message name="DeactivateVerizonDeviceSoapOut">
+    <wsdl:part name="parameters" element="tns:DeactivateVerizonDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupVerizonDeactivateDeviceStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupVerizonDeactivateDeviceStatus" />
+  </wsdl:message>
+  <wsdl:message name="LookupVerizonDeactivateDeviceStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupVerizonDeactivateDeviceStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeactivateSprintDeviceSoapIn">
+    <wsdl:part name="parameters" element="tns:DeactivateSprintDevice" />
+  </wsdl:message>
+  <wsdl:message name="DeactivateSprintDeviceSoapOut">
+    <wsdl:part name="parameters" element="tns:DeactivateSprintDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckTmobileBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckTmobileBalance" />
+  </wsdl:message>
+  <wsdl:message name="CheckTmobileBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckTmobileBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckVerizonBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckVerizonBalance" />
+  </wsdl:message>
+  <wsdl:message name="CheckVerizonBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckVerizonBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetrVoiceandTextBalanceSoapIn">
+    <wsdl:part name="parameters" element="tns:RetrVoiceandTextBalance" />
+  </wsdl:message>
+  <wsdl:message name="RetrVoiceandTextBalanceSoapOut">
+    <wsdl:part name="parameters" element="tns:RetrVoiceandTextBalanceResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupAvailableTopUp_ExistingSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupAvailableTopUp_Existing" />
+  </wsdl:message>
+  <wsdl:message name="LookupAvailableTopUp_ExistingSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupAvailableTopUp_ExistingResponse" />
+  </wsdl:message>
+  <wsdl:message name="TopUp_EnterSoapIn">
+    <wsdl:part name="parameters" element="tns:TopUp_Enter" />
+  </wsdl:message>
+  <wsdl:message name="TopUp_EnterSoapOut">
+    <wsdl:part name="parameters" element="tns:TopUp_EnterResponse" />
+  </wsdl:message>
+  <wsdl:message name="TopUp_CommitSoapIn">
+    <wsdl:part name="parameters" element="tns:TopUp_Commit" />
+  </wsdl:message>
+  <wsdl:message name="TopUp_CommitSoapOut">
+    <wsdl:part name="parameters" element="tns:TopUp_CommitResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupAccountByMDNSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupAccountByMDN" />
+  </wsdl:message>
+  <wsdl:message name="LookupAccountByMDNSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupAccountByMDNResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDeviceIDSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDeviceID" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDeviceIDSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDeviceIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupCustomerDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupCustomerDetails" />
+  </wsdl:message>
+  <wsdl:message name="LookupCustomerDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupCustomerDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupTopUpDetailsSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupTopUpDetails" />
+  </wsdl:message>
+  <wsdl:message name="LookupTopUpDetailsSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupTopUpDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="Recertify_BudgetMobileSoapIn">
+    <wsdl:part name="parameters" element="tns:Recertify_BudgetMobile" />
+  </wsdl:message>
+  <wsdl:message name="Recertify_BudgetMobileSoapOut">
+    <wsdl:part name="parameters" element="tns:Recertify_BudgetMobileResponse" />
+  </wsdl:message>
+  <wsdl:message name="DiscreteRestoreTMobileDeviceSoapIn">
+    <wsdl:part name="parameters" element="tns:DiscreteRestoreTMobileDevice" />
+  </wsdl:message>
+  <wsdl:message name="DiscreteRestoreTMobileDeviceSoapOut">
+    <wsdl:part name="parameters" element="tns:DiscreteRestoreTMobileDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifyDeviceSoapIn">
+    <wsdl:part name="parameters" element="tns:VerifyDevice" />
+  </wsdl:message>
+  <wsdl:message name="VerifyDeviceSoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProviderDeviceIDSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateProviderDeviceID" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProviderDeviceIDSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateProviderDeviceIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="TMobile_PortInActivateDeviceSoapIn">
+    <wsdl:part name="parameters" element="tns:TMobile_PortInActivateDevice" />
+  </wsdl:message>
+  <wsdl:message name="TMobile_PortInActivateDeviceSoapOut">
+    <wsdl:part name="parameters" element="tns:TMobile_PortInActivateDeviceResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActivateTmobileDevice_ITGSoapIn">
+    <wsdl:part name="parameters" element="tns:ActivateTmobileDevice_ITG" />
+  </wsdl:message>
+  <wsdl:message name="ActivateTmobileDevice_ITGSoapOut">
+    <wsdl:part name="parameters" element="tns:ActivateTmobileDevice_ITGResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupTopUpTotalDueSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupTopUpTotalDue" />
+  </wsdl:message>
+  <wsdl:message name="LookupTopUpTotalDueSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupTopUpTotalDueResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupBasePlanSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupBasePlan" />
+  </wsdl:message>
+  <wsdl:message name="LookupBasePlanSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupBasePlanResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupAvailableTopUp_NewSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupAvailableTopUp_New" />
+  </wsdl:message>
+  <wsdl:message name="LookupAvailableTopUp_NewSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupAvailableTopUp_NewResponse" />
+  </wsdl:message>
+  <wsdl:message name="LookupCustomerSoapIn">
+    <wsdl:part name="parameters" element="tns:LookupCustomer" />
+  </wsdl:message>
+  <wsdl:message name="LookupCustomerSoapOut">
+    <wsdl:part name="parameters" element="tns:LookupCustomerResponse" />
+  </wsdl:message>
+  <wsdl:message name="DuplicateCheckSoapIn">
+    <wsdl:part name="parameters" element="tns:DuplicateCheck" />
+  </wsdl:message>
+  <wsdl:message name="DuplicateCheckSoapOut">
+    <wsdl:part name="parameters" element="tns:DuplicateCheckResponse" />
+  </wsdl:message>
+  <wsdl:portType name="LifelineServicesSoap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Address_Standardize">
+      <wsdl:input message="tns:Address_StandardizeSoapIn" />
+      <wsdl:output message="tns:Address_StandardizeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Order_Enter">
+      <wsdl:input message="tns:Order_EnterSoapIn" />
+      <wsdl:output message="tns:Order_EnterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Order_Commit">
+      <wsdl:input message="tns:Order_CommitSoapIn" />
+      <wsdl:output message="tns:Order_CommitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Devices">
+      <wsdl:input message="tns:DevicesSoapIn" />
+      <wsdl:output message="tns:DevicesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Zip_Coverage">
+      <wsdl:input message="tns:Zip_CoverageSoapIn" />
+      <wsdl:output message="tns:Zip_CoverageSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Address_VerifyLifeline">
+      <wsdl:input message="tns:Address_VerifyLifelineSoapIn" />
+      <wsdl:output message="tns:Address_VerifyLifelineSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Handset_Commit">
+      <wsdl:input message="tns:Handset_CommitSoapIn" />
+      <wsdl:output message="tns:Handset_CommitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Handset_Enter">
+      <wsdl:input message="tns:Handset_EnterSoapIn" />
+      <wsdl:output message="tns:Handset_EnterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivateVerizonDevice">
+      <wsdl:input message="tns:ActivateVerizonDeviceSoapIn" />
+      <wsdl:output message="tns:ActivateVerizonDeviceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupVerizonActivationStatus">
+      <wsdl:input message="tns:LookupVerizonActivationStatusSoapIn" />
+      <wsdl:output message="tns:LookupVerizonActivationStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivateSprintDevice">
+      <wsdl:input message="tns:ActivateSprintDeviceSoapIn" />
+      <wsdl:output message="tns:ActivateSprintDeviceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivateTmobileDevice">
+      <wsdl:input message="tns:ActivateTmobileDeviceSoapIn" />
+      <wsdl:output message="tns:ActivateTmobileDeviceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TMobile_RetrPreactivatedHandsetByDeviceID">
+      <wsdl:input message="tns:TMobile_RetrPreactivatedHandsetByDeviceIDSoapIn" />
+      <wsdl:output message="tns:TMobile_RetrPreactivatedHandsetByDeviceIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Sprint_RetrSingleDeviceActivationDetails">
+      <wsdl:input message="tns:Sprint_RetrSingleDeviceActivationDetailsSoapIn" />
+      <wsdl:output message="tns:Sprint_RetrSingleDeviceActivationDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Verizon_RetrSingleDeviceActivationDetails">
+      <wsdl:input message="tns:Verizon_RetrSingleDeviceActivationDetailsSoapIn" />
+      <wsdl:output message="tns:Verizon_RetrSingleDeviceActivationDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrPreactivatedHandsetByDeviceID">
+      <wsdl:input message="tns:RetrPreactivatedHandsetByDeviceIDSoapIn" />
+      <wsdl:output message="tns:RetrPreactivatedHandsetByDeviceIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BudgetMobile_CompleteFulfillment">
+      <wsdl:input message="tns:BudgetMobile_CompleteFulfillmentSoapIn" />
+      <wsdl:output message="tns:BudgetMobile_CompleteFulfillmentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TMobile_SwapIMSI">
+      <wsdl:input message="tns:TMobile_SwapIMSISoapIn" />
+      <wsdl:output message="tns:TMobile_SwapIMSISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeESN_Verizon">
+      <wsdl:input message="tns:ChangeESN_VerizonSoapIn" />
+      <wsdl:output message="tns:ChangeESN_VerizonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupVerizonChangeESNStatus">
+      <wsdl:input message="tns:LookupVerizonChangeESNStatusSoapIn" />
+      <wsdl:output message="tns:LookupVerizonChangeESNStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Verizon_Discrete_DeviceInquiry">
+      <wsdl:input message="tns:Verizon_Discrete_DeviceInquirySoapIn" />
+      <wsdl:output message="tns:Verizon_Discrete_DeviceInquirySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookUpVerizonDiscreteDeviceInquiryStatus">
+      <wsdl:input message="tns:LookUpVerizonDiscreteDeviceInquiryStatusSoapIn" />
+      <wsdl:output message="tns:LookUpVerizonDiscreteDeviceInquiryStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateVerizonDevice">
+      <wsdl:input message="tns:DeactivateVerizonDeviceSoapIn" />
+      <wsdl:output message="tns:DeactivateVerizonDeviceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupVerizonDeactivateDeviceStatus">
+      <wsdl:input message="tns:LookupVerizonDeactivateDeviceStatusSoapIn" />
+      <wsdl:output message="tns:LookupVerizonDeactivateDeviceStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateSprintDevice">
+      <wsdl:input message="tns:DeactivateSprintDeviceSoapIn" />
+      <wsdl:output message="tns:DeactivateSprintDeviceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckTmobileBalance">
+      <wsdl:input message="tns:CheckTmobileBalanceSoapIn" />
+      <wsdl:output message="tns:CheckTmobileBalanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckVerizonBalance">
+      <wsdl:input message="tns:CheckVerizonBalanceSoapIn" />
+      <wsdl:output message="tns:CheckVerizonBalanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetrVoiceandTextBalance">
+      <wsdl:input message="tns:RetrVoiceandTextBalanceSoapIn" />
+      <wsdl:output message="tns:RetrVoiceandTextBalanceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupAvailableTopUp_Existing">
+      <wsdl:input message="tns:LookupAvailableTopUp_ExistingSoapIn" />
+      <wsdl:output message="tns:LookupAvailableTopUp_ExistingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TopUp_Enter">
+      <wsdl:input message="tns:TopUp_EnterSoapIn" />
+      <wsdl:output message="tns:TopUp_EnterSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TopUp_Commit">
+      <wsdl:input message="tns:TopUp_CommitSoapIn" />
+      <wsdl:output message="tns:TopUp_CommitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupAccountByMDN">
+      <wsdl:input message="tns:LookupAccountByMDNSoapIn" />
+      <wsdl:output message="tns:LookupAccountByMDNSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeviceID">
+      <wsdl:input message="tns:UpdateDeviceIDSoapIn" />
+      <wsdl:output message="tns:UpdateDeviceIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupCustomerDetails">
+      <wsdl:input message="tns:LookupCustomerDetailsSoapIn" />
+      <wsdl:output message="tns:LookupCustomerDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupTopUpDetails">
+      <wsdl:input message="tns:LookupTopUpDetailsSoapIn" />
+      <wsdl:output message="tns:LookupTopUpDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Recertify_BudgetMobile">
+      <wsdl:input message="tns:Recertify_BudgetMobileSoapIn" />
+      <wsdl:output message="tns:Recertify_BudgetMobileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DiscreteRestoreTMobileDevice">
+      <wsdl:input message="tns:DiscreteRestoreTMobileDeviceSoapIn" />
+      <wsdl:output message="tns:DiscreteRestoreTMobileDeviceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyDevice">
+      <wsdl:input message="tns:VerifyDeviceSoapIn" />
+      <wsdl:output message="tns:VerifyDeviceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProviderDeviceID">
+      <wsdl:input message="tns:UpdateProviderDeviceIDSoapIn" />
+      <wsdl:output message="tns:UpdateProviderDeviceIDSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TMobile_PortInActivateDevice">
+      <wsdl:input message="tns:TMobile_PortInActivateDeviceSoapIn" />
+      <wsdl:output message="tns:TMobile_PortInActivateDeviceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivateTmobileDevice_ITG">
+      <wsdl:input message="tns:ActivateTmobileDevice_ITGSoapIn" />
+      <wsdl:output message="tns:ActivateTmobileDevice_ITGSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupTopUpTotalDue">
+      <wsdl:input message="tns:LookupTopUpTotalDueSoapIn" />
+      <wsdl:output message="tns:LookupTopUpTotalDueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupBasePlan">
+      <wsdl:input message="tns:LookupBasePlanSoapIn" />
+      <wsdl:output message="tns:LookupBasePlanSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupAvailableTopUp_New">
+      <wsdl:input message="tns:LookupAvailableTopUp_NewSoapIn" />
+      <wsdl:output message="tns:LookupAvailableTopUp_NewSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LookupCustomer">
+      <wsdl:input message="tns:LookupCustomerSoapIn" />
+      <wsdl:output message="tns:LookupCustomerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DuplicateCheck">
+      <wsdl:input message="tns:DuplicateCheckSoapIn" />
+      <wsdl:output message="tns:DuplicateCheckSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="LifelineServicesSoap" type="tns:LifelineServicesSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Address_Standardize">
+      <soap:operation soapAction="http://tempuri.org/Address_Standardize" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Order_Enter">
+      <soap:operation soapAction="http://tempuri.org/Order_Enter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Order_Commit">
+      <soap:operation soapAction="http://tempuri.org/Order_Commit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Devices">
+      <soap:operation soapAction="http://tempuri.org/Devices" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Zip_Coverage">
+      <soap:operation soapAction="http://tempuri.org/Zip_Coverage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Address_VerifyLifeline">
+      <soap:operation soapAction="http://tempuri.org/Address_VerifyLifeline" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Handset_Commit">
+      <soap:operation soapAction="http://tempuri.org/Handset_Commit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Handset_Enter">
+      <soap:operation soapAction="http://tempuri.org/Handset_Enter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateVerizonDevice">
+      <soap:operation soapAction="http://tempuri.org/ActivateVerizonDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupVerizonActivationStatus">
+      <soap:operation soapAction="http://tempuri.org/LookupVerizonActivationStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateSprintDevice">
+      <soap:operation soapAction="http://tempuri.org/ActivateSprintDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateTmobileDevice">
+      <soap:operation soapAction="http://tempuri.org/ActivateTmobileDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TMobile_RetrPreactivatedHandsetByDeviceID">
+      <soap:operation soapAction="http://tempuri.org/TMobile_RetrPreactivatedHandsetByDeviceID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Sprint_RetrSingleDeviceActivationDetails">
+      <soap:operation soapAction="http://tempuri.org/Sprint_RetrSingleDeviceActivationDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Verizon_RetrSingleDeviceActivationDetails">
+      <soap:operation soapAction="http://tempuri.org/Verizon_RetrSingleDeviceActivationDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrPreactivatedHandsetByDeviceID">
+      <soap:operation soapAction="http://tempuri.org/RetrPreactivatedHandsetByDeviceID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BudgetMobile_CompleteFulfillment">
+      <soap:operation soapAction="http://tempuri.org/BudgetMobile_CompleteFulfillment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TMobile_SwapIMSI">
+      <soap:operation soapAction="http://tempuri.org/TMobile_SwapIMSI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeESN_Verizon">
+      <soap:operation soapAction="http://tempuri.org/ChangeESN_Verizon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupVerizonChangeESNStatus">
+      <soap:operation soapAction="http://tempuri.org/LookupVerizonChangeESNStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Verizon_Discrete_DeviceInquiry">
+      <soap:operation soapAction="http://tempuri.org/Verizon_Discrete_DeviceInquiry" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookUpVerizonDiscreteDeviceInquiryStatus">
+      <soap:operation soapAction="http://tempuri.org/LookUpVerizonDiscreteDeviceInquiryStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateVerizonDevice">
+      <soap:operation soapAction="http://tempuri.org/DeactivateVerizonDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupVerizonDeactivateDeviceStatus">
+      <soap:operation soapAction="http://tempuri.org/LookupVerizonDeactivateDeviceStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateSprintDevice">
+      <soap:operation soapAction="http://tempuri.org/DeactivateSprintDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTmobileBalance">
+      <soap:operation soapAction="http://tempuri.org/CheckTmobileBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckVerizonBalance">
+      <soap:operation soapAction="http://tempuri.org/CheckVerizonBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrVoiceandTextBalance">
+      <soap:operation soapAction="http://tempuri.org/RetrVoiceandTextBalance" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupAvailableTopUp_Existing">
+      <soap:operation soapAction="http://tempuri.org/LookupAvailableTopUp_Existing" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TopUp_Enter">
+      <soap:operation soapAction="http://tempuri.org/TopUp_Enter" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TopUp_Commit">
+      <soap:operation soapAction="http://tempuri.org/TopUp_Commit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupAccountByMDN">
+      <soap:operation soapAction="http://tempuri.org/LookupAccountByMDN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeviceID">
+      <soap:operation soapAction="http://tempuri.org/UpdateDeviceID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupCustomerDetails">
+      <soap:operation soapAction="http://tempuri.org/LookupCustomerDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupTopUpDetails">
+      <soap:operation soapAction="http://tempuri.org/LookupTopUpDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Recertify_BudgetMobile">
+      <soap:operation soapAction="http://tempuri.org/Recertify_BudgetMobile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DiscreteRestoreTMobileDevice">
+      <soap:operation soapAction="http://tempuri.org/DiscreteRestoreTMobileDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyDevice">
+      <soap:operation soapAction="http://tempuri.org/VerifyDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProviderDeviceID">
+      <soap:operation soapAction="http://tempuri.org/UpdateProviderDeviceID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TMobile_PortInActivateDevice">
+      <soap:operation soapAction="http://tempuri.org/TMobile_PortInActivateDevice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateTmobileDevice_ITG">
+      <soap:operation soapAction="http://tempuri.org/ActivateTmobileDevice_ITG" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupTopUpTotalDue">
+      <soap:operation soapAction="http://tempuri.org/LookupTopUpTotalDue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupBasePlan">
+      <soap:operation soapAction="http://tempuri.org/LookupBasePlan" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupAvailableTopUp_New">
+      <soap:operation soapAction="http://tempuri.org/LookupAvailableTopUp_New" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupCustomer">
+      <soap:operation soapAction="http://tempuri.org/LookupCustomer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DuplicateCheck">
+      <soap:operation soapAction="http://tempuri.org/DuplicateCheck" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="LifelineServicesSoap12" type="tns:LifelineServicesSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Address_Standardize">
+      <soap12:operation soapAction="http://tempuri.org/Address_Standardize" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Order_Enter">
+      <soap12:operation soapAction="http://tempuri.org/Order_Enter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Order_Commit">
+      <soap12:operation soapAction="http://tempuri.org/Order_Commit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Devices">
+      <soap12:operation soapAction="http://tempuri.org/Devices" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Zip_Coverage">
+      <soap12:operation soapAction="http://tempuri.org/Zip_Coverage" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Address_VerifyLifeline">
+      <soap12:operation soapAction="http://tempuri.org/Address_VerifyLifeline" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Handset_Commit">
+      <soap12:operation soapAction="http://tempuri.org/Handset_Commit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Handset_Enter">
+      <soap12:operation soapAction="http://tempuri.org/Handset_Enter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateVerizonDevice">
+      <soap12:operation soapAction="http://tempuri.org/ActivateVerizonDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupVerizonActivationStatus">
+      <soap12:operation soapAction="http://tempuri.org/LookupVerizonActivationStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateSprintDevice">
+      <soap12:operation soapAction="http://tempuri.org/ActivateSprintDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateTmobileDevice">
+      <soap12:operation soapAction="http://tempuri.org/ActivateTmobileDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TMobile_RetrPreactivatedHandsetByDeviceID">
+      <soap12:operation soapAction="http://tempuri.org/TMobile_RetrPreactivatedHandsetByDeviceID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Sprint_RetrSingleDeviceActivationDetails">
+      <soap12:operation soapAction="http://tempuri.org/Sprint_RetrSingleDeviceActivationDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Verizon_RetrSingleDeviceActivationDetails">
+      <soap12:operation soapAction="http://tempuri.org/Verizon_RetrSingleDeviceActivationDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrPreactivatedHandsetByDeviceID">
+      <soap12:operation soapAction="http://tempuri.org/RetrPreactivatedHandsetByDeviceID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BudgetMobile_CompleteFulfillment">
+      <soap12:operation soapAction="http://tempuri.org/BudgetMobile_CompleteFulfillment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TMobile_SwapIMSI">
+      <soap12:operation soapAction="http://tempuri.org/TMobile_SwapIMSI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeESN_Verizon">
+      <soap12:operation soapAction="http://tempuri.org/ChangeESN_Verizon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupVerizonChangeESNStatus">
+      <soap12:operation soapAction="http://tempuri.org/LookupVerizonChangeESNStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Verizon_Discrete_DeviceInquiry">
+      <soap12:operation soapAction="http://tempuri.org/Verizon_Discrete_DeviceInquiry" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookUpVerizonDiscreteDeviceInquiryStatus">
+      <soap12:operation soapAction="http://tempuri.org/LookUpVerizonDiscreteDeviceInquiryStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateVerizonDevice">
+      <soap12:operation soapAction="http://tempuri.org/DeactivateVerizonDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupVerizonDeactivateDeviceStatus">
+      <soap12:operation soapAction="http://tempuri.org/LookupVerizonDeactivateDeviceStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeactivateSprintDevice">
+      <soap12:operation soapAction="http://tempuri.org/DeactivateSprintDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckTmobileBalance">
+      <soap12:operation soapAction="http://tempuri.org/CheckTmobileBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckVerizonBalance">
+      <soap12:operation soapAction="http://tempuri.org/CheckVerizonBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetrVoiceandTextBalance">
+      <soap12:operation soapAction="http://tempuri.org/RetrVoiceandTextBalance" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupAvailableTopUp_Existing">
+      <soap12:operation soapAction="http://tempuri.org/LookupAvailableTopUp_Existing" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TopUp_Enter">
+      <soap12:operation soapAction="http://tempuri.org/TopUp_Enter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TopUp_Commit">
+      <soap12:operation soapAction="http://tempuri.org/TopUp_Commit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupAccountByMDN">
+      <soap12:operation soapAction="http://tempuri.org/LookupAccountByMDN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDeviceID">
+      <soap12:operation soapAction="http://tempuri.org/UpdateDeviceID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupCustomerDetails">
+      <soap12:operation soapAction="http://tempuri.org/LookupCustomerDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupTopUpDetails">
+      <soap12:operation soapAction="http://tempuri.org/LookupTopUpDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Recertify_BudgetMobile">
+      <soap12:operation soapAction="http://tempuri.org/Recertify_BudgetMobile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DiscreteRestoreTMobileDevice">
+      <soap12:operation soapAction="http://tempuri.org/DiscreteRestoreTMobileDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyDevice">
+      <soap12:operation soapAction="http://tempuri.org/VerifyDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProviderDeviceID">
+      <soap12:operation soapAction="http://tempuri.org/UpdateProviderDeviceID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TMobile_PortInActivateDevice">
+      <soap12:operation soapAction="http://tempuri.org/TMobile_PortInActivateDevice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateTmobileDevice_ITG">
+      <soap12:operation soapAction="http://tempuri.org/ActivateTmobileDevice_ITG" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupTopUpTotalDue">
+      <soap12:operation soapAction="http://tempuri.org/LookupTopUpTotalDue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupBasePlan">
+      <soap12:operation soapAction="http://tempuri.org/LookupBasePlan" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupAvailableTopUp_New">
+      <soap12:operation soapAction="http://tempuri.org/LookupAvailableTopUp_New" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LookupCustomer">
+      <soap12:operation soapAction="http://tempuri.org/LookupCustomer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DuplicateCheck">
+      <soap12:operation soapAction="http://tempuri.org/DuplicateCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="LifelineServices">
+    <wsdl:port name="LifelineServicesSoap" binding="tns:LifelineServicesSoap">
+      <soap:address location="http://budgetprepay.com/webservices/LifelineServices_test/LifelineServices.asmx" />
+    </wsdl:port>
+    <wsdl:port name="LifelineServicesSoap12" binding="tns:LifelineServicesSoap12">
+      <soap12:address location="http://budgetprepay.com/webservices/LifelineServices_test/LifelineServices.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

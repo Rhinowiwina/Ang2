@@ -1,0 +1,1000 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{86A894E2-896A-4B5B-8A3E-C724E809ED4B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LS.Repositories</RootNamespace>
+    <AssemblyName>LS.Repositories</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+    <OutputPath>bin\Staging\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AWSSDK, Version=2.3.41.0, Culture=neutral, PublicKeyToken=9f476d3089b52be3, processorArchitecture=MSIL">
+      <HintPath>..\packages\AWSSDK.2.3.41.0\lib\net45\AWSSDK.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.3.0.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\packages\Common.Logging.Core.3.0.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Exceptionless, Version=4.0.1951.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Exceptionless.4.0.1951\lib\net45\Exceptionless.dll</HintPath>
+    </Reference>
+    <Reference Include="Exceptionless.Mvc">
+      <HintPath>..\packages\Exceptionless.Mvc.4.0.1886\lib\net45\Exceptionless.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Exceptionless.WebApi, Version=4.0.1951.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Exceptionless.WebApi.4.0.1951\lib\net45\Exceptionless.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="LinqKit">
+      <HintPath>..\packages\LINQKit.1.1.1\lib\net45\LinqKit.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.6.2\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.OData.5.6.2\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Data.Services.Client.5.6.2\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Configuration, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.WindowsAzure.ConfigurationManager.1.8.0.0\lib\net35-full\Microsoft.WindowsAzure.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=4.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WindowsAzure.Storage.4.3.0\lib\net40\Microsoft.WindowsAzure.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Spatial, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\System.Spatial.5.6.2\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Migrations\201702031713519_Orders_DeviceType-BYOPCarrier.cs" />
+    <Compile Include="AddressBypassProofDocumentTypeRepository.cs" />
+    <Compile Include="ApiLogEntryRepository.cs" />
+    <Compile Include="ApplicationUserRepository.cs" />
+    <Compile Include="EFConfigs\AddressProofDocumentTypeEFConfig.cs" />
+    <Compile Include="EFConfigs\AddressValidationEFConfig.cs" />
+    <Compile Include="EFConfigs\AuditLogEFConfig.cs" />
+    <Compile Include="EFConfigs\CompanyStatesEFConfig.cs" />
+    <Compile Include="EFConfigs\DeviceOrderDeviceEFConfig.cs" />
+    <Compile Include="EFConfigs\DeviceOrderEFConfig.cs" />
+    <Compile Include="EFConfigs\LoginMsgEFConfig .cs" />
+    <Compile Include="EFConfigs\UserOnBoardDataEFConfig.cs" />
+    <Compile Include="EFConfigs\UserSignUpsEFConfig.cs" />
+    <Compile Include="EFConfigs\ResponseLogsCGMEHDB.cs" />
+    <Compile Include="EFConfigs\ResponseLogsCGMEHDBDetails.cs" />
+    <Compile Include="ExternalStorageAzureRepository.cs" />
+    <Compile Include="LoginMsgRepository.cs" />
+    <Compile Include="Migrations\201606071509364_initial_create.cs" />
+    <Compile Include="Migrations\201606071509364_initial_create.Designer.cs">
+      <DependentUpon>201606071509364_initial_create.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606071803525_Data_Procedures_Views.cs" />
+    <Compile Include="Migrations\201606071803525_Data_Procedures_Views.Designer.cs">
+      <DependentUpon>201606071803525_Data_Procedures_Views.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606081623291_NewTPIVColumns.cs" />
+    <Compile Include="Migrations\201606081623291_NewTPIVColumns.Designer.cs">
+      <DependentUpon>201606081623291_NewTPIVColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606081851096_ArrowSql-StatusID.cs" />
+    <Compile Include="Migrations\201606081851096_ArrowSql-StatusID.Designer.cs">
+      <DependentUpon>201606081851096_ArrowSql-StatusID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606091501108_RTRColumns.cs" />
+    <Compile Include="Migrations\201606091501108_RTRColumns.Designer.cs">
+      <DependentUpon>201606091501108_RTRColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606101747354_RTRColumns1.cs" />
+    <Compile Include="Migrations\201606101747354_RTRColumns1.Designer.cs">
+      <DependentUpon>201606101747354_RTRColumns1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606102213075_House_Numbers.cs" />
+    <Compile Include="Migrations\201606102213075_House_Numbers.Designer.cs">
+      <DependentUpon>201606102213075_House_Numbers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606141427411_AddOrderStatus.cs" />
+    <Compile Include="Migrations\201606141427411_AddOrderStatus.Designer.cs">
+      <DependentUpon>201606141427411_AddOrderStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606141544139_OrderCode.cs" />
+    <Compile Include="Migrations\201606141544139_OrderCode.Designer.cs">
+      <DependentUpon>201606141544139_OrderCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606151436305_ZipcodeCoverage.cs" />
+    <Compile Include="Migrations\201606151436305_ZipcodeCoverage.Designer.cs">
+      <DependentUpon>201606151436305_ZipcodeCoverage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606161414307_RemovedTraining.cs" />
+    <Compile Include="Migrations\201606161414307_RemovedTraining.Designer.cs">
+      <DependentUpon>201606161414307_RemovedTraining.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606161903538_AddedEmail-ContactPhone.cs" />
+    <Compile Include="Migrations\201606161903538_AddedEmail-ContactPhone.Designer.cs">
+      <DependentUpon>201606161903538_AddedEmail-ContactPhone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606211926361_ImageFilenameColumns.cs" />
+    <Compile Include="Migrations\201606211926361_ImageFilenameColumns.Designer.cs">
+      <DependentUpon>201606211926361_ImageFilenameColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606212217108_test.cs" />
+    <Compile Include="Migrations\201606212217108_test.Designer.cs">
+      <DependentUpon>201606212217108_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606212223311_temptablecolumnfix.cs" />
+    <Compile Include="Migrations\201606212223311_temptablecolumnfix.Designer.cs">
+      <DependentUpon>201606212223311_temptablecolumnfix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606221521218_ServiceAddressBypassImageID.cs" />
+    <Compile Include="Migrations\201606221521218_ServiceAddressBypassImageID.Designer.cs">
+      <DependentUpon>201606221521218_ServiceAddressBypassImageID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606201827068_Update_Buckets.cs" />
+    <Compile Include="Migrations\201606201827068_Update_Buckets.Designer.cs">
+      <DependentUpon>201606201827068_Update_Buckets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606231548070_NewColumnNames.cs" />
+    <Compile Include="Migrations\201606231548070_NewColumnNames.Designer.cs">
+      <DependentUpon>201606231548070_NewColumnNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606232038007_rtrViews.cs" />
+    <Compile Include="Migrations\201606232038007_rtrViews.Designer.cs">
+      <DependentUpon>201606232038007_rtrViews.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606241436596_InsertSP.cs" />
+    <Compile Include="Migrations\201606241436596_InsertSP.Designer.cs">
+      <DependentUpon>201606241436596_InsertSP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606271349504_AppUser_AdditionalDataNeeded.cs" />
+    <Compile Include="Migrations\201606271349504_AppUser_AdditionalDataNeeded.Designer.cs">
+      <DependentUpon>201606271349504_AppUser_AdditionalDataNeeded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606271607558_OnBoardData.cs" />
+    <Compile Include="Migrations\201606271607558_OnBoardData.Designer.cs">
+      <DependentUpon>201606271607558_OnBoardData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606272018242_UserSignUp.cs" />
+    <Compile Include="Migrations\201606272018242_UserSignUp.Designer.cs">
+      <DependentUpon>201606272018242_UserSignUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201606291559513_sync.cs" />
+    <Compile Include="Migrations\201606291559513_sync.Designer.cs">
+      <DependentUpon>201606291559513_sync.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607051326364_RTRView_Indexes.cs" />
+    <Compile Include="Migrations\201607051326364_RTRView_Indexes.Designer.cs">
+      <DependentUpon>201607051326364_RTRView_Indexes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607061618549_Order_DateExternalAccountCreated.cs" />
+    <Compile Include="Migrations\201607061618549_Order_DateExternalAccountCreated.Designer.cs">
+      <DependentUpon>201607061618549_Order_DateExternalAccountCreated.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607072044436_RTRViewUpdate.cs" />
+    <Compile Include="Migrations\201607072044436_RTRViewUpdate.Designer.cs">
+      <DependentUpon>201607072044436_RTRViewUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607121359070_ExternalUserIDAcitve.cs" />
+    <Compile Include="Migrations\201607121359070_ExternalUserIDAcitve.Designer.cs">
+      <DependentUpon>201607121359070_ExternalUserIDAcitve.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608051651331_usp_GetUserTeamSpeedUp.cs" />
+    <Compile Include="Migrations\201608051651331_usp_GetUserTeamSpeedUp.Designer.cs">
+      <DependentUpon>201608051651331_usp_GetUserTeamSpeedUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608022042505_ExternalDataTrueUp.cs" />
+    <Compile Include="Migrations\201608022042505_ExternalDataTrueUp.Designer.cs">
+      <DependentUpon>201608022042505_ExternalDataTrueUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608051825397_ActivationFiles.cs" />
+    <Compile Include="Migrations\201608051825397_ActivationFiles.Designer.cs">
+      <DependentUpon>201608051825397_ActivationFiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608051832316_Company-DataImportPrefix.cs" />
+    <Compile Include="Migrations\201608051832316_Company-DataImportPrefix.Designer.cs">
+      <DependentUpon>201608051832316_Company-DataImportPrefix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608081544276_Order-ActivationUserID.cs" />
+    <Compile Include="Migrations\201608081544276_Order-ActivationUserID.Designer.cs">
+      <DependentUpon>201608081544276_Order-ActivationUserID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608081548524_Orders-ActivationDate.cs" />
+    <Compile Include="Migrations\201608081548524_Orders-ActivationDate.Designer.cs">
+      <DependentUpon>201608081548524_Orders-ActivationDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608091955275_Activations-NullableActivationDate.cs" />
+    <Compile Include="Migrations\201608091955275_Activations-NullableActivationDate.Designer.cs">
+      <DependentUpon>201608091955275_Activations-NullableActivationDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608092121119_OrdersActivationDateNullableDateTime.cs" />
+    <Compile Include="Migrations\201608092121119_OrdersActivationDateNullableDateTime.Designer.cs">
+      <DependentUpon>201608092121119_OrdersActivationDateNullableDateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608291620071_AddressValidation.cs" />
+    <Compile Include="Migrations\201608291620071_AddressValidation.Designer.cs">
+      <DependentUpon>201608291620071_AddressValidation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608291630499_AddressValidationExtraColumns.cs" />
+    <Compile Include="Migrations\201608291630499_AddressValidationExtraColumns.Designer.cs">
+      <DependentUpon>201608291630499_AddressValidationExtraColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609021539524_address_reason.cs" />
+    <Compile Include="Migrations\201609021539524_address_reason.Designer.cs">
+      <DependentUpon>201609021539524_address_reason.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609022043166_auditlog.cs" />
+    <Compile Include="Migrations\201609022043166_auditlog.Designer.cs">
+      <DependentUpon>201609022043166_auditlog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609121852003_OrderCutOffTime.cs" />
+    <Compile Include="Migrations\201609121852003_OrderCutOffTime.Designer.cs">
+      <DependentUpon>201609121852003_OrderCutOffTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609122054562_CompanyTimeZone.cs" />
+    <Compile Include="Migrations\201609122054562_CompanyTimeZone.Designer.cs">
+      <DependentUpon>201609122054562_CompanyTimeZone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609261846372_usp_Clear_Order_Data.cs" />
+    <Compile Include="Migrations\201609261846372_usp_Clear_Order_Data.Designer.cs">
+      <DependentUpon>201609261846372_usp_Clear_Order_Data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610172138177_DeviceModel.cs" />
+    <Compile Include="Migrations\201610172138177_DeviceModel.Designer.cs">
+      <DependentUpon>201610172138177_DeviceModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610031904467_IdentityProof2Fields.cs" />
+    <Compile Include="Migrations\201610031904467_IdentityProof2Fields.Designer.cs">
+    </Compile>
+    <Compile Include="Migrations\201609301701486_syncup.cs" />
+    <Compile Include="Migrations\201609301701486_syncup.Designer.cs">
+      <DependentUpon>201609301701486_syncup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610252038583_sync1.cs" />
+    <Compile Include="Migrations\201610252038583_sync1.Designer.cs">
+      <DependentUpon>201610252038583_sync1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611071608304_SafeLinkBranding.cs" />
+    <Compile Include="Migrations\201611071608304_SafeLinkBranding.Designer.cs">
+      <DependentUpon>201611071608304_SafeLinkBranding.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611071950311_BaseIncomeLevelsUpdate.cs" />
+    <Compile Include="Migrations\201611071950311_BaseIncomeLevelsUpdate.Designer.cs">
+      <DependentUpon>201611071950311_BaseIncomeLevelsUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611112029350_NLADUpdates.cs" />
+    <Compile Include="Migrations\201611112029350_NLADUpdates.Designer.cs">
+      <DependentUpon>201611112029350_NLADUpdates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611142049599_ClearOrdersUpdate.cs" />
+    <Compile Include="Migrations\201611142049599_ClearOrdersUpdate.Designer.cs">
+      <DependentUpon>201611142049599_ClearOrdersUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611152206018_JWSyncFix.cs" />
+    <Compile Include="Migrations\201611152206018_JWSyncFix.Designer.cs">
+      <DependentUpon>201611152206018_JWSyncFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612011557097_RWSync.cs" />
+    <Compile Include="Migrations\201612011557097_RWSync.Designer.cs">
+      <DependentUpon>201612011557097_RWSync.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612051525078_ExternalDuplicateData.cs" />
+    <Compile Include="Migrations\201612051525078_ExternalDuplicateData.Designer.cs">
+      <DependentUpon>201612051525078_ExternalDuplicateData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612012129119_syncWhitelist.cs" />
+    <Compile Include="Migrations\201612012129119_syncWhitelist.Designer.cs">
+      <DependentUpon>201612012129119_syncWhitelist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612151452421_IsExported.cs" />
+    <Compile Include="Migrations\201612151452421_IsExported.Designer.cs">
+      <DependentUpon>201612151452421_IsExported.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612192228149_updateNewBucket.cs" />
+    <Compile Include="Migrations\201612192228149_updateNewBucket.Designer.cs">
+      <DependentUpon>201612192228149_updateNewBucket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612071946371_20161207-jwsyncfix.cs" />
+    <Compile Include="Migrations\201612071946371_20161207-jwsyncfix.Designer.cs">
+      <DependentUpon>201612071946371_20161207-jwsyncfix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612221943445_LogOrderFulfillment.cs" />
+    <Compile Include="Migrations\201612221943445_LogOrderFulfillment.Designer.cs">
+      <DependentUpon>201612221943445_LogOrderFulfillment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701261536094_finalsync.cs" />
+    <Compile Include="Migrations\201701261536094_finalsync.Designer.cs">
+      <DependentUpon>201701261536094_finalsync.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701302240368_SolixValidationDetail.cs" />
+    <Compile Include="Migrations\201701302240368_SolixValidationDetail.Designer.cs">
+      <DependentUpon>201701302240368_SolixValidationDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701262256131_AddressBlacklistTable.cs" />
+    <Compile Include="Migrations\201701262256131_AddressBlacklistTable.Designer.cs">
+      <DependentUpon>201701262256131_AddressBlacklistTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701301659452_JWSync.cs" />
+    <Compile Include="Migrations\201701301659452_JWSync.Designer.cs">
+      <DependentUpon>201701301659452_JWSync.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702081813303_sync2.cs" />
+    <Compile Include="Migrations\201702081813303_sync2.Designer.cs">
+      <DependentUpon>201702081813303_sync2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703081756106_sync3.cs" />
+    <Compile Include="Migrations\201703081756106_sync3.Designer.cs">
+      <DependentUpon>201703081756106_sync3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702201738080_BaseIncomeLevelsUpdate1.cs" />
+    <Compile Include="Migrations\201702201738080_BaseIncomeLevelsUpdate1.Designer.cs">
+      <DependentUpon>201702201738080_BaseIncomeLevelsUpdate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703142237117_HandsetTables.cs" />
+    <Compile Include="Migrations\201703142237117_HandsetTables.Designer.cs">
+      <DependentUpon>201703142237117_HandsetTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703162009092_ExternalDataSourceLifelineSales.cs" />
+    <Compile Include="Migrations\201703162009092_ExternalDataSourceLifelineSales.Designer.cs">
+      <DependentUpon>201703162009092_ExternalDataSourceLifelineSales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703162139406_HandsetTableUpates.cs" />
+    <Compile Include="Migrations\201703162139406_HandsetTableUpates.Designer.cs">
+      <DependentUpon>201703162139406_HandsetTableUpates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703162209437_TableUpdate.cs" />
+    <Compile Include="Migrations\201703162209437_TableUpdate.Designer.cs">
+      <DependentUpon>201703162209437_TableUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703142015562_v_RTRUnReviewedOrder-Update.cs" />
+    <Compile Include="Migrations\201703142015562_v_RTRUnReviewedOrder-Update.Designer.cs">
+      <DependentUpon>201703142015562_v_RTRUnReviewedOrder-Update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703231831109_jwsyncfix-mergeconflicts.cs" />
+    <Compile Include="Migrations\201703231831109_jwsyncfix-mergeconflicts.Designer.cs">
+      <DependentUpon>201703231831109_jwsyncfix-mergeconflicts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704122003035_sync4.cs" />
+    <Compile Include="Migrations\201704122003035_sync4.Designer.cs">
+      <DependentUpon>201704122003035_sync4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703301327007_SyncIssues.cs" />
+    <Compile Include="Migrations\201703301327007_SyncIssues.Designer.cs">
+      <DependentUpon>201703301327007_SyncIssues.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704121410287_SolixValidationDeatilsUpdate.cs" />
+    <Compile Include="Migrations\201704121410287_SolixValidationDeatilsUpdate.Designer.cs">
+      <DependentUpon>201704121410287_SolixValidationDeatilsUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704171502427_DeviceOrdersDate.cs" />
+    <Compile Include="Migrations\201704171502427_DeviceOrdersDate.Designer.cs">
+      <DependentUpon>201704171502427_DeviceOrdersDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201704202147125_ApiLogEntriesNull.cs" />
+    <Compile Include="Migrations\201704202147125_ApiLogEntriesNull.Designer.cs">
+      <DependentUpon>201704202147125_ApiLogEntriesNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705161331453_HideShowReport-HandsetOrders.cs" />
+    <Compile Include="Migrations\201705161331453_HideShowReport-HandsetOrders.Designer.cs">
+      <DependentUpon>201705161331453_HideShowReport-HandsetOrders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705161353205_sync5.cs" />
+    <Compile Include="Migrations\201705161353205_sync5.Designer.cs">
+      <DependentUpon>201705161353205_sync5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705161531024_ShowNewAgentMenu.cs" />
+    <Compile Include="Migrations\201705161531024_ShowNewAgentMenu.Designer.cs">
+      <DependentUpon>201705161531024_ShowNewAgentMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705161811277_ToggleScrubAddress.cs" />
+    <Compile Include="Migrations\201705161811277_ToggleScrubAddress.Designer.cs">
+      <DependentUpon>201705161811277_ToggleScrubAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705161920506_PromoCheck.cs" />
+    <Compile Include="Migrations\201705161920506_PromoCheck.Designer.cs">
+      <DependentUpon>201705161920506_PromoCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705162011396_ExternalDatacompanyId.cs" />
+    <Compile Include="Migrations\201705162011396_ExternalDatacompanyId.Designer.cs">
+      <DependentUpon>201705162011396_ExternalDatacompanyId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705171927107_ExternalDuplicateDataCompanyId.cs" />
+    <Compile Include="Migrations\201705171927107_ExternalDuplicateDataCompanyId.Designer.cs">
+      <DependentUpon>201705171927107_ExternalDuplicateDataCompanyId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ResponseLogsCGMEHDBDetailsRepository.cs" />
+    <Compile Include="ResponseLogsCGMEHDBRepository.cs" />
+    <Compile Include="TenantAccountFulfillmentLogRepository.cs" />
+    <Compile Include="TransactionLogRepository .cs" />
+    <Compile Include="ApplicationRoleRepository.cs" />
+    <Compile Include="BaseIncomeLevelsRepository.cs" />
+    <Compile Include="BaseRepository.cs" />
+    <Compile Include="EFConfigs\AccountTransActionLogEFConfig.cs" />
+    <Compile Include="EFConfigs\ResourceCategoryEFConfig.cs" />
+    <Compile Include="EFConfigs\PaymentTransactionLogEFConfig.cs" />
+    <Compile Include="ExternalApiIntegration\Logging\TexasSolixCreateInspectorBehavior.cs" />
+    <Compile Include="ExternalApiIntegration\Logging\TexasSolixCreateMessageInspector.cs" />
+    <Compile Include="PaymentTransactionLogRepository.cs" />
+    <Compile Include="ResourceCategoryRepository.cs" />
+    <Compile Include="EFConfigs\OrderNoteEFConfig.cs" />
+    <Compile Include="OrderNotesRepository.cs" />
+    <Compile Include="ProductCommissionsRepository.cs" />
+    <Compile Include="EFConfigs\PaymentEFConfig.cs" />
+    <Compile Include="EFConfigs\ProductCommissionEFConfig.cs" />
+    <Compile Include="EFConfigs\ResourcesEFConfig.cs" />
+    <Compile Include="ExternalApiIntegration\Logging\TexasSolixCheckStatusInspectorBehavior.cs" />
+    <Compile Include="ExternalApiIntegration\Logging\TexasSolixCheckStatusMessageInspector.cs" />
+    <Compile Include="ExternalApiIntegration\TexasSolixRepository.cs" />
+    <Compile Include="ExternalApiIntegration\PuertoRicoPhoneNumberRepository .cs" />
+    <Compile Include="ExternalApiIntegration\PuertoRicoRepository .cs" />
+    <Compile Include="Migrations\UpdateDatabase.cs" />
+    <Compile Include="ResourcesRepository.cs" />
+    <Compile Include="Service References\TexasSolix\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\sql\SqlFiles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SqlFiles.resx</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyTranslationRepository.cs" />
+    <Compile Include="EFConfigs\CompanyTranlationsEFConfig.cs" />
+    <Compile Include="EFConfigs\DevDataEFConfig.cs" />
+    <Compile Include="EFConfigs\OrdersTaxesEFConfig.cs" />
+    <Compile Include="EFConfigs\CommissionLogEFConfig.cs" />
+    <Compile Include="ExternalApiIntegration\Logging\CaliDapCheckStatusInspectorBehavior.cs" />
+    <Compile Include="ExternalApiIntegration\Logging\CaliDapCheckStatusMessageInspector.cs" />
+    <Compile Include="ExternalApiIntegration\CaliPhoneNumberRepository.cs" />
+    <Compile Include="CompetitorRepository.cs" />
+    <Compile Include="EFConfigs\CaliPhoneNumberEFConfig.cs" />
+    <Compile Include="ExternalApiIntegration\CaliDapRepository.cs" />
+    <Compile Include="EFConfigs\TempOrderEFConfig.cs" />
+    <Compile Include="EFConfigs\LoginInfoEFConfig.cs" />
+    <Compile Include="EFConfigs\ExternalStorageCredentialsEFConfig.cs" />
+    <Compile Include="EFConfigs\ImageUploadEFConfig.cs" />
+    <Compile Include="CompanyRepository.cs" />
+    <Compile Include="ComplianceStatementRepository.cs" />
+    <Compile Include="DBContext\ApplicationDbContext.cs" />
+    <Compile Include="EFConfigs\ApiLogEFConfig.cs" />
+    <Compile Include="EFConfigs\ApplicationUserEFConfig.cs" />
+    <Compile Include="EFConfigs\BaseIncomeLevelsEFConfig.cs" />
+    <Compile Include="EFConfigs\CompanyEFConfig.cs" />
+    <Compile Include="EFConfigs\CompetitorEFConfig.cs" />
+    <Compile Include="EFConfigs\ComplianceStatementEFConfig.cs" />
+    <Compile Include="EFConfigs\Level1SalesGroupEFConfig.cs" />
+    <Compile Include="EFConfigs\Level2SalesGroupEFConfig.cs" />
+    <Compile Include="EFConfigs\Level3SalesGroupEFConfig.cs" />
+    <Compile Include="EFConfigs\LifelineProgramEFConfig.cs" />
+    <Compile Include="EFConfigs\OrderEFConfig.cs" />
+    <Compile Include="EFConfigs\PlanEFConfig.cs" />
+    <Compile Include="EFConfigs\ProofDocumentTypeEFConfig.cs" />
+    <Compile Include="EFConfigs\SalesTeamEFConfig.cs" />
+    <Compile Include="EFConfigs\StateAgreementEFConfig.cs" />
+    <Compile Include="EFConfigs\StateProgramEFConfig.cs" />
+    <Compile Include="EFConfigs\StateSettingsEFConfig.cs" />
+    <Compile Include="EFConfigs\TpivProofDocumentTypeEFConfig.cs" />
+    <Compile Include="EFConfigs\WebApplicationLogEntryEFConfig.cs" />
+    <Compile Include="EFConfigs\ZipCodeEFConfig.cs" />
+    <Compile Include="EntityExtensions.cs" />
+    <Compile Include="ExternalApiIntegration\Logging\CaliDapSubmitMessageInspector.cs" />
+    <Compile Include="ExternalApiIntegration\Logging\CaliDapSubmitInspectorBehavior.cs" />
+    <Compile Include="ExternalApiIntegration\NladRepository.cs" />
+    <Compile Include="ExternalStorageAwsRepository.cs" />
+    <Compile Include="ExternalStorageCredentialsRepository.cs" />
+    <Compile Include="ImageUploadRepository.cs" />
+    <Compile Include="Level1SalesGroupRepository.cs" />
+    <Compile Include="Level2SalesGroupRepository.cs" />
+    <Compile Include="Level3SalesGroupRepository.cs" />
+    <Compile Include="ExternalApiIntegration\LifelineApplicationConverters.cs" />
+    <Compile Include="LifelineProgramRepository.cs" />
+    <Compile Include="LoginInfoRepository.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ExternalApiIntegration\NladPhoneNumberRepository.cs" />
+    <Compile Include="OrderRepository.cs" />
+    <Compile Include="ProofDocumentTypeRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalesTeamRepository.cs" />
+    <Compile Include="Service References\CaliforniaLifelineDireactApplicationService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="StateAgreementRepository.cs" />
+    <Compile Include="StateProgramRepository.cs" />
+    <Compile Include="StateSettingsRepository.cs" />
+    <Compile Include="OrdersTaxesRepository.cs" />
+    <Compile Include="TempOrderRepository.cs" />
+    <Compile Include="DevDataRepository.cs" />
+    <Compile Include="PaymentRepository.cs" />
+    <Compile Include="CommissionLogRepository.cs" />
+    <Compile Include="TpivProofDocumentTypeRepository.cs" />
+    <Compile Include="ZipCodeRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EntityFramework.Implementation\EntityFramework.Implementation.csproj">
+      <Project>{BCD94CFB-8286-4BD1-8D88-C34C0C48C9EC}</Project>
+      <Name>EntityFramework.Implementation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EntityFramework.Interfaces\EntityFramework.Interfaces.csproj">
+      <Project>{90D4492B-ABD8-4FE6-9F15-44ACAFFD8828}</Project>
+      <Name>EntityFramework.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LS.ApiBindingModels\LS.ApiBindingModels.csproj">
+      <Project>{4D195271-190C-4902-B343-323D077BA790}</Project>
+      <Name>LS.ApiBindingModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LS.AzureStorage\LS.AzureStorage\LS.AzureStorage.csproj">
+      <Project>{915a7de6-4584-4c89-a46a-eb09515149b7}</Project>
+      <Name>LS.AzureStorage</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LS.Core\LS.Core.csproj">
+      <Project>{630CD161-8B43-484A-BEFE-E9EE20E1CCF6}</Project>
+      <Name>LS.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LS.Domain\LS.Domain.csproj">
+      <Project>{2896537D-5B6C-4C62-829A-A7979B0AA11A}</Project>
+      <Name>LS.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LS.Utilities\LS.Utilities.csproj">
+      <Project>{052EC35D-96DC-419B-993D-4DB4991ABBF7}</Project>
+      <Name>LS.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\CaliforniaLifelineDireactApplicationService\DirectApplicationWrapperService.wsdl" />
+    <None Include="Service References\CaliforniaLifelineDireactApplicationService\LS.Repositories.CaliforniaLifelineDireactApplicationService.CheckApplicationPrintStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CaliforniaLifelineDireactApplicationService\LS.Repositories.CaliforniaLifelineDireactApplicationService.CheckCustomerStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\CaliforniaLifelineDireactApplicationService\LS.Repositories.CaliforniaLifelineDireactApplicationService.DirectApplicationRequestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TexasSolix\HHSC.wsdl" />
+    <None Include="Service References\TexasSolix\HHSC.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TexasSolix\HHSC1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\TexasSolix\HHSC2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\CaliforniaLifelineDireactApplicationService\" />
+    <WCFMetadataStorage Include="Service References\TexasSolix\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CaliforniaLifelineDireactApplicationService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CaliforniaLifelineDireactApplicationService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\CaliforniaLifelineDireactApplicationService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201606071509364_initial_create.resx">
+      <DependentUpon>201606071509364_initial_create.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606071803525_Data_Procedures_Views.resx">
+      <DependentUpon>201606071803525_Data_Procedures_Views.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606081623291_NewTPIVColumns.resx">
+      <DependentUpon>201606081623291_NewTPIVColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606081851096_ArrowSql-StatusID.resx">
+      <DependentUpon>201606081851096_ArrowSql-StatusID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606091501108_RTRColumns.resx">
+      <DependentUpon>201606091501108_RTRColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606101747354_RTRColumns1.resx">
+      <DependentUpon>201606101747354_RTRColumns1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606102213075_House_Numbers.resx">
+      <DependentUpon>201606102213075_House_Numbers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606141427411_AddOrderStatus.resx">
+      <DependentUpon>201606141427411_AddOrderStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606141544139_OrderCode.resx">
+      <DependentUpon>201606141544139_OrderCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606151436305_ZipcodeCoverage.resx">
+      <DependentUpon>201606151436305_ZipcodeCoverage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606161414307_RemovedTraining.resx">
+      <DependentUpon>201606161414307_RemovedTraining.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606161903538_AddedEmail-ContactPhone.resx">
+      <DependentUpon>201606161903538_AddedEmail-ContactPhone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606211926361_ImageFilenameColumns.resx">
+      <DependentUpon>201606211926361_ImageFilenameColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606212217108_test.resx">
+      <DependentUpon>201606212217108_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606212223311_temptablecolumnfix.resx">
+      <DependentUpon>201606212223311_temptablecolumnfix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606221521218_ServiceAddressBypassImageID.resx">
+      <DependentUpon>201606221521218_ServiceAddressBypassImageID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606201827068_Update_Buckets.resx">
+      <DependentUpon>201606201827068_Update_Buckets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606231548070_NewColumnNames.resx">
+      <DependentUpon>201606231548070_NewColumnNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606232038007_rtrViews.resx">
+      <DependentUpon>201606232038007_rtrViews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606241436596_InsertSP.resx">
+      <DependentUpon>201606241436596_InsertSP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606271349504_AppUser_AdditionalDataNeeded.resx">
+      <DependentUpon>201606271349504_AppUser_AdditionalDataNeeded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606271607558_OnBoardData.resx">
+      <DependentUpon>201606271607558_OnBoardData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606272018242_UserSignUp.resx">
+      <DependentUpon>201606272018242_UserSignUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201606291559513_sync.resx">
+      <DependentUpon>201606291559513_sync.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607051326364_RTRView_Indexes.resx">
+      <DependentUpon>201607051326364_RTRView_Indexes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607061618549_Order_DateExternalAccountCreated.resx">
+      <DependentUpon>201607061618549_Order_DateExternalAccountCreated.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607072044436_RTRViewUpdate.resx">
+      <DependentUpon>201607072044436_RTRViewUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607121359070_ExternalUserIDAcitve.resx">
+      <DependentUpon>201607121359070_ExternalUserIDAcitve.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608051651331_usp_GetUserTeamSpeedUp.resx">
+      <DependentUpon>201608051651331_usp_GetUserTeamSpeedUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608022042505_ExternalDataTrueUp.resx">
+      <DependentUpon>201608022042505_ExternalDataTrueUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608051825397_ActivationFiles.resx">
+      <DependentUpon>201608051825397_ActivationFiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608051832316_Company-DataImportPrefix.resx">
+      <DependentUpon>201608051832316_Company-DataImportPrefix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608081544276_Order-ActivationUserID.resx">
+      <DependentUpon>201608081544276_Order-ActivationUserID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608081548524_Orders-ActivationDate.resx">
+      <DependentUpon>201608081548524_Orders-ActivationDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608091955275_Activations-NullableActivationDate.resx">
+      <DependentUpon>201608091955275_Activations-NullableActivationDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608092121119_OrdersActivationDateNullableDateTime.resx">
+      <DependentUpon>201608092121119_OrdersActivationDateNullableDateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608291620071_AddressValidation.resx">
+      <DependentUpon>201608291620071_AddressValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608291630499_AddressValidationExtraColumns.resx">
+      <DependentUpon>201608291630499_AddressValidationExtraColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609021539524_address_reason.resx">
+      <DependentUpon>201609021539524_address_reason.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609022043166_auditlog.resx">
+      <DependentUpon>201609022043166_auditlog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609121852003_OrderCutOffTime.resx">
+      <DependentUpon>201609121852003_OrderCutOffTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609122054562_CompanyTimeZone.resx">
+      <DependentUpon>201609122054562_CompanyTimeZone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609261846372_usp_Clear_Order_Data.resx">
+      <DependentUpon>201609261846372_usp_Clear_Order_Data.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610172138177_DeviceModel.resx">
+      <DependentUpon>201610172138177_DeviceModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610031904467_IdentityProof2Fields.resx">
+      <DependentUpon>201610031904467_IdentityProof2Fields.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609301701486_syncup.resx">
+      <DependentUpon>201609301701486_syncup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610252038583_sync1.resx">
+      <DependentUpon>201610252038583_sync1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611071608304_SafeLinkBranding.resx">
+      <DependentUpon>201611071608304_SafeLinkBranding.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611071950311_BaseIncomeLevelsUpdate.resx">
+      <DependentUpon>201611071950311_BaseIncomeLevelsUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611112029350_NLADUpdates.resx">
+      <DependentUpon>201611112029350_NLADUpdates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611142049599_ClearOrdersUpdate.resx">
+      <DependentUpon>201611142049599_ClearOrdersUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611152206018_JWSyncFix.resx">
+      <DependentUpon>201611152206018_JWSyncFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612011557097_RWSync.resx">
+      <DependentUpon>201612011557097_RWSync.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612051525078_ExternalDuplicateData.resx">
+      <DependentUpon>201612051525078_ExternalDuplicateData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612012129119_syncWhitelist.resx">
+      <DependentUpon>201612012129119_syncWhitelist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612151452421_IsExported.resx">
+      <DependentUpon>201612151452421_IsExported.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612192228149_updateNewBucket.resx">
+      <DependentUpon>201612192228149_updateNewBucket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612071946371_20161207-jwsyncfix.resx">
+      <DependentUpon>201612071946371_20161207-jwsyncfix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612221943445_LogOrderFulfillment.resx">
+      <DependentUpon>201612221943445_LogOrderFulfillment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701261536094_finalsync.resx">
+      <DependentUpon>201701261536094_finalsync.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701302240368_SolixValidationDetail.resx">
+      <DependentUpon>201701302240368_SolixValidationDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701262256131_AddressBlacklistTable.resx">
+      <DependentUpon>201701262256131_AddressBlacklistTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701301659452_JWSync.resx">
+      <DependentUpon>201701301659452_JWSync.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702081813303_sync2.resx">
+      <DependentUpon>201702081813303_sync2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703081756106_sync3.resx">
+      <DependentUpon>201703081756106_sync3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702201738080_BaseIncomeLevelsUpdate1.resx">
+      <DependentUpon>201702201738080_BaseIncomeLevelsUpdate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703142237117_HandsetTables.resx">
+      <DependentUpon>201703142237117_HandsetTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703162009092_ExternalDataSourceLifelineSales.resx">
+      <DependentUpon>201703162009092_ExternalDataSourceLifelineSales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703162139406_HandsetTableUpates.resx">
+      <DependentUpon>201703162139406_HandsetTableUpates.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703162209437_TableUpdate.resx">
+      <DependentUpon>201703162209437_TableUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703142015562_v_RTRUnReviewedOrder-Update.resx">
+      <DependentUpon>201703142015562_v_RTRUnReviewedOrder-Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703231831109_jwsyncfix-mergeconflicts.resx">
+      <DependentUpon>201703231831109_jwsyncfix-mergeconflicts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704122003035_sync4.resx">
+      <DependentUpon>201704122003035_sync4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703301327007_SyncIssues.resx">
+      <DependentUpon>201703301327007_SyncIssues.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704121410287_SolixValidationDeatilsUpdate.resx">
+      <DependentUpon>201704121410287_SolixValidationDeatilsUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704171502427_DeviceOrdersDate.resx">
+      <DependentUpon>201704171502427_DeviceOrdersDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704202147125_ApiLogEntriesNull.resx">
+      <DependentUpon>201704202147125_ApiLogEntriesNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705161331453_HideShowReport-HandsetOrders.resx">
+      <DependentUpon>201705161331453_HideShowReport-HandsetOrders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705161353205_sync5.resx">
+      <DependentUpon>201705161353205_sync5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705161531024_ShowNewAgentMenu.resx">
+      <DependentUpon>201705161531024_ShowNewAgentMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705161811277_ToggleScrubAddress.resx">
+      <DependentUpon>201705161811277_ToggleScrubAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705161920506_PromoCheck.resx">
+      <DependentUpon>201705161920506_PromoCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705162011396_ExternalDatacompanyId.resx">
+      <DependentUpon>201705162011396_ExternalDatacompanyId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705171927107_ExternalDuplicateDataCompanyId.resx">
+      <DependentUpon>201705171927107_ExternalDuplicateDataCompanyId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\sql\SqlFiles.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>SqlFiles.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Migrations\sql\DeviceDetails_Order_Insert.sql" />
+    <Content Include="Migrations\sql\DeviceDetails_Temp_Order_Insert.sql" />
+    <Content Include="Migrations\sql\Initail_vUserTeams.sql" />
+    <Content Include="Migrations\sql\Initial_BudgetLifelinePrograms.sql" />
+    <Content Include="Migrations\sql\Initial_BaseIncomeLevels.sql" />
+    <Content Include="Migrations\sql\Initial_Carriers.sql" />
+    <Content Include="Migrations\sql\Initial_CompanyTranslations.sql" />
+    <Content Include="Migrations\sql\Initial_Competitors.sql" />
+    <Content Include="Migrations\sql\Initial_ComplianceStatements.sql" />
+    <Content Include="Migrations\sql\Initial_GetUsers.sql" />
+    <Content Include="Migrations\sql\Initial_Order_Insert.sql" />
+    <Content Include="Migrations\sql\Initial_setCompanyId.sql" />
+    <Content Include="Migrations\sql\Initial_Temp_Order_Insert.sql" />
+    <Content Include="Migrations\sql\Initial_usp_GetOldestInUseNladPhoneNumber.sql" />
+    <Content Include="Migrations\sql\Initial_usp_GetNextValidNladPhoneNumber.sql" />
+    <Content Include="Migrations\sql\Initial_usp_GetNextValidCaliPhoneNumber.sql" />
+    <Content Include="Migrations\sql\Initial_LifelinePrograms.sql">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Migrations\sql\Initial_ProofDocumentTypes.sql" />
+    <Content Include="Migrations\sql\Initial_StateAgreements.sql" />
+    <Content Include="Migrations\sql\Initial_StatePrograms.sql" />
+    <Content Include="Migrations\sql\Initial_StateSettings.sql" />
+    <Content Include="Migrations\sql\Initial_TpivProofDocumentTypes.sql" />
+    <Content Include="Migrations\sql\Initial_View_GetOrder_ProviderTranslation.sql" />
+    <Content Include="Migrations\sql\Initial_v_UserActiveTeams.sql" />
+    <Content Include="Migrations\sql\Initial_ZipCodes.sql" />
+    <None Include="Migrations\sql\StoredProcedures\Drop\20151020-usp_GetOrdersDrop.sql" />
+    <None Include="Migrations\sql\StoredProcedures\Update\20151020-usp_GetOrdersUpdate.sql" />
+    <None Include="Migrations\sql\StoredProcedures\Add\20151111_usp_GetOrdersUpdate.sql" />
+    <None Include="Migrations\sql\StoredProcedures\Add\20151111_usp_GetUsersUpdate.sql" />
+    <None Include="Migrations\sql\StoredProcedures\Drop\usp_GetOrdersDrop.sql" />
+    <None Include="Migrations\sql\StoredProcedures\Drop\usp_GetUsersDrop.sql" />
+    <Content Include="Migrations\sql\TenantAccountFulfillmentLog_usp_GetOrders.sql" />
+    <Content Include="Migrations\sql\TenantAccountFulfillmentLog_v_FullOrderInfo.sql" />
+    <Content Include="Migrations\sql\update-required-state-programs.sql" />
+    <Content Include="Migrations\sql\Update-usp_GetOrders.sql" />
+    <None Include="Service References\TexasSolix\LS.Repositories.TexasSolix.CreateCustomerResults.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TexasSolix\LS.Repositories.TexasSolix.HHSCResults.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TexasSolix\LS.Repositories.TexasSolix.ReservationResults.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\TexasSolix\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\TexasSolix\configuration.svcinfo" />
+    <None Include="Service References\TexasSolix\configuration91.svcinfo" />
+    <None Include="Resources\Initial_setCompanyId.sql" />
+    <None Include="Resources\Initial_setCompanyId.sql.txt" />
+    <None Include="Resources\Initial_v_UserActiveTeams.sql" />
+    <None Include="Resources\Initail_vUserTeams.sql" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

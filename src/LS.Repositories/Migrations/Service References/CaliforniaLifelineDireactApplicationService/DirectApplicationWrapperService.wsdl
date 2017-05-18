@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://DirectApplicationWrapper.Web.Svc/" xmlns:s1="http://DirectApplicationService/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://DirectApplicationWrapper.Web.Svc/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://DirectApplicationWrapper.Web.Svc/">
+      <s:element name="CheckCustomerStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ocn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ultsTelephoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="namePrefix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="initials" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nameSuffix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceAddress1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceAddress2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceAddressCity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceAddressState" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceAddressZip5" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceAddressZip4" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="priorUltsTelephoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ttyQualifiedSecondLine" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="activityType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SSN4" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateOfBirth" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckCustomerStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckCustomerStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DirectApplicationRequest">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ocn" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subscriberAccountNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="customerCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ultsTelephoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="namePrefix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="initials" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="nameSuffix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceAddress1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceAddress2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceAddressCity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceAddressState" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceAddressZip5" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceAddressZip4" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingFirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingInitial" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingLastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingAddress1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingAddress2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingAddress3" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingAddress4" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingAddress5" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingCity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingStateCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingZip5" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="billingZip4" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="contactPhoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="languageCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="brailleLargeFont" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ultsServiceStartDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ultsRecertificationDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="priorUltsTelephoneNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="disconnectDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ttyQualifiedSecondLine" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="driversLicenseNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="activityType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tribalLand" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="serviceType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="rateGroup" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="modifiedEffectiveDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="directApplication" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SSN4" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dateOfBirth" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DirectApplicationRequestResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DirectApplicationRequestResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckApplicationPrintStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="documentId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transactionId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckApplicationPrintStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckApplicationPrintStatusResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://DirectApplicationService/">
+      <s:element name="DirectApplicationRequestSoapHeader" type="s1:DirectApplicationRequestSoapHeader" />
+      <s:complexType name="DirectApplicationRequestSoapHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Ocn" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CheckCustomerStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckCustomerStatus" />
+  </wsdl:message>
+  <wsdl:message name="CheckCustomerStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckCustomerStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckCustomerStatusDirectApplicationRequestSoapHeader">
+    <wsdl:part name="DirectApplicationRequestSoapHeader" element="s1:DirectApplicationRequestSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="DirectApplicationRequestSoapIn">
+    <wsdl:part name="parameters" element="tns:DirectApplicationRequest" />
+  </wsdl:message>
+  <wsdl:message name="DirectApplicationRequestSoapOut">
+    <wsdl:part name="parameters" element="tns:DirectApplicationRequestResponse" />
+  </wsdl:message>
+  <wsdl:message name="DirectApplicationRequestDirectApplicationRequestSoapHeader">
+    <wsdl:part name="DirectApplicationRequestSoapHeader" element="s1:DirectApplicationRequestSoapHeader" />
+  </wsdl:message>
+  <wsdl:message name="CheckApplicationPrintStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckApplicationPrintStatus" />
+  </wsdl:message>
+  <wsdl:message name="CheckApplicationPrintStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckApplicationPrintStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckApplicationPrintStatusDirectApplicationRequestSoapHeader">
+    <wsdl:part name="DirectApplicationRequestSoapHeader" element="s1:DirectApplicationRequestSoapHeader" />
+  </wsdl:message>
+  <wsdl:portType name="DirectApplicationWrapperServiceSoap">
+    <wsdl:operation name="CheckCustomerStatus">
+      <wsdl:input message="tns:CheckCustomerStatusSoapIn" />
+      <wsdl:output message="tns:CheckCustomerStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DirectApplicationRequest">
+      <wsdl:input message="tns:DirectApplicationRequestSoapIn" />
+      <wsdl:output message="tns:DirectApplicationRequestSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckApplicationPrintStatus">
+      <wsdl:input message="tns:CheckApplicationPrintStatusSoapIn" />
+      <wsdl:output message="tns:CheckApplicationPrintStatusSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DirectApplicationWrapperServiceSoap" type="tns:DirectApplicationWrapperServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckCustomerStatus">
+      <soap:operation soapAction="http://DirectApplicationWrapper.Web.Svc/CheckCustomerStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CheckCustomerStatusDirectApplicationRequestSoapHeader" part="DirectApplicationRequestSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DirectApplicationRequest">
+      <soap:operation soapAction="http://DirectApplicationWrapper.Web.Svc/DirectApplicationRequest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:DirectApplicationRequestDirectApplicationRequestSoapHeader" part="DirectApplicationRequestSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckApplicationPrintStatus">
+      <soap:operation soapAction="http://DirectApplicationWrapper.Web.Svc/CheckApplicationPrintStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CheckApplicationPrintStatusDirectApplicationRequestSoapHeader" part="DirectApplicationRequestSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DirectApplicationWrapperServiceSoap12" type="tns:DirectApplicationWrapperServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckCustomerStatus">
+      <soap12:operation soapAction="http://DirectApplicationWrapper.Web.Svc/CheckCustomerStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CheckCustomerStatusDirectApplicationRequestSoapHeader" part="DirectApplicationRequestSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DirectApplicationRequest">
+      <soap12:operation soapAction="http://DirectApplicationWrapper.Web.Svc/DirectApplicationRequest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:DirectApplicationRequestDirectApplicationRequestSoapHeader" part="DirectApplicationRequestSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckApplicationPrintStatus">
+      <soap12:operation soapAction="http://DirectApplicationWrapper.Web.Svc/CheckApplicationPrintStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:CheckApplicationPrintStatusDirectApplicationRequestSoapHeader" part="DirectApplicationRequestSoapHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DirectApplicationWrapperService">
+    <wsdl:port name="DirectApplicationWrapperServiceSoap" binding="tns:DirectApplicationWrapperServiceSoap">
+      <soap:address location="https://privateuat.californialifeline.com/DirectApplicationService/DirectApplicationWrapperService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DirectApplicationWrapperServiceSoap12" binding="tns:DirectApplicationWrapperServiceSoap12">
+      <soap12:address location="https://privateuat.californialifeline.com/DirectApplicationService/DirectApplicationWrapperService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

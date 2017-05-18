@@ -1,0 +1,1 @@
+UPDATE [dbo].[Companies] SET [CompanySupportUrl]='https://budgetmobileagent.zendesk.com' WHERE [Id]='65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c';

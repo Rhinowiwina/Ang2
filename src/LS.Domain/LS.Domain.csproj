@@ -1,0 +1,303 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2896537D-5B6C-4C62-829A-A7979B0AA11A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LS.Domain</RootNamespace>
+    <AssemblyName>LS.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+    <OutputPath>bin\Staging\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.3.0.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\packages\Common.Logging.Core.3.0.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Exceptionless, Version=4.0.1951.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Exceptionless.4.0.1951\lib\net45\Exceptionless.dll</HintPath>
+    </Reference>
+    <Reference Include="Exceptionless.WebApi, Version=4.0.1951.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Exceptionless.WebApi.4.0.1951\lib\net45\Exceptionless.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Linq.Dynamic">
+      <HintPath>..\packages\System.Linq.Dynamic.1.0.4\lib\net40\System.Linq.Dynamic.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DeviceOrderActivation.cs" />
+    <Compile Include="DeviceOrderDevice.cs" />
+    <Compile Include="DeviceOrder.cs" />
+    <Compile Include="ExternalDuplicateData.cs" />
+    <Compile Include="AddressValidation.cs" />
+    <Compile Include="AuditLog.cs" />
+    <Compile Include="ExternalDataTrueUp.cs" />
+    <Compile Include="ActivateSprintDeviceDetails.cs" />
+    <Compile Include="AddressProofDocumentType.cs" />
+    <Compile Include="ApiDomains.cs" />
+    <Compile Include="BasePlan.cs" />
+    <Compile Include="CompanyStates.cs" />
+    <Compile Include="DuplicateCheckResult.cs" />
+    <Compile Include="Device.cs" />
+    <Compile Include="DeviceDetails.cs" />
+    <Compile Include="Error.cs" />
+    <Compile Include="ImageExts.cs" />
+    <Compile Include="LoginMsg.cs" />
+    <Compile Include="OrderStatuses.cs" />
+    <Compile Include="ExternalApiIntegration\NevadaSolix\NevadaSolixEligibilityResponseData .cs" />
+    <Compile Include="ExternalApiIntegration\NevadaSolix\NevadaSolixEligibilityRequestData.cs" />
+    <Compile Include="LifelineServicesAPI\BaseRequest.cs" />
+    <Compile Include="LifelineServicesAPI\Credentials_CheckZipcode.cs" />
+    <Compile Include="LookupBasePlanResult.cs" />
+    <Compile Include="LookupCustomerDetailsResult.cs" />
+    <Compile Include="LookupTopUpDetailsResult.cs" />
+    <Compile Include="ResponseLogsCGMEHDBDetails.cs" />
+    <Compile Include="ResponseLogsCGMEHDB.cs" />
+    <Compile Include="ScheduledTasks\ApiResponse.cs" />
+    <Compile Include="ExternalApiIntegration\Nlad\NLADRejections.cs" />
+    <Compile Include="TransActionLog.cs" />
+    <Compile Include="PaymentTransactionLog.cs" />
+    <Compile Include="Chase\ErrorMessage.cs" />
+    <Compile Include="Chase\FraudAnalysisResponse.cs" />
+    <Compile Include="Chase\NewOrderRequest.cs" />
+    <Compile Include="Chase\NewOrderResponse.cs" />
+    <Compile Include="Chase\ReversalResponse.cs" />
+    <Compile Include="Chase\ReversalRequest.cs" />
+    <Compile Include="ESignature.cs" />
+    <Compile Include="ExternalApiIntegration\CaPreCheckMsg.cs" />
+    <Compile Include="ExternalApiIntegration\CGM\AuthResponse.cs" />
+    <Compile Include="ExternalApiIntegration\CGM\BaseCGMResponse.cs" />
+    <Compile Include="ExternalApiIntegration\CGM\CGMCheckResponse.cs" />
+    <Compile Include="ExternalApiIntegration\CGM\CGMCheckRequest.cs" />
+    <Compile Include="ExternalApiIntegration\CGM\CGMEnrollRequest.cs" />
+    <Compile Include="ExternalApiIntegration\CGM\CGMEnrollResponse.cs" />
+    <Compile Include="ExternalApiIntegration\CGM\CGMSubSscriberCheck.cs" />
+    <Compile Include="OrderSearchItems.cs" />
+    <Compile Include="ResourceCategory.cs" />
+    <Compile Include="Manager.cs" />
+    <Compile Include="Provider.cs" />
+    <Compile Include="PlaceOrderDetails.cs" />
+    <Compile Include="OrderNote.cs" />
+    <Compile Include="ChangeESN_VerizonDetails.cs" />
+    <Compile Include="UpdateDeviceIDResult.cs" />
+    <Compile Include="Resources.cs" />
+    <Compile Include="UserOnBoardData.cs" />
+    <Compile Include="Verizon_Discrete_DeviceInquiryResult.cs" />
+    <Compile Include="LookupVerizonDeactivateDeviceStatusResult.cs" />
+    <Compile Include="LookupVerizonChangeESNStatusResult.cs" />
+    <Compile Include="Order_EnterDetails.cs" />
+    <Compile Include="RetrVoiceandTextBalanceResult.cs" />
+    <Compile Include="Order_EnterResult.cs" />
+    <Compile Include="Order_CommitResult.cs" />
+    <Compile Include="ActivateSprintDeviceResult.cs" />
+    <Compile Include="LookUpVerizonDiscreteDeviceInquiryStatusResult.cs" />
+    <Compile Include="ActivateTMobileDeviceDetails.cs" />
+    <Compile Include="ActivateTMobileDeviceResult.cs" />
+    <Compile Include="ActivateVerizonDeviceDetails.cs" />
+    <Compile Include="DeactivateVerizonDeviceResult.cs" />
+    <Compile Include="DeactivateSprintDeviceResult.cs" />
+    <Compile Include="CheckVerizonBalanceResult.cs" />
+    <Compile Include="CheckTmobileBalanceResult.cs" />
+    <Compile Include="ChangeESN_VerizonResult.cs" />
+    <Compile Include="ActivateVerizonDeviceResult.cs" />
+    <Compile Include="AdditionalChargeRow.cs" />
+    <Compile Include="CAMsError.cs" />
+    <Compile Include="CarrierDetails.cs" />
+    <Compile Include="Carriers.cs" />
+    <Compile Include="ExternalApiIntegration\TexasSolix\TexasSolixCreateCustomerResponse.cs" />
+    <Compile Include="ExternalApiIntegration\TexasSolix\TexasSolixCreateCustomerRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\TexasSolix\TexasSolixCheckStatusRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\TexasSolix\TexasSolixCheckStatusResponse.cs" />
+    <Compile Include="ExternalApiIntegration\TexasSolix\TexasSolixRequestConstants.cs" />
+    <Compile Include="ExternalApiIntegration\TexasSolix\TexasSolixSubmitApplicationRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\TexasSolix\TexasSolixSubmitApplicationResponse.cs" />
+    <Compile Include="CompletedOrder.cs" />
+    <Compile Include="Payment.cs" />
+    <Compile Include="ExternalApiIntegration\Nlad\ResolutionRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\Nlad\SacEntry.cs" />
+    <Compile Include="ExternalApiIntegration\PuertoRico\PuertoRicoPhoneNumber.cs" />
+    <Compile Include="ExternalApiIntegration\PuertoRico\PuertoRicoApiResponseHeader.cs" />
+    <Compile Include="ExternalApiIntegration\PuertoRico\PuertoRicoApiErrorResponse.cs" />
+    <Compile Include="ExternalApiIntegration\PuertoRico\PuertoRicoApiResponse.cs" />
+    <Compile Include="ExternalApiIntegration\PuertoRico\PuertoRicoErrorCodes.cs" />
+    <Compile Include="ExternalApiIntegration\PuertoRico\PuertoRicoSubmitRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\PuertoRico\PuertoRicoCheckStatusRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\PuertoRico\PuertoRicoRequestData.cs" />
+    <Compile Include="LookupVerizonActivationStatusResult.cs" />
+    <Compile Include="CompanyTranslations.cs" />
+    <Compile Include="DevData.cs" />
+    <Compile Include="PayPal\MassPaymentResult.cs" />
+    <Compile Include="PayPal\MassPaymentRequestItem.cs" />
+    <Compile Include="PayPal\MassPaymentRequest.cs" />
+    <Compile Include="LookupAccountByMDNResult.cs" />
+    <Compile Include="RetrVerizonDeviceResult.cs" />
+    <Compile Include="RetrSprintDeviceResult.cs" />
+    <Compile Include="CompleteSalesTeam.cs" />
+    <Compile Include="TenantAccountFulfillmentLog.cs" />
+    <Compile Include="EnterOrderDetails.cs" />
+    <Compile Include="EnterOrderResult.cs" />
+    <Compile Include="IOrder.cs" />
+    <Compile Include="OrdersTaxes.cs" />
+    <Compile Include="TaxItemRow.cs" />
+    <Compile Include="ProductCommissions.cs" />
+    <Compile Include="ValidatedAddress.cs" />
+    <Compile Include="ValidatedAddresses.cs" />
+    <Compile Include="ApiLogEntry.cs" />
+    <Compile Include="ApplicationRole.cs" />
+    <Compile Include="ApplicationUser.cs" />
+    <Compile Include="ApplicationUserRole.cs" />
+    <Compile Include="BaseIncomeLevels.cs" />
+    <Compile Include="Company.cs" />
+    <Compile Include="Competitor.cs" />
+    <Compile Include="ComplianceStatement.cs" />
+    <Compile Include="EnrollmentType.cs" />
+    <Compile Include="ExternalApiIntegration\ApiFunctions.cs" />
+    <Compile Include="ExternalApiIntegration\BaseCheckStatusResponse.cs" />
+    <Compile Include="ExternalApiIntegration\BaseSubmitResponse.cs" />
+    <Compile Include="ExternalApiIntegration\CaliforniaDap\CaliDapCheckStatusRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\CaliforniaDap\CaliDapCheckStatusResponse.cs" />
+    <Compile Include="ExternalApiIntegration\CaliforniaDap\CaliDapRequestConstants.cs" />
+    <Compile Include="ExternalApiIntegration\CaliforniaDap\CaliDapSubmitApplicationRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\CaliforniaDap\CaliDapSubmitApplicationResponse.cs" />
+    <Compile Include="ExternalApiIntegration\CaliforniaDap\CaliPhoneNumber.cs" />
+    <Compile Include="ExternalApiIntegration\CheckStatusRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\ExternalApi.cs" />
+    <Compile Include="ExternalApiIntegration\Interfaces\ICheckStatusRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\Interfaces\ICheckStatusResponse.cs" />
+    <Compile Include="ExternalApiIntegration\Interfaces\ILifelineApplicationRepository.cs" />
+    <Compile Include="ExternalApiIntegration\Interfaces\ILifelineApplicationService.cs" />
+    <Compile Include="ExternalApiIntegration\Interfaces\IResponseData.cs" />
+    <Compile Include="ExternalApiIntegration\Interfaces\ISubmitApplicationRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\Interfaces\ISubmitApplicationResponse.cs" />
+    <Compile Include="ExternalApiIntegration\Nlad\NladApiResponse.cs" />
+    <Compile Include="ExternalApiIntegration\Nlad\NladApiErrorResponse.cs" />
+    <Compile Include="ExternalApiIntegration\Nlad\NladCheckStatusRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\Nlad\NladPhoneNumber.cs" />
+    <Compile Include="ExternalApiIntegration\Nlad\NladRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\Nlad\NladSubmitRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\Nlad\NladApiResponseHeader.cs" />
+    <Compile Include="ExternalApiIntegration\Nlad\NladErrorCodes.cs" />
+    <Compile Include="ExternalApiIntegration\PuertoRico\ResolutionRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\SubmitApplicationRequestData.cs" />
+    <Compile Include="ExternalApiIntegration\PuertoRico\SacEntry.cs" />
+    <Compile Include="ExternalApiIntegration\SubmitApplicationValidationData.cs" />
+    <Compile Include="ExternalStorageCredentials.cs" />
+    <Compile Include="ImageUpload.cs" />
+    <Compile Include="Level1SalesGroup.cs" />
+    <Compile Include="Level2SalesGroup.cs" />
+    <Compile Include="Level3SalesGroup.cs" />
+    <Compile Include="LifelineProgram.cs" />
+    <Compile Include="LoginInfo.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="Plan.cs" />
+    <Compile Include="ProofDocumentType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SalesTeam.cs" />
+    <Compile Include="StateAgreement.cs" />
+    <Compile Include="StateProgram.cs" />
+    <Compile Include="StateSettings.cs" />
+    <Compile Include="TempOrder.cs" />
+    <Compile Include="TpivProofDocumentType.cs" />
+    <Compile Include="CommissionLog.cs" />
+    <Compile Include="ValidatedDevice.cs" />
+    <Compile Include="WebApplicationLogEntry.cs" />
+    <Compile Include="UserSignUps.cs" />
+    <Compile Include="ZipCodeCoverage.cs" />
+    <Compile Include="ZipCode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LS.Core\LS.Core.csproj">
+      <Project>{630CD161-8B43-484A-BEFE-E9EE20E1CCF6}</Project>
+      <Name>LS.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LS.Utilities\LS.Utilities.csproj">
+      <Project>{052EC35D-96DC-419B-993D-4DB4991ABBF7}</Project>
+      <Name>LS.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

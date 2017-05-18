@@ -1,0 +1,102 @@
+﻿<!--<div  class="test">
+
+</div>-->
+
+	<nav>
+		<div class="row header-banner">
+			<div class="col-xs-4"><a [routerLink]="['/']" class="header-logo"><img src="/Content/img/logo.png" title="DotNetSPA" /></a></div>
+			<div class="col-xs-8" style="margin-top:5px;margin-bottom:5px">
+				<div class="header-welcome">
+					<span trns>Welcome Jarrett</span>
+					<a href="#" trns>LOGOUT</a>
+				</div>
+
+			</div>
+		</div>
+		<div class="header-menu" >
+			<nav class="navbar navbar-default">
+			
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarMainMenu" aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+					</div>
+					<div class="collapse navbar-collapse" id="navbarMainMenu">
+						<ul class="nav navbar-nav">
+							<li><a (click)="goToCreateOrder()">Create New Order</a></li>
+							<li>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li><a href="/administration/salesgroups">Sales Groups</a></li>
+									<li><a href="/administration/salesteams">Sales Teams</a></li>
+									<li><a href="/administration/users">Users</a></li>
+									<li><a href="/administration/resource" >Resources</a></li>
+									<li><a href="/administration/company">Companies</a></li>
+									<li><a href="/administration/loginMessages">Login Messages</a></li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+
+				</div>
+			</nav>
+		</div>
+	</nav>
+
+
+
+
+
+
+
+
+<!--<div style="background-color:#fff">
+    <nav>
+        <div class="row header-banner">
+            <div class="col-xs-4"><a [routerLink]="['/']"class="header-logo"><img src="/v1.100000000000/Content/img/logo.png" title="DotNetSPA" /></a></div>
+            <div class="col-xs-8" style="margin-top:5px;margin-bottom:5px">
+                <div class="header-welcome">
+                    <span trns>Welcome Jarrett</span>
+                    <a href="#" trns>LOGOUT</a>
+                </div>
+
+            </div>
+        </div>
+        <div class="header-menu">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarMainMenu" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse" id="navbarMainMenu">
+                        <ul class="nav navbar-nav">
+                            <li><a (click)="goToCreateOrder()">Create New Order</a></li>
+                            <li>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ><trns>Administration</trns> <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="/administration/salesgroups" n trns>Sales Groups</a></li>
+                                    <li><a href="/administration/salesteams" trns>Sales Teams</a></li>
+                                    <li><a href="/administration/users" trns>Users</a></li>
+                                    <li><a href="/administration/resource" ng-if="$root.loggedInUser.role.rank > $root.administratorRole.rank" trns>Resources</a></li>
+                                    <li><a href="/administration/company" trns>Companies</a></li>
+                                    <li><a href="/administration/loginMessages"  trns>Login Messages</a></li>
+                                </ul>
+                            </li>
+                            <li><a [routerLink]="['/contact']">Contact</a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </nav>
+</div>-->

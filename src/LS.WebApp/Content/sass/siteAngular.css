@@ -1,0 +1,348 @@
+﻿/* GLOBAL */
+html {
+  font-size: 100%;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; }
+
+a, .hover-cursor {
+  cursor: pointer; }
+
+body {
+  background-image: url(/Content/img/LLS_Bkg_Slice.jpg);
+  background-repeat: repeat;
+  min-width: 320px; }
+
+.mulitSelect.checkboxContainer {
+  overflow-y: scroll;
+  max-height: 200px; }
+
+th {
+  color: white; }
+
+h1 {
+  text-transform: uppercase;
+  margin-top: .1em;
+  font-size: 1.7em;
+  font-weight: bold; }
+
+.container-content {
+  background-color: white;
+  padding: 2rem 1rem;
+  margin: 1.5rem auto; }
+
+.clickable {
+  cursor: pointer; }
+
+.header-icon {
+  float: right; }
+
+.alert {
+  margin-bottom: 5px; }
+
+/* HEADER */
+header {
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: white; }
+
+.header-banner {
+  padding: 0 2em;
+  margin: 0; }
+
+.header-logo > img {
+  height: 3em; }
+
+.header-welcome {
+  text-align: right;
+  float: right; }
+
+.header-welcome > span {
+  margin: 0 0.5em; }
+
+.header-welcome > span > a {
+  font-size: 0.8em; }
+
+.header-menu {
+  height: 3rem;
+  padding: 0rem 3rem; }
+
+.header-menu a {
+  color: black;
+  font-weight: bold; }
+
+.header-company {
+  line-height: 40px;
+  margin-bottom: 9px; }
+
+.header-company label {
+  padding: 0px;
+  margin: 0px; }
+
+.panel-heading {
+  background-image: none !important;
+  color: white !important; }
+
+.panel-heading.accordion-has-error {
+  background-color: #d84010 !important; }
+
+.nav-link, .nav-link:hover, .nav-link:visited, .nav-link:link, .nav-link:active,
+.nav-pills > li > a, .nav-pills > li > a:hover, .nav-pills > li > a:visited, .nav-pills > li > a:link, .nav-pills > li > a:active {
+  padding: .8rem;
+  text-decoration: none; }
+
+.nav-pills > li > a {
+  border-radius: 0; }
+
+.nav-pills > li, .nav-pills > li > a, .nav {
+  height: 100%; }
+
+.nav-pills > li + li {
+  margin-left: 2rem; }
+
+.header-menu {
+  padding: 0rem 3rem; }
+
+.angular-google-map-container {
+  height: 600px; }
+
+.app-modal-window-large .modal-dialog {
+  width: 100% !important;
+  max-width: 1200px !important; }
+
+.app-modal-window-small .modal-dialog {
+  width: 100% !important;
+  max-width: 600px !important; }
+
+@media screen and (max-width: 768px) {
+  .nav-pills > li + li {
+    margin-left: .5rem; }
+  .header-menu {
+    padding: 0rem 0rem; }
+  .header-banner {
+    padding: 0 0em; }
+  .header-welcome {
+    text-align: left; } }
+
+/*NOTIFICATION*/
+.error-message {
+  background-color: #e13114;
+  color: #FFFFFF;
+  text-align: center; }
+
+.success-message {
+  background-color: #7dd920;
+  color: #FFFFFF;
+  text-align: center; }
+
+.warning-message {
+  background-color: #ffef11;
+  color: #898008;
+  text-align: center; }
+
+/* ORDER */
+.order-section-title {
+  font-size: 1.2em;
+  font-weight: bold; }
+
+.order-content {
+  font-size: 1em; }
+
+.order-field-title {
+  margin-top: 1em;
+  font-size: 1.2em;
+  font-weight: bold; }
+
+.order-button-small,
+.order-button-small:hover,
+.order-button-small:focus {
+  background-image: none;
+  color: white;
+  font-size: .8rem;
+  padding: .2rem; }
+
+.order-button,
+.order-button:hover,
+.order-button:focus {
+  background-image: none;
+  color: white; }
+
+.confirm-button,
+.confirm-button:hover,
+.confirm-button:focus {
+  background-image: none;
+  margin-top: .2rem;
+  color: white;
+  background-color: #7dd920; }
+
+.address-button {
+  margin-bottom: 1rem; }
+
+ul.no-bullet {
+  list-style-type: none; }
+
+ul.no-padding {
+  padding-left: 0; }
+
+ul.no-margin {
+  margin: 0; }
+
+.alert {
+  padding: 5px; }
+
+.annualIncomeInput {
+  display: none; }
+
+.sigPad {
+  width: 420px; }
+
+.sigWrapper {
+  padding: 15px;
+  width: 350px;
+  height: 140px;
+  margin-bottom: 10px; }
+
+.initialsWrapper {
+  width: 186px;
+  height: 122px;
+  padding: 0px; }
+
+.dob {
+  text-align: center;
+  width: 110px; }
+
+.applicationInput {
+  margin-top: 1em; }
+
+select, option {
+  width: 100%; }
+
+#webcamProof {
+  width: 100%; }
+
+.nonbold-label {
+  font-weight: normal; }
+
+.panel-body > .order-field-title, .form-group > .checkbox {
+  margin-top: 0; }
+
+.form-group {
+  margin-top: 15px;
+  margin-bottom: 0; }
+
+.panel-form {
+  margin-top: 1em; }
+
+.form-readonly {
+  padding-top: 7px; }
+
+.valid-form-notification {
+  float: right; }
+
+.bg-danger {
+  padding: .4rem; }
+
+.top-stack {
+  margin-bottom: 5px; }
+
+/* ADMINISTRATION */
+.admin-button,
+.admin-button:hover,
+.admin-button:focus {
+  height: 2em;
+  font-size: .8em;
+  padding: .2em .5em;
+  color: white; }
+
+.admin-button-large,
+.admin-button-large:hover,
+.admin-button-large:focus {
+  height: 2em;
+  font-size: 1.2em; }
+
+.cancel-button,
+.cancel-button:hover,
+.cancel-button:focus {
+  height: 2em;
+  font-size: .8em;
+  padding: .2em .5em;
+  color: white;
+  background-color: #d84040; }
+
+.generic-button,
+.generic-button:hover,
+.generic-button:focus {
+  height: 2em;
+  font-size: .8em;
+  padding: .2em .5em;
+  color: #d84040; }
+
+.add-level-button-group {
+  margin-bottom: 1em; }
+
+.admin-link {
+  padding-left: .2em;
+  font-weight: bold; }
+
+.manager-panel {
+  margin-bottom: .5em; }
+
+.level-3-description {
+  margin-left: 1em; }
+
+.glyphicon-usd {
+  color: green; }
+
+.edit-icon {
+  color: grey;
+  float: right;
+  margin-right: .1rem; }
+
+.edit-icon:hover {
+  color: black;
+  cursor: pointer; }
+
+.checkbox-label {
+  font-weight: normal; }
+
+input[type="checkbox"].horizontal-input {
+  margin-top: 10px; }
+
+.mini-panel {
+  margin: .5rem 1rem;
+  padding: .4rem;
+  border: .1rem solid grey;
+  border-radius: .2rem; }
+
+.commission-panel {
+  margin: 1rem .5rem; }
+
+@media screen and (min-width: 768px) {
+  .far-right {
+    float: right; } }
+
+@media screen and (max-width: 768px) {
+  .container-content {
+    margin: 0; }
+  .admin-button {
+    margin-bottom: .4em; } }
+
+/* ANIMATION */
+.mini-panel {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s; }
+
+.odd {
+  background-color: #FFF; }
+
+.even {
+  background-color: #ccc; }
+
+.mini-panel.ng-hide {
+  opacity: 0; }
+
+.btn-group .btn.active {
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  background-color: #e0e0e0 !important;
+  border-color: #dbdbdb;
+  outline: 0; }
+

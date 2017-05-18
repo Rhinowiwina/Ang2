@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3C448D4E-9983-4FE1-8F7A-C81C2292219A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LS.BudgetMobile</RootNamespace>
+    <AssemblyName>LS.BudgetMobile</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Dev|AnyCPU'">
+    <OutputPath>bin\Dev\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Staging|AnyCPU'">
+    <OutputPath>bin\Staging\</OutputPath>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\packages\Common.Logging.Core.3.0.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Exceptionless, Version=4.0.1951.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Exceptionless.4.0.1951\lib\net45\Exceptionless.dll</HintPath>
+    </Reference>
+    <Reference Include="Exceptionless.Mvc">
+      <HintPath>..\packages\Exceptionless.Mvc.4.0.1886\lib\net45\Exceptionless.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Exceptionless.WebApi, Version=4.0.1951.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Exceptionless.WebApi.4.0.1951\lib\net45\Exceptionless.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CompanyProviderOptions.cs" />
+    <Compile Include="CompanyProviderValidation.cs" />
+    <Compile Include="Logging\CAMsDuplicateCheckInspectorBehavior.cs" />
+    <Compile Include="Logging\CAMsDuplicateCheckMessageInspector.cs" />
+    <Compile Include="Logging\CAMsScrubInspectorBehavior.cs" />
+    <Compile Include="Logging\CAMsScrubMessageInspector.cs" />
+    <Compile Include="Logging\CAMsValidateAddressInspectorBehavior.cs" />
+    <Compile Include="Logging\CAMsValidateAddressMessageInpector.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\BudgetMobileTestApi\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LS.Core\LS.Core.csproj">
+      <Project>{630cd161-8b43-484a-befe-e9ee20e1ccf6}</Project>
+      <Name>LS.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LS.Domain\LS.Domain.csproj">
+      <Project>{2896537D-5B6C-4C62-829A-A7979B0AA11A}</Project>
+      <Name>LS.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LS.Repositories\LS.Repositories.csproj">
+      <Project>{86a894e2-896a-4b5b-8a3e-c724e809ed4b}</Project>
+      <Name>LS.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LS.Utilities\LS.Utilities.csproj">
+      <Project>{052EC35D-96DC-419B-993D-4DB4991ABBF7}</Project>
+      <Name>LS.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Service References\BudgetMobileTestApi\LifelineServices.wsdl" />
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.ActivateSprintDevice.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.ActivateSprintDeviceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.ActivateTmobileDevice.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.ActivateTmobileDeviceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.ActivateTmobileDevice_ITG.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.ActivateTmobileDevice_ITGResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.ActivateVerizonDevice.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.ActivateVerizonDeviceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Address_Standardize.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Address_StandardizeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Address_VerifyLifeline.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Address_VerifyLifelineResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.BudgetMobile_CompleteFulfillment.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.BudgetMobile_CompleteFulfillmentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.ChangeESN_Verizon.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.ChangeESN_VerizonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.CheckTmobileBalance.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.CheckTmobileBalanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.CheckVerizonBalance.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.CheckVerizonBalanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.DeactivateSprintDevice.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.DeactivateSprintDeviceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.DeactivateVerizonDevice.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.DeactivateVerizonDeviceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Devices.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.DevicesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.DiscreteRestoreTMobileDevice.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.DuplicateCheck.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.DuplicateCheckResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Handset_Commit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Handset_CommitResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Handset_Enter.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Handset_EnterResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupAccountByMDN.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupAccountByMDNResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupAvailableTopUp_Existing.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupAvailableTopUp_ExistingResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupAvailableTopUp_New.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupAvailableTopUp_NewResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookUpBasePlan.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookUpCustomer.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupCustomerDetails.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupTopUpDetails.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupTopUpDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupTopUpTotalDue.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupTopUpTotalDueResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupVerizonActivationStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupVerizonActivationStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupVerizonChangeESNStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupVerizonChangeESNStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupVerizonDeactivateDeviceStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookupVerizonDeactivateDeviceStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookUpVerizonDiscreteDeviceInquiryStatus.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.LookUpVerizonDiscreteDeviceInquiryStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Order_Commit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Order_CommitResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Order_Enter.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Order_EnterResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Recertify_BudgetMobile.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.RetrPreactivatedHandsetByDeviceID.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.RetrPreactivatedHandsetByDeviceIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.RetrVoiceandTextBalance.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.RetrVoiceandTextBalanceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Sprint_RetrSingleDeviceActivationDetails.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Sprint_RetrSingleDeviceActivationDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.TMobile_PortInActivateDevice.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.TMobile_PortInActivateDeviceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.TMobile_RetrPreactivatedHandsetByDeviceID.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.TMobile_RetrPreactivatedHandsetByDeviceIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.TMobile_SwapIMSI.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.TMobile_SwapIMSIResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.TopUp_Commit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.TopUp_CommitResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.TopUp_Enter.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.TopUp_EnterResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.UpdateDeviceID.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.UpdateDeviceIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.UpdateProviderDeviceID.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.UpdateProviderDeviceIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.VerifyDevice.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Verizon_Discrete_DeviceInquiry.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Verizon_Discrete_DeviceInquiryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Verizon_RetrSingleDeviceActivationDetails.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Verizon_RetrSingleDeviceActivationDetailsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Zip_Coverage.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\BudgetMobileTestApi\LS.BudgetMobile.BudgetMobileTestApi.Zip_CoverageResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\BudgetMobileTestApi\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BudgetMobileTestApi\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BudgetMobileTestApi\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\BudgetMobileTestApi\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

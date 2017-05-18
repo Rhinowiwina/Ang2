@@ -1,0 +1,72 @@
+﻿html {
+    font-size: 100%;
+    background-image: url(/Content/img/LLS_Bkg_Slice.jpg);
+    background-repeat:repeat;
+}
+
+body {
+    background-image: url(/Content/img/LLS_Bkg_Slice.jpg);
+    background-repeat:repeat;
+}
+
+.header {
+    margin: 0;
+    padding:6px;
+    background-color: white;
+
+}
+
+.navbar {
+    min-height: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+
+    background-color: #cf6733;
+}
+
+#login-section, #forgotpassword-section, 
+#forgotpassword-confirmation-section,
+#resetpassword-section,
+#resetpassword-confirmation-section
+ {
+    padding-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#login-section form, #forgotpassword-section form,
+#resetpassword-section form {
+    background-color: white;
+}
+
+.forgot-password-confirmation, 
+.reset-password-confirmation {
+    background-color: white;
+    border: 1px black solid;
+    padding: 30px;
+}
+
+.login-form, 
+.forgot-password-form,
+.reset-password-form  {
+    border: 1px black solid;
+    padding: 30px;
+}
+
+.login-button, .reset-button,
+.forgot-password-button {
+    color: white;
+    background-color: #cf6733;
+}
+
+.login-button:hover, .login-button:visited, .login-button:active,
+.reset-button:hover, .reset-button:visited, .reset-button:active,
+.forgot-password-button:hover, .forgot-password-button:visited, .forgot-password-button:active {
+    color: white;
+    background-color: #b2582a;
+}
+
+.forced-logout-message {
+    text-align: center;
+}
