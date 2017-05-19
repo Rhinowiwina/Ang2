@@ -1,4 +1,4 @@
-﻿import { Component,ViewEncapsulation } from '@angular/core';
+﻿import { Component,ViewEncapsulation,Input,Attribute } from '@angular/core';
 
 @Component({
 	selector: 'app-header',
@@ -8,9 +8,22 @@
 
 })
 export class HeaderComponent {
+	primarycolor: string;
+	imageurl: string;
+	@Input() brandingmodel: any;
+	
 	constructor() {
-
+		
 	}
-	  Test:{ Name: string } = {Name:"NewTest"};
+	ngOnInit() {
+		this.primarycolor = '#' + this.brandingmodel.PrimaryColorHex;
+		this.imageurl = '/Content/img/' + this.brandingmodel.CompanyLogoUrl;
+		console.log(this.brandingmodel);
+	
+		
+	}
+	
+
+
 	
 }

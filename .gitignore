@@ -45,3 +45,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+src/LS.Solix/obj/Debug/LS.Solix.dll
+*.dll
+src/RESTModule/obj/Debug/RESTModule.dll
+*.dll

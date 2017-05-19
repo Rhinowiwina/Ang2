@@ -1,21 +1,24 @@
-﻿<!--<div  class="test">
-
-</div>-->
-
-	<nav>
+﻿	<nav>
 		<div class="row header-banner">
-			<div class="col-xs-4"><a [routerLink]="['/']" class="header-logo"><img src="/Content/img/logo.png" title="DotNetSPA" /></a></div>
+			<div class="col-xs-4"><a [routerLink]="['/']" class="header-logo"><img src={{imageurl}} title="DotNetSPA" /></a></div>
+			<!--"/Content/img/logo.png"-->
+
 			<div class="col-xs-8" style="margin-top:5px;margin-bottom:5px">
 				<div class="header-welcome">
 					<span trns>Welcome Jarrett</span>
 					<a href="#" trns>LOGOUT</a>
 				</div>
-
+				<div style="float:right;clear:right;margin-top:5px;">
+					<a  class="btn btn-success" trns>Language</a>
+				</div>
 			</div>
 		</div>
-		<div class="header-menu" >
-			<nav class="navbar navbar-default">
-			
+
+
+
+		<div [style.background-color]='primarycolor' [style.height]="'auto'" class="header-menu" >
+			<nav [style.background]="'none'" [style.box-shadow]="'none'"  class="navbar navbar-default">  
+				
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarMainMenu" aria-expanded="false">

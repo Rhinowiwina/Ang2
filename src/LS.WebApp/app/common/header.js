@@ -11,10 +11,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var HeaderComponent = (function () {
     function HeaderComponent() {
-        this.Test = { Name: "NewTest" };
     }
+    HeaderComponent.prototype.ngOnInit = function () {
+        this.primarycolor = '#' + this.brandingmodel.PrimaryColorHex;
+        this.imageurl = '/Content/img/' + this.brandingmodel.CompanyLogoUrl;
+        console.log(this.brandingmodel);
+    };
     return HeaderComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], HeaderComponent.prototype, "brandingmodel", void 0);
 HeaderComponent = __decorate([
     core_1.Component({
         selector: 'app-header',
