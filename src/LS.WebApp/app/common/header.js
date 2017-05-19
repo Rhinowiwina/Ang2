@@ -17,7 +17,7 @@ var HeaderComponent = (function () {
         console.log(this.test);
     }
     HeaderComponent.prototype.ngOnInit = function () {
-        console.log(this.test);
+        console.log(this.brandingmodel);
     };
     return HeaderComponent;
 }());

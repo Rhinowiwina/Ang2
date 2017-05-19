@@ -8,10 +8,10 @@ import { BrandingComponent } from './common/branding'
 	
 	selector: "my-app",	
 	template: `	
-			<div *ngIf="branding">
-		      <app-header> 
-            [brandingmodel]="branding"
-             test="test"
+			<div *ngIf="this.branding">
+		      <app-header [brandingmodel]="branding"> 
+          
+            
         </app-header></div>
             <div class='container'>
                 <router-outlet></router-outlet>
@@ -23,21 +23,20 @@ import { BrandingComponent } from './common/branding'
 	})
 
 export class AppComponent implements OnInit {
-
-	branding: {test:'test2'};
+	test: string;
+	branding: {};
 	msg: string;
 	constructor(private _brandingService: BrandingService) {}
 	ngOnInit(): void {
-
 		this.GetBranding();
-		console.log(this.branding)
+		this.test="atest"	
 	}
-	GetBranding() {
+	GetBranding(){
 
-		return this._brandingService.get("api/company/getCompany?companyId=65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c")
+	 this._brandingService.get("api/company/getCompany?companyId=65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c")
 			.subscribe(branding => {
 				this.branding = branding.Data;
-				
+				return this.branding
 			}, error => this.msg = <any>error);
 
 		

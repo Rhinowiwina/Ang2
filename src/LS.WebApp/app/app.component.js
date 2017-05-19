@@ -16,13 +16,14 @@ var AppComponent = (function () {
     }
     AppComponent.prototype.ngOnInit = function () {
         this.GetBranding();
-        console.log(this.branding);
+        this.test = "atest";
     };
     AppComponent.prototype.GetBranding = function () {
         var _this = this;
-        return this._brandingService.get("api/company/getCompany?companyId=65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c")
+        this._brandingService.get("api/company/getCompany?companyId=65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c")
             .subscribe(function (branding) {
             _this.branding = branding.Data;
+            return _this.branding;
         }, function (error) { return _this.msg = error; });
     };
     return AppComponent;
@@ -30,7 +31,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: "my-app",
-        template: "\t\n\t\t\t<div *ngIf=\"branding\">\n\t\t      <app-header> \n            [brandingmodel]=\"branding\"\n             test=\"test\"\n        </app-header></div>\n            <div class='container'>\n                <router-outlet></router-outlet>\n            </div>\n\t\t\t",
+        template: "\t\n\t\t\t<div *ngIf=\"this.branding\">\n\t\t      <app-header [brandingmodel]=\"branding\"> \n          \n            \n        </app-header></div>\n            <div class='container'>\n                <router-outlet></router-outlet>\n            </div>\n\t\t\t",
         providers: [branding_service_1.BrandingService],
     }),
     __metadata("design:paramtypes", [branding_service_1.BrandingService])

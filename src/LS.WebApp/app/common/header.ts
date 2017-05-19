@@ -8,13 +8,14 @@
 
 })
 export class HeaderComponent {
-	@Input() test: string;
+	@Input()
+	test: string;
 	@Input() brandingmodel: any;
 	constructor() {
 		console.log(this.test);
 	}
 	ngOnInit() {
-		console.log(this.test);
+		console.log(this.brandingmodel);
 	}
 	
 
