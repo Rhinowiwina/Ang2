@@ -7,11 +7,11 @@ import { BrandingComponent } from './common/branding'
 @Component({
 	
 	selector: "my-app",	
-	template: `	
+	template: 
+`	
+    
 			<div *ngIf="this.branding">
 		      <app-header [brandingmodel]="branding"> 
-          
-            
         </app-header></div>
             <div class='container'>
                 <router-outlet></router-outlet>
@@ -23,13 +23,13 @@ import { BrandingComponent } from './common/branding'
 	})
 
 export class AppComponent implements OnInit {
-	test: string;
+
 	branding: {};
 	msg: string;
 	constructor(private _brandingService: BrandingService) {}
 	ngOnInit(): void {
 		this.GetBranding();
-		this.test="atest"	
+	
 	}
 	GetBranding(){
 

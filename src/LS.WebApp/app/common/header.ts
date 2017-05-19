@@ -8,19 +8,22 @@
 
 })
 export class HeaderComponent {
-	@Input()
-	test: string;
+	primarycolor: string;
+	imageurl: string;
 	@Input() brandingmodel: any;
+	
 	constructor() {
-		console.log(this.test);
+		
 	}
 	ngOnInit() {
+		this.primarycolor = '#' + this.brandingmodel.PrimaryColorHex;
+		this.imageurl = '/Content/img/' + this.brandingmodel.CompanyLogoUrl;
 		console.log(this.brandingmodel);
+	
+		
 	}
 	
 
-	theval: string = 'red';
-	custstyle: string = '.navbar {background - color:' + this.theval + '}'
-	public my_Class = 'custstyle';
+
 	
 }
