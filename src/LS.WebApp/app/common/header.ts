@@ -1,4 +1,4 @@
-﻿import { Component,ViewEncapsulation } from '@angular/core';
+﻿import { Component,ViewEncapsulation,Input,Attribute } from '@angular/core';
 
 @Component({
 	selector: 'app-header',
@@ -8,9 +8,18 @@
 
 })
 export class HeaderComponent {
+	@Input() test: string;
+	@Input() brandingmodel: any;
 	constructor() {
-
+		console.log(this.test);
 	}
-	  Test:{ Name: string } = {Name:"NewTest"};
+	ngOnInit() {
+		console.log(this.test);
+	}
+	
+
+	theval: string = 'red';
+	custstyle: string = '.navbar {background - color:' + this.theval + '}'
+	public my_Class = 'custstyle';
 	
 }

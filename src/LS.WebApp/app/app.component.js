@@ -9,18 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var branding_service_1 = require("./Service/branding.service");
 var AppComponent = (function () {
-    function AppComponent() {
-        this.Test = { Name: "Main" };
+    function AppComponent(_brandingService) {
+        this._brandingService = _brandingService;
     }
+    AppComponent.prototype.ngOnInit = function () {
+        this.GetBranding();
+        console.log(this.branding);
+    };
+    AppComponent.prototype.GetBranding = function () {
+        var _this = this;
+        return this._brandingService.get("api/company/getCompany?companyId=65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c")
+            .subscribe(function (branding) {
+            _this.branding = branding.Data;
+        }, function (error) { return _this.msg = error; });
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
         selector: "my-app",
-        template: "\t\n\t\t\t<app-branding></app-branding>\n\t\t      <app-header></app-header>\n            <div class='container'>\n                <router-outlet></router-outlet>\n            </div>\n\t\t\t",
+        template: "\t\n\t\t\t<div *ngIf=\"branding\">\n\t\t      <app-header> \n            [brandingmodel]=\"branding\"\n             test=\"test\"\n        </app-header></div>\n            <div class='container'>\n                <router-outlet></router-outlet>\n            </div>\n\t\t\t",
+        providers: [branding_service_1.BrandingService],
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [branding_service_1.BrandingService])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

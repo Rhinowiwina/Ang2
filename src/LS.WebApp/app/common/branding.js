@@ -30,7 +30,6 @@ var BrandingComponent = (function () {
 BrandingComponent = __decorate([
     core_1.Component({
         selector: 'app-branding',
-        styles: [":host /deep/ .navbar  {\n    background-color:" + "red" + ";\n    }\n    \n     :host /deep / navbar-default {\n        background-color: green;\n    }"],
         templateUrl: 'app/common/branding.html',
         providers: [branding_service_1.BrandingService]
     }),
