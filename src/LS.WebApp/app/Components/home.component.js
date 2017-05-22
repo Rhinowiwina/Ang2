@@ -13,7 +13,7 @@ var HomeComponent = (function () {
 }());
 HomeComponent = __decorate([
     core_1.Component({
-        template: "<img src=\"../../images/users.png\" style=\"text-align:center\"/>"
+        template: ""
     })
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;

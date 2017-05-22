@@ -1,4 +1,5 @@
-﻿	<nav>
+﻿	
+<nav class="header-nav">
 		<div class="row header-banner">
 			<div class="col-xs-4"><a [routerLink]="['/']" class="header-logo"><img src={{imageurl}} title="DotNetSPA" /></a></div>
 			<!--"/Content/img/logo.png"-->
@@ -16,8 +17,8 @@
 
 
 
-		<div [style.background-color]='primarycolor' [style.height]="'auto'" class="header-menu" >
-			<nav [style.background]="'none'" [style.box-shadow]="'none'"  class="navbar navbar-default">  
+		<div class="header-menu" >
+			<nav  class="navbar navbar-default">  
 				
 				<div class="container-fluid">
 					<div class="navbar-header">

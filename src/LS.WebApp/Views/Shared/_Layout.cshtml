@@ -2,29 +2,37 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
-    <script src="/node_modules/core-js/client/shim.min.js"></script>
-    <script src="/node_modules/zone.js/dist/zone.js"></script>
-    <script src="/node_modules/systemjs/dist/system.src.js"></script>
-    <script src="/systemjs.config.js"></script>
-    <script>
-      System.import('app').catch(function(err){ console.error(err); });
-    </script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lifeline Services</title>
+    <link rel="stylesheet" href="/Content/sass/siteAngular.css">
+    @Styles.Render("~/Content/razorCss")
 </head>
-<body>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+    <body>
+        <header id="header">
+            <div>
+                <nav>
+                    <div class="row header-banner header">
+                        <div class="col-sm-2">
+                            <a href="/" class="header-logo">
+                                <img src="/Content/img/SpinSolutions.png">
+                            </a>
+                        </div>
+                    </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-</body>
+                    <div class="header-menu navbar">
+
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <div class="container">
+            @RenderBody()
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/login")
+        @RenderSection("scripts", required: false)
+    </body>
 </html>
