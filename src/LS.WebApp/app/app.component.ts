@@ -5,13 +5,13 @@ import { Global } from './Shared/global';
 import { HeaderComponent } from "./common/header"
 import { BrandingComponent } from './common/branding'
 @Component({
-	
+
 	selector: "my-app",	
 	template: 
 `	 
-			<div *ngIf="this.branding">
-		      <app-header [brandingmodel]="branding"> 
-        </app-header></div>
+		<div >
+		      <app-header *ngIf="branding" [brandingmodel]="branding && branding[0]"> 
+              </app-header></div>
             <div class='container'>
                 <router-outlet></router-outlet>
             </div>
@@ -334,11 +334,9 @@ a {
 	background-color: #fcffb6 !important
 }
 
-
-
 `],
 	providers: [BrandingService],
-	encapsulation: ViewEncapsulation.None ,
+	encapsulation: ViewEncapsulation.None,
 	})
 
 export class AppComponent implements OnInit {
@@ -348,7 +346,7 @@ export class AppComponent implements OnInit {
 	constructor(private _brandingService: BrandingService) {}
 	ngOnInit(): void {
 		this.GetBranding();
-	
+		
 	}
 	GetBranding(){
 
