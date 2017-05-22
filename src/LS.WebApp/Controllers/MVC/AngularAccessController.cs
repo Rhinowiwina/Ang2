@@ -1,27 +1,26 @@
 ﻿using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-//using Webapp.CustomAttributes;
-//using Microsoft.AspNet.Identity.Owin;
-using LS.WebApp;
+using LS.WebApp.CustomAttributes;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace LS.WebApp.Controllers.mvc
 {
-    //[AuthorizeRedirect("/login")]
+    [AuthorizeRedirect("/login")]
     public class AngularAccessController : Controller
     {
-        //private ApplicationSignInManager _signInManager;
-        //public ApplicationSignInManager SignInManager
-        //{
-        //    get
-        //    {
-        //        return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-        //    }
-        //    private set
-        //    {
-        //        _signInManager = value;
-        //    }
-        //}
+        private ApplicationSignInManager _signInManager;
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
 
         public async Task<ActionResult> Index()
         {
