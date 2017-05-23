@@ -52,3 +52,6 @@ src/EntityFramework.Implementation/bin/Debug/Numero3.EntityFramework.Implementat
 src/EntityFramework.Implementation/bin/Debug/Numero3.EntityFramework.Implementation.pdb
 *.cache
 src/EntityFramework.Implementation/obj/Debug/EntityFramework.Implementation.csprojResolveAssemblyReference.cache
+*.pdb
+*.dll
+src/LS.BudgetMobile/obj/Debug/LS.BudgetMobile.pdb
