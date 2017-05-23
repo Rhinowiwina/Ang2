@@ -9,13 +9,11 @@ import { BrandingComponent } from './common/branding'
 	selector: "my-app",	
 	template: 
 `	
-    
-			<div *ngIf="this.branding">
-		      <app-header [brandingmodel]="branding"> 
-        </app-header></div>
-            <div class='container'>
-                <router-outlet></router-outlet>
-            </div>
+				<app-header [brandingmodel]="branding"> 
+				</app-header>
+				<div class='container'>
+				<router-outlet></router-outlet>
+				</div>
 			`,
 	
 	providers: [BrandingService],

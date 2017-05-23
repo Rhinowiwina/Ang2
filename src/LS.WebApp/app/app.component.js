@@ -30,7 +30,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: "my-app",
-        template: "\t\n    \n\t\t\t<div *ngIf=\"this.branding\">\n\t\t      <app-header [brandingmodel]=\"branding\"> \n        </app-header></div>\n            <div class='container'>\n                <router-outlet></router-outlet>\n            </div>\n\t\t\t",
+        template: "\t\n\t\t\t\t<app-header [brandingmodel]=\"branding\"> \n\t\t\t\t</app-header>\n\t\t\t\t<div class='container'>\n\t\t\t\t<router-outlet></router-outlet>\n\t\t\t\t</div>\n\t\t\t",
         providers: [branding_service_1.BrandingService],
     }),
     __metadata("design:paramtypes", [branding_service_1.BrandingService])

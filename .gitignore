@@ -45,3 +45,10 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.dll
+src/EntityFramework.Implementation/bin/Debug/Numero3.EntityFramework.Implementation.dll
+*.suo
+*.dll
+src/EntityFramework.Implementation/bin/Debug/Numero3.EntityFramework.Implementation.pdb
+*.cache
+src/EntityFramework.Implementation/obj/Debug/EntityFramework.Implementation.csprojResolveAssemblyReference.cache
