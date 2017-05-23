@@ -13,9 +13,15 @@ var HeaderComponent = (function () {
     function HeaderComponent() {
     }
     HeaderComponent.prototype.ngOnInit = function () {
-        this.primarycolor = '#' + this.brandingmodel.PrimaryColorHex;
+        this.primarycolor = '#d9970e'; //'#' + this.brandingmodel.PrimaryColorHex;
+        this.logopath = '';
+        this.secondarycolor = '';
         this.imageurl = '/Content/img/' + this.brandingmodel.CompanyLogoUrl;
         console.log(this.brandingmodel);
+    };
+    HeaderComponent.prototype.LogOut = function () {
+        alert('logout');
+        window.location.href = "/logout?userid=" + "1";
     };
     return HeaderComponent;
 }());

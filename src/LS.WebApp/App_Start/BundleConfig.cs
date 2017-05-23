@@ -22,8 +22,9 @@ namespace LS.WebApp
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
-
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+			bundles.Add(new ScriptBundle("~/bundles/login").Include(
+					 "~/Content/js/login.js"));
+			bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css"));
 			bundles.Add(new ScriptBundle("~/bundles/login").Include(
 					 "~/Content/js/login.js"));
