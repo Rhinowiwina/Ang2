@@ -116,18 +116,7 @@ var MessageDataService = (function () {
         this.baseUrl = 'api/loginMsg/';
     }
     MessageDataService.prototype.getActiveMessages = function () {
-    };
-    MessageDataService.prototype.getAllMessages = function () {
-    };
-    MessageDataService.prototype.submitMessageForAddOrEdit = function () {
-    };
-    MessageDataService.prototype.getMsgToEdit = function () {
-    };
-    MessageDataService.prototype.deleteMessage = function () {
-    };
-    MessageDataService.prototype.editMessage = function () {
-    };
-    MessageDataService.prototype.addMessage = function () {
+        return this.get(this.baseUrl + 'getActiveMessages');
     };
     //base calls
     MessageDataService.prototype.get = function (url) {
@@ -164,5 +153,9 @@ var MessageDataService = (function () {
     };
     return MessageDataService;
 }());
+MessageDataService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], MessageDataService);
 exports.MessageDataService = MessageDataService;
 //# sourceMappingURL=Services.js.map

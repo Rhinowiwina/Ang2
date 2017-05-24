@@ -210,6 +210,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\api\AppUserController.cs" />
+    <Compile Include="Controllers\api\LoginMsgController.cs" />
     <Compile Include="Controllers\MVC\AngularAccessController.cs" />
     <Compile Include="Controllers\api\BaseAPIController.cs" />
     <Compile Include="Controllers\api\CompanyController.cs" />
@@ -261,6 +262,7 @@
     <Content Include="app\common\branding.html" />
     <Content Include="app\common\header.html" />
     <Content Include="app\Components\home.component.html" />
+    <Content Include="app\Components\user.component - Copy.html" />
     <Content Include="app\Components\user.component.html" />
     <Content Include="app\index.html" />
     <Content Include="app\Model\user.js" />
@@ -453,6 +455,10 @@
     <Content Include="Content\css\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\css\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\css\vendor\bootstrap.css.map" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -538,10 +544,10 @@
     <TypeScriptCompile Include="app\Components\user.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\Model\user.ts" />
-    <TypeScriptCompile Include="app\Service\branding.resolve.service.ts" />
     <TypeScriptCompile Include="app\Service\base.service.ts" />
-    <TypeScriptCompile Include="app\Service\Services.ts" />
+    <TypeScriptCompile Include="app\Service\branding.resolve.service.ts" />
     <TypeScriptCompile Include="app\Service\emitter.service.ts" />
+    <TypeScriptCompile Include="app\Service\Services.ts" />
     <TypeScriptCompile Include="app\Service\user.service.ts" />
     <TypeScriptCompile Include="app\Shared\enum.ts" />
     <TypeScriptCompile Include="app\Shared\global.ts" />

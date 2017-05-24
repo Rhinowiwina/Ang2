@@ -17,7 +17,6 @@ var HeaderComponent = (function () {
     HeaderComponent.prototype.ngOnInit = function () {
         this.companyLogo = this.brandingmodel.companyLogoUrl;
         this.companyTitle = this.brandingmodel.name;
-        console.log(this.loggedInUser);
     };
     HeaderComponent.prototype.LogOut = function () {
         alert('logout');

@@ -1,20 +1,32 @@
 ﻿
 import { Component, ViewEncapsulation, Input, Attribute, OnChanges, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/mergeMap';
 import { EmitterService } from '../Service/emitter.service';
-import { CompanyDataService } from '../Service/Services';
+import { MessageDataService } from '../Service/Services';
 import { Global } from '../Shared/global';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
-template:``
-	//templateUrl:"home.component.html"
+templateUrl: "app/Components/home.component.html",
+providers:[MessageDataService],
+	styleUrls:['../../Content/sass/siteAngular.css']
 })
 
 export class HomeComponent implements OnInit{
-	branding: {};
+
 	msg: string;
-	constructor(private _global: Global) { }
+	messages: {};
+	constructor(private _global: Global, private _messageDataService: MessageDataService) { }
 	ngOnInit(): void {
+		
+		this.getMessages();
+	}
+	getMessages() {
+	
+		this._messageDataService.getActiveMessages().subscribe(messages => {
+			this.messages = messages.data;
+			console.log(this.messages);			
+		}, error => this.msg = <any>error);
 
 	}
-	
 }

@@ -110,36 +110,17 @@ export class AppUserDataService{
 	}
 
 }
+@Injectable()
 export class MessageDataService {
 	baseUrl: string
 	constructor(private _http: Http) {
 		this.baseUrl = 'api/loginMsg/';
 	}
 	getActiveMessages() {
-
-
-	}
-	getAllMessages() {
-
+	
+		return this.get(this.baseUrl +  'getActiveMessages');
 
 	}
-	submitMessageForAddOrEdit() {
-
-
-	}
-	getMsgToEdit() {
-
-	}
-	deleteMessage() {
-
-	}
-	editMessage() {
-
-	}
-	addMessage() {
-
-	}
-
 	//base calls
 	get(url: string): Observable<any> {
 
@@ -182,3 +163,4 @@ export class MessageDataService {
 	}
 
 }
+

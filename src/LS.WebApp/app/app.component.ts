@@ -14,7 +14,7 @@ import { BrandingComponent } from './common/branding'
 `	 <div *ngIf="branding && loggedInUser" >
 		      <app-header [brandingmodel]="branding" [loggedInUser]="loggedInUser"> 
               </app-header></div>
-            <div class='container'>
+            <div class='container container-content panel panel-default'>
                 <router-outlet></router-outlet>
             </div>
 			`,
@@ -348,11 +348,11 @@ export class AppComponent implements OnInit {
 	msg: string;
 	constructor(private _companyDataService: CompanyDataService, private _appUserDataService: AppUserDataService, private _global: Global) { }
 	ngOnInit(): void {
-       // this.GetLoggedInUser()
+     
 		this.GetBranding();
-		console.log(this._global.loggedInUser)
-		this.setUser();
-		console.log(this._global.loggedInUser)
+
+	
+		
 	}
 	GetBranding(){
 
@@ -366,16 +366,6 @@ export class AppComponent implements OnInit {
 		}, error => this.msg = <any>error);
 
 	}
-	GetLoggedInUser() {
-		this._appUserDataService.getLoggedInUser().subscribe(loggedInUser => {
-			this.loggedInUser = loggedInUser.data;
-			console.log(this.loggedInUser);
-		}, error => this.msg = <any>error);
-
-	}
-	setUser() {
-      this._global.loggedInUser="ChangedValue"
-	};
 
 }
 	

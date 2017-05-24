@@ -13,13 +13,15 @@ import { BrandingComponent } from './common/branding';
 import { BaseDataService } from './Service/base.service';
 import { UserService } from './Service/user.service'
 import { CompanyDataService } from './Service/Services';
+import { MessageDataService } from './Service/Services';
+
 import { Global} from './Shared/global';
 import { AppUserDataService } from './Service/Services';
 import { BrandingResolve } from './Service/branding.resolve.service';
 @NgModule({
 	imports: [BrowserModule, ReactiveFormsModule, HttpModule, routing, Ng2Bs3ModalModule],
 	declarations: [AppComponent,  HomeComponent, HeaderComponent, BrandingComponent],
-	providers: [{ provide: APP_BASE_HREF, useValue: '/' }, UserService, CompanyDataService,AppUserDataService, BrandingResolve,Global],
+	providers: [{ provide: APP_BASE_HREF, useValue: '/' }, UserService, CompanyDataService,AppUserDataService, BrandingResolve,Global,MessageDataService],
 	bootstrap: [AppComponent]
 
 })

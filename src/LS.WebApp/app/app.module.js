@@ -19,8 +19,9 @@ var header_1 = require("./common/header");
 var branding_1 = require("./common/branding");
 var user_service_1 = require("./Service/user.service");
 var Services_1 = require("./Service/Services");
-var global_1 = require("./Shared/global");
 var Services_2 = require("./Service/Services");
+var global_1 = require("./Shared/global");
+var Services_3 = require("./Service/Services");
 var branding_resolve_service_1 = require("./Service/branding.resolve.service");
 var AppModule = (function () {
     function AppModule() {
@@ -31,7 +32,7 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.ReactiveFormsModule, http_1.HttpModule, app_routing_1.routing, ng2_bs3_modal_1.Ng2Bs3ModalModule],
         declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, header_1.HeaderComponent, branding_1.BrandingComponent],
-        providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }, user_service_1.UserService, Services_1.CompanyDataService, Services_2.AppUserDataService, branding_resolve_service_1.BrandingResolve, global_1.Global],
+        providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }, user_service_1.UserService, Services_1.CompanyDataService, Services_3.AppUserDataService, branding_resolve_service_1.BrandingResolve, global_1.Global, Services_2.MessageDataService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);
