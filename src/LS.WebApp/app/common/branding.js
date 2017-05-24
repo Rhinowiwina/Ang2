@@ -9,7 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var branding_service_1 = require("..//Service/branding.service");
+var Services_1 = require("..//Service/Services");
 var BrandingComponent = (function () {
     function BrandingComponent(_brandingService) {
         this._brandingService = _brandingService;
@@ -18,12 +18,11 @@ var BrandingComponent = (function () {
         this.GetBranding();
     };
     BrandingComponent.prototype.GetBranding = function () {
-        var _this = this;
-        this._brandingService.get("api/company/getCompany?companyId=65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c")
-            .subscribe(function (branding) {
-            _this.branding = branding.Data;
-            console.log(_this.branding);
-        }, function (error) { return _this.msg = error; });
+        //this._brandingService.get("api/company/getCompany?companyId=65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c")
+        //	.subscribe(branding => {
+        //		this.branding = branding.Data;
+        //            console.log(this.branding);
+        //	}, error => this.msg = <any>error);
     };
     return BrandingComponent;
 }());
@@ -31,9 +30,9 @@ BrandingComponent = __decorate([
     core_1.Component({
         selector: 'app-branding',
         templateUrl: 'app/common/branding.html',
-        providers: [branding_service_1.BrandingService]
+        providers: [Services_1.CompanyDataService]
     }),
-    __metadata("design:paramtypes", [branding_service_1.BrandingService])
+    __metadata("design:paramtypes", [Services_1.CompanyDataService])
 ], BrandingComponent);
 exports.BrandingComponent = BrandingComponent;
 //# sourceMappingURL=branding.js.map

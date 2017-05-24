@@ -209,6 +209,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\api\AppUserController.cs" />
     <Compile Include="Controllers\MVC\AngularAccessController.cs" />
     <Compile Include="Controllers\api\BaseAPIController.cs" />
     <Compile Include="Controllers\api\CompanyController.cs" />
@@ -259,6 +260,7 @@
     <Content Include="app\app.component.css" />
     <Content Include="app\common\branding.html" />
     <Content Include="app\common\header.html" />
+    <Content Include="app\Components\home.component.html" />
     <Content Include="app\Components\user.component.html" />
     <Content Include="app\index.html" />
     <Content Include="app\Model\user.js" />
@@ -536,7 +538,10 @@
     <TypeScriptCompile Include="app\Components\user.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\Model\user.ts" />
-    <TypeScriptCompile Include="app\Service\branding.service.ts" />
+    <TypeScriptCompile Include="app\Service\branding.resolve.service.ts" />
+    <TypeScriptCompile Include="app\Service\base.service.ts" />
+    <TypeScriptCompile Include="app\Service\Services.ts" />
+    <TypeScriptCompile Include="app\Service\emitter.service.ts" />
     <TypeScriptCompile Include="app\Service\user.service.ts" />
     <TypeScriptCompile Include="app\Shared\enum.ts" />
     <TypeScriptCompile Include="app\Shared\global.ts" />

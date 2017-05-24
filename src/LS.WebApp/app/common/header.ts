@@ -1,35 +1,41 @@
-﻿import { Component,ViewEncapsulation,Input,Attribute } from '@angular/core';
-
+﻿import { Component, ViewEncapsulation, Input, Attribute, OnChanges, OnInit } from '@angular/core';
+import { EmitterService } from '../Service/emitter.service';
+import { CompanyDataService } from '../Service/Services';
+import { BrandingResolve } from '../Service/branding.resolve.service';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
 	selector: 'app-header',
 	encapsulation: ViewEncapsulation.None,
-	
  templateUrl: 'app/common/header.html',
 
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 	primarycolor: string;
 	secondarycolor: string;
 	logopath: string;
 	style:string
-	imageurl: string;
-	@Input() brandingmodel: any;
+	companyLogo: string ="../../Content/img/SpinSolutions.png";
+	companyTitle: string ="SpinSolutionsSPA";
 	
-	constructor() {
-		
+	msg: string;
+	@Input() brandingmodel: { companyLogoUrl: string, name: string };
+	@Input() loggedInUser: {};
+	constructor() { }
+	ngOnInit(): void {
+		this.companyLogo = this.brandingmodel.companyLogoUrl;
+		this.companyTitle = this.brandingmodel.name;
+		console.log(this.loggedInUser);
+
+
+	
 	}
-	ngOnInit() {	
-		this.primarycolor = '#d9970e'    //'#' + this.brandingmodel.PrimaryColorHex;
-		this.logopath = '';
-		this.secondarycolor = '';
-	    this.imageurl = '/Content/img/' + this.brandingmodel.CompanyLogoUrl;
-		console.log(this.brandingmodel);	
-	}
+	
+	
 	LogOut() {
 		alert('logout')
 		window.location.href = "/logout?userid=" +"1";}
 	
-
+	
 
 	
 }

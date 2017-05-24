@@ -12,7 +12,7 @@ using LS.Domain;
 using LS.Services;
 using LS.WebApp.CustomAttributes;
 using LS.WebApp.Models;
-using NLog.Internal;
+//using NLog.Internal;
 using System.Net;
 using System.Net.Mail;
 using LS.Utilities;
@@ -29,7 +29,7 @@ namespace LS.WebApp.Controllers.api {
     //        [Authorize]
     [SingleSessionAuthorize]
     [RoutePrefix("api/appUser")]
-    public class AppUserController : BaseApiController {
+    public class AppUserController : BaseAPIController {
         private static readonly string UserCreationFailedUserMessage = "An error occurred during user creation.";
 
         private static readonly string UserEditFailedUserMessage = "An error occurred while editing the user.";

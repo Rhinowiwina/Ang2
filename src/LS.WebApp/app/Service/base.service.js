@@ -14,22 +14,17 @@ var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/do");
 require("rxjs/add/operator/catch");
-var BrandingService = (function () {
-    function BrandingService(_http) {
+var BaseDataService = (function () {
+    function BaseDataService(_http) {
         this._http = _http;
-        this.baseUrl = "api/company/";
     }
-    BrandingService.prototype.getCompany = function (companyId) {
-        alert('getcompany');
-        return this.get(this.baseUrl + "getCompany?companyId=" + companyId);
-    };
     //base calls
-    BrandingService.prototype.get = function (url) {
+    BaseDataService.prototype.get = function (url) {
         return this._http.get(url)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    BrandingService.prototype.post = function (url, model) {
+    BaseDataService.prototype.post = function (url, model) {
         var body = JSON.stringify(model);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
@@ -37,7 +32,7 @@ var BrandingService = (function () {
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    BrandingService.prototype.put = function (url, id, model) {
+    BaseDataService.prototype.put = function (url, id, model) {
         var body = JSON.stringify(model);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
@@ -45,22 +40,22 @@ var BrandingService = (function () {
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    BrandingService.prototype.delete = function (url, id) {
+    BaseDataService.prototype.delete = function (url, id) {
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
         return this._http.delete(url + id, options)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    BrandingService.prototype.handleError = function (error) {
+    BaseDataService.prototype.handleError = function (error) {
         console.error(error);
         return Observable_1.Observable.throw(error.json().error || 'Server error');
     };
-    return BrandingService;
+    return BaseDataService;
 }());
-BrandingService = __decorate([
+BaseDataService = __decorate([
     core_1.Injectable(),
     __metadata("design:paramtypes", [http_1.Http])
-], BrandingService);
-exports.BrandingService = BrandingService;
-//# sourceMappingURL=branding.service.js.map
+], BaseDataService);
+exports.BaseDataService = BaseDataService;
+//# sourceMappingURL=base.service.js.map

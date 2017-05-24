@@ -1,16 +1,18 @@
-﻿import { Component, OnInit, ViewChild, Input, ViewEncapsulation} from "@angular/core"
-import { BrandingService } from './Service/branding.service';
+﻿import { Component, OnInit, ViewChild, Input, OnChanges, ViewEncapsulation} from "@angular/core"
+import { CompanyDataService } from './Service/Services';
+import { AppUserDataService } from './Service/Services';
 import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/mergeMap';
+import { EmitterService } from './Service/emitter.service';
 import { Global } from './Shared/global';
 import { HeaderComponent } from "./common/header"
 import { BrandingComponent } from './common/branding'
 @Component({
-
+//*ngIf="this.branding"
 	selector: "my-app",	
 	template: 
-`	 
-		<div >
-		      <app-header *ngIf="branding" [brandingmodel]="branding && branding[0]"> 
+`	 <div *ngIf="branding && loggedInUser" >
+		      <app-header [brandingmodel]="branding" [loggedInUser]="loggedInUser"> 
               </app-header></div>
             <div class='container'>
                 <router-outlet></router-outlet>
@@ -33,7 +35,7 @@ th {
 .header-logo {
 	display: block;
 	height: 3em;
-	background-image: url('../../Content/img/safelink-wireless.png');
+	
 	background-repeat: no-repeat;
 	background-size: contain;
 	margin: .5em 0
@@ -335,28 +337,45 @@ a {
 }
 
 `],
-	providers: [BrandingService],
+	providers: [CompanyDataService],
 	encapsulation: ViewEncapsulation.None,
 	})
 
 export class AppComponent implements OnInit {
 
 	branding: {};
+	loggedInUser: {};
 	msg: string;
-	constructor(private _brandingService: BrandingService) {}
+	constructor(private _companyDataService: CompanyDataService, private _appUserDataService: AppUserDataService, private _global: Global) { }
 	ngOnInit(): void {
+       // this.GetLoggedInUser()
 		this.GetBranding();
-		
+		console.log(this._global.loggedInUser)
+		this.setUser();
+		console.log(this._global.loggedInUser)
 	}
 	GetBranding(){
 
-	 this._brandingService.get("api/company/getCompany?companyId=65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c")
-			.subscribe(branding => {
-				this.branding = branding.Data;
-				return this.branding
+		this._companyDataService.getCompany("65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c").subscribe(branding => {
+			this.branding = branding.data;
+			console.log(this.branding);
+			this._appUserDataService.getLoggedInUser().subscribe(loggedInUser => {
+				this.loggedInUser = loggedInUser.data;
+				console.log(this.loggedInUser);
 			}, error => this.msg = <any>error);
+		}, error => this.msg = <any>error);
 
-		
 	}
+	GetLoggedInUser() {
+		this._appUserDataService.getLoggedInUser().subscribe(loggedInUser => {
+			this.loggedInUser = loggedInUser.data;
+			console.log(this.loggedInUser);
+		}, error => this.msg = <any>error);
+
+	}
+	setUser() {
+      this._global.loggedInUser="ChangedValue"
+	};
+
 }
 	

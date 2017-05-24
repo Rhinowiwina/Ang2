@@ -63,4 +63,4 @@ BrandingService = __decorate([
     __metadata("design:paramtypes", [http_1.Http])
 ], BrandingService);
 exports.BrandingService = BrandingService;
-//# sourceMappingURL=branding.service.js.map
+//# sourceMappingURL=sevices.js.map

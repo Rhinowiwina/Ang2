@@ -1,12 +1,12 @@
-﻿	
-<nav class="header-nav">
+﻿
+<nav  class="header-nav">
 		<div class="row header-banner">
-			<div class="col-xs-4"><a [routerLink]="['/']" class="header-logo"><img src={{imageurl}} title="DotNetSPA" /></a></div>
-			<!--"/Content/img/logo.png"-->
+			<div class="col-xs-4"><a [routerLink]="['/']" class="header-logo"  ><img src={{companyLogo}} title={{companyTitle}} /></a></div>
+	
 
 			<div class="col-xs-8" style="margin-top:5px;margin-bottom:5px">
 				<div class="header-welcome">
-					<span trns>Welcome Jarrett</span>
+					<span trns>Welcome {{loggedInUser.firstname}}!</span>
 					<a (click)="LogOut()" trns>LOGOUT</a>
 				</div>
 				<div style="float:right;clear:right;margin-top:5px;">
