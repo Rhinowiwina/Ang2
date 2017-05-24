@@ -1,12 +1,12 @@
 ﻿<h1 >WELCOME TO LIFELINE SERVICES</h1>
 <br /><br />
---{{messages?.length}}
+
 <div *ngIf="messages?.length">
 	
 	<div>
 		<h4><strong>Messages</strong></h4>
-		
-		<div class="alert" [ngClass]="{'alert-danger':message.msgLevel==1,'alert-warning':message.msgLevel==2,'alert-info':message.msgLevel==3}" style="word-wrap: break-word" *ngFor="let message of messages" role="alert">
+		<!---->
+		<div class="alert"  [ngClass]="{'alert-danger':message.msgLevel==1,'alert-warning':message.msgLevel==2,'alert-info':message.msgLevel==3}" style="word-wrap: break-word" *ngFor="let message of messages" role="alert">
 
 				<strong>{{message.beginDate| date:'MM/dd/yyyy'}} - {{message.title}}:</strong><br /><div ng-bind-html="message.msg"></div>
 
@@ -21,12 +21,3 @@
 
 
 
-<!--<h1>WELCOME TO LIFELINE SERVICES</h1>
-<br /><br />
-<div *ngIf="messages.length">
-
-	<div>
-		<h4><strong>Messages</strong></h4>
-		<div ng-class="{'alert alert-danger':message.msgLevel==1,'alert alert-warning':message.msgLevel==2,'alert alert-info':message.msgLevel==3}" style="word-wrap: break-word" *ngFor="#message of messages" role="alert"> <strong>{{message.beginDate| date:'MM/dd/yyyy'}} - {{message.title}}:</strong><br /><div ng-bind-html="message.msg"></div></div>
-	</div>
-</div>-->
