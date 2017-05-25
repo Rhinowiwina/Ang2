@@ -55,3 +55,13 @@ src/EntityFramework.Implementation/obj/Debug/EntityFramework.Implementation.cspr
 *.pdb
 *.dll
 src/LS.BudgetMobile/obj/Debug/LS.BudgetMobile.pdb
+*.pdb
+src/LS.ApiBindingModels/bin/Debug/LS.ApiBindingModels.pdb
+*.dll
+src/LS.ApiBindingModels/bin/Debug/LS.Domain.pdb
+*.cache
+src/LS.ApiBindingModels/obj/Debug/LS.ApiBindingModels.dll
+*.dll
+src/EntityFramework.Implementation/obj/Debug/Numero3.EntityFramework.Implementation.dll
+*.pdb
+src/LS.ApiBindingModels/bin/Debug/LS.Domain.dll

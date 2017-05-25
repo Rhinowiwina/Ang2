@@ -1,3 +1,8 @@
-﻿export class Global {
-    public static BASE_USER_ENDPOINT = 'api/userapi/';
+﻿import { Injectable } from '@angular/core';
+@Injectable()
+export class Global {
+	loggedInUser: string;
+	
+
+
 }

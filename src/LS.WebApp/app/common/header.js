@@ -11,13 +11,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var HeaderComponent = (function () {
     function HeaderComponent() {
+        this.companyLogo = "../../Content/img/SpinSolutions.png";
+        this.companyTitle = "SpinSolutionsSPA";
     }
     HeaderComponent.prototype.ngOnInit = function () {
-        this.primarycolor = '#d9970e'; //'#' + this.brandingmodel.PrimaryColorHex;
-        this.logopath = '';
-        this.secondarycolor = '';
-        this.imageurl = '/Content/img/' + this.brandingmodel.CompanyLogoUrl;
-        console.log(this.brandingmodel);
+        this.companyLogo = this.brandingmodel.companyLogoUrl;
+        this.companyTitle = this.brandingmodel.name;
     };
     HeaderComponent.prototype.LogOut = function () {
         alert('logout');
@@ -29,6 +28,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Object)
 ], HeaderComponent.prototype, "brandingmodel", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], HeaderComponent.prototype, "loggedInUser", void 0);
 HeaderComponent = __decorate([
     core_1.Component({
         selector: 'app-header',

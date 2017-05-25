@@ -12,7 +12,7 @@ using LS.Domain;
 using LS.Services;
 using LS.WebApp.CustomAttributes;
 using LS.WebApp.Models;
-using NLog.Internal;
+//using NLog.Internal;
 using Exceptionless;
 using Exceptionless.Models;
 namespace LS.WebApp.Controllers.api
@@ -21,7 +21,7 @@ namespace LS.WebApp.Controllers.api
     //        [Authorize]
     [SingleSessionAuthorize]
     [RoutePrefix("api/loginMsg")]
-    public class LoginMsgController : BaseApiController
+    public class LoginMsgController : BaseAPIController
     {
 
 
