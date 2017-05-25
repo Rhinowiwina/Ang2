@@ -11,14 +11,13 @@ import { BrandingComponent } from './common/branding'
 //*ngIf="this.branding"
 	selector: "my-app",	
 	template: 
-`	 
-		<div >
-		      <app-header *ngIf="branding" [brandingmodel]="branding && branding[0]"> 
+
+	`	 <div *ngIf="branding && loggedInUser" >
+		      <app-header [brandingmodel]="branding" [loggedInUser]="loggedInUser"> 
               </app-header></div>
-            <div class='container'>
+            <div class='container container-content panel panel-default'>
                 <router-outlet></router-outlet>
             </div>
->>>>>>> origin/Develop
 			`,
 	styles: [` 
 th {
@@ -37,6 +36,7 @@ th {
 .header-logo {
 	display: block;
 	height: 3em;
+	
 	background-repeat: no-repeat;
 	background-size: contain;
 	margin: .5em 0
@@ -338,21 +338,35 @@ a {
 }
 
 `],
+	providers: [CompanyDataService],
 	encapsulation: ViewEncapsulation.None,
 	})
 
 export class AppComponent implements OnInit {
 
 	branding: {};
+	loggedInUser: {};
 	msg: string;
+	constructor(private _companyDataService: CompanyDataService, private _appUserDataService: AppUserDataService, private _global: Global) { }
 	ngOnInit(): void {
+     
 		this.GetBranding();
+
+	
 		
 	}
 	GetBranding(){
 
+		this._companyDataService.getCompany("65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c").subscribe(branding => {
+			this.branding = branding.data;
+			console.log(this.branding);
+			this._appUserDataService.getLoggedInUser().subscribe(loggedInUser => {
+				this.loggedInUser = loggedInUser.data;
+				console.log(this.loggedInUser);
 			}, error => this.msg = <any>error);
+		}, error => this.msg = <any>error);
 
 	}
+
 }
 	
