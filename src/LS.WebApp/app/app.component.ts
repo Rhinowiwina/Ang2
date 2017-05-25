@@ -1,5 +1,7 @@
 ﻿import { Component, OnInit, ViewChild, Input, OnChanges, ViewEncapsulation} from "@angular/core"
 import { CompanyDataService } from './Service/Services';
+import { ToasterModule, ToasterService, ToasterConfig, BodyOutputType  } from 'angular2-toaster';
+
 import { AppUserDataService } from './Service/Services';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
@@ -14,6 +16,8 @@ import { BrandingComponent } from './common/branding'
 `	 <div *ngIf="branding && loggedInUser" >
 		      <app-header [brandingmodel]="branding" [loggedInUser]="loggedInUser"> 
               </app-header></div>
+     <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
+ <button (click)="popToast()">pop toast</button>
             <div class='container container-content panel panel-default'>
                 <router-outlet></router-outlet>
             </div>
@@ -342,17 +346,41 @@ a {
 	})
 
 export class AppComponent implements OnInit {
+	private toasterService: ToasterService;
 
+	public toasterconfig: ToasterConfig =
+	new ToasterConfig({
+	     limit:4,
+		positionClass: 'toast-bottom-right',
+		showCloseButton: true,
+		tapToDismiss: false,
+		bodyOutputType: BodyOutputType.TrustedHtml,
+		//closeHtml: '<button>Close</button>'
+		//timeout:5000
+	});
 	branding: {};
 	loggedInUser: {};
 	msg: string;
-	constructor(private _companyDataService: CompanyDataService, private _appUserDataService: AppUserDataService, private _global: Global) { }
+	constructor(toasterService: ToasterService, private _companyDataService: CompanyDataService, private _appUserDataService: AppUserDataService, private _global: Global) {
+
+		this.toasterService = toasterService;
+	}
 	ngOnInit(): void {
      
 		this.GetBranding();
 
-	
-		
+	}
+	popToast() {
+		//https://github.com/Stabzs/Angular2-Toaster/blob/master/README.md
+		var toast = {
+			type: 'error',
+			title: 'Here is a Toast Title',
+			body: '<h1>Here is a Toast Body</h1>',
+			showCloseButton: true,
+			//positionClass: 'toast-top-left',
+		};
+		this.toasterService.pop(toast);
+		//this.toasterService.pop('error', 'Error', 'Big ol');
 	}
 	GetBranding(){
 

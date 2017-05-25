@@ -18,6 +18,7 @@ var HomeComponent = (function () {
         this._messageDataService = _messageDataService;
     }
     HomeComponent.prototype.ngOnInit = function () {
+        //this.popToast();
         this.getMessages();
     };
     HomeComponent.prototype.getMessages = function () {
