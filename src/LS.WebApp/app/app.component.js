@@ -26,10 +26,8 @@ var AppComponent = (function () {
         var _this = this;
         this._companyDataService.getCompany("65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c").subscribe(function (branding) {
             _this.branding = branding.data;
-            console.log(_this.branding);
             _this._appUserDataService.getLoggedInUser().subscribe(function (loggedInUser) {
                 _this.loggedInUser = loggedInUser.data;
-                console.log(_this.loggedInUser);
             }, function (error) { return _this.msg = error; });
         }, function (error) { return _this.msg = error; });
     };

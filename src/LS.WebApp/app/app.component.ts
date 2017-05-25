@@ -358,10 +358,10 @@ export class AppComponent implements OnInit {
 
 		this._companyDataService.getCompany("65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c").subscribe(branding => {
 			this.branding = branding.data;
-			console.log(this.branding);
+		
 			this._appUserDataService.getLoggedInUser().subscribe(loggedInUser => {
 				this.loggedInUser = loggedInUser.data;
-				console.log(this.loggedInUser);
+			
 			}, error => this.msg = <any>error);
 		}, error => this.msg = <any>error);
 

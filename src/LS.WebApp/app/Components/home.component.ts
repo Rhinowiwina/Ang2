@@ -1,5 +1,6 @@
 ﻿
 import { Component, ViewEncapsulation, Input, Attribute, OnChanges, OnInit } from '@angular/core';
+
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
 import { EmitterService } from '../Service/emitter.service';
@@ -16,16 +17,21 @@ export class HomeComponent implements OnInit{
 
 	msg: string;
 	messages: {};
-	constructor(private _global: Global, private _messageDataService: MessageDataService) { }
+	constructor(private _global: Global, private _messageDataService: MessageDataService, ) { }
 	ngOnInit(): void {
 		
 		this.getMessages();
+		
 	}
 	getMessages() {
 	
-		this._messageDataService.getActiveMessages().subscribe(messages => {
-			this.messages = messages.data;
-			console.log(this.messages);			
+		this._messageDataService.getActiveMessages().subscribe(response => {
+			var response = response;
+			if (!response.isSuccessful){
+			 //do error notification
+			}
+			this.messages=response.data
+			console.log(response);			
 		}, error => this.msg = <any>error);
 
 	}

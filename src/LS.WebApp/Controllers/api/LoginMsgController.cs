@@ -36,8 +36,9 @@ namespace LS.WebApp.Controllers.api
             if (!getMessagersResult.IsSuccessful)
             {
                 processingResult.IsSuccessful = false;
-                processingResult.Error = new ProcessingError(getMessagersResult.Error.UserMessage, getMessagersResult.Error.UserMessage, true, false);
-                return Ok(processingResult);
+				processingResult.Error = new ProcessingError("test Error", "Test Error", true, false);
+				//processingResult.Error = new ProcessingError(getMessagersResult.Error.UserMessage, getMessagersResult.Error.UserMessage, true, false);
+				return Ok(processingResult);
             }
             processingResult.Data = getMessagersResult.Data;
             processingResult.IsSuccessful = true;
