@@ -46,6 +46,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 *.dll
+
 src/EntityFramework.Implementation/bin/Debug/Numero3.EntityFramework.Implementation.dll
 *.suo
 *.dll
