@@ -209,16 +209,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\api\AppUserController.cs" />
-    <Compile Include="Controllers\api\LoginMsgController.cs" />
     <Compile Include="Controllers\MVC\AngularAccessController.cs" />
     <Compile Include="Controllers\api\BaseAPIController.cs" />
     <Compile Include="Controllers\api\CompanyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\MVC\AuthenticationController.cs" />
-    <Compile Include="Controllers\MVC\SchedTasksController.cs" />
-    <Compile Include="Controllers\MVC\UpdateDatabaseController.cs" />
-    <Compile Include="Controllers\MVC\UserSignupController.cs" />
     <Compile Include="CustomAttributes\AuthorizeRedirectAttribute.cs" />
     <Compile Include="CustomAttributes\SingleSessionAuthorizeAttribute.cs" />
     <Compile Include="DBContext\TblUser.cs">
@@ -258,10 +252,8 @@
     <Compile Include="Utilities\ExceptionlessLoggedInUser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app\app.component.css" />
     <Content Include="app\common\branding.html" />
     <Content Include="app\common\header.html" />
-    <Content Include="app\Components\home.component.html" />
     <Content Include="app\Components\user.component.html" />
     <Content Include="app\index.html" />
     <Content Include="app\Model\user.js" />
@@ -454,10 +446,6 @@
     <Content Include="Content\css\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\css\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\css\vendor\bootstrap.css.map" />
-    <None Include="compilerconfig.json" />
-    <None Include="compilerconfig.json.defaults">
-      <DependentUpon>compilerconfig.json</DependentUpon>
-    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -543,16 +531,13 @@
     <TypeScriptCompile Include="app\Components\user.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\Model\user.ts" />
-    <TypeScriptCompile Include="app\Service\branding.resolve.service.ts" />
-    <TypeScriptCompile Include="app\Service\emitter.service.ts" />
-    <TypeScriptCompile Include="app\Service\Services.ts" />
+    <TypeScriptCompile Include="app\Service\branding.service.ts" />
     <TypeScriptCompile Include="app\Service\user.service.ts" />
     <TypeScriptCompile Include="app\Shared\enum.ts" />
     <TypeScriptCompile Include="app\Shared\global.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\webapi\" />
-    <Folder Include="lib\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
