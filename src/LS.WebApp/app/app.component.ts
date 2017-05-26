@@ -1,4 +1,11 @@
-﻿import { Component, OnInit, ViewChild, Input, OnChanges, ViewEncapsulation} from "@angular/core"
+﻿//Toast Selector is put here and accessible by all components. Default config is set in toastr-config.js
+//https://github.com/Stabzs/Angular2-Toaster/blob/master/README.md
+//error: 'icon-error',
+//info: 'icon-info',
+//wait: 'icon-wait',
+//success: 'icon-success',
+//warning: 'icon-warning'
+import { Component, OnInit, ViewChild, Input, OnChanges, ViewEncapsulation } from "@angular/core"
 import { CompanyDataService } from './Service/Services';
 import { ToasterModule, ToasterService, ToasterConfig, BodyOutputType  } from 'angular2-toaster';
 
@@ -10,7 +17,7 @@ import { Global } from './Shared/global';
 import { HeaderComponent } from "./common/header"
 import { BrandingComponent } from './common/branding'
 @Component({
-//*ngIf="this.branding"
+
 	selector: "my-app",	
 	template: 
 `	 <div *ngIf="branding && loggedInUser" >
@@ -371,7 +378,7 @@ export class AppComponent implements OnInit {
 
 	}
 	popToast() {
-		//https://github.com/Stabzs/Angular2-Toaster/blob/master/README.md
+		
 		var toast = {
 			type: 'error',
 			title: 'Here is a Toast Title',

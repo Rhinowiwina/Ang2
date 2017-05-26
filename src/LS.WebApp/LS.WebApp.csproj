@@ -543,7 +543,6 @@
     <TypeScriptCompile Include="app\Components\user.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
     <TypeScriptCompile Include="app\Model\user.ts" />
-    <TypeScriptCompile Include="app\Service\systemService.ts" />
     <TypeScriptCompile Include="app\Service\branding.resolve.service.ts" />
     <TypeScriptCompile Include="app\Service\emitter.service.ts" />
     <TypeScriptCompile Include="app\Service\Services.ts" />
