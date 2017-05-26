@@ -11,8 +11,7 @@ import { routing } from './app.routing';
 import { HomeComponent } from './components/home.component';
 import { HeaderComponent } from "./common/header"
 import { BrandingComponent } from './common/branding';
-import { BaseDataService } from './Service/base.service';
-import { UserService } from './Service/user.service'
+
 import { CompanyDataService } from './Service/Services';
 import { MessageDataService } from './Service/Services';
 //import { ToasterModule } from '../Content/angular2-toaster/src/toaster.module.js';
@@ -24,7 +23,7 @@ import { BrandingResolve } from './Service/branding.resolve.service';
 @NgModule({
 	imports: [BrowserModule, ReactiveFormsModule, HttpModule, routing, Ng2Bs3ModalModule,ToasterModule,],
 	declarations: [AppComponent,  HomeComponent, HeaderComponent, BrandingComponent],
-	providers: [{ provide: APP_BASE_HREF, useValue: '/' }, UserService, CompanyDataService, AppUserDataService, BrandingResolve, Global, MessageDataService,],
+	providers: [{ provide: APP_BASE_HREF, useValue: '/' },CompanyDataService, AppUserDataService, BrandingResolve, Global, MessageDataService,],
 	bootstrap: [AppComponent]
 
 })

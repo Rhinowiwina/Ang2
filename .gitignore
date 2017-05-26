@@ -46,7 +46,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 *.dll
-
+*.ttt
 src/EntityFramework.Implementation/bin/Debug/Numero3.EntityFramework.Implementation.dll
 *.suo
 *.dll
@@ -66,3 +66,5 @@ src/LS.ApiBindingModels/obj/Debug/LS.ApiBindingModels.dll
 src/EntityFramework.Implementation/obj/Debug/Numero3.EntityFramework.Implementation.dll
 *.pdb
 src/LS.ApiBindingModels/bin/Debug/LS.Domain.dll
+src/LS.Core/objold/Debug/LS.Core.csproj.FileListAbsolute.txt
+src/LS.Core/objold/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
