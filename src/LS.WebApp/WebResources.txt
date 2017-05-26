@@ -1,0 +1,1 @@
+﻿https://github.com/dougludlow/ng2-bs3-modal --Modal Forms

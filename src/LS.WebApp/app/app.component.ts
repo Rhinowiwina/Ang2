@@ -24,7 +24,7 @@ import { BrandingComponent } from './common/branding'
 		      <app-header [brandingmodel]="branding" [loggedInUser]="loggedInUser"> 
               </app-header></div>
      <toaster-container [toasterconfig]="toasterconfig"></toaster-container>
- <button (click)="popToast()">pop toast</button>
+ 
             <div class='container container-content panel panel-default'>
                 <router-outlet></router-outlet>
             </div>
@@ -354,7 +354,6 @@ a {
 
 export class AppComponent implements OnInit {
 	private toasterService: ToasterService;
-
 	public toasterconfig: ToasterConfig =
 	new ToasterConfig({
 	     limit:4,
@@ -373,9 +372,9 @@ export class AppComponent implements OnInit {
 		this.toasterService = toasterService;
 	}
 	ngOnInit(): void {
-     
+	
 		this.GetBranding();
-
+	
 	}
 	popToast() {
 		
@@ -391,15 +390,29 @@ export class AppComponent implements OnInit {
 	}
 	GetBranding(){
 
-		this._companyDataService.getCompany("65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c").subscribe(branding => {
-			this.branding = branding.data;
-		
-			this._appUserDataService.getLoggedInUser().subscribe(loggedInUser => {
-				this.loggedInUser = loggedInUser.data;
+		this._companyDataService.getCompany("65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c").subscribe(response => {
 			
-			}, error => this.msg = <any>error);
-		}, error => this.msg = <any>error);
+			var response = response;
+			console.log(response)
+			//we use alert here because toastr container is not available until html has rendered.
+			 //everywhere else toastr will be available.
+			if (!response.isSuccessful) {
+				alert(response.error.userHelp)
+			   return
+			}
+			this.branding = response.data;
 
+			this._appUserDataService.getLoggedInUser().subscribe(response => {
+				var response = response;
+				this.loggedInUser = response.data;
+				if (!response.isSuccessful) {
+					alert(response.error.userHelp)
+					return
+				}
+			}, error => this.msg = <any>error);
+		}, error => this.msg = <any>error); 
+		if(this.msg!=null){alert(this.msg)}
+	
 	}
 
 }

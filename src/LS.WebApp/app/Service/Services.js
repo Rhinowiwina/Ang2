@@ -54,7 +54,6 @@ var BaseService = (function () {
             .catch(this.handleError);
     };
     BaseService.prototype.handleError = function (error) {
-        console.error(error);
         return Observable_1.Observable.throw(error.json().error || 'Server error');
     };
     return BaseService;

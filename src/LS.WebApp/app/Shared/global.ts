@@ -2,7 +2,7 @@
 @Injectable()
 export class Global {
 	loggedInUser: string;
-	
+	criticalMsgRead: boolean;
 
 
 }

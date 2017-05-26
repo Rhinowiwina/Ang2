@@ -348,6 +348,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="package.json" />
+    <Content Include="WebResources.txt" />
     <EntityDeploy Include="DBContext\UserDBEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>UserDBEntities.Designer.cs</LastGenOutput>

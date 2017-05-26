@@ -9,37 +9,62 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var ng2_bs3_modal_1 = require("ng2-bs3-modal/ng2-bs3-modal");
 require("rxjs/add/operator/mergeMap");
 var Services_1 = require("../Service/Services");
 var global_1 = require("../Shared/global");
+var router_1 = require("@angular/router");
+var angular2_toaster_1 = require("angular2-toaster");
 var HomeComponent = (function () {
-    function HomeComponent(_global, _messageDataService) {
+    function HomeComponent(router, toasterService, _global, _messageDataService) {
+        this.router = router;
         this._global = _global;
         this._messageDataService = _messageDataService;
+        this.criticalMsg = [];
+        this.showModalSpinner = true;
+        this.toasterService = toasterService;
     }
     HomeComponent.prototype.ngOnInit = function () {
-        //this.popToast();
         this.getMessages();
+        this._global.criticalMsgRead = false;
     };
     HomeComponent.prototype.getMessages = function () {
         var _this = this;
         this._messageDataService.getActiveMessages().subscribe(function (response) {
             var response = response;
             if (!response.isSuccessful) {
+                _this.toasterService.pop('error', 'Error Getting Login Messages', response.errror.userHelp);
             }
             _this.messages = response.data;
-            console.log(response);
+            for (var i = 0; i < _this.messages.length; i++) {
+                if (_this.messages[i].msgLevel == 1) {
+                    _this.criticalMsg.push(_this.messages[i]);
+                }
+            }
+            if (_this.criticalMsg.length > 0 && !_this._global.criticalMsgRead) {
+                _this.modal.open('lg');
+                _this.showModalSpinner = false;
+            }
         }, function (error) { return _this.msg = error; });
     };
     return HomeComponent;
 }());
+__decorate([
+    core_1.ViewChild('modal'),
+    __metadata("design:type", ng2_bs3_modal_1.ModalComponent)
+], HomeComponent.prototype, "modal", void 0);
 HomeComponent = __decorate([
     core_1.Component({
         templateUrl: "app/Components/home.component.html",
         providers: [Services_1.MessageDataService],
         styleUrls: ['../../Content/sass/siteAngular.css']
     }),
-    __metadata("design:paramtypes", [global_1.Global, Services_1.MessageDataService])
+    __metadata("design:paramtypes", [router_1.Router, angular2_toaster_1.ToasterService, global_1.Global, Services_1.MessageDataService])
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
+var message = (function () {
+    function message() {
+    }
+    return message;
+}());
 //# sourceMappingURL=home.component.js.map

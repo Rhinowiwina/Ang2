@@ -85,14 +85,14 @@ namespace LS.WebApp.Controllers.api
 			if (!getCompanyResult.IsSuccessful)
 			{
 				processingResult.IsSuccessful = false;
-				processingResult.Error = getCompanyResult.Error;
+				processingResult.Error = new ProcessingError("test", "test", true, false);// getCompanyResult.Error;
 				if (getCompanyResult.IsFatalFailure())
 				{
 					//var logMessage =
 					//    String.Format("A fatal error occurred while getting Company with Id: {0}", companyId);
 
 					//Logger.Fatal(logMessage);
-					//ExceptionlessClient.Default.CreateLog(typeof(CompanyController).FullName, String.Format("A fatal error occurred while getting Company with Id: {0}", companyId), "Error").AddTags("Controller Error").Submit();
+					ExceptionlessClient.Default.CreateLog(typeof(CompanyController).FullName, String.Format("A fatal error occurred while getting Company with Id: {0}", companyId), "Error").AddTags("Controller Error").Submit();
 				}
 				return Ok(processingResult);
 			}
