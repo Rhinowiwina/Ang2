@@ -45,3 +45,9 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.dll
+*.pdb
+src/LS.AzureStorage/LS.AzureStorage/obj/Debug/LS.AzureStorage.csproj.FileListAbsolute.txt
+*.cache
+src/EntityFramework.Interfaces/obj/Debug/EntityFramework.Interfaces.csproj.FileListAbsolute.txt
+*.cache
