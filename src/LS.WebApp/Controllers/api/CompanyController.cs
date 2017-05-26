@@ -76,7 +76,7 @@ namespace LS.WebApp.Controllers.api
 
         [HttpGet]
         [Route("getCompany")]
-        public async Task<IHttpActionResult> GetCompany(string companyId) {  
+        public async Task<IHttpActionResult> GetCompany(string companyId) {
             var processingResult = new ServiceProcessingResult<Company>();
 
             var dataService = new CompanyDataService();

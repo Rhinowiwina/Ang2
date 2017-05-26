@@ -9,7 +9,8 @@
             'npm:': 'node_modules/'
         },
         // map tells the System loader where to look for things
-        map: {
+		map: {
+		
             // our app is within the app folder
             app: '/app',
 
@@ -25,7 +26,9 @@
             // other libraries
             'rxjs': 'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
-            'ng2-bs3-modal': 'npm:/ng2-bs3-modal'
+			'ng2-bs3-modal': 'npm:/ng2-bs3-modal',
+			'angular2-toaster': 'npm:angular2-toaster/bundles/angular2-toaster.umd.js'
+			//'angular2-toaster': 'npm:angular2-toaster/bundles/angular2-toaster.umd.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -37,7 +40,10 @@
             }
             ,
             'ng2-bs3-modal':
-            { main: '/bundles/ng2-bs3-modal.js', defaultExtension: 'js' }
+			{ main: '/bundles/ng2-bs3-modal.js', defaultExtension: 'js' },
+			'angular2-toaster': {
+				defaultExtension: 'js'
+			}
         }
     });
 })(this);

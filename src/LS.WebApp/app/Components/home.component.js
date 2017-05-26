@@ -18,13 +18,17 @@ var HomeComponent = (function () {
         this._messageDataService = _messageDataService;
     }
     HomeComponent.prototype.ngOnInit = function () {
+        //this.popToast();
         this.getMessages();
     };
     HomeComponent.prototype.getMessages = function () {
         var _this = this;
-        this._messageDataService.getActiveMessages().subscribe(function (messages) {
-            _this.messages = messages.data;
-            console.log(_this.messages);
+        this._messageDataService.getActiveMessages().subscribe(function (response) {
+            var response = response;
+            if (!response.isSuccessful) {
+            }
+            _this.messages = response.data;
+            console.log(response);
         }, function (error) { return _this.msg = error; });
     };
     return HomeComponent;
