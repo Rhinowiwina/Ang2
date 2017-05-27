@@ -67,4 +67,13 @@ src/EntityFramework.Implementation/obj/Debug/Numero3.EntityFramework.Implementat
 *.pdb
 src/LS.ApiBindingModels/bin/Debug/LS.Domain.dll
 src/LS.Core/objold/Debug/LS.Core.csproj.FileListAbsolute.txt
-src/LS.Core/objold/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+*TemporaryGeneratedFile*.cs
+
+src/.vs/config/applicationhost.config
+src/EntityFramework.Implementation/obj/Debug/EntityFramework.Implementation.csproj.FileListAbsolute.txt
+src/EntityFramework.Interfaces/obj/Debug/EntityFramework.Interfaces.csproj.FileListAbsolute.txt
+src/LS.ApiBindingModels/obj/Debug/LS.ApiBindingModels.csproj.FileListAbsolute.txt
+src/LS.AzureStorage/LS.AzureStorage/obj/Debug/LS.AzureStorage.csproj.FileListAbsolute.txt
+src/LS.BudgetMobile/obj/Debug/LS.BudgetMobile.csproj.FileListAbsolute.txt
+src/LS.Core/obj/Debug/LS.Core.csproj.FileListAbsolute.txt
+src/RESTModule/obj/Debug/RESTModule.csproj.FileListAbsolute.txt
