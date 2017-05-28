@@ -1,7 +1,7 @@
 ﻿<h1 >WELCOME TO LIFELINE SERVICES</h1>
 <br /><br />
 <div *ngIf="messages?.length">
-	<button type="button" class="btn btn-default" (click)="modal.open('lg')">Open me!</button>
+
 	<div>
 		<h4><strong>Messages</strong></h4>
 		<!---->
@@ -20,7 +20,10 @@
 		<img src="/Content/img/spiffygif_30x30.gif" style="text-align: center" *ngIf="showModalSpinner" />
 		<div *ngFor="let message of criticalMsg" [ngClass]="{'alert alert-danger':message.msgLevel==1,'alert alert-warning':message.msgLevel==2,'alert alert-info':message.msgLevel==3}"  role="alert" > <strong>{{message.beginDate| date:'MM/dd/yyyy'}} - {{message.title}}:</strong><br /><div> {{message.msg}}</div></div>   
 	</modal-body>
-	<modal-footer [show-default-buttons]="true"></modal-footer>
+	<modal-footer >
+		<button type="button" class="btn btn-primary" (click)="setCriticalMsgRead()">Ok</button>
+	</modal-footer>
+	
 </modal>
 <!--<modal title="Critical Messages" id="getMessageModal">
 	<img src="/Content/img/spiffygif_30x30.gif" style="text-align: center" ng-show="false" />

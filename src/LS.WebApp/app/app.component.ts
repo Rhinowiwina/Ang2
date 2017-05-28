@@ -348,7 +348,7 @@ a {
 }
 
 `],
-	providers: [CompanyDataService],
+	
 	encapsulation: ViewEncapsulation.None,
 	})
 
@@ -367,14 +367,13 @@ export class AppComponent implements OnInit {
 	branding: {};
 	loggedInUser: {};
 	msg: string;
-	constructor(toasterService: ToasterService, private _companyDataService: CompanyDataService, private _appUserDataService: AppUserDataService, private _global: Global) {
+	constructor(toasterService: ToasterService, private _companyDataService: CompanyDataService, private _appUserDataService: AppUserDataService,private  _global: Global) {
 
 		this.toasterService = toasterService;
 	}
 	ngOnInit(): void {
-	
+		this._global.criticalMsgRead = true;
 		this.GetBranding();
-	
 	}
 	popToast() {
 		
@@ -393,7 +392,7 @@ export class AppComponent implements OnInit {
 		this._companyDataService.getCompany("65eab0c7-c7b8-496b-9325-dd8c9ba8ce1c").subscribe(response => {
 			
 			var response = response;
-			console.log(response)
+			//console.log(response)
 			//we use alert here because toastr container is not available until html has rendered.
 			 //everywhere else toastr will be available.
 			if (!response.isSuccessful) {

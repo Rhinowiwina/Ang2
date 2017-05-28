@@ -16,17 +16,20 @@ var global_1 = require("../Shared/global");
 var router_1 = require("@angular/router");
 var angular2_toaster_1 = require("angular2-toaster");
 var HomeComponent = (function () {
-    function HomeComponent(router, toasterService, _global, _messageDataService) {
+    function HomeComponent(router, toasterService, _messageDataService, _global) {
         this.router = router;
-        this._global = _global;
         this._messageDataService = _messageDataService;
+        this._global = _global;
         this.criticalMsg = [];
         this.showModalSpinner = true;
         this.toasterService = toasterService;
     }
+    //test() {
+    //	console.log(this._global.criticalMsgRead)
+    //}
     HomeComponent.prototype.ngOnInit = function () {
         this.getMessages();
-        this._global.criticalMsgRead = false;
+        console.log(this._global.criticalMsgRead);
     };
     HomeComponent.prototype.getMessages = function () {
         var _this = this;
@@ -41,11 +44,16 @@ var HomeComponent = (function () {
                     _this.criticalMsg.push(_this.messages[i]);
                 }
             }
-            if (_this.criticalMsg.length > 0 && !_this._global.criticalMsgRead) {
-                _this.modal.open('lg');
+            //alert(this._global.criticalMsgRead)
+            if (_this.criticalMsg.length > 0) {
+                //this.modal.open('lg')
                 _this.showModalSpinner = false;
             }
         }, function (error) { return _this.msg = error; });
+    };
+    HomeComponent.prototype.setCriticalMsgRead = function () {
+        this.modal.close();
+        //this._global.criticalMsgRead = true;
     };
     return HomeComponent;
 }());
@@ -59,7 +67,7 @@ HomeComponent = __decorate([
         providers: [Services_1.MessageDataService],
         styleUrls: ['../../Content/sass/siteAngular.css']
     }),
-    __metadata("design:paramtypes", [router_1.Router, angular2_toaster_1.ToasterService, global_1.Global, Services_1.MessageDataService])
+    __metadata("design:paramtypes", [router_1.Router, angular2_toaster_1.ToasterService, Services_1.MessageDataService, global_1.Global])
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
 var message = (function () {

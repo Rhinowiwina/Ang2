@@ -18,7 +18,7 @@ providers:[MessageDataService],
 
 export class HomeComponent implements OnInit{
 	private toasterService: ToasterService;
-
+	
 	@ViewChild('modal')
 	modal: ModalComponent;
 	msg: string;
@@ -26,15 +26,18 @@ export class HomeComponent implements OnInit{
 	messages:Array<message>;
 	criticalMsg: Array<message> = [];
 	showModalSpinner: boolean=true
-	constructor(private router: Router,toasterService: ToasterService, private _global: Global, private _messageDataService: MessageDataService, ) {
+	constructor(private router: Router, toasterService: ToasterService, private _messageDataService: MessageDataService, private _global: Global ) {
 		this.toasterService = toasterService;
 		
 	}
-	
+	//test() {
+	//	console.log(this._global.criticalMsgRead)
+	//}
 	ngOnInit(): void {
 	
 		this.getMessages();
-		this._global.criticalMsgRead = false;
+		console.log(this._global.criticalMsgRead);
+	
 	}
 	
 	getMessages() {
@@ -52,11 +55,17 @@ export class HomeComponent implements OnInit{
 				 
 				}
 			}
-			if (this.criticalMsg.length > 0 && !this._global.criticalMsgRead) {
-				this.modal.open('lg')
+			//alert(this._global.criticalMsgRead)
+			if (this.criticalMsg.length > 0 ) {//&& !this._global.criticalMsgRead
+				//this.modal.open('lg')
 				this.showModalSpinner = false;
 			}
 		}, error => this.msg = <any>error);
+
+	}
+	setCriticalMsgRead() {
+		this.modal.close()
+		//this._global.criticalMsgRead = true;
 
 	}
 }
