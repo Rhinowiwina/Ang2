@@ -4,14 +4,14 @@ import {ModalComponent} from 'ng2-bs3-modal/ng2-bs3-modal';
 import { BrowserModule } from '@angular/platform-browser'
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
-import { EmitterService } from '../Service/emitter.service';
-import { MessageDataService } from '../Service/Services';
-import { Global } from '../Shared/global';
+import { message } from '../../BindingModels/messageBindingModels';
+import { MessageDataService } from '../../Service/Services';
+import { Global } from '../../Shared/global';
 
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router, ActivatedRoute, Params } from '@angular/router';
 import { ToasterModule, ToasterService, ToasterConfig, BodyOutputType } from 'angular2-toaster';
 @Component({
-templateUrl: "app/Components/home.component.html",
+templateUrl: "app/Components/home/home.component.html",
 providers:[MessageDataService],
 	styleUrls:['../../Content/sass/siteAngular.css']
 })
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit{
 	ngOnInit(): void {
 	
 		this.getMessages();
-		console.log(this._global.criticalMsgRead);
+	
 	
 	}
 	
@@ -68,14 +68,4 @@ export class HomeComponent implements OnInit{
 		//this._global.criticalMsgRead = true;
 
 	}
-}
-class message {
-	active: boolean;
-	beginDate: Date;
-	expirationDate: Date;
-	id: string;
-	msg: string;
-	msgLevel: Number; 
-	title: string;
-
 }

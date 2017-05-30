@@ -261,10 +261,10 @@
     <Content Include="app\app.component.css" />
     <Content Include="app\common\branding.html" />
     <Content Include="app\common\header.html" />
-    <Content Include="app\Components\home.component.html" />
-    <Content Include="app\Components\user.component.html" />
+    <Content Include="app\Components\administration\users\users.html" />
+    <Content Include="app\Components\home\home.component.html" />
     <Content Include="app\index.html" />
-    <Content Include="app\Model\user.js" />
+    <Content Include="app\BindingModels\user.js" />
     <Content Include="App_Data\UserDB.mdf" />
     <Content Include="App_Data\UserDB_log.ldf">
       <DependentUpon>UserDB.mdf</DependentUpon>
@@ -356,7 +356,7 @@
     <Content Include="DBContext\UserDBEntities.edmx.diagram">
       <DependentUpon>UserDBEntities.edmx</DependentUpon>
     </Content>
-    <Content Include="app\Model\user.js.map" />
+    <Content Include="app\BindingModels\user.js.map" />
     <Content Include="Content\sass\base\_markup-variables.scss" />
     <Content Include="Content\sass\siteAngular.css.map" />
     <Content Include="Content\sass\siteAngular.scss" />
@@ -538,12 +538,14 @@
     <TypeScriptCompile Include="app\app.component.ts" />
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\app.routing.ts" />
+    <TypeScriptCompile Include="app\BindingModels\applicatioinRole.ts" />
     <TypeScriptCompile Include="app\common\branding.ts" />
     <TypeScriptCompile Include="app\common\header.ts" />
-    <TypeScriptCompile Include="app\Components\home.component.ts" />
-    <TypeScriptCompile Include="app\Components\user.component.ts" />
+    <TypeScriptCompile Include="app\Components\administration\users\users.ts" />
+    <TypeScriptCompile Include="app\Components\home\home.component.ts" />
     <TypeScriptCompile Include="app\main.ts" />
-    <TypeScriptCompile Include="app\Model\user.ts" />
+    <TypeScriptCompile Include="app\BindingModels\messageBindingModels.ts" />
+    <TypeScriptCompile Include="app\BindingModels\userBindingModels.ts" />
     <TypeScriptCompile Include="app\Service\branding.resolve.service.ts" />
     <TypeScriptCompile Include="app\Service\emitter.service.ts" />
     <TypeScriptCompile Include="app\Service\Services.ts" />

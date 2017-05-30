@@ -10,6 +10,15 @@ var Global = (function () {
     function Global() {
         this._criticalMsgRead = false;
     }
+    Object.defineProperty(Global.prototype, "loggedInUser", {
+        get: function () {
+            return this._loggedInUser;
+        },
+        set: function (val) {
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(Global.prototype, "criticalMsgRead", {
         get: function () {
             return this._criticalMsgRead;

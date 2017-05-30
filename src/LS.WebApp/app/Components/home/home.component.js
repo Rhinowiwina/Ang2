@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var ng2_bs3_modal_1 = require("ng2-bs3-modal/ng2-bs3-modal");
 require("rxjs/add/operator/mergeMap");
-var Services_1 = require("../Service/Services");
-var global_1 = require("../Shared/global");
+var Services_1 = require("../../Service/Services");
+var global_1 = require("../../Shared/global");
 var router_1 = require("@angular/router");
 var angular2_toaster_1 = require("angular2-toaster");
 var HomeComponent = (function () {
@@ -29,7 +29,6 @@ var HomeComponent = (function () {
     //}
     HomeComponent.prototype.ngOnInit = function () {
         this.getMessages();
-        console.log(this._global.criticalMsgRead);
     };
     HomeComponent.prototype.getMessages = function () {
         var _this = this;
@@ -63,16 +62,11 @@ __decorate([
 ], HomeComponent.prototype, "modal", void 0);
 HomeComponent = __decorate([
     core_1.Component({
-        templateUrl: "app/Components/home.component.html",
+        templateUrl: "app/Components/home/home.component.html",
         providers: [Services_1.MessageDataService],
         styleUrls: ['../../Content/sass/siteAngular.css']
     }),
     __metadata("design:paramtypes", [router_1.Router, angular2_toaster_1.ToasterService, Services_1.MessageDataService, global_1.Global])
 ], HomeComponent);
 exports.HomeComponent = HomeComponent;
-var message = (function () {
-    function message() {
-    }
-    return message;
-}());
 //# sourceMappingURL=home.component.js.map

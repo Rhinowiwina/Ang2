@@ -8,14 +8,13 @@ import { HttpModule } from '@angular/http';
 
 import { routing } from './app.routing';
 //import { UserComponent } from './components/user.component';
-import { HomeComponent } from './components/home.component';
+import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from "./common/header"
 import { BrandingComponent } from './common/branding';
 
 import { CompanyDataService } from './Service/Services';
 import { MessageDataService } from './Service/Services';
-//import { ToasterModule } from '../Content/angular2-toaster/src/toaster.module.js';
-//import { ToasterService } from '../Content/angular2-toaster/src/toaster.service.js';
+
 import { ToasterModule, ToasterService,ToasterConfig } from 'angular2-toaster';
 import { Global} from './Shared/global';
 import { AppUserDataService } from './Service/Services';
