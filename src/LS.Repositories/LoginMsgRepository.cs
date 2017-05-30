@@ -26,7 +26,7 @@ namespace LS.Repositories
             var connectionstring = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
             SqlConnection connection = new SqlConnection(connectionstring);
             SqlDataReader rdr = null;
-            string strcmd = "Select * from LoginMsgs where ( BeginDate BETWEEN BeginDate and @Today) and (ExpirationDate BETWEEN @Today and ExpirationDate) and (Active=@Active)   Order By MsgLevel,BeginDate desc";
+            string strcmd = "Select * from LoginMsgs  where ( BeginDate BETWEEN BeginDate and @Today) and (ExpirationDate BETWEEN @Today and ExpirationDate) and (Active=@Active)    Order By MsgLevel,BeginDate desc";
             SqlCommand cmd = new SqlCommand(strcmd,connection);
             cmd.CommandType = System.Data.CommandType.Text;
             cmd.Parameters.Clear();

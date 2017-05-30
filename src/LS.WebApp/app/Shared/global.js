@@ -8,7 +8,27 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var Global = (function () {
     function Global() {
+        this._criticalMsgRead = false;
     }
+    Object.defineProperty(Global.prototype, "loggedInUser", {
+        get: function () {
+            return this._loggedInUser;
+        },
+        set: function (val) {
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Global.prototype, "criticalMsgRead", {
+        get: function () {
+            return this._criticalMsgRead;
+        },
+        set: function (val) {
+            this._criticalMsgRead = val;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return Global;
 }());
 Global = __decorate([
