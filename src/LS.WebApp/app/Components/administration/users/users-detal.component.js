@@ -14,18 +14,36 @@ var global_1 = require("../../../Shared/global");
 var angular2_toaster_1 = require("angular2-toaster");
 var Services_1 = require("../../../Service/Services");
 var global_2 = require("../../../Shared/global");
-var UserComponent = (function () {
-    function UserComponent(_userDataService, _global, _constants, toasterService) {
+var UsersdetailComponent = (function () {
+    function UsersdetailComponent(_userDataService, _global, toasterService, _constants) {
+        var _this = this;
         this._userDataService = _userDataService;
         this._global = _global;
         this._constants = _constants;
+        this.loading = true;
+        this.hasLoadded = false;
+        this.unassignedManager = false;
         this.showSpinner = true;
+        alert('contr');
         this.toasterService = toasterService;
-        this.minToChangeTeam = _global.minToChangeTeam;
+        console.log(typeof this._global.loggedInUser);
+        if (typeof this._global.loggedInUser == "undefined") {
+            this._userDataService.getLoggedInUser().subscribe(function (response) {
+                var response = response;
+                _this._global.loggedInUser = response.data;
+                if (!response.isSuccessful) {
+                    alert(response.error.userHelp);
+                    return;
+                }
+            }, function (error) { return _this.msg = error; });
+        }
     }
-    UserComponent.prototype.ngOnInit = function () {
+    UsersdetailComponent.prototype.ngOnInit = function () {
         var _this = this;
-        if (this._global.loggedInUser.Role.Rank > this._constants.salesTeamManagerRoleRank) {
+        this.minToChangeTeam = this._global.minToChangeTeam;
+        alert('test');
+        console.log(this._global.loggedInUser);
+        if (this._global.loggedInUser.role.rank > this._constants.salesTeamManagerRoleRank) {
             this.toasterService.pop('error', 'Permission Error', 'You are not authorized to view this page');
             return;
         }
@@ -37,36 +55,19 @@ var UserComponent = (function () {
                     return;
                 }
                 _this.roles = response.data;
+                _this.loading = false;
             }, function (error) { return _this.msg = error; });
         } //endelse
     };
-    UserComponent.prototype.loadUsers = function (rank, index) {
-        //this._userDataService.getAllUsersUnderLoggedInUserInTree().subscribe(response => {
-        //	var response = response;
-        //	if (!response.isSuccessful) {
-        //		this.toasterService.pop('error', 'Error Getting Login Messages', response.errror.userHelp);
-        //	}
-        //	this.messages = response.data;
-        //	for (let i = 0; i < this.messages.length; i++) {
-        //		if (this.messages[i].msgLevel == 1) {
-        //			this.criticalMsg.push(this.messages[i])
-        //		}
-        //	}
-        //	//alert(this._global.criticalMsgRead)
-        //	if (this.criticalMsg.length > 0) {//&& !this._global.criticalMsgRead
-        //		//this.modal.open('lg')
-        //		this.showModalSpinner = false;
-        //	}
-        //}, error => this.msg = <any>error);
-    };
-    return UserComponent;
+    return UsersdetailComponent;
 }());
-UserComponent = __decorate([
+UsersdetailComponent = __decorate([
     core_1.Component({
-        templateUrl: "app/Components/admin/users/users.html",
+        selector: 'user-detail',
+        templateUrl: 'app/Components/administration/users/users-detail.html',
         styleUrls: ['../../Content/sass/siteAngular.css']
     }),
-    __metadata("design:paramtypes", [Services_1.AppUserDataService, global_1.Global, global_2.Constants, angular2_toaster_1.ToasterService])
-], UserComponent);
-exports.UserComponent = UserComponent;
-//# sourceMappingURL=users.js.map
+    __metadata("design:paramtypes", [Services_1.AppUserDataService, global_1.Global, angular2_toaster_1.ToasterService, global_2.Constants])
+], UsersdetailComponent);
+exports.UsersdetailComponent = UsersdetailComponent;
+//# sourceMappingURL=users-detal.component.js.map

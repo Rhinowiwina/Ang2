@@ -17,7 +17,7 @@ import { Global } from './Shared/global';
 import { HeaderComponent } from "./common/header"
 import { BrandingComponent } from './common/branding'
 import { LoggedInUser } from './BindingModels/userBindingModels';
-
+import { Company} from './BindingModels/companyBindingModels';
 @Component({
 
 	selector: "my-app",	
@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
 		//closeHtml: '<button>Close</button>'
 		//timeout:5000
 	});
-	branding: {};
+	branding:Company;
 	loggedInUser:LoggedInUser;
 	msg: string;
 	constructor(toasterService: ToasterService, private _companyDataService: CompanyDataService, private _appUserDataService: AppUserDataService,private  _global: Global) {
@@ -85,12 +85,14 @@ export class AppComponent implements OnInit {
 			   return
 			}
 			this.branding = response.data;
-
+			//console.log(this._global)
+			this._global.minToChangeTeam = this.branding.minToChangeTeam;
+			
 			this._appUserDataService.getLoggedInUser().subscribe(response => {
 				var response = response;
 				this.loggedInUser = response.data;
 				this._global.loggedInUser = this.loggedInUser;
-				console.log(this.loggedInUser)
+			
 				if (!response.isSuccessful) {
 					alert(response.error.userHelp)
 					return

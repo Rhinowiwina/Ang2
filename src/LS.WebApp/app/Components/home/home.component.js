@@ -24,9 +24,6 @@ var HomeComponent = (function () {
         this.showModalSpinner = true;
         this.toasterService = toasterService;
     }
-    //test() {
-    //	console.log(this._global.criticalMsgRead)
-    //}
     HomeComponent.prototype.ngOnInit = function () {
         this.getMessages();
     };
@@ -62,6 +59,7 @@ __decorate([
 ], HomeComponent.prototype, "modal", void 0);
 HomeComponent = __decorate([
     core_1.Component({
+        selector: "app-home",
         templateUrl: "app/Components/home/home.component.html",
         providers: [Services_1.MessageDataService],
         styleUrls: ['../../Content/sass/siteAngular.css']

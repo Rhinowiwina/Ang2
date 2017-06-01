@@ -1,7 +1,7 @@
 ﻿import { Component, ViewEncapsulation, Input, Attribute, OnChanges, OnInit } from '@angular/core';
 import { EmitterService } from '../Service/emitter.service';
 import { CompanyDataService } from '../Service/Services';
-import { BrandingResolve } from '../Service/branding.resolve.service';
+
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
 	selector: 'app-header',

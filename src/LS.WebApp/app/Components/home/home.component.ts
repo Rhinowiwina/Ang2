@@ -11,6 +11,7 @@ import { Global } from '../../Shared/global';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router, ActivatedRoute, Params } from '@angular/router';
 import { ToasterModule, ToasterService, ToasterConfig, BodyOutputType } from 'angular2-toaster';
 @Component({
+	selector: "app-home",	
 templateUrl: "app/Components/home/home.component.html",
 providers:[MessageDataService],
 	styleUrls:['../../Content/sass/siteAngular.css']
@@ -30,9 +31,7 @@ export class HomeComponent implements OnInit{
 		this.toasterService = toasterService;
 		
 	}
-	//test() {
-	//	console.log(this._global.criticalMsgRead)
-	//}
+
 	ngOnInit(): void {
 	
 		this.getMessages();

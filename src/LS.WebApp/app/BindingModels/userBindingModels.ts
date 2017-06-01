@@ -1,4 +1,6 @@
-﻿export class UserView {
+﻿import { ApplicationRole } from './applicationRole';
+
+export class UserView {
 	Id: string;
 	FirstName: string; 
 	LastName: string;
@@ -28,7 +30,7 @@ export class LoggedInUser {
 	LastName: string;
 	ExternalUserID: string;
 	Company: {};
-	Role: {};
+	role: ApplicationRole;
 	Email: string;
 	PayPalEmail: string;
 	SalesTeamId: string;
@@ -36,7 +38,7 @@ export class LoggedInUser {
 	StaleTeamActive: boolean;
 	Language: string;
 	ServerEnvironment: string;
-	//RoleSimpleViewBindingModel Role 
+
 	PermissionsLifelineNlad: boolean;
 	PermissionsLifelineCA: boolean;
 	PermissionsLifelineTX: boolean;

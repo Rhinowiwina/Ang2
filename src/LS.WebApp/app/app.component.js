@@ -62,6 +62,8 @@ var AppComponent = (function () {
                 return;
             }
             _this.branding = response.data;
+            //console.log(this._global)
+            _this._global.minToChangeTeam = _this.branding.minToChangeTeam;
             _this._appUserDataService.getLoggedInUser().subscribe(function (response) {
                 var response = response;
                 _this.loggedInUser = response.data;
