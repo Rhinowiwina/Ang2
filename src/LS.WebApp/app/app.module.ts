@@ -11,8 +11,9 @@ import { routing } from './app.routing';
 import { ToasterModule, ToasterService,ToasterConfig } from 'angular2-toaster';
 import { Global } from './Shared/global';
 import { Constants } from './Shared/global';
-
-
+import { Accordion, AccordionGroup, AccordionHead } from './Shared/accordion';
+import { AccordianRank } from './Shared/filters';
+import { AgGridModule } from 'ag-grid-angular/main';
 //Services Imports
 import { CompanyDataService } from './Service/Services';
 import { MessageDataService } from './Service/Services';
@@ -23,11 +24,12 @@ import { HeaderComponent } from "./common/header"
 import { BrandingComponent } from './common/branding';
 import { UserComponent } from './components/administration/users/users.component';
 import { UsersdetailComponent } from './components/administration/users/users-detail.component';
-import {LoggedInUserResolve } from './Service/resolve.service';
-@NgModule({
-	imports: [BrowserModule, ReactiveFormsModule, HttpModule, routing, Ng2Bs3ModalModule, ToasterModule,],
+import { LoggedInUserResolve } from './Service/resolve.service';
 
-	declarations: [AppComponent, UsersdetailComponent,HomeComponent, HeaderComponent, BrandingComponent, UserComponent],
+@NgModule({
+	imports: [BrowserModule, ReactiveFormsModule, HttpModule, routing, Ng2Bs3ModalModule, ToasterModule, AgGridModule.withComponents([]),],
+
+	declarations: [AppComponent, AccordianRank, Accordion, AccordionGroup, AccordionHead, UsersdetailComponent,HomeComponent, HeaderComponent, BrandingComponent, UserComponent],
 
 	providers: [{ provide: APP_BASE_HREF, useValue: '/' }, CompanyDataService, AppUserDataService,LoggedInUserResolve, Global, Constants, MessageDataService,],
 

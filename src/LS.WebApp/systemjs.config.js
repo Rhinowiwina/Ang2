@@ -27,11 +27,18 @@
             'rxjs': 'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
 			'ng2-bs3-modal': 'npm:/ng2-bs3-modal',
-			'angular2-toaster': 'npm:angular2-toaster/bundles/angular2-toaster.umd.js'
-			//'angular2-toaster': 'npm:angular2-toaster/bundles/angular2-toaster.umd.js'
+			'angular2-toaster': 'npm:angular2-toaster/bundles/angular2-toaster.umd.js',
+			'ag-grid-angular' : 'node_modules/ag-grid-angular',
+			'ag-grid': 'node_modules/ag-grid',
         },
         // packages tells the System loader how to load when no filename and/or no extension
-        packages: {
+		packages: {
+			'ag-grid-angular': {
+				defaultExtension: "js"
+			},
+			'ag-grid': {
+				defaultExtension: "js"
+			},
             app: {
                 main: 'main.js', defaultExtension: 'js'
             },
@@ -41,6 +48,7 @@
             ,
             'ng2-bs3-modal':
 			{ main: '/bundles/ng2-bs3-modal.js', defaultExtension: 'js' },
+			
 			'angular2-toaster': {
 				defaultExtension: 'js'
 			}

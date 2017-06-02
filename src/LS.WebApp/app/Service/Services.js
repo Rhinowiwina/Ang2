@@ -92,8 +92,8 @@ var AppUserDataService = (function (_super) {
     AppUserDataService.prototype.getLoggedInUser = function () {
         return this.get(this.baseUrl + 'getLoggedInUser');
     };
-    AppUserDataService.prototype.getAllUsersUnderLoggedInUserInTree = function (userid, rank) {
-        return this.get(this.baseUrl + "getAllUsersUnderLoggedInUserInTree? UserID = " + userid + " & Rank=" + rank);
+    AppUserDataService.prototype.getAllUsersUnderLoggedInUserInTree = function (UserId, rank) {
+        return this.get(this.baseUrl + 'getAllUsersUnderLoggedInUserInTree?UserID=' + UserId + '&Rank=' + rank);
     };
     AppUserDataService.prototype.getAllRoles = function () {
         return this.get(this.baseUrl + "getAllRoles");

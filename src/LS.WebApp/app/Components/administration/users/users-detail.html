@@ -1,4 +1,5 @@
 ﻿
+
 	<div class="row">
 		<div class="col-xs-12 col-sm-7"><h1 trns>MANAGE USERS</h1></div>
 		<div class="col-xs-12 col-sm-5 add-level-button-group">
@@ -7,165 +8,60 @@
 		
 	</div>
 
+<accordion>	
 	
+		<accordion-group (headerOpened)=loadUsers(role.rank,i) [heading]="role.name" *ngFor="let role of roles; let i = index">		
 
-<!--<div ng-show="hasLoaded">-->
-	<!--User Search
-	<!--<form class="form-horizontal" role="form" name="searchUserForm" ng-submit="searchUsers()">
-		<div class="form-group row">
-			<label class="col-xs-12 col-sm-12 order-section-title" trns>
-				Search For User
-			</label>
-
-			<div class="col-xs-12 col-sm-5">
-				<div class="input-group">
-					<input type="text" class="form-control" placeholder="First Name, Last Name, or User Name." ng-model="searchUserInput" />
-					<span class="input-group-btn">
-						<button type="submit" class="btn btn-default order-button">Find</button>
-					</span>
-				</div>
-			</div>
-		</div>
-	</form>
-
-	<!--user Search Results-->
-	<!--<div ng-if="!searchHasLoaded">
-		<img src="/Content/img/spiffygif_30x30.gif" style="text-align: center" />
-	</div>
-	<div style="margin-left:2px;margin-right:2px" class="row" ng-if="searchResults.length > 0 && searchHasLoaded">
-
-		<div ng-if="searchResults.length > 0" style="margin-bottom:6px;font-size:16px;float:right">
-			<button type="button" class="btn order-button-small" ng-click="onBtExport()"><i class="fa fa-download" aria-hidden="true"></i> </button>
-			<button class="btn order-button-small" ng-click="sizeToFit('s')"><i class="fa fa-columns" aria-hidden="true"></i></button>
-			<button class="btn order-button-small" ng-click="autoSizeAll('s')"><i class="fa fa-compress" aria-hidden="true"></i> </button>
-			<button class="btn order-button-small" data-toggle="modal" data-target="#reportsettings"><i class="fa fa-question-circle" aria-hidden="true"></i> </button>
-		</div>
-		<div class="col-xs-12 col-sm-12">
-			<div ag-grid="gridOptions" class="ag-bootstrap row" ng-style="gridStyle" id="div_AGGrid"></div>
-		</div>
-	</div>-->
-
-	<!--<div class="row" ng-if="searchReturnedNoResults">
-		<div class="col-xs-12 col-sm-5">
-			<p trns>Your search did not return any results. Modify your search and try again.</p>
-		</div>
-	</div>
-	<!--Users-->
-	<!--<accordion>
-		<accordion-group is-open="accordion[$index].open" *ngFor="let role in roles" *ngIf="role.rank>$root.loggedInUser.role.rank">
-			<accordion-heading>
-				<div class="row" ng-click="loadUsers(role.rank, $index)">
-					<span class="col-xs-12 order-section-title">{{role.name}}</span>
-				</div>
-			</accordion-heading>-->
-
-
-			<!--<div class="order-content">
-				<div ng-if="users[$index].length > 0" style="float:right;margin-bottom:6px;font-size:16px">
+			<div class="order-content">
+				<div ng-if="users[i].length > 0" style="float:right;margin-bottom:6px;font-size:16px">
 					<button type="button" class="btn order-button-small" ng-click="onBtExport('u')"><i class="fa fa-download" aria-hidden="true"></i> </button>
 					<button class="btn order-button-small" ng-click="sizeToFit('u')"><i class="fa fa-columns" aria-hidden="true"></i> </button>
 					<button class="btn order-button-small" ng-click="autoSizeAll('u')"><i class="fa fa-compress" aria-hidden="true"></i> </button>
 					<button class="btn order-button-small" data-toggle="modal" data-target="#reportsettings"><i class="fa fa-question-circle" aria-hidden="true"></i> </button>
-				</div>-->
-				<!--<div style="clear:both"></div>
-				<img src="/Content/img/spiffygif_30x30.gif" style="text-align: center" ng-if="loadingUsers[$index]" />
-				<div ng-if="!loadingUsers[$index] && !erroredRoles[$index]">
-					<p ng-if="users[$index].length == 0" trns>There are no {{role.name}}s in this company.</p>
-					<div ng-if="users[$index].length > 0" ag-grid="userGridOptions" class="ag-bootstrap row" ng-style="userGridStyle" id="div_AGGrid1"></div>
-					<div ng-if="!loadingUsers[$index] && erroredRoles[$index]" class="alert alert-danger">Error loading users</div>
-					<br />-->
-					<!--Toggle Inactive Users-->
-					<!--<div ng-if="users[$index].length > 0">
-						<button type="button" ng-if="!showInactiveUsers" class="btn admin-button" ng-click="toggleInactiveUsers($index)" trns>Show Inactive Users</button>
-						<button type="button" ng-if="showInactiveUsers" class="btn admin-button" ng-click="toggleInactiveUsers($index)" trns>Hide Inactive Users</button>
+				</div>
+				<div style="clear:both"></div>
+				<img src="/Content/img/spiffygif_30x30.gif" style="text-align: center" *ngIf="loadingUsers[i]" />
+				
+				<div *ngIf="!loadingUsers[i] ">
+					<!--&& !erroredRoles[i]-->
+					<p *ngIf="users[i].length == 0" trns>There are no {{role.name}}s in this company.</p>
+					
+					<!--// items bound to properties on the controller-->
+
+					
+					<div *ngIf="users[i].length>0">
+					
+						<ag-grid-angular #agGrid style="width: 100%; height: 350px;" class="ag-fresh"
+					[gridOptions]="userGridOptions"
+					[columnDefs]="columnDefs"
+					[showToolPanel]="'false'"
+					[rowData]="users[i]"
+					enableColResize
+					enableSorting
+					enableFilter
+					rowHeight="22"
+					
+					>
+
+						</ag-grid-angular>
 					</div>
-				</div>-->
-			<!--</div>
-
+				
+					<div *ngIf="!loadingUsers[i] && erroredRoles[i].error" class="alert alert-danger">Error loading users</div>
+					<br />
+					<!--Toggle Inactive Users-->
+					<div ng-if="users[i].length > 0">
+						<button type="button" *ngIf="!showInactiveUsers" class="btn admin-button" (click)="toggleInactiveUsers(i)" trns>Show Inactive Users</button>
+						<button type="button"*ngIf="showInactiveUsers" class="btn admin-button" ng-(click)="toggleInactiveUsers(i)" trns>Hide Inactive Users</button>
+					</div>
+				</div>
+			</div> 
+		
 		</accordion-group>
+</accordion>
 
-	</accordion>
-</div>-->
 
-<!--<modal title="Managed Groups" id="getManagedGroups">
-	<img src="/Content/img/spiffygif_30x30.gif" style="text-align: center" ng-show="gettingManagers" />
-	<table class="table table-bordered table-hover table-condensed table-striped" ng-if="managedGroups.length>0" ng-show="!gettingManagers">
-		<thead>
-			<tr>
-				<th trns>Group Name</th>
-			</tr>
-		</thead>
 
-		<tbody>
-			<tr ng-repeat="group in managedGroups"><td nowrap>{{group.groupName}}</td></tr>
-		</tbody>
 
-	</table>
 
-	<span ng-if="managedGroups.length==0">
-		This manager is not assigned to manage any groups.
-	</span>
-</modal>
 
-<modal title="User Commissions" id="userCommissions" modal-visable="{{showCommissionModal}}">
-	<b trns>Commissions</b>
-	<a ng-if="$root.loggedInUser.role.rank <=  $root.administratorRole.rank" class="text-link" style="float:right" ng-click="modifyCommissions(userID, '')"><span class="glyphicon glyphicon-plus-sign text-link" aria-hidden="true"></span> <trns>Add Commission</trns></a>
-
-	<img src="/Content/img/spiffygif_30x30.gif" style="text-align: center" ng-show="loadingCommissionsSpinner" />
-	<table ng-show="!loadingCommissionsSpinner" class="table table-bordered table-hover table-condensed">
-		<thead>
-			<tr>
-				<th trns>Product Type</th>
-				<th trns>Amount</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			<tr ng-repeat="commission in productCommissions | orderBy: ['productType']">
-				<td>
-					<a ng-click="modifyCommissions(userID, commission.id)" class="text-link"><span ng-if="$root.loggedInUser.role.rank <=  $root.administratorRole.rank" class="glyphicon glyphicon-pencil edit-icon" aria-hidden="true"></span>{{commission.productType}}</a>
-				</td>
-				<td>{{commission.amount | currency}}</td>
-			</tr>
-			<tr ng-if="productCommissions.length == 0">
-				<td colspan="4"><em trns>No Records</em></td>
-			</tr>
-		</tbody>
-	</table>
-</modal>
-<modal title="Report Help" id="reportsettings">
-	<h3>Export Data</h3>
-	Export data by clicking the export button above the search results. The data will be exported in a CSV format.
-	<br /><br />
-
-	<strong>When exporting data notice the following: </strong>
-	<ul>
-		<li>Filtered rows are not included in the export.</li>
-		<li>The sort order is maintained in the export.</li>
-		<li>The order of the columns is maintained in the export.</li>
-	</ul>
-
-	<div ng-show="!filters.MapType">
-		<hr />
-
-		<h3>Resize Columns</h3>
-		Just like Excel, each column can be 'auto resized' by double clicking the right side of the header rather than dragging it. When you do this, the grid will work out the best width to fit the contents of the cells in the column.
-		<hr />
-
-		<h3>Pin Columns</h3>
-		Pin a column by dragging the column to the left or right. The grid will reorder the columns so that 'left pinned' columns come first and 'right pinned' columns come last
-		<hr />
-
-		<h3>Reorder Columns</h3>
-		Reorder columns by dragging the header name to either the left or right.
-		<hr />
-
-		<h3>Sort Columns</h3>
-		Sort a column by clicking on the column header. To do multi-column sorting, hold down shift while clicking the column header.
-		<hr />
-
-		<h3>Filter Columns</h3>
-		Filter columns by clicking the <i class="fa fa-bars"></i> icon when hovering over a header column. You can filter data based on different conditional statements. When a filter is active on a column, the filter icon appears before the column name in the header.
-	</div>-->
-
-<!--</modal>-->
+	

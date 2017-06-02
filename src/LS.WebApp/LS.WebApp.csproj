@@ -551,7 +551,9 @@
     <TypeScriptCompile Include="app\Service\resolve.service.ts" />
     <TypeScriptCompile Include="app\Service\emitter.service.ts" />
     <TypeScriptCompile Include="app\Service\Services.ts" />
+    <TypeScriptCompile Include="app\Shared\accordion.ts" />
     <TypeScriptCompile Include="app\Shared\enum.ts" />
+    <TypeScriptCompile Include="app\Shared\filters.ts" />
     <TypeScriptCompile Include="app\Shared\global.ts" />
   </ItemGroup>
   <ItemGroup>

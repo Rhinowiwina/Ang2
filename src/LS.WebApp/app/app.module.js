@@ -17,6 +17,9 @@ var app_routing_1 = require("./app.routing");
 var angular2_toaster_1 = require("angular2-toaster");
 var global_1 = require("./Shared/global");
 var global_2 = require("./Shared/global");
+var accordion_1 = require("./Shared/accordion");
+var filters_1 = require("./Shared/filters");
+var main_1 = require("ag-grid-angular/main");
 //Services Imports
 var Services_1 = require("./Service/Services");
 var Services_2 = require("./Service/Services");
@@ -35,8 +38,7 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, forms_1.ReactiveFormsModule, http_1.HttpModule, app_routing_1.routing, ng2_bs3_modal_1.Ng2Bs3ModalModule, angular2_toaster_1.ToasterModule,],
-        declarations: [app_component_1.AppComponent, users_detail_component_1.UsersdetailComponent, home_component_1.HomeComponent, header_1.HeaderComponent, branding_1.BrandingComponent, users_component_1.UserComponent],
+        imports: [platform_browser_1.BrowserModule, forms_1.ReactiveFormsModule, http_1.HttpModule, app_routing_1.routing, ng2_bs3_modal_1.Ng2Bs3ModalModule, angular2_toaster_1.ToasterModule, main_1.AgGridModule.withComponents([]),],
         providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }, Services_1.CompanyDataService, Services_3.AppUserDataService, resolve_service_1.LoggedInUserResolve, global_1.Global, global_2.Constants, Services_2.MessageDataService,],
         bootstrap: [app_component_1.AppComponent]
     })

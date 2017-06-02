@@ -14,45 +14,114 @@ var global_1 = require("../../../Shared/global");
 var angular2_toaster_1 = require("angular2-toaster");
 var Services_1 = require("../../../Service/Services");
 var global_2 = require("../../../Shared/global");
+//https://www.npmjs.com/package/ng2-accordion
 var UsersdetailComponent = (function () {
-    //loginmsg: {};
-    //hasLoadded: boolean = false;
-    //minToChangeTeam: number;
-    //unassignedManager: boolean = false;
-    //roles: {}
-    //users: {
-    //	admins: Array<UserView>,
-    //	level1Managers: Array<UserView>,
-    //	level2Managers: Array<UserView>, 
-    //	level3Managers: Array<UserView>,
-    //	teamManagers: Array<UserView>, 
-    //	reps: Array<UserView>
-    //};
-    //private toasterService: ToasterService;
     function UsersdetailComponent(_userDataService, _global, toasterService, _constants) {
-        //this.toasterService = toasterService;
         this._userDataService = _userDataService;
         this._global = _global;
         this._constants = _constants;
+        this.rowData = [];
         this.loading = true;
+        this.hasLoadded = false;
+        this.unassignedManager = false;
+        this.orgUsers = [];
+        this.admins = [];
+        this.level1Managers = [];
+        this.level2Managers = [];
+        this.level3Managers = [];
+        this.teamManagers = [];
+        this.reps = [];
+        this.loadingUsers = [];
+        this.erroredRoles = [];
+        //test
+        this.gridOptions = {};
+        this.createCols();
+        this.showGrid = true;
+        //
+        this.toasterService = toasterService;
+        this.users = [];
+        this.users.push(this.admins);
+        this.users.push(this.level1Managers);
+        this.users.push(this.level2Managers);
+        this.users.push(this.level3Managers);
+        this.users.push(this.teamManagers);
+        this.users.push(this.reps);
+        for (var i = 0; i < 6; i++) {
+            this.loadingUsers.push(false);
+            this.erroredRoles.push({});
+        }
     }
     UsersdetailComponent.prototype.ngOnInit = function () {
-        //this.minToChangeTeam = this._global.minToChangeTeam;
-        //if (this._global.loggedInUser.role.rank > this._constants.salesTeamManagerRoleRank) {
-        //	this.toasterService.pop('error', 'Permission Error', 'You are not authorized to view this page')
-        //	return
-        //} else {
-        //	this._userDataService.getAllRoles().subscribe
-        //		(response => {
-        //			var response = response;
-        //			if (!response.isSuccessful) {
-        //				this.toasterService.pop('error', 'Error Getting Roles Messages', response.errror.userHelp);
-        //				return
-        //			}
-        //			this.roles = response.data;
-        //			this.loading = false;
-        //		}, error => this.msg = <any>error)
-        //}//endelse
+        var _this = this;
+        this.minToChangeTeam = this._global.minToChangeTeam;
+        if (this._global.loggedInUser.role.rank > this._constants.salesTeamManagerRoleRank) {
+            this.toasterService.pop('error', 'Permission Error', 'You are not authorized to view this page');
+            return;
+        }
+        else {
+            this._userDataService.getAllRoles().subscribe(function (response) {
+                var response = response;
+                if (!response.isSuccessful) {
+                    _this.toasterService.pop('error', 'Error Getting Roles Messages', response.errror.userHelp);
+                    return;
+                }
+                _this.roles = response.data;
+                //filter roles the user does not have access to.
+                _this.roles = _this.roles.filter(function (role) { return role.rank > _this._global.loggedInUser.role.rank; });
+                _this.hasLoadded = true;
+            }, function (error) { return _this.msg = error; });
+        } //endelse
+    };
+    UsersdetailComponent.prototype.createCols = function () {
+        this.columnDefs = [
+            {
+                headerName: "Name", headerTooltip: "Active", field: "fullName", minWidth: 70, width: 185,
+                cellRenderer: function (params) {
+                    if (params.data) {
+                        return '<span><a ng-click="modifyUser(' + params.data.id + ')" class="text-link">' + params.data.fullName + '</a></span>';
+                    }
+                }
+            },
+            {
+                headerName: "Username", field: "userName", headerTooltip: "Username", minWidth: 85, width: 200,
+            },
+            { headerName: "Promo Code", field: "externalUserID", headerTooltip: "External User ID", minWidth: 85, width: 125, },
+            { headerName: "Team Name", field: "team", headerTooltip: "Team Name", minWidth: 85, width: 200, },
+            { headerName: "Agent ID", field: "externalDisplayName", headerTooltip: "Agent ID", minWidth: 80, width: 100, },
+            { headerName: "Active", field: "isActive", headerTooltip: "Active", minWidth: 65, width: 70, }
+        ];
+    };
+    //
+    UsersdetailComponent.prototype.loadUsers = function (rank, index) {
+        var _this = this;
+        this.loadingUsers[index] = true;
+        this._userDataService.getAllUsersUnderLoggedInUserInTree(this._global.loggedInUser.id, rank).subscribe(function (response) {
+            var response = response;
+            if (!response.isSuccessful) {
+                _this.loadingUsers[index] = false;
+                _this.toasterService.pop('error', 'Error Getting users', response.errror.userHelp);
+            }
+            _this.users[index] = response.data;
+            console.log(_this.users[index]);
+            //this.userGridOptions = {
+            //	//columnDefs:this.columnDefs,
+            //	//angularCompileRows: true,
+            //	//rowData: this.users[index],
+            //	//enableSorting: true,
+            //	//suppressRowClickSelection: true,
+            //	//enableColResize: true,
+            //	//onGridReady: function (event) { autoSizeAll("u"); sizeToFit('u'); },
+            //	//enableFilter: true,
+            //	//getRowStyle: function (params) {
+            //	//	if (params.node.floating) {
+            //	//		return { 'font-weight': 'bold' }
+            //	//	}
+            //	//},
+            //	////isExternalFilterPresent: isExternalFilterPresent,
+            //	//doesExternalFilterPass: doesExternalFilterPass
+            //};	
+            _this.loadingUsers[index] = false;
+        }, function (error) { return _this.msg = error; });
     };
     return UsersdetailComponent;
 }());

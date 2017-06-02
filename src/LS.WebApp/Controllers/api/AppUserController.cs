@@ -413,7 +413,7 @@ namespace LS.WebApp.Controllers.api {
 
             return Ok(processingResult);
         }
-
+		 [HttpGet]
         [Route("getAllUsersUnderLoggedInUserInTree")]
         public async Task<IHttpActionResult> GetAllUsersUnderLoggedInUserInTree(string UserID, string Rank) {
             var processingResult = new ServiceProcessingResult<List<UserListScreenViewBindingModel>>();

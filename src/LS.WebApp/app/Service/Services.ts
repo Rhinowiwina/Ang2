@@ -77,8 +77,9 @@ export class AppUserDataService extends BaseService{
 		return this.get(this.baseUrl + 'getLoggedInUser');
 
 	}
-	getAllUsersUnderLoggedInUserInTree(userid:string,rank:number) {
-		return this.get(this.baseUrl + "getAllUsersUnderLoggedInUserInTree? UserID = " + userid + " & Rank=" + rank);
+	getAllUsersUnderLoggedInUserInTree(UserId: string, rank: number) {
+
+	return this.get(this.baseUrl + 'getAllUsersUnderLoggedInUserInTree?UserID=' + UserId + '&Rank=' + rank );
 
 	}
 	getAllRoles() {

@@ -24,26 +24,26 @@ export class UserView {
 	CanBeDeleted: boolean;
 }
 export class LoggedInUser {
-	Id: string;
-	Username: string;
-	FirstName: string;
-	LastName: string;
-	ExternalUserID: string;
-	Company: {};
+	id: string;
+	username: string;
+	firstName: string;
+	lastName: string;
+	externalUserID: string;
+	company: {};
 	role: ApplicationRole;
-	Email: string;
-	PayPalEmail: string;
-	SalesTeamId: string;
-	SalesTeamSigType: string;
-	StaleTeamActive: boolean;
-	Language: string;
-	ServerEnvironment: string;
+	email: string;
+	payPalEmail: string;
+	salesTeamId: string;
+	salesTeamSigType: string;
+	staleTeamActive: boolean;
+	language: string;
+	serverEnvironment: string;
 
-	PermissionsLifelineNlad: boolean;
-	PermissionsLifelineCA: boolean;
-	PermissionsLifelineTX: boolean;
-	PermissionsAllowTpivBypass: boolean;
-	PermissionsAccountOrder: boolean;
+	permissionsLifelineNlad: boolean;
+	permissionsLifelineCA: boolean;
+	permissionsLifelineTX: boolean;
+	permissionsAllowTpivBypass: boolean;
+	permissionsAccountOrder: boolean;
 
 
 }

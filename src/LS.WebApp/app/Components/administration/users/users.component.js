@@ -21,39 +21,10 @@ var UserComponent = (function () {
         this._global = _global;
         this._constants = _constants;
         this.loading = true;
-        this.hasLoadded = false;
-        this.unassignedManager = false;
-        alert('contr');
         this.toasterService = toasterService;
     }
     UserComponent.prototype.ngOnInit = function () {
         this.loading = false;
-        //if (typeof this._global.loggedInUser == "undefined") {
-        //	this._userDataService.getLoggedInUser().subscribe(response => {
-        //		var response = response;
-        //		this._global.loggedInUser = response.data;
-        //		this.loading = false;
-        //		if (!response.isSuccessful) {
-        //			alert(response.error.userHelp)
-        //			return
-        //		}
-        //	}, error => this.msg = <any>error);
-        //} else { }
-        //if (this._global.loggedInUser.role.rank > this._constants.salesTeamManagerRoleRank) {
-        //	this.toasterService.pop('error', 'Permission Error', 'You are not authorized to view this page')
-        //	return
-        //} else {
-        //	this._userDataService.getAllRoles().subscribe
-        //		(response => {
-        //			var response = response;
-        //			if (!response.isSuccessful) {
-        //				this.toasterService.pop('error', 'Error Getting Roles Messages', response.errror.userHelp);
-        //				return
-        //			}
-        //			this.roles = response.data;
-        //			this.loading = false;
-        //		}, error => this.msg = <any>error)
-        //}//endelse
     };
     return UserComponent;
 }());
