@@ -39,6 +39,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, forms_1.ReactiveFormsModule, http_1.HttpModule, app_routing_1.routing, ng2_bs3_modal_1.Ng2Bs3ModalModule, angular2_toaster_1.ToasterModule, main_1.AgGridModule.withComponents([]),],
+        declarations: [app_component_1.AppComponent, filters_1.AccordianRank, accordion_1.Accordion, accordion_1.AccordionGroup, accordion_1.AccordionHead, users_detail_component_1.UsersdetailComponent, home_component_1.HomeComponent, header_1.HeaderComponent, branding_1.BrandingComponent, users_component_1.UserComponent],
         providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }, Services_1.CompanyDataService, Services_3.AppUserDataService, resolve_service_1.LoggedInUserResolve, global_1.Global, global_2.Constants, Services_2.MessageDataService,],
         bootstrap: [app_component_1.AppComponent]
     })
