@@ -1,4 +1,4 @@
-﻿import { Component, ViewEncapsulation, Input, Attribute, OnChanges, OnInit, Inject, NgModule } from '@angular/core';
+﻿import { Component, ViewChild, ViewEncapsulation, Input, Attribute, OnChanges, OnInit, Inject, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser'
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
@@ -18,17 +18,16 @@ import { GridOptions } from "ag-grid/main";
 	styleUrls: ['../../Content/sass/siteAngular.css']
 })
 export class UsersdetailComponent implements OnInit {
-//test
-	private gridOptions: GridOptions;
-	public showGrid: boolean;
-	//public rowData: any[]=[];
-	private columnDefs1: any[];
+
 //
 //live grid
 	private userGridOptions: GridOptions;
 	public rowData: any[] = [];
 	private columnDefs: any[];
-//
+	//	must be together in this order
+	@ViewChild('reportsettings')
+	reportSettingsModal: ModalComponent;
+	//
 	msg: string;
 	loading: boolean = true;
 	errmsg: string;
@@ -51,10 +50,10 @@ export class UsersdetailComponent implements OnInit {
 	
 	constructor(private _userDataService: AppUserDataService, private _global: Global, toasterService: ToasterService, private _constants: Constants) {
 	//test
-	this.gridOptions = <GridOptions>{};
+		this.userGridOptions = <GridOptions>{};
 	
 	this.createCols()
-	this.showGrid = true;
+
 	//
 	
 		this.toasterService = toasterService;
@@ -85,7 +84,7 @@ export class UsersdetailComponent implements OnInit {
 				(response => {
 					var response = response;
 					if (!response.isSuccessful) {
-						this.toasterService.pop('error', 'Error Getting Roles Messages', response.errror.userHelp);
+						this.toasterService.pop('error', 'Error Getting Roles', response.errror.userHelp);
 						return
 					}
 					this.roles = response.data;
@@ -105,7 +104,7 @@ export class UsersdetailComponent implements OnInit {
 				headerName: "Name", headerTooltip: "Active", field: "fullName", minWidth: 70, width: 185,
 				cellRenderer: function (params:any) {
 					if (params.data) {			
-						return '<span><a ng-click="modifyUser('+params.data.id+')" class="text-link">'+params.data.fullName+'</a></span>';
+						return '<span><a (click)="modifyUser('+params.data.id+')" class="text-link">'+params.data.fullName+'</a></span>';
 					} 
 				} },
 			{
@@ -121,36 +120,42 @@ export class UsersdetailComponent implements OnInit {
 	}
 
 	//
-		loadUsers(rank:number,index:number) {
+	loadUsers(rank: number, index: number) {
+		let self = this; //not sure why but must put key work this in variable to use in function call
+		
 			this.loadingUsers[index] = true;
 			this._userDataService.getAllUsersUnderLoggedInUserInTree(this._global.loggedInUser.id,rank).subscribe(response => {
 				var response = response;
 				if (!response.isSuccessful) {
 					this.loadingUsers[index] = false;
-					this.toasterService.pop('error', 'Error Getting users', response.errror.userHelp);
+					this.toasterService.pop('error', 'Error Getting Users', response.errror.userHelp);
 				}
 			
 				this.users[index] = response.data;
-				console.log(this.users[index])
 			
-				//this.userGridOptions = {
-				//	//columnDefs:this.columnDefs,
-				//	//angularCompileRows: true,
-				//	//rowData: this.users[index],
-				//	//enableSorting: true,
-				//	//suppressRowClickSelection: true,
-				//	//enableColResize: true,
-				//	//onGridReady: function (event) { autoSizeAll("u"); sizeToFit('u'); },
-				//	//enableFilter: true,
-				//	//getRowStyle: function (params) {
-				//	//	if (params.node.floating) {
-				//	//		return { 'font-weight': 'bold' }
-				//	//	}
-				//	//},
-				//	////isExternalFilterPresent: isExternalFilterPresent,
-				//	//doesExternalFilterPass: doesExternalFilterPass
-				//};	
-				this.loadingUsers[index] = false;
+			this.loadingUsers[index] = false;
+				this.userGridOptions = {
+					columnDefs:this.columnDefs,
+					//angularCompileRows: true, not used in version2
+					rowData: this.users[index],
+					enableColResize: true,
+					enableSorting: true,
+					enableFilter: true,
+					rowHeight:22,
+					suppressRowClickSelection: true,					
+					onGridReady: function (event) {
+					 self.sizeToFit('u');
+					 self.autoSizeAll("u");
+					},
+					getRowStyle: function (params:any) {
+						if (params.node.floating) {
+							return { 'font-weight': 'bold' }
+						}
+					},
+					//isExternalFilterPresent: isExternalFilterPresent,
+					//doesExternalFilterPass: doesExternalFilterPass
+				};	
+				
 			}, error => this.msg = <any>error);
 
 	}
@@ -167,35 +172,39 @@ export class UsersdetailComponent implements OnInit {
 //	}
 //	 }
 
-//	sizeToFit(form:string) {
-//	if (form == 'u') {
-//		this.userGridOptions.api.sizeColumnsToFit();
-//	} else {
-//		//this.gridOptions.api.sizeColumnsToFit();
-//	}
-//}
-// autoSizeAll(form:string) {
-//	if (form == 'u') {
-//		var allColumnIds : [];
-//		this.userColumnDefs.forEach(function (columnDef) {
-//			allColumnIds.push(columnDef.field);
-//		});
-//	this.userGridOptions.columnApi.autoSizeColumns(allColumnIds);
-//	} else {
-//	//	var allColumnIds:[];
-//	//this.searchColumnDefs.forEach(function (columnDef) {
-//	//		allColumnIds.push(columnDef.field);
-//	//	});
-//	//	this.gridOptions.columnApi.autoSizeColumns(allColumnIds);
-//	}
-//}
-//function onBtExport(form) {
-//	if (form == 'u') {
-//		var params = {
-//			allColumns: true,
-//			fileName: $scope.exportName,
-//		};
-//		$scope.userGridOptions.api.exportDataAsCsv(params);
+	sizeToFit(form:string) {
+
+	if (form == 'u') {
+		this.userGridOptions.api.sizeColumnsToFit();
+	} else {
+		this.userGridOptions.api.sizeColumnsToFit();
+	}
+}
+	autoSizeAll(form: string) {
+
+		if (form == 'u') {
+		
+		var allColumnIds :string[]=[];
+		this.columnDefs.forEach(function (columnDef) {
+			allColumnIds.push(columnDef.field);
+		});
+	this.userGridOptions.columnApi.autoSizeColumns(allColumnIds);
+	//} else {
+	//	var allColumnIds:string[];
+	//this.searchColumnDefs.forEach(function (columnDef) {
+	//		allColumnIds.push(columnDef.field);
+	//	});
+	//	this.gridOptions.columnApi.autoSizeColumns(allColumnIds);
+	}
+}
+onBtExport(form: string) {
+	var exportName: string;
+	if (form == 'u') {
+		var params = {
+			allColumns: true,
+			fileName: exportName,
+		};
+		this.userGridOptions.api.exportDataAsCsv(params);
 
 //	} else {
 //		//var params = {
@@ -203,8 +212,8 @@ export class UsersdetailComponent implements OnInit {
 //		//	fileName: $scope.exportName,
 //		//};
 //		//$scope.gridOptions.api.exportDataAsCsv(params);
-//	}
-//}
+	}
+}
 
 // externalFilterChanged(newValue) {
 //	$scope.userGridOptions.api.onFilterChanged();
@@ -229,7 +238,17 @@ export class UsersdetailComponent implements OnInit {
 //	}
 //}
 
+closeModal(vmodal: string) {
+	if (vmodal == "reportModal") {
+		this.reportSettingsModal.close()
+	}
 
 
-		
+}
+openModal(vmodal: string) {
+
+		if(vmodal == "reportModal") {
+			this.reportSettingsModal.open('lg')
+		}
+	}
 }

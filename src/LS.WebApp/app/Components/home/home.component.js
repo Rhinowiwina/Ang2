@@ -40,16 +40,15 @@ var HomeComponent = (function () {
                     _this.criticalMsg.push(_this.messages[i]);
                 }
             }
-            //alert(this._global.criticalMsgRead)
-            if (_this.criticalMsg.length > 0) {
-                //this.modal.open('lg')
+            if (_this.criticalMsg.length > 0 && !_this._global.criticalMsgRead) {
+                _this.modal.open('lg');
                 _this.showModalSpinner = false;
             }
         }, function (error) { return _this.msg = error; });
     };
     HomeComponent.prototype.setCriticalMsgRead = function () {
         this.modal.close();
-        //this._global.criticalMsgRead = true;
+        this._global.criticalMsgRead = true;
     };
     return HomeComponent;
 }());

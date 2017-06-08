@@ -9,8 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var global_1 = require("../Shared/global");
 var HeaderComponent = (function () {
-    function HeaderComponent() {
+    function HeaderComponent(_global) {
+        this._global = _global;
         this.companyLogo = "../../Content/img/SpinSolutions.png";
         this.companyTitle = "SpinSolutionsSPA";
     }
@@ -19,8 +21,7 @@ var HeaderComponent = (function () {
         this.companyTitle = this.brandingmodel.name;
     };
     HeaderComponent.prototype.LogOut = function () {
-        alert('logout');
-        window.location.href = "/logout?userid=" + "1";
+        window.location.href = "/logout?userid=" + this._global.loggedInUser.id;
     };
     return HeaderComponent;
 }());
@@ -38,7 +39,7 @@ HeaderComponent = __decorate([
         encapsulation: core_1.ViewEncapsulation.None,
         templateUrl: 'app/common/header.html',
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [global_1.Global])
 ], HeaderComponent);
 exports.HeaderComponent = HeaderComponent;
 //# sourceMappingURL=header.js.map

@@ -1,15 +1,17 @@
 ﻿
-<h1 >WELCOME TO LIFELINE SERVICES</h1>
-<br /><br />
-<div *ngIf="messages?.length">
+<div *ngIf="_global.loggedInUser">
+	<h1>WELCOME TO LIFELINE SERVICES</h1>
+	<br /><br />
+	<div *ngIf="messages?.length">
 
-	<div>
-		<h4><strong>Messages</strong></h4>
-		<!---->
-		<div class="alert"  [ngClass]="{'alert-danger':message.msgLevel==1,'alert-warning':message.msgLevel==2,'alert-info':message.msgLevel==3}" style="word-wrap: break-word" *ngFor="let message of messages" role="alert">
+		<div>
+			<h4><strong>Messages</strong></h4>
+			<!---->
+			<div class="alert" [ngClass]="{'alert-danger':message.msgLevel==1,'alert-warning':message.msgLevel==2,'alert-info':message.msgLevel==3}" style="word-wrap: break-word" *ngFor="let message of messages" role="alert">
 
-				<strong>{{message.beginDate| date:'MM/dd/yyyy'}} - {{message.title}}:</strong><br /><div >{{message.msg}}</div>
+				<strong>{{message.beginDate| date:'MM/dd/yyyy'}} - {{message.title}}:</strong><br /><div>{{message.msg}}</div>
 
+			</div>
 		</div>
 	</div>
 </div>
@@ -19,7 +21,7 @@
 	</modal-header>
 	<modal-body>
 		<img src="/Content/img/spiffygif_30x30.gif" style="text-align: center" *ngIf="showModalSpinner" />
-		<div *ngFor="let message of criticalMsg" [ngClass]="{'alert alert-danger':message.msgLevel==1,'alert alert-warning':message.msgLevel==2,'alert alert-info':message.msgLevel==3}"  role="alert" > <strong>{{message.beginDate| date:'MM/dd/yyyy'}} - {{message.title}}:</strong><br /><div> {{message.msg}}</div></div>   
+		<div *ngFor="let message of criticalMsg" [ngClass]="{'alert alert-danger':message.msgLevel==1,'alert alert-warning':message.msgLevel==2,'alert alert-info':message.msgLevel==3}" role="alert"> <strong>{{message.beginDate| date:'MM/dd/yyyy'}} - {{message.title}}:</strong><br /><div> {{message.msg}}</div></div>
 	</modal-body>
 	<modal-footer >
 		<button type="button" class="btn btn-primary" (click)="setCriticalMsgRead()">Ok</button>

@@ -57,7 +57,7 @@ export class AppComponent implements OnInit {
 		this.toasterService = toasterService;
 	}
 	ngOnInit(): void {
-		this._global.criticalMsgRead = true;
+	
 		this.GetBranding();
 	}
 	//popToast() {

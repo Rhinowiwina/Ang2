@@ -24,10 +24,15 @@ var BaseService = (function () {
         this._http = _http;
         //_http is sent from inherited class
     }
+    //return this._http.get(url)
+    //.map((response: Response) => <any>response.json())
+    ////.do(data => console.log("All: " + JSON.stringify(data)))
+    //.catch(this.handleError);
     //base calls
     BaseService.prototype.get = function (url) {
+        var _this = this;
         return this._http.get(url)
-            .map(function (response) { return response.json(); })
+            .map(function (res) { return JSON.parse(res.text(), _this.reviver); })
             .catch(this.handleError);
     };
     BaseService.prototype.post = function (url, model) {
@@ -55,6 +60,14 @@ var BaseService = (function () {
     };
     BaseService.prototype.handleError = function (error) {
         return Observable_1.Observable.throw(error.json().error || 'Server error');
+    };
+    BaseService.prototype.reviver = function (key, value) {
+        console.log(key);
+        if ('beginDate' === key) {
+            //you can use any de-serialization algorithm here
+            return new Date(value);
+        }
+        return value;
     };
     return BaseService;
 }());
@@ -115,6 +128,12 @@ var MessageDataService = (function (_super) {
     }
     MessageDataService.prototype.getActiveMessages = function () {
         return this.get(this.baseUrl + 'getActiveMessages');
+    };
+    MessageDataService.prototype.getAllMessages = function () {
+        return this.get(this.baseUrl + 'getAllMessages');
+    };
+    MessageDataService.prototype.getMsgToEdit = function (messageId) {
+        return this.get(this.baseUrl + 'getMsgToEdit?messageId=' + messageId);
     };
     return MessageDataService;
 }(BaseService));

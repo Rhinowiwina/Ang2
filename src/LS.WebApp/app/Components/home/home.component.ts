@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser'
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
 import { message } from '../../BindingModels/messageBindingModels';
+import { LoggedInUser} from '../../BindingModels/userBindingModels';
 import { MessageDataService } from '../../Service/Services';
 import { Global } from '../../Shared/global';
 
@@ -19,7 +20,7 @@ providers:[MessageDataService],
 
 export class HomeComponent implements OnInit{
 	private toasterService: ToasterService;
-	
+	loggedInUser:LoggedInUser
 	@ViewChild('modal')
 	modal: ModalComponent;
 	msg: string;
@@ -29,14 +30,11 @@ export class HomeComponent implements OnInit{
 	showModalSpinner: boolean=true
 	constructor(private router: Router, toasterService: ToasterService, private _messageDataService: MessageDataService, private _global: Global ) {
 		this.toasterService = toasterService;
-		
+
 	}
 
 	ngOnInit(): void {
-	
 		this.getMessages();
-	
-	
 	}
 	
 	getMessages() {
@@ -54,9 +52,9 @@ export class HomeComponent implements OnInit{
 				 
 				}
 			}
-			//alert(this._global.criticalMsgRead)
-			if (this.criticalMsg.length > 0 ) {//&& !this._global.criticalMsgRead
-				//this.modal.open('lg')
+		
+			if (this.criticalMsg.length > 0 && !this._global.criticalMsgRead) {
+				this.modal.open('lg')
 				this.showModalSpinner = false;
 			}
 		}, error => this.msg = <any>error);
@@ -64,7 +62,7 @@ export class HomeComponent implements OnInit{
 	}
 	setCriticalMsgRead() {
 		this.modal.close()
-		//this._global.criticalMsgRead = true;
+		this._global.criticalMsgRead = true;
 
 	}
 }

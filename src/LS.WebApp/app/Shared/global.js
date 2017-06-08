@@ -147,6 +147,20 @@ var Constants = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Constants.prototype, "create", {
+        get: function () {
+            return 0;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Constants.prototype, "modify", {
+        get: function () {
+            return 1;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return Constants;
 }());
 Constants = __decorate([

@@ -1,7 +1,7 @@
 ﻿import { Component, ViewEncapsulation, Input, Attribute, OnChanges, OnInit } from '@angular/core';
 import { EmitterService } from '../Service/emitter.service';
 import { CompanyDataService } from '../Service/Services';
-
+import { Global } from '../Shared/global';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router, ActivatedRoute, Params } from '@angular/router';
 @Component({
 	selector: 'app-header',
@@ -19,8 +19,8 @@ export class HeaderComponent implements OnInit {
 	
 	msg: string;
 	@Input() brandingmodel: { companyLogoUrl: string, name: string };
-	@Input() loggedInUser: {};
-	constructor() { }
+	@Input() loggedInUser: {Id:string};
+	constructor(private _global: Global) { }
 	ngOnInit(): void {
 		this.companyLogo = this.brandingmodel.companyLogoUrl;
 		this.companyTitle = this.brandingmodel.name;
@@ -28,8 +28,8 @@ export class HeaderComponent implements OnInit {
 	
 	
 	LogOut() {
-		alert('logout')
-		window.location.href = "/logout?userid=" +"1";}
+	
+		window.location.href = "/logout?userid=" + this._global.loggedInUser.id;}
 	
 	
 

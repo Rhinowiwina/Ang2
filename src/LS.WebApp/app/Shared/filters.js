@@ -6,25 +6,50 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var AccordianRank = (function () {
-    function AccordianRank() {
+var YesNo = (function () {
+    function YesNo() {
     }
-    AccordianRank.prototype.transform = function (roles, filter) {
-        console.log(roles);
-        console.log(filter);
-        if (!roles || !filter) {
-            return roles;
+    YesNo.prototype.transform = function (data, filter) {
+        if (typeof data == 'undefined' || data == null) {
+            return "";
         }
-        // filter items array, items which match and return true will be kept, false will be filtered out
-        return roles.filter(function (role) { return role.rank = 2; });
+        if (data == true) {
+            return 'Yes';
+        }
+        else {
+            return 'No';
+        }
     };
-    return AccordianRank;
+    return YesNo;
 }());
-AccordianRank = __decorate([
+YesNo = __decorate([
     core_1.Pipe({
-        name: 'accordianRank',
+        name: 'YesNo',
         pure: false
     })
-], AccordianRank);
-exports.AccordianRank = AccordianRank;
+], YesNo);
+exports.YesNo = YesNo;
+var MsgLevel = (function () {
+    function MsgLevel() {
+    }
+    MsgLevel.prototype.transform = function (input, filter) {
+        if (input == 1) {
+            return 'Warning';
+        }
+        else if (input == 2) {
+            return 'Important';
+        }
+        else if (input == 3) {
+            return 'Informational';
+        }
+    };
+    return MsgLevel;
+}());
+MsgLevel = __decorate([
+    core_1.Pipe({
+        name: 'msgLevel',
+        pure: false
+    })
+], MsgLevel);
+exports.MsgLevel = MsgLevel;
 //# sourceMappingURL=filters.js.map

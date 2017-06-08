@@ -24,6 +24,7 @@ export class Global {
 		return this._loggedInUser;
 	}
 	set criticalMsgRead(val: boolean) {
+
 		this._criticalMsgRead = val	}
 	get criticalMsgRead():boolean {
 	return	this._criticalMsgRead
@@ -72,5 +73,11 @@ export class Constants {
 	}
 	get salesRepRoleRank() {
 		return 6
+	}
+	get create() {
+	return 0
+	}
+	get modify() {
+		return 1
 	}
 }

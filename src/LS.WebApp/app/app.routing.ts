@@ -3,12 +3,15 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoggedInUserResolve } from './Service/resolve.service';
 import { UserComponent } from './components/administration/users/users.component';
 import { HomeComponent } from './components/home/home.component';
-
+import { LoginMsgComponent } from './components/administration/loginMessages/loginMsg.component'
+import { ModifyLoginMsgComponent } from './components/administration/loginMessages/modifyLoginMsg.component'
 const appRoutes: Routes = [
 
 	{ path: '', redirectTo: 'home', pathMatch: 'full' },
 	{path: 'home', component: HomeComponent},
-	{path: 'user', component: UserComponent},
+	{ path: 'user', component: UserComponent },
+	{ path: 'loginMsg', component: LoginMsgComponent },
+	{ path: 'modifyLoginMsg/:messageId', component: ModifyLoginMsgComponent }
 ];
 
 export const routing: ModuleWithProviders =

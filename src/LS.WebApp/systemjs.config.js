@@ -30,6 +30,7 @@
 			'angular2-toaster': 'npm:angular2-toaster/bundles/angular2-toaster.umd.js',
 			'ag-grid-angular' : 'node_modules/ag-grid-angular',
 			'ag-grid': 'node_modules/ag-grid',
+			'mydatepicker': 'npm:mydatepicker/bundles/mydatepicker.umd.min.js'
         },
         // packages tells the System loader how to load when no filename and/or no extension
 		packages: {

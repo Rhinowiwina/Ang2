@@ -1,0 +1,25 @@
+﻿<img src="/Content/img/spiffygif_30x30.gif" style="text-align:center" [hidden]="!loading" />
+
+<div *ngIf="_global.loggedInUser && !loading" >
+ <div class="row">
+	<div class="col-xs-12 col-sm-7"><h1 trns>Available Messages</h1></div>
+
+	<div class="col-xs-12 col-sm-5 add-level-button-group">
+		<button type="button" *ngIf="_global.loggedInUser.role.rank <=_constants.administratorRoleRank" class="btn admin-button far-right admin-button-large"  (click)="modifyMessage()" trns>Add a Message</button>
+	</div>
+</div>
+
+<div *ngIf="!loading" class="order-content">
+	<p *ngIf="!messages.length > 0" trns>There are no messages.</p>
+	<div *ngIf="messages.length > 0">
+		<ag-grid-angular #agGrid style="width: 100%; height: 350px;" class="ag-fresh"
+						 [gridOptions]="msgGridOptions">
+
+		</ag-grid-angular>
+	</div>
+
+</div>
+</div>
+
+
+	

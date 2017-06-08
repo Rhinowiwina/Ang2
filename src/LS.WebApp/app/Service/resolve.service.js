@@ -17,26 +17,29 @@ var router_1 = require("@angular/router");
 var Services_1 = require("../Service/Services");
 var Global_1 = require("../Shared/Global");
 var LoggedInUserResolve = (function () {
-    function LoggedInUserResolve(_global, router) {
+    function LoggedInUserResolve(_global, router, route, state, _appUserDataService) {
         this._global = _global;
         this.router = router;
+        this._appUserDataService = _appUserDataService;
     }
-    LoggedInUserResolve.prototype.resolve = function (route) {
-        var id = +route.params['id'];
-        return this._global.loggedInUser;
+    LoggedInUserResolve.prototype.resolve = function (route, state) {
+        var _this = this;
+        return new Observable_1.Observable(function (observer) {
+            _this._loggedInUser = _this._global.loggedInUser;
+            observer.next(_this._loggedInUser);
+        });
     };
     return LoggedInUserResolve;
 }());
 LoggedInUserResolve = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [Global_1.Global, router_1.Router])
+    __metadata("design:paramtypes", [Global_1.Global, router_1.Router, router_1.ActivatedRouteSnapshot, router_1.RouterStateSnapshot, Services_1.AppUserDataService])
 ], LoggedInUserResolve);
 exports.LoggedInUserResolve = LoggedInUserResolve;
 var GlobalVariableResolve = (function () {
     function GlobalVariableResolve(_appUserDataService, router) {
         this._appUserDataService = _appUserDataService;
         this.router = router;
-        alert('tere39');
     }
     GlobalVariableResolve.prototype.resolve = function (route) {
         var id = +route.params['id'];

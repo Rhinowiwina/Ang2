@@ -37,33 +37,6 @@ export class UserComponent implements OnInit {
 	
 	
 
-		//loadUsers(rank:number,index:number) {
-
-			//this._userDataService.getAllUsersUnderLoggedInUserInTree().subscribe(response => {
-			//	var response = response;
-			//	if (!response.isSuccessful) {
-			//		this.toasterService.pop('error', 'Error Getting Login Messages', response.errror.userHelp);
-			//	}
-			//	this.messages = response.data;
-			//	for (let i = 0; i < this.messages.length; i++) {
-
-			//		if (this.messages[i].msgLevel == 1) {
-			//			this.criticalMsg.push(this.messages[i])
-
-			//		}
-			//	}
-			//	//alert(this._global.criticalMsgRead)
-			//	if (this.criticalMsg.length > 0) {//&& !this._global.criticalMsgRead
-			//		//this.modal.open('lg')
-			//		this.showModalSpinner = false;
-			//	}
-			//}, error => this.msg = <any>error);
-
-		//}
-		//setCriticalMsgRead() {
-		//	this.modal.close()
-		//	//this._global.criticalMsgRead = true;
-
-		//}
+		
 	
 }

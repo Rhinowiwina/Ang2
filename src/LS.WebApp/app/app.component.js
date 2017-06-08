@@ -36,7 +36,6 @@ var AppComponent = (function () {
         this.toasterService = toasterService;
     }
     AppComponent.prototype.ngOnInit = function () {
-        this._global.criticalMsgRead = true;
         this.GetBranding();
     };
     //popToast() {

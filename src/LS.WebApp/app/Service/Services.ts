@@ -10,12 +10,15 @@ export class BaseService {
 	constructor(private _http:Http) {
 	//_http is sent from inherited class
 	}
-
+	//return this._http.get(url)
+	//.map((response: Response) => <any>response.json())
+	////.do(data => console.log("All: " + JSON.stringify(data)))
+	//.catch(this.handleError);
 	//base calls
 	get(url: string): Observable<any> {
 	
 		return this._http.get(url)
-			.map((response: Response) => <any>response.json())
+			.map(res => JSON.parse(res.text(), this.reviver))
 			//.do(data => console.log("All: " + JSON.stringify(data)))
 			.catch(this.handleError);
 	}
@@ -50,6 +53,15 @@ export class BaseService {
 		
 		return Observable.throw(error.json().error || 'Server error');
 	}
+	reviver(key: any, value: any): any {
+	  console.log(key)
+		if ('beginDate' === key) {
+			//you can use any de-serialization algorithm here
+			return new Date(value);
+		}
+		return value;
+	}
+
 
 }
 @Injectable()
@@ -97,6 +109,14 @@ export class MessageDataService extends BaseService {
 	getActiveMessages() {
 	
 		return this.get(this.baseUrl +  'getActiveMessages');
+
+	}
+	getAllMessages() {
+		return this.get(this.baseUrl + 'getAllMessages');
+	}
+	getMsgToEdit(messageId: string) {
+	
+		return this.get(this.baseUrl + 'getMsgToEdit?messageId=' + messageId);
 
 	}
 

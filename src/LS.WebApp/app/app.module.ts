@@ -1,20 +1,24 @@
-﻿import { NgModule } from '@angular/core';
+﻿//
+import { NgModule } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { HttpModule } from '@angular/http';
-
+import { MyDatePickerModule } from 'mydatepicker';
 import { routing } from './app.routing';
 //System
 import { ToasterModule, ToasterService,ToasterConfig } from 'angular2-toaster';
 import { Global } from './Shared/global';
 import { Constants } from './Shared/global';
 import { Accordion, AccordionGroup, AccordionHead } from './Shared/accordion';
-import { AccordianRank } from './Shared/filters';
+import { YesNo } from './Shared/filters';
 import { AgGridModule } from 'ag-grid-angular/main';
+import { DatePipe } from '@angular/common';
 //Services Imports
+import { LoggedInUserResolve} from './Service/resolve.service'
 import { CompanyDataService } from './Service/Services';
 import { MessageDataService } from './Service/Services';
 import { AppUserDataService } from './Service/Services';
@@ -24,14 +28,16 @@ import { HeaderComponent } from "./common/header"
 import { BrandingComponent } from './common/branding';
 import { UserComponent } from './components/administration/users/users.component';
 import { UsersdetailComponent } from './components/administration/users/users-detail.component';
-import { LoggedInUserResolve } from './Service/resolve.service';
+import { LoginMsgComponent } from './components/administration/loginMessages/loginMsg.component';
+import { ModifyLoginMsgComponent } from './components/administration/loginMessages/modifyLoginMsg.component';
+
 
 @NgModule({
-	imports: [BrowserModule, ReactiveFormsModule, HttpModule, routing, Ng2Bs3ModalModule, ToasterModule, AgGridModule.withComponents([]),],
+	imports: [BrowserModule, MyDatePickerModule, ReactiveFormsModule,  FormsModule, HttpModule, routing, Ng2Bs3ModalModule, ToasterModule, AgGridModule.withComponents([]),],
 
-	declarations: [AppComponent, AccordianRank, Accordion, AccordionGroup, AccordionHead, UsersdetailComponent,HomeComponent, HeaderComponent, BrandingComponent, UserComponent],
+	declarations: [AppComponent, LoginMsgComponent, YesNo, Accordion, AccordionGroup, AccordionHead, UsersdetailComponent, HomeComponent, HeaderComponent, BrandingComponent, UserComponent,ModifyLoginMsgComponent],
 
-	providers: [{ provide: APP_BASE_HREF, useValue: '/' }, CompanyDataService, AppUserDataService,LoggedInUserResolve, Global, Constants, MessageDataService,],
+	providers: [{ provide: APP_BASE_HREF, useValue: '/' }, DatePipe, CompanyDataService, AppUserDataService,LoggedInUserResolve, Global, Constants, MessageDataService,],
 
 	bootstrap: [AppComponent]
 
