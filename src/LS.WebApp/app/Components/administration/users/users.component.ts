@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
 import { Global } from '../../../Shared/global';
 import { ToasterModule, ToasterService, ToasterConfig, BodyOutputType } from 'angular2-toaster';
-import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
+//import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { UsersdetailComponent } from '../../../components/administration/users/users-detail.component';
 import { UserView } from '../../../BindingModels/userBindingModels';
 import { AppUserDataService } from '../../../Service/Services';

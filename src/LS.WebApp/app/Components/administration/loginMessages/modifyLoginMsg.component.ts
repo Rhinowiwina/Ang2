@@ -8,7 +8,6 @@ import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
 import { Global } from '../../../Shared/global';
 import { ToasterModule, ToasterService, ToasterConfig, BodyOutputType } from 'angular2-toaster';
-import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { message } from '../../../BindingModels/messageBindingModels';
 import { MessageDataService } from '../../../Service/Services'
 
@@ -17,65 +16,96 @@ import { LoggedInUser  } from '../../../BindingModels/userBindingModels';
 import { AppUserDataService } from '../../../Service/Services';
 import { Constants } from '../../../Shared/global';
 import { YesNo } from '../../../Shared/filters';
-import { IMyDpOptions } from 'mydatepicker';
-//import { DatepickerModule } from 'angular2-material-datepicker'
+import { DatepickerModule } from 'ngx-bootstrap';
 //
 @Component({
-	
-	templateUrl:'../../../app/components/administration/loginMessages/modifyLoginMsg.html',
-	styleUrls: ['../../Content/sass/siteAngular.css']
+
+    templateUrl: '../../../app/components/administration/loginMessages/modifyLoginMsg.html',
+    styleUrls: ['../../Content/sass/siteAngular.css']
 })
 
-export class ModifyLoginMsgComponent implements OnInit,OnDestroy {
-	private myDatePickerOptions: IMyDpOptions = {
-		dateFormat: 'mm/dd/yyyy',
-		markCurrentDay: true,
-		showClearDateBtn:false
-	}
+export class ModifyLoginMsgComponent implements OnInit, OnDestroy {
 
-	private toasterService: ToasterService;
-	sub: any;
-	msg: string;
-	loading: boolean = true;
-	errmsg: string;
-	hasLoadded: boolean = false;
-	message: message;
-	private model: Object = { date: { year:0 , month: 0, day: 0 } };
-	messageId: string;
-	createOrModify: number;
-	levels = [{ id: 1, name: 'Critical' }, { id: 2, name: 'Important' }, { id: 3, name: 'Informational' }]
-	constructor(private _messageDataService: MessageDataService, private _global: Global, toasterService: ToasterService, private _constants: Constants, private datePipe: DatePipe, private route: ActivatedRoute) {
-		this.toasterService = toasterService;	
-	}
+    private toasterService: ToasterService;
+    sub: any;
+    msg: string;
+    loading: boolean = true;
+    errmsg: string;
+    hasLoadded: boolean = false;
+    message: message;
+    private model: Object = { date: { year: 0, month: 0, day: 0 } };
+    messageId: string;
+    createOrModify: number;
+    levels = [{ id: 1, name: 'Critical' }, { id: 2, name: 'Important' }, { id: 3, name: 'Informational' }]
+    constructor(private _messageDataService: MessageDataService, private _global: Global, toasterService: ToasterService, private _constants: Constants, private datePipe: DatePipe, private route: ActivatedRoute) {
+        this.toasterService = toasterService;
+    }
 
-	ngOnInit(): void {
+    ngOnInit(): void {
 
-		this.sub = this.route.params.subscribe(params => {
-		  this.messageId = params['messageId']	
-			this.getMessageToEdit(this.messageId);
-		})
-	}
-	ngOnDestroy() {
-		this.sub.unsubscribe();
-	}
-	getMessageToEdit(messageId: string) {		
-		this.loading = true;
-	
-		this._messageDataService.getMsgToEdit(messageId).subscribe(response => {
-			var response = response;
-			if (!response.isSuccessful) {
-				this.loading = false;
-				this.toasterService.pop('error', 'Error Getting Login Message.', response.errror.userHelp);
-				this.loading=false
-			}
+        this.sub = this.route.params.subscribe(params => {
+            this.messageId = params['messageId']
+            if (this.messageId) {
+                this.createOrModify = this._constants.modify
+                this.getMessageToEdit(this.messageId);
+            } else {
+                this.createNewMsg();
+            }
 
-			this.message = response.data;
-			//this.model = { date: { year: 2018, month: 10, day: 9 } };
-		console.log(this.message)
-			this.loading = false;
-		}, error => this.msg = <any>error);
+        })
+    }
+    ngOnDestroy() {
+        this.sub.unsubscribe();
+    }
+    getMessageToEdit(messageId: string) {
+        this.loading = true;
 
-	}
+        this._messageDataService.getMsgToEdit(messageId).subscribe(response => {
+            var response = response;
+            if (!response.isSuccessful) {
+                this.loading = false;
+                this.toasterService.pop('error', 'Error Getting Login Message.', response.errror.userHelp);
+                this.loading = false
+            }
+
+            this.message = response.data;
 
 
+            this.loading = false;
+        }, error => this.msg = <any>error);
+
+    }
+    createNewMsg() {
+        this.message = new message();
+        this.createOrModify = this._constants.create
+        this.message.active = true;
+        this.message.id = "";
+        this.message.title = "";
+        this.message.msg = "";
+        this.message.beginDate = null;
+        this.message.expirationDate = null;
+        this.message.msgLevel = null
+        this.loading = false;
+    }
+    submitMessage( form: any) {
+        
+        if (form.valid) {
+          
+            this.loading = true;
+            this._messageDataService.submittMessageForAddOrEdit(this.createOrModify, this.message).subscribe(response => {
+                var response = response;
+                if (!response.isSuccessful) {
+                    this.loading = false;
+                    this.toasterService.pop('error', 'Error Updating Login Message.', response.errror.userHelp);
+                    this.loading = false
+                }
+                this.toasterService.pop('success', "Successfully edited message.");
+                this.loading = false;
+            }, error => this.msg = <any>error);
+
+
+
+    
+      }
+    }
 }

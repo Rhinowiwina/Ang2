@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
+//import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { HttpModule } from '@angular/http';
 import { MyDatePickerModule } from 'mydatepicker';
 import { routing } from './app.routing';
@@ -30,10 +30,10 @@ import { UserComponent } from './components/administration/users/users.component
 import { UsersdetailComponent } from './components/administration/users/users-detail.component';
 import { LoginMsgComponent } from './components/administration/loginMessages/loginMsg.component';
 import { ModifyLoginMsgComponent } from './components/administration/loginMessages/modifyLoginMsg.component';
-
-
+import { ModalModule, DatepickerModule } from 'ngx-bootstrap';
+// Ng2Bs3ModalModule,
 @NgModule({
-	imports: [BrowserModule, MyDatePickerModule, ReactiveFormsModule,  FormsModule, HttpModule, routing, Ng2Bs3ModalModule, ToasterModule, AgGridModule.withComponents([]),],
+    imports: [BrowserModule, ModalModule.forRoot(), DatepickerModule.forRoot(), MyDatePickerModule, ReactiveFormsModule,  FormsModule, HttpModule, routing, ToasterModule, AgGridModule.withComponents([]),],
 
 	declarations: [AppComponent, LoginMsgComponent, YesNo, Accordion, AccordionGroup, AccordionHead, UsersdetailComponent, HomeComponent, HeaderComponent, BrandingComponent, UserComponent,ModifyLoginMsgComponent],
 

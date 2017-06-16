@@ -137,8 +137,7 @@ var LoginMsgComponent = (function () {
         this.msgGridOptions.api.exportDataAsCsv(params);
     };
     LoginMsgComponent.prototype.modifyMessage = function (messageId) {
-        alert('here');
-        this.router.navigate(['modifyLoginMsg', messageId]);
+        this.router.navigate(['modifyLoginMsg', ""]);
     };
     return LoginMsgComponent;
 }());

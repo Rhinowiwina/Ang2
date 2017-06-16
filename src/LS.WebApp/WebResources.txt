@@ -1,2 +1,6 @@
 ﻿https://github.com/dougludlow/ng2-bs3-modal --Modal Forms
 https://github.com/kekeh/mydatepicker#options-attribute DatePicker
+http://valor-software.com/ngx-bootstrap/#/  --ModalForms,DatePicker
+
+{http://plnkr.co/edit/hkENUhos6q9fhiOHprXO?p=preview angular2-toaser
+https://www.npmjs.com/package/angular2-toaster}

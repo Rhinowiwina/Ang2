@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser'
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
 import { Global } from '../../../Shared/global';
+import { ModalModule, ModalDirective } from 'ngx-bootstrap';
 import { ToasterModule, ToasterService, ToasterConfig, BodyOutputType } from 'angular2-toaster';
-import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
+//import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 import { UserView } from '../../../BindingModels/userBindingModels';
 import { AppUserDataService } from '../../../Service/Services';
 import { Constants } from '../../../Shared/global';
@@ -20,13 +21,15 @@ import { GridOptions } from "ag-grid/main";
 export class UsersdetailComponent implements OnInit {
 
 //
+    @ViewChild('reportModal')
+    reportModal: ModalDirective;
 //live grid
 	private userGridOptions: GridOptions;
 	public rowData: any[] = [];
 	private columnDefs: any[];
 	//	must be together in this order
-	@ViewChild('reportsettings')
-	reportSettingsModal: ModalComponent;
+	//@ViewChild('reportsettings')
+	//reportSettingsModal: ModalComponent;
 	//
 	msg: string;
 	loading: boolean = true;
@@ -238,17 +241,10 @@ onBtExport(form: string) {
 //	}
 //}
 
-closeModal(vmodal: string) {
-	if (vmodal == "reportModal") {
-		this.reportSettingsModal.close()
-	}
-
-
+closeModal(vmodal: string) {    
+        this.reportModal.hide();
 }
 openModal(vmodal: string) {
-
-		if(vmodal == "reportModal") {
-			this.reportSettingsModal.open('lg')
-		}
+            this.reportModal.show()
 	}
 }

@@ -4,23 +4,22 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
+import { message } from '../BindingModels/messageBindingModels';
+import { Constants } from '../Shared/global'
 @Injectable()
 export class BaseService {
-	baseUrl: string
-	constructor(private _http:Http) {
+    baseUrl: string
+    constructor(private _http: Http, private _constants:Constants) {
 	//_http is sent from inherited class
 	}
-	//return this._http.get(url)
-	//.map((response: Response) => <any>response.json())
-	////.do(data => console.log("All: " + JSON.stringify(data)))
-	//.catch(this.handleError);
+	
 	//base calls
 	get(url: string): Observable<any> {
 	
 		return this._http.get(url)
-			.map(res => JSON.parse(res.text(), this.reviver))
-			//.do(data => console.log("All: " + JSON.stringify(data)))
-			.catch(this.handleError);
+	.map((response: Response) => <any>response.json())
+	//.do(data => console.log("All: " + JSON.stringify(data)))
+	.catch(this.handleError);
 	}
 
 	post(url: string, model: any): Observable<any> {
@@ -53,24 +52,17 @@ export class BaseService {
 		
 		return Observable.throw(error.json().error || 'Server error');
 	}
-	reviver(key: any, value: any): any {
-	  console.log(key)
-		if ('beginDate' === key) {
-			//you can use any de-serialization algorithm here
-			return new Date(value);
-		}
-		return value;
-	}
+
 
 
 }
 @Injectable()
 export class CompanyDataService extends BaseService {
 	baseUrl: string="api/company/";
-  
-  constructor(private vhttp: Http) {
-	  super(vhttp)
-  }
+
+    constructor(private vhttp: Http, private constants: Constants) {
+        super(vhttp, constants);
+    }
   getCompany(companyId: string) {
 	 
 	  return super.get(this.baseUrl+"getCompany?companyId="+companyId)
@@ -81,9 +73,9 @@ export class CompanyDataService extends BaseService {
 export class AppUserDataService extends BaseService{
 	baseUrl: string = 'api/appUser/';
 	
-	constructor(private vhttp: Http) {
-		super(vhttp)
-	}
+    constructor(private vhttp: Http, private constants: Constants) {
+        super(vhttp, constants);
+    }
 	getLoggedInUser () {
 		
 		return this.get(this.baseUrl + 'getLoggedInUser');
@@ -102,9 +94,10 @@ export class AppUserDataService extends BaseService{
 @Injectable()
 export class MessageDataService extends BaseService {
 	baseUrl: string = 'api/loginMsg/'
-	
-	constructor(private vhttp: Http) {
-		super(vhttp)
+
+    constructor(private vhttp: Http,private constants:Constants) {
+        super(vhttp,constants);
+     
 	}
 	getActiveMessages() {
 	
@@ -118,7 +111,26 @@ export class MessageDataService extends BaseService {
 	
 		return this.get(this.baseUrl + 'getMsgToEdit?messageId=' + messageId);
 
-	}
+    }
+    submittMessageForAddOrEdit(createOrModify: number, message: message) {
+    
+        var postData = {
+            id: message.id,
+            title: message.title,
+            msg: message.msg,
+            beginDate: message.beginDate,
+
+            expirationDate: message.expirationDate,
+            msgLevel: message.msgLevel,
+            active: message.active
+        }
+        if (createOrModify == this.constants.modify) {
+            return this.post(this.baseUrl + 'editMessage', postData);
+        }
+        if (createOrModify == this.constants.create) {
+            return this.post(this.baseUrl + 'createMessage', postData);
+        }
+      }
 
 }
 

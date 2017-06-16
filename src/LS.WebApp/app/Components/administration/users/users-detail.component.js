@@ -11,8 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 require("rxjs/add/operator/mergeMap");
 var global_1 = require("../../../Shared/global");
+var ngx_bootstrap_1 = require("ngx-bootstrap");
 var angular2_toaster_1 = require("angular2-toaster");
-var ng2_bs3_modal_1 = require("ng2-bs3-modal/ng2-bs3-modal");
 var Services_1 = require("../../../Service/Services");
 var global_2 = require("../../../Shared/global");
 //https://www.npmjs.com/package/ng2-accordion
@@ -183,21 +183,17 @@ var UsersdetailComponent = (function () {
     //	}
     //}
     UsersdetailComponent.prototype.closeModal = function (vmodal) {
-        if (vmodal == "reportModal") {
-            this.reportSettingsModal.close();
-        }
+        this.reportModal.hide();
     };
     UsersdetailComponent.prototype.openModal = function (vmodal) {
-        if (vmodal == "reportModal") {
-            this.reportSettingsModal.open('lg');
-        }
+        this.reportModal.show();
     };
     return UsersdetailComponent;
 }());
 __decorate([
-    core_1.ViewChild('reportsettings'),
-    __metadata("design:type", ng2_bs3_modal_1.ModalComponent)
-], UsersdetailComponent.prototype, "reportSettingsModal", void 0);
+    core_1.ViewChild('reportModal'),
+    __metadata("design:type", ngx_bootstrap_1.ModalDirective)
+], UsersdetailComponent.prototype, "reportModal", void 0);
 UsersdetailComponent = __decorate([
     core_1.Component({
         selector: 'user-detail',

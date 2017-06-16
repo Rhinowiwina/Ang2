@@ -46,49 +46,65 @@
 		
 		</accordion-group>
 </accordion>
-<modal  #reportsettings>
-	<modal-header [show-close]="true">
-		<h4 class="modal-title">Report Help</h4>
-	</modal-header>
-	<modal-body>
-		<h3>Export Data</h3>
-		Export data by clicking the export button above the search results. The data will be exported in a CSV format.
-		<br /><br />
 
-		<strong>When exporting data notice the following: </strong>
-		<ul>
-			<li>Filtered rows are not included in the export.</li>
-			<li>The sort order is maintained in the export.</li>
-			<li>The order of the columns is maintained in the export.</li>
-		</ul>
+<div class="modal fade" bsModal #reportModal="bs-modal" 
+     tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Report Help</h4>
 
-		<div ng-show="!filters.MapType">
-			<hr />
+                <button type="button" class="close pull-right" aria-label="Close" (click)="closeModal()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div style="margin-bottom:8px"></div>
+            </div>
+            <div class="modal-body">
+                <h3>Export Data</h3>
+                Export data by clicking the export button above the search results. The data will be exported in a CSV format.
+                <br /><br />
 
-			<h3>Resize Columns</h3>
-			Just like Excel, each column can be 'auto resized' by double clicking the right side of the header rather than dragging it. When you do this, the grid will work out the best width to fit the contents of the cells in the column.
-			<hr />
+                <strong>When exporting data notice the following: </strong>
+                <ul>
+                    <li>Filtered rows are not included in the export.</li>
+                    <li>The sort order is maintained in the export.</li>
+                    <li>The order of the columns is maintained in the export.</li>
+                </ul>
 
-			<h3>Pin Columns</h3>
-			Pin a column by dragging the column to the left or right. The grid will reorder the columns so that 'left pinned' columns come first and 'right pinned' columns come last
-			<hr />
+                <div ng-show="!filters.MapType">
+                    <hr />
 
-			<h3>Reorder Columns</h3>
-			Reorder columns by dragging the header name to either the left or right.
-			<hr />
+                    <h3>Resize Columns</h3>
+                    Just like Excel, each column can be 'auto resized' by double clicking the right side of the header rather than dragging it. When you do this, the grid will work out the best width to fit the contents of the cells in the column.
+                    <hr />
 
-			<h3>Sort Columns</h3>
-			Sort a column by clicking on the column header. To do multi-column sorting, hold down shift while clicking the column header.
-			<hr />
+                    <h3>Pin Columns</h3>
+                    Pin a column by dragging the column to the left or right. The grid will reorder the columns so that 'left pinned' columns come first and 'right pinned' columns come last
+                    <hr />
 
-			<h3>Filter Columns</h3>
-			Filter columns by clicking the <i class="fa fa-bars"></i> icon when hovering over a header column. You can filter data based on different conditional statements. When a filter is active on a column, the filter icon appears before the column name in the header.
-		</div>
-	</modal-body>
-	<!--<modal-footer>
-		<button type="button" class="btn btn-primary" (click)="closeModal()">Ok</button>
-	</modal-footer>-->
-</modal>
+                    <h3>Reorder Columns</h3>
+                    Reorder columns by dragging the header name to either the left or right.
+                    <hr />
+
+                    <h3>Sort Columns</h3>
+                    Sort a column by clicking on the column header. To do multi-column sorting, hold down shift while clicking the column header.
+                    <hr />
+
+                    <h3>Filter Columns</h3>
+                    Filter columns by clicking the <i class="fa fa-bars"></i> icon when hovering over a header column. You can filter data based on different conditional statements. When a filter is active on a column, the filter icon appears before the column name in the header.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
 
 
 

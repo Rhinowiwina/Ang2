@@ -3,15 +3,15 @@
 	﻿<h1>ADD/EDIT Message</h1>
 	<div *ngIf="_global.loggedInUser && !loading && message">
 
-		<form role="form" class="form-horizontal" name="modifyMessageForm">
+		<form role="form" (ngSubmit)="submitMessage(modifyMessageForm)" #modifyMessageForm="ngForm"  class="form-horizontal" name="modifyMessageForm" >
 			<div class="form-group">
-				<label class="col-sm-3 control-label">Title*</label>
+				<label class="col-sm-3 control-label">Title*</label> 
 				<div class="col-sm-5">
-					<input type="text" class="form-control" [(ngModel)]="message.title" name="title" required>
-
-					<!--<div class="alert alert-danger" role="alert" *ngIf="modifyMessageForm.title.$error.required && modifyMessageForm.title.$dirty">
-						{{errorMessage.invalidTitle}}
-					</div>-->
+					<input type="text" class="form-control" [(ngModel)]="message.title" name="title" #title="ngModel" required>
+                    
+					<div class="alert alert-danger" role="alert" *ngIf="title.errors?.required && title.dirty">
+						Title is required.
+					</div>
 				</div>
 			</div>
 
@@ -25,26 +25,40 @@
 		</div>
 	</div>
 			<div class="form-group">
+  
 		<label class="col-sm-3 control-label" >Start Date*</label>
-		<div class="col-sm-5">
-			<my-date-picker name="mydate" [options]="myDatePickerOptions"
-							[(ngModel)]="message.beginDate"
-							required
-							typeof="date">
-							
-			</my-date-picker>
-			<!--<div class="alert alert-danger" role="alert" *ngIf="modifyMessageForm.beginDate.$error.required && modifyMessageForm.beginDate.$dirty">
-			{{errorMessage.invalidStartDate}}
-		</div>-->
+		<div class="col-sm-5">  
+            <div class="dropdown">
+                <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+                    <div class="input-group">
+                        <input name="beginDate" type="text" class="form-control" [ngModel]="message.beginDate|date" (ngModelChange)="message.beginDate = $event" #beginDate="ngModel" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">                  
+                    <datepicker name="calbeginDate" [ngModel]="message.beginDate" (ngModelChange)="message.beginDate = $event"  [minDate]="minDate" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
+                </ul>
+            </div>
+            
+			<div class="alert alert-danger" role="alert" *ngIf="beginDate.errors?.required && beginDate.dirty">
+			Start date is required.
+		</div>
 			</div>
 	</div>
-			<!--<div class="form-group">
+			<div class="form-group">
 		<label class="col-sm-3 control-label" >End Date*</label>
-		<div class="col-sm-5">
-
-			<input type="text" class="form-control" name="endDate" [(ngModel)]="message.expirationDate" jquerydatepicker date-picker="message.expirationDate" required />
-			<div class="alert alert-danger" role="alert" *ngIf="modifyMessageForm.endDate.$error.required && modifyMessageForm.endDate.$dirty">
-				{{errorMessage.invalidendDate}}
+		<div class="col-sm-5">			
+            <div class="dropdown">
+                <a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" data-target="#" href="#">
+                    <div class="input-group">
+                      <input name="endDate" #endDate="ngModel" required type="text" class="form-control" [ngModel]="message.expirationDate|date" (ngModelChange)="message.expirationDate = $event"><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                    <datepicker name="calendDate" [ngModel]="message.expirationDate" (ngModelChange)="message.expirationDate = $event" [minDate]="minDate" [showWeeks]="true" [dateDisabled]="dateDisabled"></datepicker>
+                </ul>
+            </div>
+            <div class="alert alert-danger" role="alert" *ngIf="endDate?.errors?.required && endDate.dirty">
+				End date is required.
 			</div>
 		</div>
 	</div>
@@ -55,17 +69,18 @@
 			<select class="form-control"
 					[(ngModel)]="message.msgLevel"
 					name="level"
+                    #level="ngModel"
 					required>
 				<option value=''>- Select Level -</option>
 				<option *ngFor="let level of levels" [value]="level.id" >{{level.name}}</option>
 			</select>
 
-			<!--<div class="alert alert-danger" role="alert"
-				 *ngIf="modifyMessageForm.level.$error.required && modifyMessageForm.level.$dirty">
-				{{errorMessage.invalidLevel}}
-			</div>-->
-			<!--</div>
-	</div>-->
+			<div class="alert alert-danger" role="alert"
+				 *ngIf="level.errors?.required && level.dirty">
+				Please select a level of importance.
+			</div>
+			</div>
+	</div>
 
 
 	<div class="form-group">
@@ -78,12 +93,13 @@
 		</div>
 	</div>
 	<br />
-	<button type="submit" (click)="submitMessage(createOrModify)" class="btn admin-button" >SUBMIT</button>
+	<button type="submit" [disabled]="!modifyMessageForm.form.valid"  class="btn admin-button" >SUBMIT</button>
 
 	<button type="button" [disabled]="!hasLoaded"(click)="goBack()" class="btn cancel-button" >CANCEL</button>
 
 	<button type="button" [disabled]="!hasLoaded" (click)="deleteMessage(message.id)" class="btn generic-button" *ngIf="createOrModify== _constants.modify" >DELETE</button>
-	</form>
+	
+            </form>
 </div>
 	</div>
 

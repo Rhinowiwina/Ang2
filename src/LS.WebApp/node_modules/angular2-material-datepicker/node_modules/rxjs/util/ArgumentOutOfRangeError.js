@@ -1,0 +1,25 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = require("tslib");
+/**
+ * An error thrown when an element was queried at a certain index of an
+ * Observable, but no such index or position exists in that sequence.
+ *
+ * @see {@link elementAt}
+ * @see {@link take}
+ * @see {@link takeLast}
+ *
+ * @class ArgumentOutOfRangeError
+ */
+var ArgumentOutOfRangeError = (function (_super) {
+    tslib_1.__extends(ArgumentOutOfRangeError, _super);
+    function ArgumentOutOfRangeError() {
+        var _this = _super.call(this, 'argument out of range') || this;
+        _this.name = 'ArgumentOutOfRangeError';
+        Object.setPrototypeOf(_this, ArgumentOutOfRangeError.prototype);
+        return _this;
+    }
+    return ArgumentOutOfRangeError;
+}(Error));
+exports.ArgumentOutOfRangeError = ArgumentOutOfRangeError;
+//# sourceMappingURL=ArgumentOutOfRangeError.js.map

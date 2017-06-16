@@ -19,20 +19,17 @@ var Observable_1 = require("rxjs/Observable");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/do");
 require("rxjs/add/operator/catch");
+var global_1 = require("../Shared/global");
 var BaseService = (function () {
-    function BaseService(_http) {
+    function BaseService(_http, _constants) {
         this._http = _http;
+        this._constants = _constants;
         //_http is sent from inherited class
     }
-    //return this._http.get(url)
-    //.map((response: Response) => <any>response.json())
-    ////.do(data => console.log("All: " + JSON.stringify(data)))
-    //.catch(this.handleError);
     //base calls
     BaseService.prototype.get = function (url) {
-        var _this = this;
         return this._http.get(url)
-            .map(function (res) { return JSON.parse(res.text(), _this.reviver); })
+            .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
     BaseService.prototype.post = function (url, model) {
@@ -61,26 +58,19 @@ var BaseService = (function () {
     BaseService.prototype.handleError = function (error) {
         return Observable_1.Observable.throw(error.json().error || 'Server error');
     };
-    BaseService.prototype.reviver = function (key, value) {
-        console.log(key);
-        if ('beginDate' === key) {
-            //you can use any de-serialization algorithm here
-            return new Date(value);
-        }
-        return value;
-    };
     return BaseService;
 }());
 BaseService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [http_1.Http, global_1.Constants])
 ], BaseService);
 exports.BaseService = BaseService;
 var CompanyDataService = (function (_super) {
     __extends(CompanyDataService, _super);
-    function CompanyDataService(vhttp) {
-        var _this = _super.call(this, vhttp) || this;
+    function CompanyDataService(vhttp, constants) {
+        var _this = _super.call(this, vhttp, constants) || this;
         _this.vhttp = vhttp;
+        _this.constants = constants;
         _this.baseUrl = "api/company/";
         return _this;
     }
@@ -91,14 +81,15 @@ var CompanyDataService = (function (_super) {
 }(BaseService));
 CompanyDataService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [http_1.Http, global_1.Constants])
 ], CompanyDataService);
 exports.CompanyDataService = CompanyDataService;
 var AppUserDataService = (function (_super) {
     __extends(AppUserDataService, _super);
-    function AppUserDataService(vhttp) {
-        var _this = _super.call(this, vhttp) || this;
+    function AppUserDataService(vhttp, constants) {
+        var _this = _super.call(this, vhttp, constants) || this;
         _this.vhttp = vhttp;
+        _this.constants = constants;
         _this.baseUrl = 'api/appUser/';
         return _this;
     }
@@ -115,14 +106,15 @@ var AppUserDataService = (function (_super) {
 }(BaseService));
 AppUserDataService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [http_1.Http, global_1.Constants])
 ], AppUserDataService);
 exports.AppUserDataService = AppUserDataService;
 var MessageDataService = (function (_super) {
     __extends(MessageDataService, _super);
-    function MessageDataService(vhttp) {
-        var _this = _super.call(this, vhttp) || this;
+    function MessageDataService(vhttp, constants) {
+        var _this = _super.call(this, vhttp, constants) || this;
         _this.vhttp = vhttp;
+        _this.constants = constants;
         _this.baseUrl = 'api/loginMsg/';
         return _this;
     }
@@ -135,11 +127,28 @@ var MessageDataService = (function (_super) {
     MessageDataService.prototype.getMsgToEdit = function (messageId) {
         return this.get(this.baseUrl + 'getMsgToEdit?messageId=' + messageId);
     };
+    MessageDataService.prototype.submittMessageForAddOrEdit = function (createOrModify, message) {
+        var postData = {
+            id: message.id,
+            title: message.title,
+            msg: message.msg,
+            beginDate: message.beginDate,
+            expirationDate: message.expirationDate,
+            msgLevel: message.msgLevel,
+            active: message.active
+        };
+        if (createOrModify == this.constants.modify) {
+            return this.post(this.baseUrl + 'editMessage', postData);
+        }
+        if (createOrModify == this.constants.create) {
+            return this.post(this.baseUrl + 'createMessage', postData);
+        }
+    };
     return MessageDataService;
 }(BaseService));
 MessageDataService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [http_1.Http, global_1.Constants])
 ], MessageDataService);
 exports.MessageDataService = MessageDataService;
 //# sourceMappingURL=Services.js.map

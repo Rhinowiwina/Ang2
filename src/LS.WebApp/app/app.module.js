@@ -12,7 +12,7 @@ var platform_browser_1 = require("@angular/platform-browser");
 var forms_1 = require("@angular/forms");
 var forms_2 = require("@angular/forms");
 var app_component_1 = require("./app.component");
-var ng2_bs3_modal_1 = require("ng2-bs3-modal/ng2-bs3-modal");
+//import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 var http_1 = require("@angular/http");
 var mydatepicker_1 = require("mydatepicker");
 var app_routing_1 = require("./app.routing");
@@ -37,6 +37,8 @@ var users_component_1 = require("./components/administration/users/users.compone
 var users_detail_component_1 = require("./components/administration/users/users-detail.component");
 var loginMsg_component_1 = require("./components/administration/loginMessages/loginMsg.component");
 var modifyLoginMsg_component_1 = require("./components/administration/loginMessages/modifyLoginMsg.component");
+var ngx_bootstrap_1 = require("ngx-bootstrap");
+// Ng2Bs3ModalModule,
 var AppModule = (function () {
     function AppModule() {
     }
@@ -44,7 +46,7 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, mydatepicker_1.MyDatePickerModule, forms_2.ReactiveFormsModule, forms_1.FormsModule, http_1.HttpModule, app_routing_1.routing, ng2_bs3_modal_1.Ng2Bs3ModalModule, angular2_toaster_1.ToasterModule, main_1.AgGridModule.withComponents([]),],
+        imports: [platform_browser_1.BrowserModule, ngx_bootstrap_1.ModalModule.forRoot(), ngx_bootstrap_1.DatepickerModule.forRoot(), mydatepicker_1.MyDatePickerModule, forms_2.ReactiveFormsModule, forms_1.FormsModule, http_1.HttpModule, app_routing_1.routing, angular2_toaster_1.ToasterModule, main_1.AgGridModule.withComponents([]),],
         declarations: [app_component_1.AppComponent, loginMsg_component_1.LoginMsgComponent, filters_1.YesNo, accordion_1.Accordion, accordion_1.AccordionGroup, accordion_1.AccordionHead, users_detail_component_1.UsersdetailComponent, home_component_1.HomeComponent, header_1.HeaderComponent, branding_1.BrandingComponent, users_component_1.UserComponent, modifyLoginMsg_component_1.ModifyLoginMsgComponent],
         providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }, common_2.DatePipe, Services_1.CompanyDataService, Services_3.AppUserDataService, resolve_service_1.LoggedInUserResolve, global_1.Global, global_2.Constants, Services_2.MessageDataService,],
         bootstrap: [app_component_1.AppComponent]

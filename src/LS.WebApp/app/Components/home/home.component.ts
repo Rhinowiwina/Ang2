@@ -1,6 +1,7 @@
 ﻿
 import { Component,ViewChild ,ViewEncapsulation, Input, Attribute, OnChanges, OnInit, Inject, NgModule } from '@angular/core';
-import {ModalComponent} from 'ng2-bs3-modal/ng2-bs3-modal';
+//import {ModalComponent} from 'ng2-bs3-modal/ng2-bs3-modal';
+import { ModalModule, ModalDirective  } from 'ngx-bootstrap';
 import { BrowserModule } from '@angular/platform-browser'
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
@@ -8,7 +9,6 @@ import { message } from '../../BindingModels/messageBindingModels';
 import { LoggedInUser} from '../../BindingModels/userBindingModels';
 import { MessageDataService } from '../../Service/Services';
 import { Global } from '../../Shared/global';
-
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router, ActivatedRoute, Params } from '@angular/router';
 import { ToasterModule, ToasterService, ToasterConfig, BodyOutputType } from 'angular2-toaster';
 @Component({
@@ -21,8 +21,9 @@ providers:[MessageDataService],
 export class HomeComponent implements OnInit{
 	private toasterService: ToasterService;
 	loggedInUser:LoggedInUser
-	@ViewChild('modal')
-	modal: ModalComponent;
+    @ViewChild('staticModal')
+    public staticModal: ModalDirective;
+	//modal: ModalComponent;
 	msg: string;
 	loginmsg: {};	
 	messages:Array<message>;
@@ -34,7 +35,8 @@ export class HomeComponent implements OnInit{
 	}
 
 	ngOnInit(): void {
-		this.getMessages();
+        this.getMessages();
+       
 	}
 	
 	getMessages() {
@@ -54,14 +56,15 @@ export class HomeComponent implements OnInit{
 			}
 		
 			if (this.criticalMsg.length > 0 && !this._global.criticalMsgRead) {
-				this.modal.open('lg')
+				//this.modal.open('lg')
+                this.staticModal.show();
 				this.showModalSpinner = false;
 			}
 		}, error => this.msg = <any>error);
 
 	}
 	setCriticalMsgRead() {
-		this.modal.close()
+        this.staticModal.hide();
 		this._global.criticalMsgRead = true;
 
 	}

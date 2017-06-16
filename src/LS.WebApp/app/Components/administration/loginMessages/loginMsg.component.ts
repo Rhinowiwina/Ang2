@@ -170,8 +170,8 @@ export class LoginMsgComponent implements OnInit {
 
 	}
 	modifyMessage(messageId: string) {
-	alert('here')
-		this.router.navigate(['modifyLoginMsg', messageId]);
+
+		this.router.navigate(['modifyLoginMsg',""]);
 	}
 
 }

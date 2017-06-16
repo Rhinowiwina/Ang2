@@ -9,7 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var ng2_bs3_modal_1 = require("ng2-bs3-modal/ng2-bs3-modal");
+//import {ModalComponent} from 'ng2-bs3-modal/ng2-bs3-modal';
+var ngx_bootstrap_1 = require("ngx-bootstrap");
 require("rxjs/add/operator/mergeMap");
 var Services_1 = require("../../Service/Services");
 var global_1 = require("../../Shared/global");
@@ -41,21 +42,22 @@ var HomeComponent = (function () {
                 }
             }
             if (_this.criticalMsg.length > 0 && !_this._global.criticalMsgRead) {
-                _this.modal.open('lg');
+                //this.modal.open('lg')
+                _this.staticModal.show();
                 _this.showModalSpinner = false;
             }
         }, function (error) { return _this.msg = error; });
     };
     HomeComponent.prototype.setCriticalMsgRead = function () {
-        this.modal.close();
+        this.staticModal.hide();
         this._global.criticalMsgRead = true;
     };
     return HomeComponent;
 }());
 __decorate([
-    core_1.ViewChild('modal'),
-    __metadata("design:type", ng2_bs3_modal_1.ModalComponent)
-], HomeComponent.prototype, "modal", void 0);
+    core_1.ViewChild('staticModal'),
+    __metadata("design:type", ngx_bootstrap_1.ModalDirective)
+], HomeComponent.prototype, "staticModal", void 0);
 HomeComponent = __decorate([
     core_1.Component({
         selector: "app-home",
