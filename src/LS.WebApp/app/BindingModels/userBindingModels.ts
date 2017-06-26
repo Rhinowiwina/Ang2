@@ -1,27 +1,53 @@
 ﻿import { ApplicationRole } from './applicationRole';
 
 export class UserView {
-	Id: string;
-	FirstName: string; 
-	LastName: string;
-	ExternalUserID: string;
-	IsExternalUserIDActive: boolean;
-	UserName: string;
-	Email: string;
-	PayPalEmail: string;
-	IsActive: boolean;
-	AdditionalDataNeeded : boolean;
-	RoleId: string;
-	//RoleSimpleViewBindingModel Role 
-	PermissionsLifelineNlad : boolean;
-	PermissionsLifelineCA : boolean;
-	PermissionsLifelineTX: boolean;
-	PermissionsAllowTpivBypass : boolean;
-	PermissionsAccountOrder : boolean;
-	SalesTeamId: string;
+	id: string;
+	firstName: string; 
+	lastName: string;
+	externalUserID: string;
+	isExternalUserIDActive: boolean;
+	userName: string;
+	email: string;
+	payPalEmail: string;
+	isActive: boolean;
+	additionalDataNeeded : boolean;
+	roleId: string;
+    role: ApplicationRole;
+	permissionsLifelineNlad : boolean;
+	permissionsLifelineCA : boolean;
+	permissionsLifelineTX: boolean;
+	permissionsAllowTpivBypass : boolean;
+	permissionsAccountOrder : boolean;
+	salesTeamId: string;
 	//SalesTeamSimpleViewBindingModel SalesTeam 
-	RowVersion: string;
-	CanBeDeleted: boolean;
+	rowVersion: string;
+	canBeDeleted: boolean;
+}
+export class EditUserView {
+    id: string;
+    comapnyId: string;
+    userName: string;
+    originalEmail:string
+    firstName: string;
+    lastName: string;
+    externalUserID: string;
+    isExternalUserIDActive: boolean;
+    email: string;
+    payPalEmail: string;
+    isActive: boolean;
+    originalActive: boolean;
+    additionalDataNeeded: boolean;
+    permissionsAllowTpivBypass: boolean;
+    permissionsLifelineNlad: boolean;
+    permissionsLifelineCA: boolean;
+    permissionsLifelineTX: boolean;
+    permissionsAccountOrder: boolean
+    userCommission: number;
+    originalRoleName: string;
+    team: { id: string, name: string };
+    rowVersion: string;
+    roleId: string;
+    role: ApplicationRole;
 }
 export class LoggedInUser {
 	id: string;

@@ -88,8 +88,11 @@ export class AppUserDataService extends BaseService{
 	}
 	getAllRoles() {
 		return this.get(this.baseUrl + "getAllRoles");
-
-	}
+    }
+    getUserToEdit(userId: string) {
+      
+        return this.get(this.baseUrl + 'getUserForEdit?userId='+ userId);
+    }
 }
 @Injectable()
 export class MessageDataService extends BaseService {
@@ -131,6 +134,38 @@ export class MessageDataService extends BaseService {
             return this.post(this.baseUrl + 'createMessage', postData);
         }
       }
+
+}
+@Injectable()
+export class SalesTeamDataService extends BaseService {
+    baseUrl: string = 'api/salesTeam/'
+
+    constructor(private vhttp: Http, private constants: Constants) {
+        super(vhttp, constants);
+
+    }
+
+    getSalesTeamsForSelection() {
+
+        return this.get(this.baseUrl + 'getSalesTeamsForSelection');
+
+    }
+
+}
+@Injectable()
+export class SalesGroupDataService extends BaseService {
+   
+    salesGroupApiPrefixes: string[];
+     constructor(private vhttp: Http, private constants: Constants) {
+        super(vhttp, constants);
+        this.salesGroupApiPrefixes = ['api/level1SalesGroup/', 'api/level2SalesGroup/', 'api/level3SalesGroup/'];
+    }
+
+     getCompanySalesGroupAdminTreeWhereManagerInTree() {
+      
+        return this.get(this.salesGroupApiPrefixes[0] + 'getCompanySalesGroupAdminTreeWhereManagerInTree');
+
+    }
 
 }
 

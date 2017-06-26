@@ -19,7 +19,8 @@ var Services_1 = require("../../../Service/Services");
 var global_2 = require("../../../Shared/global");
 //
 var ModifyLoginMsgComponent = (function () {
-    function ModifyLoginMsgComponent(_messageDataService, _global, toasterService, _constants, datePipe, route) {
+    function ModifyLoginMsgComponent(router, _messageDataService, _global, toasterService, _constants, datePipe, route) {
+        this.router = router;
         this._messageDataService = _messageDataService;
         this._global = _global;
         this._constants = _constants;
@@ -84,8 +85,15 @@ var ModifyLoginMsgComponent = (function () {
                     _this.toasterService.pop('error', 'Error Updating Login Message.', response.errror.userHelp);
                     _this.loading = false;
                 }
-                _this.toasterService.pop('success', "Successfully edited message.");
+                if (_this.createOrModify = _this._constants.create) {
+                    var returnMsg = "Successfully added message.";
+                }
+                else {
+                    var returnMsg = "Successfully edited message.";
+                }
+                _this.toasterService.pop('success', returnMsg);
                 _this.loading = false;
+                _this.router.navigate(["loginMsg"]);
             }, function (error) { return _this.msg = error; });
         }
     };
@@ -96,7 +104,7 @@ ModifyLoginMsgComponent = __decorate([
         templateUrl: '../../../app/components/administration/loginMessages/modifyLoginMsg.html',
         styleUrls: ['../../Content/sass/siteAngular.css']
     }),
-    __metadata("design:paramtypes", [Services_1.MessageDataService, global_1.Global, angular2_toaster_1.ToasterService, global_2.Constants, common_1.DatePipe, router_1.ActivatedRoute])
+    __metadata("design:paramtypes", [router_1.Router, Services_1.MessageDataService, global_1.Global, angular2_toaster_1.ToasterService, global_2.Constants, common_1.DatePipe, router_1.ActivatedRoute])
 ], ModifyLoginMsgComponent);
 exports.ModifyLoginMsgComponent = ModifyLoginMsgComponent;
 //# sourceMappingURL=modifyLoginMsg.component.js.map

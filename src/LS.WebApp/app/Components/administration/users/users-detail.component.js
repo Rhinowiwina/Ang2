@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 require("rxjs/add/operator/mergeMap");
 var global_1 = require("../../../Shared/global");
 var ngx_bootstrap_1 = require("ngx-bootstrap");
@@ -17,7 +18,8 @@ var Services_1 = require("../../../Service/Services");
 var global_2 = require("../../../Shared/global");
 //https://www.npmjs.com/package/ng2-accordion
 var UsersdetailComponent = (function () {
-    function UsersdetailComponent(_userDataService, _global, toasterService, _constants) {
+    function UsersdetailComponent(router, _userDataService, _global, toasterService, _constants) {
+        this.router = router;
         this._userDataService = _userDataService;
         this._global = _global;
         this._constants = _constants;
@@ -73,13 +75,17 @@ var UsersdetailComponent = (function () {
         } //endelse
     };
     UsersdetailComponent.prototype.createCols = function () {
+        var self = this;
         this.columnDefs = [
             {
                 headerName: "Name", headerTooltip: "Active", field: "fullName", minWidth: 70, width: 185,
                 cellRenderer: function (params) {
-                    if (params.data) {
-                        return '<span><a (click)="modifyUser(' + params.data.id + ')" class="text-link">' + params.data.fullName + '</a></span>';
-                    }
+                    var eSpan = document.createElement('div');
+                    eSpan.innerHTML = '<span><a class="text-link">' + params.data.fullName + '</a></span>';
+                    eSpan.addEventListener('click', function () {
+                        self.modifyUser(params.data.id);
+                    });
+                    return eSpan;
                 }
             },
             {
@@ -124,6 +130,9 @@ var UsersdetailComponent = (function () {
                 },
             };
         }, function (error) { return _this.msg = error; });
+    };
+    UsersdetailComponent.prototype.modifyUser = function (id) {
+        this.router.navigate(['modifyUser', id]);
     };
     //	function isExternalFilterPresent() {
     //	return $scope.showInactiveUsers != true;
@@ -200,7 +209,7 @@ UsersdetailComponent = __decorate([
         templateUrl: 'app/Components/administration/users/users-detail.html',
         styleUrls: ['../../Content/sass/siteAngular.css']
     }),
-    __metadata("design:paramtypes", [Services_1.AppUserDataService, global_1.Global, angular2_toaster_1.ToasterService, global_2.Constants])
+    __metadata("design:paramtypes", [router_1.Router, Services_1.AppUserDataService, global_1.Global, angular2_toaster_1.ToasterService, global_2.Constants])
 ], UsersdetailComponent);
 exports.UsersdetailComponent = UsersdetailComponent;
 //# sourceMappingURL=users-detail.component.js.map

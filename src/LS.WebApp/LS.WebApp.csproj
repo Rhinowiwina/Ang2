@@ -210,7 +210,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\api\AppUserController.cs" />
+    <Compile Include="Controllers\api\Level1SalesGroupController.cs" />
+    <Compile Include="Controllers\api\Level2SalesGroupController.cs" />
+    <Compile Include="Controllers\api\Level3SalesGroupController.cs" />
     <Compile Include="Controllers\api\LoginMsgController.cs" />
+    <Compile Include="Controllers\api\SalesTeamController.cs" />
     <Compile Include="Controllers\MVC\AngularAccessController.cs" />
     <Compile Include="Controllers\api\BaseAPIController.cs" />
     <Compile Include="Controllers\api\CompanyController.cs" />
@@ -263,10 +267,10 @@
     <Content Include="app\common\header.html" />
     <Content Include="app\Components\administration\loginMessages\modifyLoginMsg.html" />
     <Content Include="app\Components\administration\loginMessages\loginMsg.html" />
+    <Content Include="app\Components\administration\users\modifyUsers.html" />
     <Content Include="app\Components\administration\users\users-detail.html" />
     <Content Include="app\Components\home\home.component.html" />
     <Content Include="app\index.html" />
-    <Content Include="app\BindingModels\user.js" />
     <Content Include="App_Data\UserDB.mdf" />
     <Content Include="App_Data\UserDB_log.ldf">
       <DependentUpon>UserDB.mdf</DependentUpon>
@@ -358,7 +362,6 @@
     <Content Include="DBContext\UserDBEntities.edmx.diagram">
       <DependentUpon>UserDBEntities.edmx</DependentUpon>
     </Content>
-    <Content Include="app\BindingModels\user.js.map" />
     <Content Include="Content\sass\base\_markup-variables.scss" />
     <Content Include="Content\sass\siteAngular.css.map" />
     <Content Include="Content\sass\siteAngular.scss" />
@@ -542,10 +545,13 @@
     <TypeScriptCompile Include="app\app.routing.ts" />
     <TypeScriptCompile Include="app\BindingModels\applicationRole.ts" />
     <TypeScriptCompile Include="app\BindingModels\companyBindingModels.ts" />
+    <TypeScriptCompile Include="app\BindingModels\groupBindingModels.ts" />
+    <TypeScriptCompile Include="app\BindingModels\salesTeamBindingModels.ts" />
     <TypeScriptCompile Include="app\common\branding.ts" />
     <TypeScriptCompile Include="app\common\header.ts" />
     <TypeScriptCompile Include="app\Components\administration\loginMessages\loginMsg.component.ts" />
     <TypeScriptCompile Include="app\Components\administration\loginMessages\modifyLoginMsg.component.ts" />
+    <TypeScriptCompile Include="app\Components\administration\users\modifyUsers.component.ts" />
     <TypeScriptCompile Include="app\Components\administration\users\users-detail.component.ts" />
     <TypeScriptCompile Include="app\Components\administration\users\users.component.ts" />
     <TypeScriptCompile Include="app\Components\home\home.component.ts" />

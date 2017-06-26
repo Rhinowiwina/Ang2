@@ -16,7 +16,7 @@ namespace LS.WebApp.Controllers.api {
     //    [Authorize(Roles = "Administrator, Level 1 Manager, Level 2 Manager, Level 3 Manager")] // Does this accurately represent what can access this controller?
     //        [Authorize]
     [SingleSessionAuthorize]
-    public class SalesTeamController : BaseApiController {
+    public class SalesTeamController : BaseAPIController {
         private static readonly string SalesTeamValidationFailedUserMessage = "Validation failed for sales team.";
 
       

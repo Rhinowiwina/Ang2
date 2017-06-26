@@ -1,4 +1,5 @@
 ﻿import { Component, ViewChild, ViewEncapsulation, Input, Attribute, OnChanges, OnInit, Inject, NgModule } from '@angular/core';
+import { Routes, Router, RouterModule, ActivatedRoute } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser'
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
@@ -51,7 +52,7 @@ export class UsersdetailComponent implements OnInit {
 	loadingUsers:Array<boolean>=[];
 	erroredRoles:Array<{}>=[];
 	
-	constructor(private _userDataService: AppUserDataService, private _global: Global, toasterService: ToasterService, private _constants: Constants) {
+	constructor(private router:Router,private _userDataService: AppUserDataService, private _global: Global, toasterService: ToasterService, private _constants: Constants) {
 	//test
 		this.userGridOptions = <GridOptions>{};
 	
@@ -101,14 +102,22 @@ export class UsersdetailComponent implements OnInit {
 	
 	}
 	
-	createCols() {
+    createCols() {
+        let self = this;
 		this.columnDefs= [
 			{
 				headerName: "Name", headerTooltip: "Active", field: "fullName", minWidth: 70, width: 185,
 				cellRenderer: function (params:any) {
-					if (params.data) {			
-						return '<span><a (click)="modifyUser('+params.data.id+')" class="text-link">'+params.data.fullName+'</a></span>';
-					} 
+                    var eSpan = document.createElement('div');
+
+                    eSpan.innerHTML = '<span><a class="text-link">' + params.data.fullName + '</a></span>';
+                    eSpan.addEventListener('click', function () {
+                       self.modifyUser( params.data.id)
+                       
+                    });
+                    return eSpan;			
+						
+				
 				} },
 			{
 				headerName: "Username", field: "userName", headerTooltip: "Username", minWidth: 85, width: 200,  },
@@ -162,7 +171,11 @@ export class UsersdetailComponent implements OnInit {
 			}, error => this.msg = <any>error);
 
 	}
+    modifyUser(id: string) {
+      
+        this.router.navigate(['modifyUser', id]);
 
+    }
 //	function isExternalFilterPresent() {
 //	return $scope.showInactiveUsers != true;
 //}

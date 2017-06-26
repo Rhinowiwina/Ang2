@@ -102,6 +102,9 @@ var AppUserDataService = (function (_super) {
     AppUserDataService.prototype.getAllRoles = function () {
         return this.get(this.baseUrl + "getAllRoles");
     };
+    AppUserDataService.prototype.getUserToEdit = function (userId) {
+        return this.get(this.baseUrl + 'getUserForEdit?userId=' + userId);
+    };
     return AppUserDataService;
 }(BaseService));
 AppUserDataService = __decorate([
@@ -151,4 +154,42 @@ MessageDataService = __decorate([
     __metadata("design:paramtypes", [http_1.Http, global_1.Constants])
 ], MessageDataService);
 exports.MessageDataService = MessageDataService;
+var SalesTeamDataService = (function (_super) {
+    __extends(SalesTeamDataService, _super);
+    function SalesTeamDataService(vhttp, constants) {
+        var _this = _super.call(this, vhttp, constants) || this;
+        _this.vhttp = vhttp;
+        _this.constants = constants;
+        _this.baseUrl = 'api/salesTeam/';
+        return _this;
+    }
+    SalesTeamDataService.prototype.getSalesTeamsForSelection = function () {
+        return this.get(this.baseUrl + 'getSalesTeamsForSelection');
+    };
+    return SalesTeamDataService;
+}(BaseService));
+SalesTeamDataService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http, global_1.Constants])
+], SalesTeamDataService);
+exports.SalesTeamDataService = SalesTeamDataService;
+var SalesGroupDataService = (function (_super) {
+    __extends(SalesGroupDataService, _super);
+    function SalesGroupDataService(vhttp, constants) {
+        var _this = _super.call(this, vhttp, constants) || this;
+        _this.vhttp = vhttp;
+        _this.constants = constants;
+        _this.salesGroupApiPrefixes = ['api/level1SalesGroup/', 'api/level2SalesGroup/', 'api/level3SalesGroup/'];
+        return _this;
+    }
+    SalesGroupDataService.prototype.getCompanySalesGroupAdminTreeWhereManagerInTree = function () {
+        return this.get(this.salesGroupApiPrefixes[0] + 'getCompanySalesGroupAdminTreeWhereManagerInTree');
+    };
+    return SalesGroupDataService;
+}(BaseService));
+SalesGroupDataService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http, global_1.Constants])
+], SalesGroupDataService);
+exports.SalesGroupDataService = SalesGroupDataService;
 //# sourceMappingURL=Services.js.map

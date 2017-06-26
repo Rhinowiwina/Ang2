@@ -1,0 +1,231 @@
+﻿﻿<h1 trns>ADD/EDIT USER</h1>
+<div *ngIf=" !hasLoaded"><img src="/Content/img/spiffygif_30x30.gif" style="text-align: center" ng-hide="hasLoaded" /></div>
+
+<form role="form" class="form-horizontal" (ngSubmit)="submitUser(modifyUserForm)" name="modifyUserForm"  #modifyUserForm="ngForm" novalidate>
+    <input ng-model="form" ng-init="form=modifyUserForm" hidden>
+
+    <div *ngIf="_global.loggedInUser && hasLoaded">
+   
+        <div *ngIf="createOrModify == _constants.modify" class="form-group">
+            <label class="col-sm-3 control-label" trns>Username*</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control" [(ngModel)]="user.userName" name="userName"  #userName="ngModel" required [disabled]="_global.loggedInUser.role.rank > minToChangeTeam">
+
+                <div class="alert alert-danger" role="alert" *ngIf="userName.errors?.required && userName.dirty">
+                    Enter a valid username.
+                </div>
+            </div>
+        </div>
+        <!--[(ngModel)]="user.role"-->
+        --{{user.role|json}}--<br /><br />
+        --{{roles|json}}---->
+        =={{testRole|json}}===
+        <div class="form-group">
+            <label class="col-sm-3 control-label" trns>Role*</label>
+            <div class="col-sm-5">
+                <select class="form-control"
+                      [(ngModel)]="testRole"
+
+                        (change)="setGroupFilter()"
+                        name="role"
+                        #role="ngModel"
+                        required
+                        ng-disabled="_global.loggedInUser.role.rank>minToChangeTeam">
+                    <option value=''>- Select Role -</option>
+                    <option *ngFor="let role of roles" [ngValue]="role">{{role.name}}</option>
+                </select>
+
+                <div class="alert alert-danger" role="alert"
+                     *ngIf="role.errors?.required && role.dirty">
+                    Select a role.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" trns>First Name</label>
+            <div class="col-sm-5">
+            <input type="text" class="form-control"
+            [(ngModel)]="user.firstName"
+            name="firstName"
+            #firstName="ngModel"
+            [disabled]="_global.loggedInUser.role.rank>minToChangeTeam"
+            required
+                />
+
+                <div class="alert alert-danger" role="alert"
+                     *ngIf="firstName.errors?.required && firstName.dirty">
+                    First name is required.
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label" trns>Last Name</label>
+            <div class="col-sm-5">
+                <input type="text" class="form-control"
+                [(ngModel)]="user.lastName"
+                name="lastName"
+                #lastName="ngModel"
+                [disabled]="_global.loggedInUser.role.rank >minToChangeTeam"
+                required />
+                <div class="alert alert-danger" role="alert"
+                     *ngIf="lastName.errors?.required && lastName.dirty">
+                   Last name is required.
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" trns> External User ID</label>
+            <div class="col-sm-5">
+                <input type="text" name="externalUserID" class="form-control" [disabled]="_global.loggedInUser.role.rank >minToChangeTeam" [(ngModel)]="user.externalUserID" />
+              </div>
+
+        </div>
+
+      
+        <div *ngIf="_global.loggedInUser.role.rank < _constants.level2ManagerRoleRank && user.role.name!=user.originalRoleName && (user.role.name == 'Level 1 Manager'||user.role.name == 'Level 2 Manager' ||user.role.name == 'Level 3 Manager')" class="form-group">
+            <label class="col-sm-3 control-label" trns>
+                Manage Group
+            </label>
+
+            <div class="col-sm-5">
+                <!--ng-options="group.name for group in filteredGroups | orderBy:'name'"-->
+                <select class="form-control"
+                        [(ngModel)]="user.selectedGroup"
+                        name="group2"
+                        #group2="ngModel"
+                        required
+                        [disabled]="_global.loggedInUser.role.rank > minToChangeTeam">
+                    <option value="">-Select Group-</option>
+                    <option *ngFor="let group of groups" [value]="group.id">{{group.name}}</option>
+                </select>
+                <div class="alert alert-danger" role="alert"
+                     *ngIf="group2.errors?.required  && group2.dirty">
+                    Please select a group to manage.
+                </div>
+            </div>
+        </div>
+    
+        <div class="form-group">
+            <label class="col-sm-3 control-label" trns>Email</label>
+            <div class="col-sm-5">
+                <input type="email" class="form-control"
+                        [(ngModel)]="user.email"
+                       name="email"
+                       #email="ngModel"
+                       [disabled]="_global.loggedInUser.role.rank >minToChangeTeam"
+                       required
+                       /> 
+                <!-- emailvalidate=emailvalidate directive makes the angular email validate use custom patterns 
+                       Email Error Message-->
+                <!--<div class="alert alert-danger" role="alert"
+                     *ngIf="(email.errors?.required ||email.errors?.email||email.errors.pattern)&& email.dirty">
+                    {{errorMessage.invalidUEmail}}
+                </div>-->
+            </div>
+        </div>
+
+        <!--<div class="form-group">
+            <label class="col-sm-3 control-label" trns>PayPal Email</label>
+            <div class="col-sm-5">
+                <input type="email" class="form-control"
+                       ng-model="user.paypalemail"
+                       name="paypalemail"
+                       ng-disabled="$root.loggedInUser.role.rank >$root.minToChangeTeam"
+                       ng-model-options="{ debounce: 500}"
+                       emailvalidate
+                       required /><!-- emailvalidate directive makes the angular email validate use custom patterns -->
+                <!--       Email Error Message-->
+                <!--<div class="alert alert-danger" role="alert"
+                     *ngIf="(modifyUserForm.paypalemail.$error.required ||modifyUserForm.paypalemail.$error.email) && modifyUserForm.paypalemail.$dirty ">
+                    {{errorMessage. invalidPEmail}}
+                </div>
+            </div>
+        </div>-->
+        --{{user.role.rank}}--{{_constants.salesTeamManagerRoleRank}}--{{user.role.name}}
+        <div *ngIf="user.role.rank >= _constants.salesTeamManagerRoleRank" class="form-group">
+            <label class="col-sm-3 control-label" trns>Team</label>
+            <div class="col-sm-5">
+                <select class="form-control"
+                       [(ngModel)]="user.team"
+                        name="team"
+                        #team="ngModel"
+                        (change)="teamValidate()"
+                        required
+                        [disabled]="_global.loggedInUser.role.rank >minToChangeTeam">
+                    <option value="">- Select Team -</option>
+                    <option *ngFor="let team of teams" [value]="team.id">{{team.displayText}}</option>
+                </select>
+                <!--Team Error Message-->
+                <div class="alert alert-danger" role="alert"
+                     *ngIf="team.errors?.required || !teamValid">
+                    Please select a sales team.
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="form-group">
+            <label class="col-sm-3 control-label" trns>
+                Active
+            </label>
+            <div class="col-sm-5">
+                <input type="checkbox" class="horizontal-input"
+                       ng-model="user.active"
+                       ng-disabled="!($root.loggedInUser.role.rank <= $root.minToChangeTeam && ($root.loggedInUser.role.rank <= $root.administratorRole.rank || user.originalActive))" />
+            </div>
+        </div>-->
+
+        <!--<div class="order-field-title">Permissions</div>-->
+
+        <!--<div class="form-group">
+            <label class="col-sm-3 control-label" trns>Allow TPIV Bypass</label>
+            <div class="col-sm-5">
+                <input type="checkbox" class="horizontal-input"
+                       ng-model="user.permissionsAllowTpivBypass"
+                       ng-disabled="$root.loggedInUser.role.rank > $root.administratorRole.rank" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label" trns>Can Create Order</label>
+            <div class="col-sm-5">
+                <input type="checkbox" class="horizontal-input"
+                       ng-model="user.permissionsAccountOrder"
+                       ng-disabled="$root.loggedInUser.role.rank > $root.administratorRole.rank" />
+            </div>
+        </div>-->
+
+        <!--<div class="form-group">
+            <label class="col-sm-3 control-label" trns>Lifeline CA</label>
+            <div class="col-sm-5">
+                <input type="checkbox" class="horizontal-input"
+                       ng-model="user.permissionsLifelineCA"
+                       ng-disabled="$root.loggedInUser.role.rank > $root.administratorRole.rank" />
+            </div>
+        </div>-->
+
+        <br />
+      
+        <button type="submit" [disabled]="modifyUserForm.$invalid || sendingpassword" *ngIf="_global.loggedInUser.role.rank<=minToChangeTeam" (click)="submitUser(createOrModify)" class="btn admin-button" trns>SUBMIT</button>
+        <button type="button" [disabled]="sendingpassword" (click)="goBack()" class="btn cancel-button" trns>CANCEL</button>
+        <button type="button" [disabled]="sendingpassword||!canBeDeleted" (click)="deleteUser()" class="btn generic-button" trns>DELETE</button>
+        <button type="button" [disabled]="sendingpassword" (click)="resetUsersPassword(user.id,user.email)" class="btn generic-button" *ngIf="showResetPasswordButton" trns>RESET USER'S PASSWORD</button><img src="/Content/img/spiffygif_30x30.gif" style="text-align: center" *ngIf="sendingpassword" />
+        <p *ngIf="!canBeDeleted"><i style="font-size:x-small">Delete button is disable because user manages a group.</i></p>
+
+    </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

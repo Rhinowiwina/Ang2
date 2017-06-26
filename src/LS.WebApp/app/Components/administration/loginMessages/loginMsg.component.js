@@ -15,7 +15,6 @@ require("rxjs/add/operator/mergeMap");
 var global_1 = require("../../../Shared/global");
 var angular2_toaster_1 = require("angular2-toaster");
 var Services_1 = require("../../../Service/Services");
-var global_2 = require("../../../Shared/global");
 var filters_1 = require("../../../Shared/filters");
 //
 var LoginMsgComponent = (function () {
@@ -151,7 +150,7 @@ LoginMsgComponent = __decorate([
         templateUrl: '../../../app/components/administration/loginMessages/loginMsg.html',
         styleUrls: ['../../Content/sass/siteAngular.css']
     }),
-    __metadata("design:paramtypes", [Services_1.MessageDataService, global_1.Global, angular2_toaster_1.ToasterService, global_2.Constants, common_1.DatePipe, router_1.Router])
+    __metadata("design:paramtypes", [Services_1.MessageDataService, global_1.Global, angular2_toaster_1.ToasterService, global_1.Constants, common_1.DatePipe, router_1.Router])
 ], LoginMsgComponent);
 exports.LoginMsgComponent = LoginMsgComponent;
 //# sourceMappingURL=loginMsg.component.js.map

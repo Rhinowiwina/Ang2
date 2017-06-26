@@ -14,7 +14,7 @@ namespace LS.WebApp.Controllers.api
 //    [Authorize]
     [SingleSessionAuthorize]
     [RoutePrefix("api/level3SalesGroup")]
-    public class Level3SalesGroupController : BaseApiController
+    public class Level3SalesGroupController : BaseAPIController
     {
         private static readonly string Level3SalesGroupValidationFailedUserMessage =
             "Validationfailed for level 3 sales group.";

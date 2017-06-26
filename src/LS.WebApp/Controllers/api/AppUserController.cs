@@ -351,7 +351,7 @@ namespace LS.WebApp.Controllers.api {
 
         }
 
-
+        [HttpGet]
         [Route("getUserForEdit")]
         public async Task<IHttpActionResult> GetUserForEdit(string userId) {
             var processingResult = new ServiceProcessingResult<UserViewBindingModel>();

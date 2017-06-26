@@ -5,6 +5,12 @@ var UserView = (function () {
     return UserView;
 }());
 exports.UserView = UserView;
+var EditUserView = (function () {
+    function EditUserView() {
+    }
+    return EditUserView;
+}());
+exports.EditUserView = EditUserView;
 var LoggedInUser = (function () {
     function LoggedInUser() {
     }

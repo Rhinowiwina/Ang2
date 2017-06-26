@@ -1,6 +1,6 @@
 ﻿import { Component, ViewChild, ViewEncapsulation, Input, Attribute, OnChanges, OnInit, OnDestroy, Inject, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute,Router} from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser'
 
@@ -37,7 +37,7 @@ export class ModifyLoginMsgComponent implements OnInit, OnDestroy {
     messageId: string;
     createOrModify: number;
     levels = [{ id: 1, name: 'Critical' }, { id: 2, name: 'Important' }, { id: 3, name: 'Informational' }]
-    constructor(private _messageDataService: MessageDataService, private _global: Global, toasterService: ToasterService, private _constants: Constants, private datePipe: DatePipe, private route: ActivatedRoute) {
+    constructor(private router: Router, private _messageDataService: MessageDataService, private _global: Global,  toasterService: ToasterService, private _constants: Constants, private datePipe: DatePipe, private route: ActivatedRoute) {
         this.toasterService = toasterService;
     }
 
@@ -99,8 +99,15 @@ export class ModifyLoginMsgComponent implements OnInit, OnDestroy {
                     this.toasterService.pop('error', 'Error Updating Login Message.', response.errror.userHelp);
                     this.loading = false
                 }
-                this.toasterService.pop('success', "Successfully edited message.");
+                if (this.createOrModify = this._constants.create) {
+                    var returnMsg = "Successfully added message."
+                } else {
+                  var returnMsg ="Successfully edited message."
+                }
+               
+                this.toasterService.pop('success',returnMsg);
                 this.loading = false;
+                this.router.navigate(["loginMsg"])
             }, error => this.msg = <any>error);
 
 
