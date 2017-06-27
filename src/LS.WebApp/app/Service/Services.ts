@@ -4,8 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
+import { LoggedInUser, EditUserView, UserView } from '../BindingModels/userBindingModels';
 import { message } from '../BindingModels/messageBindingModels';
-import { Constants } from '../Shared/global'
+import { Constants, Global } from '../Shared/global'
 @Injectable()
 export class BaseService {
     baseUrl: string
@@ -22,7 +23,8 @@ export class BaseService {
 	.catch(this.handleError);
 	}
 
-	post(url: string, model: any): Observable<any> {
+    post(url: string, model: any): Observable<any> {
+  
 		let body = JSON.stringify(model);
 		let headers = new Headers({ 'Content-Type': 'application/json' });
 		let options = new RequestOptions({ headers: headers });
@@ -40,10 +42,10 @@ export class BaseService {
 			.catch(this.handleError);
 	}
 
-	delete(url: string, id: number): Observable<any> {
+	delete(url: string): Observable<any> {
 		let headers = new Headers({ 'Content-Type': 'application/json' });
 		let options = new RequestOptions({ headers: headers });
-		return this._http.delete(url + id, options)
+		return this._http.delete(url, options)
 			.map((response: Response) => <any>response.json())
 			.catch(this.handleError);
 	}
@@ -73,8 +75,94 @@ export class CompanyDataService extends BaseService {
 export class AppUserDataService extends BaseService{
 	baseUrl: string = 'api/appUser/';
 	
-    constructor(private vhttp: Http, private constants: Constants) {
+    constructor(private vhttp: Http, private constants: Constants, private global:Global) {
         super(vhttp, constants);
+    }
+    resetUsersPassword(userId:string,email:string) {
+        return this.post(this.baseUrl + 'resetUsersPassword?userId='+userId +'&email=' + email,null);
+
+    }
+    editLoggedInUser(user:EditUserView) {
+        var putData = {
+            userName: user.userName,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            rowVersion: user.rowVersion
+        }
+        return this.post(this.baseUrl + 'editLoggedInUser',putData);
+
+    }
+    submitUserForAddOrEdit(user: EditUserView, createOrModify: number, groupId: string) {
+     
+        if (createOrModify == this.constants.modify) {
+         
+           var result = this.editUser(user, groupId);
+        }
+        if (createOrModify == this.constants.create) {
+            var result = this.addUser(user, groupId);
+        }
+       return result;
+    }
+    editUser(user: EditUserView, groupId: string) {
+      
+        var postData = {
+            userId: user.id,
+            groupId: groupId,
+            companyId: user.companyId,
+            userName: user.userName,
+            roleId: user.role.id,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            externalUserID: user.externalUserID,
+            externalUserIDActive: user.isExternalUserIDActive,
+            email: user.email,
+            originalEmail: user.originalEmail,
+            paypalemail: user.payPalEmail,
+            isActive: user.isActive,
+            additionalDataNeeded: user.additionalDataNeeded,
+            permissionsAllowTpivBypass: user.permissionsAllowTpivBypass,
+            permissionsLifelineNlad: user.permissionsLifelineNlad,
+            permissionsLifelineCA: user.permissionsLifelineCA,
+            permissionsLifelineTX: user.permissionsLifelineTX,
+            permissionsAccountOrder: user.permissionsAccountOrder,
+            salesTeamId:"",
+            rowVersion:user.rowVersion
+        }
+        if (user.role.rank >= this.constants.salesTeamManagerRoleRank && user.team != null) {
+            postData.salesTeamId = user.team.id;
+        } else { postData.salesTeamId=null }
+       
+        
+        return this.post(this.baseUrl + 'editUser', postData);
+        }
+    addUser(user: EditUserView, groupId: string) {
+        var postData = {
+            roleId: user.role.id,
+            groupId: groupId,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            externalUserID: user.externalUserID,
+            externalUserIDActive: user.isExternalUserIDActive,
+            email: user.email,
+            paypalemail: user.payPalEmail,
+            permissionsAllowTpivBypass: user.permissionsAllowTpivBypass || false,
+            permissionsLifelineNlad: user.permissionsLifelineNlad || false,
+            permissionsLifelineCA: user.permissionsLifelineCA || false,
+            permissionsLifelineTX: user.permissionsLifelineTX || false,
+            permissionsAccountOrder: user.permissionsAccountOrder || false,
+            isActive: user.isActive,
+            salesTeamId: "",
+            additionalDataNeeded: user.additionalDataNeeded
+        }
+        if ((user.role.rank == this.constants.salesRepRoleRank || user.role.rank == this.constants.salesTeamManagerRoleRank) && typeof user.team != "undefined") {
+            postData.salesTeamId = user.team.id;
+        }
+        return this.post(this.baseUrl + 'createUser', postData);
+    }
+    deleteUser(userId:string) {
+        return this.delete(this.baseUrl +'?userId=' + userId);
+
     }
 	getLoggedInUser () {
 		
@@ -101,7 +189,11 @@ export class MessageDataService extends BaseService {
     constructor(private vhttp: Http,private constants:Constants) {
         super(vhttp,constants);
      
-	}
+    }
+    deleteMessage(messageId:string) {
+        return this.delete(this.baseUrl + 'deleteMessage?messageId=' + messageId);
+
+    }
 	getActiveMessages() {
 	
 		return this.get(this.baseUrl +  'getActiveMessages');

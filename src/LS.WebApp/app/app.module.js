@@ -31,12 +31,14 @@ var Services_2 = require("./Service/Services");
 var Services_3 = require("./Service/Services");
 var Services_4 = require("./Service/Services");
 var Services_5 = require("./Service/Services");
+var directives_1 = require("./Shared/directives");
 //Component Imports
 var home_component_1 = require("./components/home/home.component");
 var header_1 = require("./common/header");
 var branding_1 = require("./common/branding");
 var users_component_1 = require("./components/administration/users/users.component");
 var modifyUsers_component_1 = require("./components/administration/users/modifyUsers.component");
+var salesGroupComponent_1 = require("./components/administration/salesGroups/salesGroupComponent");
 var users_detail_component_1 = require("./components/administration/users/users-detail.component");
 var loginMsg_component_1 = require("./components/administration/loginMessages/loginMsg.component");
 var modifyLoginMsg_component_1 = require("./components/administration/loginMessages/modifyLoginMsg.component");
@@ -50,7 +52,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule, ngx_bootstrap_1.ModalModule.forRoot(), ngx_bootstrap_1.DatepickerModule.forRoot(), mydatepicker_1.MyDatePickerModule, forms_2.ReactiveFormsModule, forms_1.FormsModule, http_1.HttpModule, app_routing_1.routing, angular2_toaster_1.ToasterModule, main_1.AgGridModule.withComponents([]),],
-        declarations: [app_component_1.AppComponent, modifyUsers_component_1.modifyUsersComponent, loginMsg_component_1.LoginMsgComponent, filters_1.YesNo, accordion_1.Accordion, accordion_1.AccordionGroup, accordion_1.AccordionHead, users_detail_component_1.UsersdetailComponent, home_component_1.HomeComponent, header_1.HeaderComponent, branding_1.BrandingComponent, users_component_1.UserComponent, modifyLoginMsg_component_1.ModifyLoginMsgComponent],
+        declarations: [app_component_1.AppComponent, salesGroupComponent_1.SalesGroupComponent, directives_1.EmailValidator, modifyUsers_component_1.modifyUsersComponent, loginMsg_component_1.LoginMsgComponent, filters_1.YesNo, accordion_1.Accordion, accordion_1.AccordionGroup, accordion_1.AccordionHead, users_detail_component_1.UsersdetailComponent, home_component_1.HomeComponent, header_1.HeaderComponent, branding_1.BrandingComponent, users_component_1.UserComponent, modifyLoginMsg_component_1.ModifyLoginMsgComponent],
         providers: [{ provide: common_1.APP_BASE_HREF, useValue: '/' }, common_2.DatePipe, Services_1.CompanyDataService, Services_5.SalesTeamDataService, Services_4.SalesGroupDataService, Services_3.AppUserDataService, resolve_service_1.LoggedInUserResolve, global_1.Global, global_2.Constants, Services_2.MessageDataService,],
         bootstrap: [app_component_1.AppComponent]
     })

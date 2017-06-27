@@ -1,11 +1,13 @@
 ﻿import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
 import { LoggedInUser } from '../BindingModels/userBindingModels';
 
 
 @Injectable()
 export class Global {
+   // https://angularclass.com/blog/create-a-simple-reactive-store-for-angular-2/ implement in future
 	private _loggedInUser: LoggedInUser;
 	private _criticalMsgRead: boolean=false;
 	private _minToChangeTeam: number
@@ -17,10 +19,10 @@ export class Global {
 		this._minToChangeTeam = val;
 
 	}
-	set loggedInUser(val: LoggedInUser) {
+    set loggedInUser(val: LoggedInUser) {
 		this._loggedInUser = val;
-	}
-	get loggedInUser() {
+    }
+    get loggedInUser() {
 		return this._loggedInUser;
 	}
 	set criticalMsgRead(val: boolean) {

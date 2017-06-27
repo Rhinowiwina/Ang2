@@ -170,7 +170,11 @@ export class UsersdetailComponent implements OnInit {
 				
 			}, error => this.msg = <any>error);
 
-	}
+    }
+    creatUser() {
+        this.router.navigate(['modifyUser']);
+
+    }
     modifyUser(id: string) {
       
         this.router.navigate(['modifyUser', id]);

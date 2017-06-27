@@ -24,13 +24,15 @@ import { MessageDataService } from './Service/Services';
 import { AppUserDataService } from './Service/Services';
 import { SalesGroupDataService } from './Service/Services';
 import { SalesTeamDataService } from './Service/Services';
+import { EmailValidator } from './Shared/directives';
+
 //Component Imports
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from "./common/header"
 import { BrandingComponent } from './common/branding';
 import { UserComponent } from './components/administration/users/users.component';
 import { modifyUsersComponent } from './components/administration/users/modifyUsers.component';
-
+import { SalesGroupComponent } from './components/administration/salesGroups/salesGroupComponent';
 import { UsersdetailComponent } from './components/administration/users/users-detail.component';
 import { LoginMsgComponent } from './components/administration/loginMessages/loginMsg.component';
 import { ModifyLoginMsgComponent } from './components/administration/loginMessages/modifyLoginMsg.component';
@@ -39,7 +41,7 @@ import { ModalModule, DatepickerModule } from 'ngx-bootstrap';
 @NgModule({
     imports: [BrowserModule, ModalModule.forRoot(), DatepickerModule.forRoot(), MyDatePickerModule, ReactiveFormsModule,  FormsModule, HttpModule, routing, ToasterModule, AgGridModule.withComponents([]),],
 
-    declarations: [AppComponent, modifyUsersComponent, LoginMsgComponent, YesNo, Accordion, AccordionGroup, AccordionHead, UsersdetailComponent, HomeComponent, HeaderComponent, BrandingComponent, UserComponent,ModifyLoginMsgComponent],
+    declarations: [AppComponent, SalesGroupComponent, EmailValidator, modifyUsersComponent, LoginMsgComponent, YesNo, Accordion, AccordionGroup, AccordionHead, UsersdetailComponent, HomeComponent, HeaderComponent, BrandingComponent, UserComponent,ModifyLoginMsgComponent],
 
     providers: [{ provide: APP_BASE_HREF, useValue: '/' }, DatePipe, CompanyDataService, SalesTeamDataService, SalesGroupDataService, AppUserDataService,LoggedInUserResolve, Global, Constants, MessageDataService,],
 

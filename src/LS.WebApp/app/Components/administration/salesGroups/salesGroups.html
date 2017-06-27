@@ -1,0 +1,83 @@
+﻿
+<div class="row">
+    <div class="col-xs-12 col-sm-7"><h1 >MANAGE SALES GROUPS1</h1></div>
+
+    <div class="col-xs-12 col-sm-5 add-level-button-group">
+        <button type="button" name="btnHide" class="btn admin-button far-right admin-button-large" *ngIf="unassingedManager"  ng-click="modifySalesGroup()" >Add a Sales Group</button>
+    </div>
+</div><div class="row" style="text-align:center;font-style:italic;font-size:large" *ngIf="unassingedManager">
+    You have not been assigned a group to manage.
+</div>
+
+<img src="/Content/img/spiffygif_30x30.gif" style="text-align:center" *ngIf="!hasLoaded" />
+
+<accordion name="lev1">
+
+    <accordion-group  [heading]="salesGroupLevel1.name" *ngFor="let salesGroupLevel1  of salesGroups; let i = index">
+        data
+        <accordion name="lev2">
+          
+            <accordion-group  [heading]="salesGroupLevel2.name" *ngFor="let salesGroupLevel2  of salesGroupLevel1.childSalesGroups; let i = index">
+                lev3 data
+                <div class="order-content">
+                    <!--                        LEVEL 3-->
+                    <p *ngIf="!salesGroupLevel2.childSalesGroups.length > 0" >There are no Level 3 Sales Groups underneath this Sales Group.</p>
+                    <ul *ngIf="salesGroupLevel2.childSalesGroups.length > 0" class="no-bullet no-padding">
+                        <li *ngFor="let salesGroupLevel3  of salesGroupLevel2.childSalesGroups; let i = index"> 
+                            <a class="admin-link" (click)="modifySalesGroup(salesGroupConstants.salesGroupLevel3, salesGroupLevel3.id)">{{salesGroupLevel3.name}}</a>
+                            <a class="admin-link" (click)="showTeamsInLevel3Group(salesGroupLevel3.id)">
+                                <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                            </a>
+                            <a class="admin-link" (click)="showMgrsInLevel3Group(salesGroupLevel3.id)">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                            </a>
+
+                            <div class="level-3-description">
+                                <!--            LEVEL 3 MANAGERS-->
+                                <!--<div class="mini-panel" *ngIf="showLevel3Manager[salesGroupLevel3.id]">
+                                    <b>Managers</b>
+                                    <div *ngIf="salesGroupLevel3.managers == undefined"><img src="/Content/img/spiffygif_30x30.gif" style="text-align: center" />Loading Managers</div>
+                                    <div *ngIf="salesGroupLevel3.managers != undefined">
+                                        <p *ngIf="!salesGroupLevel3.managers.length > 0" >No managers have been assigned to this sales group.</p>
+                                        <ul *ngIf="salesGroupLevel3.managers.length > 0">
+                                            <li *ngFor="let manager of salesGroupLevel3.managers;let i=index">
+                                                {{manager.firstName}} {{manager.lastName}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>-->
+
+                                <!--            LEVEL 3 TEAMS-->
+                                <!--<div class="mini-panel"*ngIf="showLevel3Team[salesGroupLevel3.id]">
+                                    <b>Teams</b>
+                                    <div *ngIf="salesGroupLevel3.salesTeams == undefined"><img src="/Content/img/spiffygif_30x30.gif" style="text-align: center" />Loading Teams</div>
+                                    <div *ngIf="salesGroupLevel3.salesTeams != undefined">
+                                        <p *ngIf="!salesGroupLevel3.salesTeams.length > 0" >There a no Sales Teams under this Sales Group.</p>
+                                        <ul *ngIf="salesGroupLevel3.salesTeams.length > 0">
+                                            <li *ngFor="let salesTeam for salesGroupLevel3.salesTeams; let i = index">
+                                                {{salesTeam.externalDisplayName}} ({{salesTeam.name}})<span *ngIf="!salesTeam.isActive"> / INACTIVE</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>-->
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </accordion-group>
+        </accordion> 
+
+    </accordion-group>
+</accordion>
+
+
+
+
+
+
+
+
+
+	

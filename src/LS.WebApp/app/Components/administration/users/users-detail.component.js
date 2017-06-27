@@ -131,6 +131,9 @@ var UsersdetailComponent = (function () {
             };
         }, function (error) { return _this.msg = error; });
     };
+    UsersdetailComponent.prototype.creatUser = function () {
+        this.router.navigate(['modifyUser']);
+    };
     UsersdetailComponent.prototype.modifyUser = function (id) {
         this.router.navigate(['modifyUser', id]);
     };

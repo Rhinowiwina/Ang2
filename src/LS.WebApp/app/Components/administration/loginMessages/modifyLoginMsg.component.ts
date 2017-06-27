@@ -1,9 +1,8 @@
 ﻿import { Component, ViewChild, ViewEncapsulation, Input, Attribute, OnChanges, OnInit, OnDestroy, Inject, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute,Router} from '@angular/router';
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser'
-
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
 import { Global } from '../../../Shared/global';
@@ -36,8 +35,8 @@ export class ModifyLoginMsgComponent implements OnInit, OnDestroy {
     private model: Object = { date: { year: 0, month: 0, day: 0 } };
     messageId: string;
     createOrModify: number;
-    levels = [{ id: 1, name: 'Critical' }, { id: 2, name: 'Important' }, { id: 3, name: 'Informational' }]
-    constructor(private router: Router, private _messageDataService: MessageDataService, private _global: Global,  toasterService: ToasterService, private _constants: Constants, private datePipe: DatePipe, private route: ActivatedRoute) {
+    levels = [{ id: null, name: '- Select Level -' },{ id: 1, name: 'Critical' }, { id: 2, name: 'Important' }, { id: 3, name: 'Informational' }]
+    constructor(private _location: Location,private router: Router, private _messageDataService: MessageDataService, private _global: Global,  toasterService: ToasterService, private _constants: Constants, private datePipe: DatePipe, private route: ActivatedRoute) {
         this.toasterService = toasterService;
     }
 
@@ -114,5 +113,19 @@ export class ModifyLoginMsgComponent implements OnInit, OnDestroy {
 
     
       }
+    }
+    deleteMessage(id: string) {
+        this._messageDataService.deleteMessage(id).subscribe(response => {
+            var response = response;
+            if (!response.isSuccessful) {
+                this.loading = false;
+                this.toasterService.pop('error', 'Error Deleting Login Message.', response.errror.userHelp);
+                this.loading = false
+            }
+            this.toasterService.pop('success', 'Successfully deleted message.');
+            this.loading = false;
+            this.router.navigate(["loginMsg"])
+        }, error => this.msg = <any>error);
+
     }
 }

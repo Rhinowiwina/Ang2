@@ -1,6 +1,7 @@
 ﻿import { Component, ViewChild, ViewEncapsulation, Input, Attribute, OnChanges, OnInit, Inject, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DatePipe, Location } from '@angular/common';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/mergeMap';
 import { Global,Constants  } from '../../../Shared/global';
@@ -20,6 +21,7 @@ import { LoggedInUser, EditUserView, UserView } from '../../../BindingModels/use
    
 })
 export class modifyUsersComponent implements OnInit {
+    sendingPassword: boolean = false;
     msg: string;
 	hasLoaded: boolean = false;
 	minToChangeTeam: number;
@@ -39,13 +41,15 @@ export class modifyUsersComponent implements OnInit {
     originalEmail: string;
     canBeDeleted: boolean=false;
     showResetPasswordButton: boolean;
-    testRole: Array<ApplicationRole> = [{ id:"f1c85c97-2c50-4165-9bb8-248518a109f2", name:"Level 1 Manager",rank:2}];
-    constructor(private route: ActivatedRoute, private _userDataService: AppUserDataService, private _salesGroupDataService: SalesGroupDataService, private _salesTeamDataService: SalesTeamDataService, private _global: Global, toasterService: ToasterService, private _constants: Constants) {
+      
+    constructor(private router: Router,private _location: Location,private route: ActivatedRoute, private _userDataService: AppUserDataService, private _salesGroupDataService: SalesGroupDataService, private _salesTeamDataService: SalesTeamDataService, private _global: Global, toasterService: ToasterService, private _constants: Constants) {
         this.toasterService = toasterService;
+     
 		}
 
     ngOnInit(): void {
-
+     
+        console.log(this._global)
         this.minToChangeTeam = this._global.minToChangeTeam;
         this.sub = this.route.params.subscribe(params => {
             this.userId = params['userId']
@@ -54,11 +58,42 @@ export class modifyUsersComponent implements OnInit {
                 this.getUserToEdit(this.userId);
             } else {
                 this.createOrModify = this._constants.create
-                //this.createUserModel();
+                this.createUser();
             }
         })
-		}
-    getUserToEdit(userId: string) {
+    }
+    createUser() {
+        this.user = new EditUserView();
+        this.hasLoaded = false;
+        this.user.id="";
+        this.user.companyId= "";
+        this.user.userName= "";
+        this.user.originalEmail= "";
+        this.user.firstName= "";
+        this.user.lastName= "";
+        this.user.externalUserID= "";
+        this.user.isExternalUserIDActive=false;
+        this.user.email= "";
+        this.user.payPalEmail= "";
+        this.user.isActive= true;
+        this.user.originalActive= true;
+        this.user.additionalDataNeeded= true;
+        this.user.permissionsAllowTpivBypass= true;
+        this.user.permissionsLifelineNlad= true;
+        this.user.permissionsLifelineCA= true;
+        this.user.permissionsLifelineTX= true;
+        this.user.permissionsAccountOrder= true;
+        this.user.userCommission=0;
+        this.user.originalRoleName = "";
+        this.user.team = {id:"",name:""};
+         this.user.rowVersion= "";
+         this.user.roleId = "";
+         this.user.role={id:null,name:null,rank:null}
+         this.getTeams();
+        this.setRoleFilter(); 
+        this.hasLoaded = true;
+         }
+    getUserToEdit(userId:string) {
         this.user = new EditUserView();
         this.hasLoaded = false;
         this._userDataService.getUserToEdit(this.userId).subscribe(response =>{
@@ -68,50 +103,64 @@ export class modifyUsersComponent implements OnInit {
                 this.hasLoaded = true;
             }
             let vuser = response.data;
-           // console.log(vuser)
-            this.originalEmail = vuser.email;
-            this.user.id = vuser.id,
-            this.user.comapnyId = vuser.companyId,
-            this.user.userName = vuser.userName,
-            this.user.originalEmail = vuser.email,
-            this.user.firstName = vuser.firstName,
-            this.user.lastName = vuser.lastName,
-            this.user.externalUserID = vuser.externalUserID,
-            this.user.isExternalUserIDActive = vuser.isExternalUserIDActive,
-            this.user.email = vuser.email,
-            this.user.payPalEmail = vuser.payPalEmail,
-            this.user.originalActive = vuser.isActive,
-            this.user.isActive = vuser.isActive,
-            this.user.additionalDataNeeded = vuser.additionalDataNeeded,
-            this.user.permissionsAllowTpivBypass = vuser.permissionsAllowTpivBypass,
-            this.user.permissionsLifelineNlad = vuser.permissionsLifelineNlad,
-            this.user.permissionsLifelineCA = vuser.permissionsLifelineCA,
-            this.user.permissionsLifelineTX = vuser.permissionsLifelineTX,
-            this.user.permissionsAccountOrder = vuser.permissionsAccountOrder,
-            this.user.userCommission = vuser.userCommission,
+     
+            this.user.id = vuser.id;
+            this.user.companyId = vuser.companyId;
+            this.user.userName = vuser.userName;
+            this.user.originalEmail = vuser.email;
+            this.user.firstName = vuser.firstName;
+            this.user.lastName = vuser.lastName;
+            this.user.externalUserID = vuser.externalUserID;
+            this.user.isExternalUserIDActive = vuser.isExternalUserIDActive;
+            this.user.email = vuser.email;
+            this.user.payPalEmail = vuser.payPalEmail;
+            this.user.originalActive = vuser.isActive;
+            this.user.isActive = vuser.isActive;
+            this.user.additionalDataNeeded = vuser.additionalDataNeeded;
+            this.user.permissionsAllowTpivBypass = vuser.permissionsAllowTpivBypass;
+            this.user.permissionsLifelineNlad = vuser.permissionsLifelineNlad;
+            this.user.permissionsLifelineCA = vuser.permissionsLifelineCA;
+            this.user.permissionsLifelineTX = vuser.permissionsLifelineTX;
+            this.user.permissionsAccountOrder = vuser.permissionsAccountOrder;
+            this.user.userCommission = vuser.userCommission;
             this.user.role = vuser.role;
-            this.user.originalRoleName= vuser.role.name,
+            this.user.originalRoleName= vuser.role.name;
             this.user.team = vuser.salesTeam;
-            this.user.rowVersion= vuser.rowVersion
-         
+            this.user.team.id = vuser.salesTeam.id == null ? "" : vuser.salesTeam.id;
+            this.user.rowVersion= vuser.rowVersion;
+            this.user.selectedGroupId="";
             this.hasLoaded = true;
+         
             if (vuser.role.rank <= this._global.loggedInUser.role.rank) {
                 this.toasterService.pop('error', 'Permission Error', "You do not have permission to access this user's information.");
                 return;
             }
             
-       console.log(this.user)
+       
          
            
             this.canBeDeleted = vuser.canBeDeleted && this._global.loggedInUser.role.rank <= this._constants.administratorRoleRank;
-       
+          
             this.showResetPasswordButton = true;
             this.getTeams();
             this.setRoleFilter();  
                 }, error => this.msg = <any>error);
     }
+    deleteUser(userId: string) {
+        this._userDataService.deleteUser(userId).subscribe(response => {
+            var response = response;
+            if (!response.isSuccessful) {
+                this.toasterService.pop('error', 'Error deleting user.', response.error.userHelp);
+                this.sendingPassword = false;
+            } 
+            this.toasterService.pop('success', 'Successfully deleted user.');
+            this.router.navigate(["user"])
+        }, error => this.msg = <any>error);
 
-    getTeams() {      
+
+    }
+    getTeams() {   
+   
         this._salesTeamDataService.getSalesTeamsForSelection().subscribe
             (response => {
                 
@@ -122,9 +171,11 @@ export class modifyUsersComponent implements OnInit {
                 }
                 
                 var vTeam = response.data;
+       
                 let editedTeam: Array<DisplaySalesTeam> = [];
+                editedTeam.push({id:"",name:"",externalDisplayName:"",isActive:null,displayText: "-Select Team-"})
                 vTeam.forEach(function (team: DisplaySalesTeam) {
-                 
+               
                    editedTeam.push({
                         id: team.id,
                         name: team.name,
@@ -135,7 +186,8 @@ export class modifyUsersComponent implements OnInit {
                  })
                  
                 });
-             this.teams = editedTeam;
+                this.teams = editedTeam;
+             
                
             }, error => this.msg = <any>error)
 
@@ -149,7 +201,8 @@ export class modifyUsersComponent implements OnInit {
                 }
              
                 let self = this
-                 var  lev1Groups = response.data;
+                var lev1Groups = response.data;
+                
                 lev1Groups.forEach(function (lev1group: Level1SalesGroup) {
                     self.groups.push({
                         name: lev1group.name,
@@ -178,13 +231,17 @@ export class modifyUsersComponent implements OnInit {
 
                 var teamsLength = this.teams.length;
                 for (var teamIndex = 0; teamIndex < teamsLength; teamIndex++) {
+                   
                     var team = this.teams[teamIndex];
+                    if (team.displayText == "-Select Team-") {
+                        continue
+                    }
                     team.displayText = team.externalDisplayName + " / " + team.name;
                     if (!team.isActive) {
                         team.displayText += " (Inactive)";
                     }
                 }
-                console.log(this.user)
+              
                   this.setTeam()   
             }, error => this.msg = <any>error)
     }
@@ -195,7 +252,9 @@ export class modifyUsersComponent implements OnInit {
         for (var teamsIndex = 0; teamsIndex < teamsLength; teamsIndex++) {
             
             if (this.user.team.id == this.teams[teamsIndex].id) {
-                this.user.team = this.teams[teamsIndex];
+
+                this.user.team.id = this.teams[teamsIndex].id;
+                this.user.team.name = this.teams[teamsIndex].name;
             }
         }
 
@@ -215,7 +274,7 @@ export class modifyUsersComponent implements OnInit {
 
                 });
 
-             console.log(this.roles)
+             //console.log(this.roles)
                 //filter roles the user does not have access to.
                this.roles = this.roles.filter(role => role.rank > this._global.loggedInUser.role.rank)
                
@@ -224,6 +283,7 @@ export class modifyUsersComponent implements OnInit {
     }
     setGroupFilter() {
         let vgroupLevel: string;
+        this.setRole();
         if (this.user.role.name == "Level 1 Manager") {
             this.managerLevel = "Level1"
             vgroupLevel = "1"
@@ -241,6 +301,11 @@ export class modifyUsersComponent implements OnInit {
         }
         var vGroups = this.groups;
         let filteredGroup: GroupView[] = []
+      filteredGroup.push({
+            name: '-Select Group-',
+            id: "",
+            level: ""
+        })
         vGroups.forEach(function (group: GroupView) {
             if (group.level == vgroupLevel) {
                 filteredGroup.push(group)
@@ -248,10 +313,86 @@ export class modifyUsersComponent implements OnInit {
 
         })
         this.groups = filteredGroup;
+        console.log(this._global)
 
     }
     setRole() {
+        var rolesLength = this.roles.length;
+    
+        for (var rolesIndex = 0; rolesIndex < rolesLength; rolesIndex++){
+          
+            if (this.user.role.id == this.roles[rolesIndex].id) {
+              
+                this.user.role.id = this.roles[rolesIndex].id;
+                this.user.role.name = this.roles[rolesIndex].name;
+                this.user.role.rank = this.roles[rolesIndex].rank;
+
+                break;
+            }
+
+        }
+       
+    }
+    resetUsersPassword(userId: string, email: string) {
+        this.sendingPassword = true;
+        this._userDataService.resetUsersPassword(userId,email).subscribe(response => {
+            var response = response;
+            if (!response.isSuccessful) {
+                this.toasterService.pop('error', 'Error resetting password.', response.error.userHelp);
+                this.sendingPassword = false;
+            } else if (response.isSuccessful) {
+                if (response.error == null) {
+                    this.toasterService.pop('success', "An email has been sent to the user's account.");
+                    this.sendingPassword = false;
+                }else {
+                this.toasterService.pop('info',response.error.userHelp);
+                this.sendingPassword = false;
+            }
+            } 
+
+          
+        }, error => this.msg = <any>error);
 
     }
+    submitUser( userForm: any) {  
+    
+        if (userForm.valid) {
+            if (this.createOrModify == this._constants.modify && this._global.loggedInUser.id == this.user.id) {
+                this._userDataService.editLoggedInUser(this.user).subscribe(response => {
+              
+                    var response = response;
+                    if (!response.isSuccessful) {
+                        this.toasterService.pop('error', 'Error editing logged in user.', response.error.userHelp);
+                        this.sendingPassword = false;
+                    }
+                    this.toasterService.pop('success', 'Successfully edited logged in user.');
+                    this.router.navigate(["user"])
+                }, error => this.msg = <any>error);
 
+
+            } else {
+                
+                if (this.user.selectedGroupId ==null || this.user.selectedGroupId == "") {
+                    var groupId = "0";
+                } else {
+                    var groupId = this.user.selectedGroupId;
+                }
+             
+                this._userDataService.submitUserForAddOrEdit(this.user, this.createOrModify, groupId).subscribe(response => {
+                 
+                    var response = response;
+                    if (!response.isSuccessful) {
+                        this.toasterService.pop('error', 'Error editing user.', response.error.userHelp);
+                        this.sendingPassword = false;
+                    }
+                    this.toasterService.pop('success', 'Successfully edited user.');
+                    this.router.navigate(["user"])
+                }, error => this.msg = <any>error);
+
+            }
+
+
+        }
+
+    }
 }

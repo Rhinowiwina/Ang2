@@ -19,7 +19,8 @@ var Services_1 = require("../../../Service/Services");
 var global_2 = require("../../../Shared/global");
 //
 var ModifyLoginMsgComponent = (function () {
-    function ModifyLoginMsgComponent(router, _messageDataService, _global, toasterService, _constants, datePipe, route) {
+    function ModifyLoginMsgComponent(_location, router, _messageDataService, _global, toasterService, _constants, datePipe, route) {
+        this._location = _location;
         this.router = router;
         this._messageDataService = _messageDataService;
         this._global = _global;
@@ -29,7 +30,7 @@ var ModifyLoginMsgComponent = (function () {
         this.loading = true;
         this.hasLoadded = false;
         this.model = { date: { year: 0, month: 0, day: 0 } };
-        this.levels = [{ id: 1, name: 'Critical' }, { id: 2, name: 'Important' }, { id: 3, name: 'Informational' }];
+        this.levels = [{ id: null, name: '- Select Level -' }, { id: 1, name: 'Critical' }, { id: 2, name: 'Important' }, { id: 3, name: 'Informational' }];
         this.toasterService = toasterService;
     }
     ModifyLoginMsgComponent.prototype.ngOnInit = function () {
@@ -97,6 +98,20 @@ var ModifyLoginMsgComponent = (function () {
             }, function (error) { return _this.msg = error; });
         }
     };
+    ModifyLoginMsgComponent.prototype.deleteMessage = function (id) {
+        var _this = this;
+        this._messageDataService.deleteMessage(id).subscribe(function (response) {
+            var response = response;
+            if (!response.isSuccessful) {
+                _this.loading = false;
+                _this.toasterService.pop('error', 'Error Deleting Login Message.', response.errror.userHelp);
+                _this.loading = false;
+            }
+            _this.toasterService.pop('success', 'Successfully deleted message.');
+            _this.loading = false;
+            _this.router.navigate(["loginMsg"]);
+        }, function (error) { return _this.msg = error; });
+    };
     return ModifyLoginMsgComponent;
 }());
 ModifyLoginMsgComponent = __decorate([
@@ -104,7 +119,7 @@ ModifyLoginMsgComponent = __decorate([
         templateUrl: '../../../app/components/administration/loginMessages/modifyLoginMsg.html',
         styleUrls: ['../../Content/sass/siteAngular.css']
     }),
-    __metadata("design:paramtypes", [router_1.Router, Services_1.MessageDataService, global_1.Global, angular2_toaster_1.ToasterService, global_2.Constants, common_1.DatePipe, router_1.ActivatedRoute])
+    __metadata("design:paramtypes", [common_1.Location, router_1.Router, Services_1.MessageDataService, global_1.Global, angular2_toaster_1.ToasterService, global_2.Constants, common_1.DatePipe, router_1.ActivatedRoute])
 ], ModifyLoginMsgComponent);
 exports.ModifyLoginMsgComponent = ModifyLoginMsgComponent;
 //# sourceMappingURL=modifyLoginMsg.component.js.map

@@ -71,7 +71,7 @@
 					name="level"
                     #level="ngModel"
 					required>
-				<option value=''>- Select Level -</option>
+		
 				<option *ngFor="let level of levels" [value]="level.id" >{{level.name}}</option>
 			</select>
 
@@ -93,11 +93,12 @@
 		</div>
 	</div>
 	<br />
+       
 	<button type="submit" [disabled]="!modifyMessageForm.form.valid"  class="btn admin-button" >SUBMIT</button>
 
-	<button type="button" [disabled]="!hasLoaded"(click)="goBack()" class="btn cancel-button" >CANCEL</button>
+	<button type="button" [disabled]="loading"(click)="_location.back()" class="btn cancel-button" >CANCEL</button>
 
-	<button type="button" [disabled]="!hasLoaded" (click)="deleteMessage(message.id)" class="btn generic-button" *ngIf="createOrModify== _constants.modify" >DELETE</button>
+	<button type="button" [disabled]="loading" (click)="deleteMessage(message.id)" class="btn generic-button" *ngIf="createOrModify== _constants.modify" >DELETE</button>
 	
             </form>
 </div>

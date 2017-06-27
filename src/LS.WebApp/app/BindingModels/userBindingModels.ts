@@ -18,14 +18,15 @@ export class UserView {
 	permissionsLifelineTX: boolean;
 	permissionsAllowTpivBypass : boolean;
 	permissionsAccountOrder : boolean;
-	salesTeamId: string;
+    salesTeamId: string;
+  
 	//SalesTeamSimpleViewBindingModel SalesTeam 
 	rowVersion: string;
 	canBeDeleted: boolean;
 }
 export class EditUserView {
     id: string;
-    comapnyId: string;
+    companyId: string;
     userName: string;
     originalEmail:string
     firstName: string;
@@ -48,6 +49,7 @@ export class EditUserView {
     rowVersion: string;
     roleId: string;
     role: ApplicationRole;
+    selectedGroupId: string;
 }
 export class LoggedInUser {
 	id: string;
