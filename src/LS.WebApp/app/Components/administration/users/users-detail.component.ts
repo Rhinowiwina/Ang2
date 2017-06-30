@@ -10,9 +10,8 @@ import { ToasterModule, ToasterService, ToasterConfig, BodyOutputType } from 'an
 import { UserView } from '../../../BindingModels/userBindingModels';
 import { AppUserDataService } from '../../../Service/Services';
 import { Constants } from '../../../Shared/global';
-import { Accordion, AccordionGroup,AccordionHead } from '../../../Shared/accordion';
 import { GridOptions } from "ag-grid/main";
-//https://www.npmjs.com/package/ng2-accordion
+
 @Component({
 	selector: 'user-detail',
 	templateUrl: 'app/Components/administration/users/users-detail.html',

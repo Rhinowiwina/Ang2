@@ -1,5 +1,5 @@
 ﻿import { Company } from './companyBindingModels';
-import { Level3SalesGroup } from './groupBindingModels';
+import { Level3SalesGroup } from './salesGroupBindingModels';
 import { UserView } from './userBindingModels';
 export class SalesTeam {
 	id: string;

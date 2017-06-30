@@ -34,6 +34,15 @@ export class Global {
 }
 @Injectable()
 export class Constants {
+    get salesGroupLevel1() {
+        return 1
+    }
+    get salesGroupLevel2() {
+        return 2
+    }
+    get salesGroupLevel3() {
+        return 3
+    }
 	get superadministratorRoleName() {
 		return  "Super Administrator"
 	}

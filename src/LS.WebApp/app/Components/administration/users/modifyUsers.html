@@ -1,8 +1,8 @@
 ﻿﻿<h1 trns>ADD/EDIT USER</h1>
-<div *ngIf=" !hasLoaded"><img src="/Content/img/spiffygif_30x30.gif" style="text-align: center" ng-hide="hasLoaded" /></div>
+<div *ngIf=" !hasLoaded"><img src="/Content/img/spiffygif_30x30.gif" style="text-align: center" [hidden]="hasLoaded" /></div>
 
 <form role="form" class="form-horizontal" (ngSubmit)="submitUser(modifyUserForm)" name="modifyUserForm"  #modifyUserForm="ngForm" novalidate>
-    <input ng-model="form" ng-init="form=modifyUserForm" hidden>
+ 
 
     <div *ngIf="_global.loggedInUser && hasLoaded">
    

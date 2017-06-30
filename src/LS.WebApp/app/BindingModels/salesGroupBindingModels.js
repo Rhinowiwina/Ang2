@@ -5,6 +5,12 @@ var GroupView = (function () {
     return GroupView;
 }());
 exports.GroupView = GroupView;
+var SalesGroup = (function () {
+    function SalesGroup() {
+    }
+    return SalesGroup;
+}());
+exports.SalesGroup = SalesGroup;
 var Level1SalesGroup = (function () {
     function Level1SalesGroup() {
     }
@@ -23,4 +29,4 @@ var Level3SalesGroup = (function () {
     return Level3SalesGroup;
 }());
 exports.Level3SalesGroup = Level3SalesGroup;
-//# sourceMappingURL=groupBindingModels.js.map
+//# sourceMappingURL=salesGroupBindingModels.js.map

@@ -46,6 +46,7 @@ var AccordionGroup = (function () {
     function AccordionGroup(accordion) {
         this.accordion = accordion;
         this._isOpen = false;
+        this.headerOpened = new core_1.EventEmitter();
         this.accordion.addGroup(this);
     }
     Object.defineProperty(AccordionGroup.prototype, "isOpen", {
@@ -56,6 +57,7 @@ var AccordionGroup = (function () {
             this._isOpen = value;
             if (value) {
                 this.accordion.closeOthers(this);
+                this.headerOpened.emit();
             }
         },
         enumerable: true,
@@ -75,6 +77,10 @@ __decorate([
     __metadata("design:type", String)
 ], AccordionGroup.prototype, "heading", void 0);
 __decorate([
+    core_1.Output(),
+    __metadata("design:type", Object)
+], AccordionGroup.prototype, "headerOpened", void 0);
+__decorate([
     core_1.Input(),
     __metadata("design:type", Boolean),
     __metadata("design:paramtypes", [Boolean])
@@ -82,9 +88,36 @@ __decorate([
 AccordionGroup = __decorate([
     core_1.Component({
         selector: 'accordion-group',
-        template: "\n                <div class=\"panel panel-default\" [ngClass]=\"{'panel-open': isOpen}\">\n                  <div class=\"panel-heading\" (click)=\"toggleOpen($event)\">\n                    <h4 class=\"panel-title\">\n                      <a href tabindex=\"0\"><span>{{heading}}</span></a>\n                    </h4>\n                  </div>\n                  <div class=\"panel-collapse\" [hidden]=\"!isOpen\">\n                    <div class=\"panel-body\">\n                        <ng-content></ng-content>\n                    </div>\n                  </div>\n                </div>\n          ",
+        template: " \n                <div  class=\"panel panel-default\" [ngClass]=\"{'panel-open': isOpen}\">\n                 <accordion-head [heading]=\"heading\" (toggled)=toggleOpen($event)> </accordion-head>\n                  <div class=\"panel-collapse\" [hidden]=\"!isOpen\">\n \n                    <div class=\"panel-body\">\n                        <ng-content></ng-content>\n                    </div>\n                  </div>\n                </div>\n\n          ",
     }),
     __metadata("design:paramtypes", [Accordion])
 ], AccordionGroup);
 exports.AccordionGroup = AccordionGroup;
+var AccordionHead = (function () {
+    function AccordionHead() {
+        this._isOpen = false;
+        this.toggled = new core_1.EventEmitter();
+    }
+    AccordionHead.prototype.toggleOpen = function (event) {
+        event.preventDefault();
+        //this.isOpen = !this.isOpen;
+        this.toggled.emit(event);
+    };
+    return AccordionHead;
+}());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], AccordionHead.prototype, "heading", void 0);
+__decorate([
+    core_1.Output(),
+    __metadata("design:type", core_1.EventEmitter)
+], AccordionHead.prototype, "toggled", void 0);
+AccordionHead = __decorate([
+    core_1.Component({
+        selector: 'accordion-head',
+        template: "\n                <div class=\"panel-heading\" (click)=\"toggleOpen($event)\">\n                    <h4 class=\"panel-title\">\n                      <a href tabindex=\"0\">{{heading}}</a>\n                     <button type=\"button\" class=\"btn admin-button text-right\" ng-click=\"showManagers($index, salesGroupLevel1.id, salesGroupConstants.salesGroupLevel1, $event, salesGroupLevel1.open)\">Managers</button>\n                    </h4>\n                     \n                  </div>\n          ",
+    })
+], AccordionHead);
+exports.AccordionHead = AccordionHead;
 //# sourceMappingURL=accordion.js.map

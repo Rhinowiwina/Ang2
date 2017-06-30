@@ -11,7 +11,7 @@ import { SalesTeam, DisplaySalesTeam } from '../../../BindingModels/salesTeamBin
 import { ApplicationRole } from '../../../BindingModels/applicationRole';
 import { AppUserDataService, SalesTeamDataService,SalesGroupDataService } from '../../../Service/Services';
 import { YesNo, OrderBy } from '../../../Shared/filters';
-import { Level1SalesGroup, Level2SalesGroup, Level3SalesGroup, GroupView} from '../../../BindingModels/groupBindingModels';
+import { Level1SalesGroup, Level2SalesGroup, Level3SalesGroup, GroupView} from '../../../BindingModels/salesGroupBindingModels';
 import { LoggedInUser, EditUserView, UserView } from '../../../BindingModels/userBindingModels';
 //https://www.npmjs.com/package/ng2-accordion
 @Component({
@@ -49,7 +49,7 @@ export class modifyUsersComponent implements OnInit {
 
     ngOnInit(): void {
      
-        console.log(this._global)
+     
         this.minToChangeTeam = this._global.minToChangeTeam;
         this.sub = this.route.params.subscribe(params => {
             this.userId = params['userId']
@@ -61,6 +61,9 @@ export class modifyUsersComponent implements OnInit {
                 this.createUser();
             }
         })
+    }
+    ngOnDestroy() {
+        if (this.sub) this.sub.unsubscribe();
     }
     createUser() {
         this.user = new EditUserView();

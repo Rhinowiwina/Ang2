@@ -267,6 +267,7 @@
     <Content Include="app\common\header.html" />
     <Content Include="app\Components\administration\loginMessages\modifyLoginMsg.html" />
     <Content Include="app\Components\administration\loginMessages\loginMsg.html" />
+    <Content Include="app\Components\administration\salesGroups\modifySalesGroups.html" />
     <Content Include="app\Components\administration\salesGroups\salesGroups.html" />
     <Content Include="app\Components\administration\users\modifyUsers.html" />
     <Content Include="app\Components\administration\users\users-detail.html" />
@@ -546,13 +547,14 @@
     <TypeScriptCompile Include="app\app.routing.ts" />
     <TypeScriptCompile Include="app\BindingModels\applicationRole.ts" />
     <TypeScriptCompile Include="app\BindingModels\companyBindingModels.ts" />
-    <TypeScriptCompile Include="app\BindingModels\groupBindingModels.ts" />
+    <TypeScriptCompile Include="app\BindingModels\salesGroupBindingModels.ts" />
     <TypeScriptCompile Include="app\BindingModels\salesTeamBindingModels.ts" />
     <TypeScriptCompile Include="app\common\branding.ts" />
     <TypeScriptCompile Include="app\common\header.ts" />
     <TypeScriptCompile Include="app\Components\administration\loginMessages\loginMsg.component.ts" />
     <TypeScriptCompile Include="app\Components\administration\loginMessages\modifyLoginMsg.component.ts" />
-    <TypeScriptCompile Include="app\Components\administration\salesGroups\salesGroupComponent.ts" />
+    <TypeScriptCompile Include="app\Components\administration\salesGroups\modifySalesGroup.Component.ts" />
+    <TypeScriptCompile Include="app\Components\administration\salesGroups\salesGroup.Component.ts" />
     <TypeScriptCompile Include="app\Components\administration\users\modifyUsers.component.ts" />
     <TypeScriptCompile Include="app\Components\administration\users\users-detail.component.ts" />
     <TypeScriptCompile Include="app\Components\administration\users\users.component.ts" />
@@ -563,11 +565,14 @@
     <TypeScriptCompile Include="app\Service\resolve.service.ts" />
     <TypeScriptCompile Include="app\Service\emitter.service.ts" />
     <TypeScriptCompile Include="app\Service\Services.ts" />
-    <TypeScriptCompile Include="app\Shared\accordion.ts" />
     <TypeScriptCompile Include="app\Shared\enum.ts" />
     <TypeScriptCompile Include="app\Shared\filters.ts" />
     <TypeScriptCompile Include="app\Shared\directives.ts" />
     <TypeScriptCompile Include="app\Shared\global.ts" />
+    <TypeScriptCompile Include="app\Shared\Accordion\Accordion.ts" />
+    <TypeScriptCompile Include="app\Shared\Accordion\AccordionGroup.ts" />
+    <TypeScriptCompile Include="app\Shared\Accordion\AccordionHeading.ts" />
+    <TypeScriptCompile Include="app\Shared\Accordion\AccordionToggle.ts" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Controllers\webapi\" />

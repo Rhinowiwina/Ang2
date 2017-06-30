@@ -6,7 +6,8 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import { LoggedInUser, EditUserView, UserView } from '../BindingModels/userBindingModels';
 import { message } from '../BindingModels/messageBindingModels';
-import { Constants, Global } from '../Shared/global'
+import { Constants, Global } from '../Shared/global';
+import {GroupManager } from '../BindingModels/userBindingModels';
 @Injectable()
 export class BaseService {
     baseUrl: string
@@ -77,6 +78,10 @@ export class AppUserDataService extends BaseService{
 	
     constructor(private vhttp: Http, private constants: Constants, private global:Global) {
         super(vhttp, constants);
+    }
+    getAllSalesGroupManagers() {
+        return this.get(this.baseUrl +'getAllManagersForCurrentCompany');
+
     }
     resetUsersPassword(userId:string,email:string) {
         return this.post(this.baseUrl + 'resetUsersPassword?userId='+userId +'&email=' + email,null);
@@ -250,14 +255,34 @@ export class SalesGroupDataService extends BaseService {
     salesGroupApiPrefixes: string[];
      constructor(private vhttp: Http, private constants: Constants) {
         super(vhttp, constants);
-        this.salesGroupApiPrefixes = ['api/level1SalesGroup/', 'api/level2SalesGroup/', 'api/level3SalesGroup/'];
+        this.salesGroupApiPrefixes = ["",'api/level1SalesGroup/', 'api/level2SalesGroup/', 'api/level3SalesGroup/'];
     }
+     getSalesGroup(salesGroupId: string, salesGroupLevel: number) {
+         return this.get(this.salesGroupApiPrefixes[salesGroupLevel] + salesGroupId);
 
-     getCompanySalesGroupAdminTreeWhereManagerInTree() {
-      
-        return this.get(this.salesGroupApiPrefixes[0] + 'getCompanySalesGroupAdminTreeWhereManagerInTree');
+     }
+     getCompanySalesGroupAdminTreeWhereManagerInTree() {      
+        return this.get(this.salesGroupApiPrefixes[1] + 'getCompanySalesGroupAdminTreeWhereManagerInTree');
+     }
+     getGroupManagers(salesGroupId:string,salesGroupLevel:number) {
+         return this.get(this.salesGroupApiPrefixes[salesGroupLevel] + 'getGroupManagers?id=' + salesGroupId)
+     }
+     getLevel3GroupTeams(salesGroupLevel3Id:string) {
+         return this.get(this.salesGroupApiPrefixes[3] +  'getLevel3GroupTeams?id=' + salesGroupLevel3Id)
+     }
+     submitSalesGroupForAddOrEdit(salesGroup:Object,salesGroupLevel:number,createOrModify:number) {
+         if (createOrModify == this.constants.modify){
+             return editSalesGroup(salesGroup, salesGroupLevel)
+         }
+     }
 
-    }
+     editSalesGroup(salesGroup: { managers: Array<GroupManager>}, salesGroupLevel:number) {
+         var managerIds:string[] = [];
+         salesGroup.managers.forEach(function (manager) {
+             managerIds.push(manager.id);
+         });
+
+     }
 
 }
 

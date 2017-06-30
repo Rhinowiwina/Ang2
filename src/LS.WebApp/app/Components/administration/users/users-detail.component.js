@@ -16,7 +16,6 @@ var ngx_bootstrap_1 = require("ngx-bootstrap");
 var angular2_toaster_1 = require("angular2-toaster");
 var Services_1 = require("../../../Service/Services");
 var global_2 = require("../../../Shared/global");
-//https://www.npmjs.com/package/ng2-accordion
 var UsersdetailComponent = (function () {
     function UsersdetailComponent(router, _userDataService, _global, toasterService, _constants) {
         this.router = router;

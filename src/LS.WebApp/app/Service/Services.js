@@ -94,6 +94,9 @@ var AppUserDataService = (function (_super) {
         _this.baseUrl = 'api/appUser/';
         return _this;
     }
+    AppUserDataService.prototype.getAllSalesGroupManagers = function () {
+        return this.get(this.baseUrl + 'getAllManagersForCurrentCompany');
+    };
     AppUserDataService.prototype.resetUsersPassword = function (userId, email) {
         return this.post(this.baseUrl + 'resetUsersPassword?userId=' + userId + '&email=' + email, null);
     };
@@ -264,11 +267,20 @@ var SalesGroupDataService = (function (_super) {
         var _this = _super.call(this, vhttp, constants) || this;
         _this.vhttp = vhttp;
         _this.constants = constants;
-        _this.salesGroupApiPrefixes = ['api/level1SalesGroup/', 'api/level2SalesGroup/', 'api/level3SalesGroup/'];
+        _this.salesGroupApiPrefixes = ["", 'api/level1SalesGroup/', 'api/level2SalesGroup/', 'api/level3SalesGroup/'];
         return _this;
     }
+    SalesGroupDataService.prototype.getSalesGroup = function (salesGroupId, salesGroupLevel) {
+        return this.get(this.salesGroupApiPrefixes[salesGroupLevel] + salesGroupId);
+    };
     SalesGroupDataService.prototype.getCompanySalesGroupAdminTreeWhereManagerInTree = function () {
-        return this.get(this.salesGroupApiPrefixes[0] + 'getCompanySalesGroupAdminTreeWhereManagerInTree');
+        return this.get(this.salesGroupApiPrefixes[1] + 'getCompanySalesGroupAdminTreeWhereManagerInTree');
+    };
+    SalesGroupDataService.prototype.getGroupManagers = function (salesGroupId, salesGroupLevel) {
+        return this.get(this.salesGroupApiPrefixes[salesGroupLevel] + 'getGroupManagers?id=' + salesGroupId);
+    };
+    SalesGroupDataService.prototype.getLevel3GroupTeams = function (salesGroupLevel3Id) {
+        return this.get(this.salesGroupApiPrefixes[3] + 'getLevel3GroupTeams?id=' + salesGroupLevel3Id);
     };
     return SalesGroupDataService;
 }(BaseService));

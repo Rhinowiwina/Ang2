@@ -24,6 +24,7 @@
             '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
               // other libraries
+            "ngx-accordion": "node_modules/ngx-accordion",
             'rxjs': 'npm:rxjs',
             'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
 			'ng2-bs3-modal': 'npm:/ng2-bs3-modal',
@@ -38,7 +39,9 @@
 		packages: {
 			'ag-grid-angular': {
 				defaultExtension: "js"
-			},
+            },
+            "ngx-accordion":{
+             main: "index.js", defaultExtension: "js" },
 			'ag-grid': {
 				defaultExtension: "js"
 			},

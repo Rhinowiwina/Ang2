@@ -49,6 +49,27 @@ exports.Global = Global;
 var Constants = (function () {
     function Constants() {
     }
+    Object.defineProperty(Constants.prototype, "salesGroupLevel1", {
+        get: function () {
+            return 1;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Constants.prototype, "salesGroupLevel2", {
+        get: function () {
+            return 2;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Constants.prototype, "salesGroupLevel3", {
+        get: function () {
+            return 3;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Object.defineProperty(Constants.prototype, "superadministratorRoleName", {
         get: function () {
             return "Super Administrator";

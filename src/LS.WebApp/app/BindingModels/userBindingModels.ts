@@ -24,6 +24,19 @@ export class UserView {
 	rowVersion: string;
 	canBeDeleted: boolean;
 }
+export class GroupsOfManagers {
+    level1: Array<GroupManager>;
+    level2: Array<GroupManager>;
+    level3: Array<GroupManager>;
+}
+
+export class GroupManager {
+    id: string;
+    firstName: string;
+    lastName: string;
+    level: number;
+    val: boolean;
+}
 export class EditUserView {
     id: string;
     companyId: string;

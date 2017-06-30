@@ -13,9 +13,10 @@ import { routing } from './app.routing';
 import { ToasterModule, ToasterService,ToasterConfig } from 'angular2-toaster';
 import { Global } from './Shared/global';
 import { Constants } from './Shared/global';
-import { Accordion, AccordionGroup, AccordionHead } from './Shared/accordion';
+//import { Accordion, AccordionGroup, AccordionHead } from './Shared/accordion';
 import { YesNo } from './Shared/filters';
 import { AgGridModule } from 'ag-grid-angular/main';
+
 import { DatePipe } from '@angular/common';
 //Services Imports
 import { LoggedInUserResolve} from './Service/resolve.service'
@@ -27,21 +28,29 @@ import { SalesTeamDataService } from './Service/Services';
 import { EmailValidator } from './Shared/directives';
 
 //Component Imports
+
+import { Accordion } from './Shared/Accordion/Accordion';
+import { AccordionGroup } from './Shared/Accordion/AccordionGroup';
+import { AccordionHeading } from './Shared/Accordion/AccordionHeading';
+import { AccordionToggle } from './Shared/Accordion/AccordionToggle';
 import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from "./common/header"
 import { BrandingComponent } from './common/branding';
 import { UserComponent } from './components/administration/users/users.component';
 import { modifyUsersComponent } from './components/administration/users/modifyUsers.component';
-import { SalesGroupComponent } from './components/administration/salesGroups/salesGroupComponent';
+import { SalesGroupComponent } from './components/administration/salesGroups/salesGroup.Component';
+import { ModifySalesGroupComponent } from './components/administration/salesGroups/modifySalesGroup.Component';
 import { UsersdetailComponent } from './components/administration/users/users-detail.component';
 import { LoginMsgComponent } from './components/administration/loginMessages/loginMsg.component';
+
+
 import { ModifyLoginMsgComponent } from './components/administration/loginMessages/modifyLoginMsg.component';
 import { ModalModule, DatepickerModule } from 'ngx-bootstrap';
 // Ng2Bs3ModalModule,
 @NgModule({
     imports: [BrowserModule, ModalModule.forRoot(), DatepickerModule.forRoot(), MyDatePickerModule, ReactiveFormsModule,  FormsModule, HttpModule, routing, ToasterModule, AgGridModule.withComponents([]),],
 
-    declarations: [AppComponent, SalesGroupComponent, EmailValidator, modifyUsersComponent, LoginMsgComponent, YesNo, Accordion, AccordionGroup, AccordionHead, UsersdetailComponent, HomeComponent, HeaderComponent, BrandingComponent, UserComponent,ModifyLoginMsgComponent],
+    declarations: [AppComponent, SalesGroupComponent, ModifySalesGroupComponent, EmailValidator, modifyUsersComponent, LoginMsgComponent, YesNo, Accordion, AccordionHeading, AccordionGroup, AccordionToggle, UsersdetailComponent, HomeComponent, HeaderComponent, BrandingComponent, UserComponent,ModifyLoginMsgComponent],
 
     providers: [{ provide: APP_BASE_HREF, useValue: '/' }, DatePipe, CompanyDataService, SalesTeamDataService, SalesGroupDataService, AppUserDataService,LoggedInUserResolve, Global, Constants, MessageDataService,],
 

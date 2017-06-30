@@ -88,7 +88,7 @@ __decorate([
 AccordionGroup = __decorate([
     core_1.Component({
         selector: 'accordion-group',
-        template: " \n                <div  class=\"panel panel-default\" [ngClass]=\"{'panel-open': isOpen}\">\n                 <accordion-head [heading]=\"heading\" (toggled)=toggleOpen($event)>  </accordion-head>\n                  <div class=\"panel-collapse\" [hidden]=\"!isOpen\">\n \n                    <div class=\"panel-body\">\n                        <ng-content></ng-content>\n                    </div>\n                  </div>\n                </div>\n\n          ",
+        template: " \n                <div  class=\"panel panel-default\" [ngClass]=\"{'panel-open': isOpen}\">\n                 <accordion-head [heading]=\"heading\" (toggled)=toggleOpen($event)> </accordion-head>\n                  <div class=\"panel-collapse\" [hidden]=\"!isOpen\">\n \n                    <div class=\"panel-body\">\n                        <ng-content></ng-content>\n                    </div>\n                  </div>\n                </div>\n\n          ",
     }),
     __metadata("design:paramtypes", [Accordion])
 ], AccordionGroup);
@@ -116,7 +116,7 @@ __decorate([
 AccordionHead = __decorate([
     core_1.Component({
         selector: 'accordion-head',
-        template: "\n                <div class=\"panel-heading\" (click)=\"toggleOpen($event)\">\n                    <h4 class=\"panel-title\">\n                      <a href tabindex=\"0\"><span>{{heading}}</span></a>\n                    </h4>\n                  </div>\n          ",
+        template: "\n                <div class=\"panel-heading\" (click)=\"toggleOpen($event)\">\n                    <h4 class=\"panel-title\">\n                      <a href tabindex=\"0\">{{heading}}</a>\n                     <button type=\"button\" class=\"btn admin-button text-right\" ng-click=\"showManagers($index, salesGroupLevel1.id, salesGroupConstants.salesGroupLevel1, $event, salesGroupLevel1.open)\">Managers</button>\n                    </h4>\n                     \n                  </div>\n          ",
     })
 ], AccordionHead);
 exports.AccordionHead = AccordionHead;

@@ -9,8 +9,19 @@
 
 <accordion>	
 	
-		<accordion-group (headerOpened)=loadUsers(role.rank,i) [heading]="role.name" *ngFor="let role of roles; let i = index">		
-
+		<accordion-group (onOpen)=loadUsers(role.rank,i)  *ngFor="let role of roles; let i = index">		
+            <accordion-heading>
+                <div class="row">
+                    <accordion-toggle>
+                        <a>
+                            <div class="col-xs-8 col-sm-10">
+                                <span class="order-section-title">{{role.name}}</span>
+                            </div>
+                        </a>
+                    </accordion-toggle>
+                    
+                </div>
+            </accordion-heading>
 			<div class="order-content">
 				<div ng-if="users[i].length > 0" style="float:right;margin-bottom:6px;font-size:16px">
 					<button type="button" class="btn order-button-small" (click)="onBtExport('u')" data-toggle="modal" data-target="#reportsettings"><i class="fa fa-download" aria-hidden="true"></i> </button>

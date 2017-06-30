@@ -37,7 +37,7 @@ export class Accordion {
 
 	template: ` 
                 <div  class="panel panel-default" [ngClass]="{'panel-open': isOpen}">
-                 <accordion-head [heading]="heading" (toggled)=toggleOpen($event)>  </accordion-head>
+                 <accordion-head [heading]="heading" (toggled)=toggleOpen($event)> </accordion-head>
                   <div class="panel-collapse" [hidden]="!isOpen">
  
                     <div class="panel-body">
@@ -88,8 +88,10 @@ export class AccordionGroup implements OnDestroy {
 	template: `
                 <div class="panel-heading" (click)="toggleOpen($event)">
                     <h4 class="panel-title">
-                      <a href tabindex="0"><span>{{heading}}</span></a>
+                      <a href tabindex="0">{{heading}}</a>
+                     <button type="button" class="btn admin-button text-right" ng-click="showManagers($index, salesGroupLevel1.id, salesGroupConstants.salesGroupLevel1, $event, salesGroupLevel1.open)">Managers</button>
                     </h4>
+                     
                   </div>
           `,
 

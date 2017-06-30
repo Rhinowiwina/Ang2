@@ -40,7 +40,6 @@ var modifyUsersComponent = (function () {
     }
     modifyUsersComponent.prototype.ngOnInit = function () {
         var _this = this;
-        console.log(this._global);
         this.minToChangeTeam = this._global.minToChangeTeam;
         this.sub = this.route.params.subscribe(function (params) {
             _this.userId = params['userId'];
@@ -53,6 +52,10 @@ var modifyUsersComponent = (function () {
                 _this.createUser();
             }
         });
+    };
+    modifyUsersComponent.prototype.ngOnDestroy = function () {
+        if (this.sub)
+            this.sub.unsubscribe();
     };
     modifyUsersComponent.prototype.createUser = function () {
         this.user = new userBindingModels_1.EditUserView();
