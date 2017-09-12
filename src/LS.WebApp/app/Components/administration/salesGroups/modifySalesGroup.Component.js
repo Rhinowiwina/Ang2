@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var Rx_1 = require("rxjs/Rx");
 var Services_1 = require("../../../Service/Services");
 require("rxjs/add/operator/mergeMap");
 var global_1 = require("../../../Shared/global");
@@ -88,6 +89,16 @@ var ModifySalesGroupComponent = (function () {
             self.allManagers.level1 = response.data.level1Managers;
             self.allManagers.level2 = response.data.level1Managers;
             self.allManagers.level3 = response.data.level1Managers;
+            //initialize all val's to false.
+            self.allManagers.level1.forEach(function (manager) {
+                manager.val = false;
+            });
+            self.allManagers.level2.forEach(function (manager) {
+                manager.val = false;
+            });
+            self.allManagers.level3.forEach(function (manager) {
+                manager.val = false;
+            });
         }, function (error) { return _this.msg = error; });
     };
     ModifySalesGroupComponent.prototype.getSalesGroupToEdit = function (saleGroupId) {
@@ -114,11 +125,26 @@ var ModifySalesGroupComponent = (function () {
             else if (_this.currentLevel == 3) {
                 _this.salesGroup.managerOptions = _this.allManagers.level3;
             }
-            console.log(_this.salesGroup);
-            _this.hasLoaded = true;
+            _this.setManagers().subscribe(function (response) { _this.hasLoaded = true; }, function (error) { return _this.msg = error; });
+            // console.log(this.salesGroup)
         }, function (error) { return _this.msg = error; });
     };
     ModifySalesGroupComponent.prototype.salesGroupCreate = function () {
+    };
+    ModifySalesGroupComponent.prototype.setManagers = function () {
+        if (typeof this.salesGroup.managers == 'undefined' || this.salesGroup.managers == null || this.salesGroup.managers.length < 1) {
+            return;
+        }
+        var checkedManagersLength = this.salesGroup.managers.length; // managers that the user has checked
+        var managersLength = this.salesGroup.managerOptions.length; // all available managers for current level
+        for (var checkedManagersIndex = 0; checkedManagersIndex < checkedManagersLength; checkedManagersIndex++) {
+            for (var managersIndex = 0; managersIndex < managersLength; managersIndex++) {
+                if (this.salesGroup.managers[checkedManagersIndex].id == this.salesGroup.managerOptions[managersIndex].id) {
+                    this.salesGroup.managerOptions[managersIndex].val = true;
+                }
+            }
+        }
+        return Rx_1.Observable.of(true);
     };
     ModifySalesGroupComponent.prototype.checkDeletability = function (salesGroup) {
         if (this.currentLevel == this._constants.salesGroupLevel3) {
@@ -126,6 +152,35 @@ var ModifySalesGroupComponent = (function () {
             return;
         }
         this.canBeDeleted = salesGroup.childSalesGroups.length == 0 && salesGroup.managers.length == 0;
+    };
+    ModifySalesGroupComponent.prototype.submitSalesGroup = function (groupForm, createOrModify, salesGroupLevel) {
+        var _this = this;
+        this.submitButtonDisabled = true;
+        console.log(this.salesGroup.managers);
+        console.log(this.salesGroup.managerOptions);
+        this.salesGroup.managers = this.checkForManagers();
+        console.log(this.salesGroup.managers);
+        this.salesGroup.isDeleted = false;
+        if (groupForm.valid) {
+            this._salesGroupDataService.submitSalesGroupForAddOrEdit(this.salesGroup, this.currentLevel, this.createOrModify).subscribe(function (response) {
+                var response = response;
+                if (!response.isSuccessful) {
+                    _this.toasterService.pop('error', 'Error saving group.', response.error.userHelp);
+                    _this.hasLoaded = true;
+                }
+            }, function (error) { return _this.msg = error; });
+        }
+    };
+    ModifySalesGroupComponent.prototype.checkForManagers = function () {
+        var selectedManagers = [];
+        this.salesGroup.managerOptions.forEach(function (manager) {
+            //console.log(manager)
+            if (manager.val = true) {
+                selectedManagers.push(manager);
+            }
+        });
+        console.log(selectedManagers);
+        return selectedManagers;
     };
     return ModifySalesGroupComponent;
 }());

@@ -40,11 +40,11 @@ var BaseService = (function () {
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
-    BaseService.prototype.put = function (url, id, model) {
+    BaseService.prototype.put = function (url, model) {
         var body = JSON.stringify(model);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         var options = new http_1.RequestOptions({ headers: headers });
-        return this._http.put(url + id, body, options)
+        return this._http.put(url, body, options)
             .map(function (response) { return response.json(); })
             .catch(this.handleError);
     };
@@ -281,6 +281,25 @@ var SalesGroupDataService = (function (_super) {
     };
     SalesGroupDataService.prototype.getLevel3GroupTeams = function (salesGroupLevel3Id) {
         return this.get(this.salesGroupApiPrefixes[3] + 'getLevel3GroupTeams?id=' + salesGroupLevel3Id);
+    };
+    SalesGroupDataService.prototype.submitSalesGroupForAddOrEdit = function (salesGroup, salesGroupLevel, createOrModify) {
+        if (createOrModify == this.constants.modify) {
+            return this.editSalesGroup(salesGroup, salesGroupLevel);
+        }
+    };
+    SalesGroupDataService.prototype.editSalesGroup = function (salesGroup, salesGroupLevel) {
+        var managerIds = [];
+        salesGroup.managers.forEach(function (manager) {
+            managerIds.push(manager.id);
+        });
+        var putData = {
+            id: salesGroup.id,
+            name: salesGroup.name,
+            parentSalesGroupId: salesGroup.parentGroupId,
+            managerIds: managerIds,
+            isDeleted: salesGroup.isDeleted
+        };
+        return this.put(this.salesGroupApiPrefixes[salesGroupLevel], putData);
     };
     return SalesGroupDataService;
 }(BaseService));

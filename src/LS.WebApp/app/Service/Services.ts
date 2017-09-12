@@ -4,10 +4,10 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
-import { LoggedInUser, EditUserView, UserView } from '../BindingModels/userBindingModels';
+import { LoggedInUser, EditUserView, UserView, GroupManager} from '../BindingModels/userBindingModels';
 import { message } from '../BindingModels/messageBindingModels';
 import { Constants, Global } from '../Shared/global';
-import {GroupManager } from '../BindingModels/userBindingModels';
+import { SalesGroup, GroupModified } from '../BindingModels/salesGroupBindingModels';
 @Injectable()
 export class BaseService {
     baseUrl: string
@@ -34,11 +34,11 @@ export class BaseService {
 			.catch(this.handleError);
 	}
 
-	put(url: string, id: number, model: any): Observable<any> {
+	put(url: string, model: any): Observable<any> {
 		let body = JSON.stringify(model);
 		let headers = new Headers({ 'Content-Type': 'application/json' });
 		let options = new RequestOptions({ headers: headers });
-		return this._http.put(url + id, body, options)
+		return this._http.put(url, body, options)
 			.map((response: Response) => <any>response.json())
 			.catch(this.handleError);
 	}
@@ -270,18 +270,25 @@ export class SalesGroupDataService extends BaseService {
      getLevel3GroupTeams(salesGroupLevel3Id:string) {
          return this.get(this.salesGroupApiPrefixes[3] +  'getLevel3GroupTeams?id=' + salesGroupLevel3Id)
      }
-     submitSalesGroupForAddOrEdit(salesGroup:Object,salesGroupLevel:number,createOrModify:number) {
+     submitSalesGroupForAddOrEdit(salesGroup: GroupModified, salesGroupLevel: number, createOrModify:number) {
          if (createOrModify == this.constants.modify){
-             return editSalesGroup(salesGroup, salesGroupLevel)
+             return this.editSalesGroup(salesGroup, salesGroupLevel)
          }
      }
 
-     editSalesGroup(salesGroup: { managers: Array<GroupManager>}, salesGroupLevel:number) {
+     editSalesGroup(salesGroup: GroupModified, salesGroupLevel: number) {
          var managerIds:string[] = [];
          salesGroup.managers.forEach(function (manager) {
              managerIds.push(manager.id);
          });
-
+         var putData = {
+             id: salesGroup.id,
+             name: salesGroup.name,
+             parentSalesGroupId: salesGroup.parentGroupId,
+             managerIds: managerIds,
+             isDeleted: salesGroup.isDeleted
+         };
+         return this.put(this.salesGroupApiPrefixes[salesGroupLevel],putData)
      }
 
 }

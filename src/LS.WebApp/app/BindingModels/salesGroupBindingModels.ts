@@ -1,5 +1,5 @@
 ﻿import { Company } from './companyBindingModels';
-import { UserView } from './userBindingModels';
+import { UserView, GroupManager } from './userBindingModels';
 import { SalesTeam } from './salesTeamBindingModels';
 export class GroupView {
     id: string;
@@ -11,6 +11,18 @@ export class SalesGroup {
     name: string;
     level: number;
     parentGroupName: string;
+}
+export class GroupModified {
+    parentGroupOptions: Array<SalesGroup>;
+    level: number;
+    parentSalesGroupLabel: string
+    parentGroupName: string;
+    parentGroupId: string;
+    id: string;
+    managers: Array<GroupManager>;
+    name: string;
+    isDeleted: boolean   
+    managerOptions: Array<GroupManager>;   
 }
 export class Level1SalesGroup {
     id: string;

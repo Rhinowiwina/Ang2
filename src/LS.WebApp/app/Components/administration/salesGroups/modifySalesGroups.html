@@ -16,12 +16,12 @@
                 <label class="control-label">Choose a Sales Group Level*</label>
 
                 <div class="radio">
-                    <label [hidden]="$root.loggedInUser.role.rank >administratorRole.rank">
+                    <label [hidden]="$root.loggedInUser.role.rank >administratorRoleRank">
                         <input type="radio"
                                [(ngModel)]="salesGroup.level"
                                ng-value="salesGroupConstants.salesGroupLevel1"
-                               [hidden]="$root.loggedInUser.role.rank >administratorRole.rank"
-                               [disabled]="_global.loggedInUser.role.rank >administratorRole.rank || createOrModify === globalConstants.modify"
+                               [hidden]="$root.loggedInUser.role.rank >administratorRoleRank"
+                               [disabled]="_global.loggedInUser.role.rank >administratorRoleRank || createOrModify === globalConstants.modify"
                                name="salesGroupLevel"
                                #salesGroupLevel="ngModel"
                                required />
@@ -114,7 +114,7 @@
                     <label class="control-label" >
                         Managers
                     </label>
-
+                    {{salesGroup.managerOptions|json}}
                     <div class="checkbox"  *ngFor="let manager of salesGroup.managerOptions">
                         <label>
                             <input type="checkbox"
@@ -129,7 +129,7 @@
                     <p>There are no Level {{salesGroup.level}} Managers to assign to this Sales Group.</p>
                 </div>
 
-                <button type="submit" [disabled]="submitButtonDisabled" *ngIf="_global.loggedInUser.role.rank <=_constants.level1ManagerRoleRank " (click)="submitSalesGroup(createOrModify, salesGroup.level)" class="btn admin-button" >SUBMIT</button>
+                <button type="submit" [disabled]="submitButtonDisabled" *ngIf="_global.loggedInUser.role.rank <=_constants.level1ManagerRoleRank "  class="btn admin-button" >SUBMIT</button>
                 <button type="button" (click)="goBack()" class="btn cancel-button" >CANCEL</button>
                 <button type="button" class="btn generic-button" (click)="deleteSalesGroup(createOrModify, salesGroup.level)" *ngIf="_global.loggedInUser.role.rank <=_constants.level1ManagerRoleRank  && canBeDeleted" >DELETE</button>
             </div>

@@ -8,7 +8,7 @@ import { Global, Constants } from '../../../Shared/global';
 
 import { ModalModule, ModalDirective } from 'ngx-bootstrap';
 import { ToasterModule, ToasterService, ToasterConfig, BodyOutputType } from 'angular2-toaster';
-import { Level1SalesGroup, Level2SalesGroup, Level3SalesGroup, SalesGroup } from '../../../BindingModels/salesGroupBindingModels';
+import { Level1SalesGroup, Level2SalesGroup, Level3SalesGroup, SalesGroup,GroupModified } from '../../../BindingModels/salesGroupBindingModels';
 import { SalesTeam } from '../../../BindingModels/salesTeamBindingModels';
 import { UserView, GroupManager, GroupsOfManagers } from '../../../BindingModels/userBindingModels';
 import { AppUserDataService } from '../../../Service/Services';
@@ -25,7 +25,6 @@ export class ModifySalesGroupComponent implements OnInit {
     sub: any;
     salesGroupId: string;
     level1SalesGroups: Array<Level1SalesGroup>;
-    salesGroup: { parentGroupOptions: Array<SalesGroup>, level: number, parentSalesGroupLabel: string, managerOptions: GroupManager[], managers: Array<GroupManager>,isDeleted:boolean };
     allSalesGroups: Array<SalesGroup>=[];
     canBeDeleted: boolean;
     allManagers: GroupsOfManagers;
@@ -33,6 +32,8 @@ export class ModifySalesGroupComponent implements OnInit {
     paramLevel: number;
     currentLevel: number;
     submitButtonDisabled: boolean;
+    salesGroup:GroupModified;
+
     constructor(private router: Router, private _appUserDataService:AppUserDataService, private route: ActivatedRoute, private _global: Global, private _salesGroupDataService: SalesGroupDataService, private toasterService: ToasterService, private _constants: Constants) {
 
     }
@@ -100,10 +101,19 @@ export class ModifySalesGroupComponent implements OnInit {
             this.allManagers.level1 = [];
             self.allManagers.level2 = [];
             self.allManagers.level3 = [];
-           self.allManagers.level1 = response.data.level1Managers;
-           self.allManagers.level2 = response.data.level1Managers;
-           self.allManagers.level3 = response.data.level1Managers;
-         
+            self.allManagers.level1 = response.data.level1Managers;
+            self.allManagers.level2 = response.data.level1Managers;
+            self.allManagers.level3 = response.data.level1Managers;
+            //initialize all val's to false.
+            self.allManagers.level1.forEach(function (manager) {
+                manager.val = false;
+            });
+            self.allManagers.level2.forEach(function (manager) {
+                manager.val = false;
+            });
+            self.allManagers.level3.forEach(function (manager) {
+                manager.val = false;
+            });
          
         }, error => this.msg = <any>error);
 
@@ -129,15 +139,34 @@ export class ModifySalesGroupComponent implements OnInit {
         } else if (this.currentLevel == 3){
                 this.salesGroup.managerOptions = this.allManagers.level3;
             }
-               
-            console.log(this.salesGroup)
+            this.setManagers();
             this.hasLoaded = true;
+           // console.log(this.salesGroup)
+           
         }, error => this.msg = <any>error);
     }
  
 
     salesGroupCreate() {
 
+
+    }
+    setManagers(): Observable<boolean> {
+        if (typeof this.salesGroup.managers == 'undefined' || this.salesGroup.managers == null || this.salesGroup.managers.length<1) {
+            return
+        }
+        var checkedManagersLength = this.salesGroup.managers.length; // managers that the user has checked
+        var managersLength = this.salesGroup.managerOptions.length; // all available managers for current level
+        for (var checkedManagersIndex = 0; checkedManagersIndex < checkedManagersLength; checkedManagersIndex++) {
+            for (var managersIndex = 0; managersIndex < managersLength; managersIndex++) {
+               
+                if (this.salesGroup.managers[checkedManagersIndex].id == this.salesGroup.managerOptions[managersIndex].id) {
+                  
+                    this.salesGroup.managerOptions[managersIndex].val = true;
+                } 
+            }
+        }
+        return Observable.of(true);
 
     }
     checkDeletability(salesGroup: any) {
@@ -151,15 +180,17 @@ export class ModifySalesGroupComponent implements OnInit {
     }
 
     submitSalesGroup(groupForm: any, createOrModify: number, salesGroupLevel: number) {
+       
         this.submitButtonDisabled = true;
-
-
+        console.log(this.salesGroup.managers)
+        console.log(this.salesGroup.managerOptions)
         this.salesGroup.managers = this.checkForManagers();
+        console.log(this.salesGroup.managers)
         this.salesGroup.isDeleted = false;
 
 
         if (groupForm.valid) {
-            this._appUserDataService.submitSalesGroupForAddOrEdit().subscribe(response => {
+            this._salesGroupDataService.submitSalesGroupForAddOrEdit(this.salesGroup, this.currentLevel, this.createOrModify).subscribe(response => {
                 var response = response;
                 if (!response.isSuccessful) {
                     this.toasterService.pop('error', 'Error saving group.', response.error.userHelp);
@@ -176,10 +207,12 @@ export class ModifySalesGroupComponent implements OnInit {
    checkForManagers() {
        var selectedManagers: Array<GroupManager> = []
        this.salesGroup.managerOptions.forEach(function (manager) {
+           //console.log(manager)
            if (manager.val = true) {
             selectedManagers.push(manager);
            }
        });
+       console.log(selectedManagers)
        return selectedManagers;
    }
 }

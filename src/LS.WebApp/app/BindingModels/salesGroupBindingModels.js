@@ -11,6 +11,12 @@ var SalesGroup = (function () {
     return SalesGroup;
 }());
 exports.SalesGroup = SalesGroup;
+var GroupModified = (function () {
+    function GroupModified() {
+    }
+    return GroupModified;
+}());
+exports.GroupModified = GroupModified;
 var Level1SalesGroup = (function () {
     function Level1SalesGroup() {
     }
