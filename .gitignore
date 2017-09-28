@@ -77,3 +77,4 @@ src/LS.AzureStorage/LS.AzureStorage/obj/Debug/LS.AzureStorage.csproj.FileListAbs
 src/LS.BudgetMobile/obj/Debug/LS.BudgetMobile.csproj.FileListAbsolute.txt
 src/LS.Core/obj/Debug/LS.Core.csproj.FileListAbsolute.txt
 src/RESTModule/obj/Debug/RESTModule.csproj.FileListAbsolute.txt
+*.ide
