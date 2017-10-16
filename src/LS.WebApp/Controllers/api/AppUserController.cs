@@ -26,8 +26,8 @@ using Exceptionless;
 using Exceptionless.Models;
 
 namespace LS.WebApp.Controllers.api {
-    //        [Authorize]
-    [SingleSessionAuthorize]
+           [Authorize]
+    //[SingleSessionAuthorize]
     [RoutePrefix("api/appUser")]
     public class AppUserController : BaseAPIController {
         private static readonly string UserCreationFailedUserMessage = "An error occurred during user creation.";
@@ -413,6 +413,7 @@ namespace LS.WebApp.Controllers.api {
 
             return Ok(processingResult);
         }
+
 		 [HttpGet]
         [Route("getAllUsersUnderLoggedInUserInTree")]
         public async Task<IHttpActionResult> GetAllUsersUnderLoggedInUserInTree(string UserID, string Rank) {

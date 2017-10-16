@@ -17,7 +17,7 @@ export class GroupModified {
     level: number;
     parentSalesGroupLabel: string
     parentGroupName: string;
-    parentGroupId: string;
+    parentSalesGroupId: string;
     id: string;
     managers: Array<GroupManager>;
     name: string;

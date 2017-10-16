@@ -319,3 +319,4 @@ F:\Home\Ang2\Ang2\src\LS.CGM\bin\Debug\zh-Hant\System.Spatial.resources.dll
 F:\Home\Ang2\Ang2\src\LS.CGM\obj\Debug\LS.CGM.csprojResolveAssemblyReference.cache
 F:\Home\Ang2\Ang2\src\LS.CGM\obj\Debug\LS.CGM.dll
 F:\Home\Ang2\Ang2\src\LS.CGM\obj\Debug\LS.CGM.pdb
+F:\Home\Ang2\Ang2\src\LS.CGM\obj\Debug\LS.CGM.csproj.CoreCompileInputs.cache

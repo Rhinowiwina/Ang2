@@ -574,3 +574,4 @@ F:\Home\Ang2\Ang2\src\LS.WebApp\bin\zh-Hant\System.Spatial.resources.dll
 F:\Home\Ang2\Ang2\src\LS.WebApp\obj\Debug\LS.WebApp.csprojResolveAssemblyReference.cache
 F:\Home\Ang2\Ang2\src\LS.WebApp\obj\Debug\Angular2MVC.dll
 F:\Home\Ang2\Ang2\src\LS.WebApp\obj\Debug\Angular2MVC.pdb
+F:\Home\Ang2\Ang2\src\LS.WebApp\obj\Debug\LS.WebApp.csproj.CoreCompileInputs.cache

@@ -15,7 +15,7 @@ using System.Data;
 
 namespace LS.WebApp.Controllers.api {
     //        [Authorize]
-    [SingleSessionAuthorize]
+   // [SingleSessionAuthorize]
     [RoutePrefix("api/level1SalesGroup")]
     public class Level1SalesGroupController : BaseAPIController {
         private static readonly string Level1SalesGroupValidationFailedUserMessage =

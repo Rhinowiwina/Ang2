@@ -11,8 +11,8 @@ using Exceptionless;
 using Exceptionless.Models;
 namespace LS.WebApp.Controllers.api
 {
-//    [Authorize]
-    [SingleSessionAuthorize]
+    [Authorize]
+    //[SingleSessionAuthorize]
     [RoutePrefix("api/level3SalesGroup")]
     public class Level3SalesGroupController : BaseAPIController
     {

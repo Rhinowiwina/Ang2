@@ -376,3 +376,4 @@ F:\Home\Ang2\Ang2\src\LS.Services\bin\Debug\zh-Hant\System.Spatial.resources.dll
 F:\Home\Ang2\Ang2\src\LS.Services\obj\Debug\LS.Services.csprojResolveAssemblyReference.cache
 F:\Home\Ang2\Ang2\src\LS.Services\obj\Debug\LS.Services.dll
 F:\Home\Ang2\Ang2\src\LS.Services\obj\Debug\LS.Services.pdb
+F:\Home\Ang2\Ang2\src\LS.Services\obj\Debug\LS.Services.csproj.CoreCompileInputs.cache

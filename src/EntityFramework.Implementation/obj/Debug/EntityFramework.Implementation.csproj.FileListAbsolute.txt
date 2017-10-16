@@ -76,3 +76,4 @@ F:\Home\Ang2\Ang2\src\EntityFramework.Implementation\bin\Debug\System.Web.Http.x
 F:\Home\Ang2\Ang2\src\EntityFramework.Implementation\obj\Debug\EntityFramework.Implementation.csprojResolveAssemblyReference.cache
 F:\Home\Ang2\Ang2\src\EntityFramework.Implementation\obj\Debug\Numero3.EntityFramework.Implementation.dll
 F:\Home\Ang2\Ang2\src\EntityFramework.Implementation\obj\Debug\Numero3.EntityFramework.Implementation.pdb
+F:\Home\Ang2\Ang2\src\EntityFramework.Implementation\obj\Debug\EntityFramework.Implementation.csproj.CoreCompileInputs.cache

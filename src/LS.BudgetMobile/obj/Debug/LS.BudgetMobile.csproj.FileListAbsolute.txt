@@ -319,3 +319,4 @@ F:\Home\Ang2\Ang2\src\LS.BudgetMobile\bin\Debug\zh-Hant\System.Spatial.resources
 F:\Home\Ang2\Ang2\src\LS.BudgetMobile\obj\Debug\LS.BudgetMobile.csprojResolveAssemblyReference.cache
 F:\Home\Ang2\Ang2\src\LS.BudgetMobile\obj\Debug\LS.BudgetMobile.dll
 F:\Home\Ang2\Ang2\src\LS.BudgetMobile\obj\Debug\LS.BudgetMobile.pdb
+F:\Home\Ang2\Ang2\src\LS.BudgetMobile\obj\Debug\LS.BudgetMobile.csproj.CoreCompileInputs.cache

@@ -479,6 +479,14 @@
     <Compile Include="Migrations\201705171927107_ExternalDuplicateDataCompanyId.Designer.cs">
       <DependentUpon>201705171927107_ExternalDuplicateDataCompanyId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710021615097_sync6.cs" />
+    <Compile Include="Migrations\201710021615097_sync6.Designer.cs">
+      <DependentUpon>201710021615097_sync6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710031507175_sync7.cs" />
+    <Compile Include="Migrations\201710031507175_sync7.Designer.cs">
+      <DependentUpon>201710031507175_sync7.cs</DependentUpon>
+    </Compile>
     <Compile Include="ResponseLogsCGMEHDBDetailsRepository.cs" />
     <Compile Include="ResponseLogsCGMEHDBRepository.cs" />
     <Compile Include="TenantAccountFulfillmentLogRepository.cs" />
@@ -916,6 +924,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705171927107_ExternalDuplicateDataCompanyId.resx">
       <DependentUpon>201705171927107_ExternalDuplicateDataCompanyId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710021615097_sync6.resx">
+      <DependentUpon>201710021615097_sync6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710031507175_sync7.resx">
+      <DependentUpon>201710031507175_sync7.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\sql\SqlFiles.resx">
       <Generator>ResXFileCodeGenerator</Generator>

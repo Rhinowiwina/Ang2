@@ -78,3 +78,6 @@ src/LS.BudgetMobile/obj/Debug/LS.BudgetMobile.csproj.FileListAbsolute.txt
 src/LS.Core/obj/Debug/LS.Core.csproj.FileListAbsolute.txt
 src/RESTModule/obj/Debug/RESTModule.csproj.FileListAbsolute.txt
 *.ide
+/src/LS.ApiBindingModels/obj/Debug/LS.ApiBindingModels.csproj.CopyComplete
+/src/EntityFramework.Implementation/obj/Debug/EntityFramework.Implementation.csproj.CopyComplete
+/src/EntityFramework.Interfaces/obj/Debug/EntityFramework.Interfaces.csproj.CopyComplete

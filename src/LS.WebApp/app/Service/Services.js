@@ -292,13 +292,15 @@ var SalesGroupDataService = (function (_super) {
         salesGroup.managers.forEach(function (manager) {
             managerIds.push(manager.id);
         });
+        console.log(managerIds);
         var putData = {
             id: salesGroup.id,
             name: salesGroup.name,
-            parentSalesGroupId: salesGroup.parentGroupId,
+            parentSalesGroupId: salesGroup.parentSalesGroupId,
             managerIds: managerIds,
             isDeleted: salesGroup.isDeleted
         };
+        console.log(putData);
         return this.put(this.salesGroupApiPrefixes[salesGroupLevel], putData);
     };
     return SalesGroupDataService;

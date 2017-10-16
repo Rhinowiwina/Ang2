@@ -130,11 +130,12 @@ namespace LS.Services {
 
             var managerIds = salesGroup.Managers.Select(m => m.Id).ToList();
             var getVerifiedManagersResult = GetValidManagersInCompanyFromListOfIds(managerIds, salesGroup.CompanyId);
+
             if (!getVerifiedManagersResult.IsSuccessful) {
                 //Logger.Error("Failed to get valid managers for Level 1 Sales Group");
                 ExceptionlessClient.Default.CreateLog(typeof(Level3SalesGroupDataService).FullName,"Failed to get valid managers for Level 1 Sales Group","Error").AddTags("Data Service Error").Submit();
                 }
-
+      
             salesGroupToUpdate.Name = salesGroup.Name;
             salesGroupToUpdate.Managers = getVerifiedManagersResult.Data;
             salesGroupToUpdate.ModifiedByUserId = salesGroup.ModifiedByUserId;

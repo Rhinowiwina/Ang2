@@ -319,3 +319,4 @@ F:\Home\Ang2\Ang2\src\LS.Solix\bin\Debug\zh-Hant\System.Spatial.resources.dll
 F:\Home\Ang2\Ang2\src\LS.Solix\obj\Debug\LS.Solix.csprojResolveAssemblyReference.cache
 F:\Home\Ang2\Ang2\src\LS.Solix\obj\Debug\LS.Solix.dll
 F:\Home\Ang2\Ang2\src\LS.Solix\obj\Debug\LS.Solix.pdb
+F:\Home\Ang2\Ang2\src\LS.Solix\obj\Debug\LS.Solix.csproj.CoreCompileInputs.cache

@@ -580,3 +580,6 @@ F:\Home\Ang2\Ang2\src\LS.Repositories\obj\Debug\LS.Repositories.Migrations.sql.S
 F:\Home\Ang2\Ang2\src\LS.Repositories\obj\Debug\LS.Repositories.csproj.GenerateResource.Cache
 F:\Home\Ang2\Ang2\src\LS.Repositories\obj\Debug\LS.Repositories.dll
 F:\Home\Ang2\Ang2\src\LS.Repositories\obj\Debug\LS.Repositories.pdb
+F:\Home\Ang2\Ang2\src\LS.Repositories\obj\Debug\LS.Repositories.csproj.CoreCompileInputs.cache
+F:\Home\Ang2\Ang2\src\LS.Repositories\obj\Debug\LS.Repositories.Migrations.sync6.resources
+F:\Home\Ang2\Ang2\src\LS.Repositories\obj\Debug\LS.Repositories.Migrations.sync7.resources

@@ -32,36 +32,45 @@ export class ModifySalesGroupComponent implements OnInit {
     paramLevel: number;
     currentLevel: number;
     submitButtonDisabled: boolean;
-    salesGroup:GroupModified;
+     salesGroup:GroupModified;
 
     constructor(private router: Router, private _appUserDataService:AppUserDataService, private route: ActivatedRoute, private _global: Global, private _salesGroupDataService: SalesGroupDataService, private toasterService: ToasterService, private _constants: Constants) {
 
     }
 
-    ngOnInit(): void {
+        ngOnInit(): void {
         this.allManagers = new GroupsOfManagers();
       
         this.sub = this.route.queryParams.subscribe(params => {
         
             this.salesGroupId = params['groupid'];
-            this.paramLevel = params['level']
-            this.getManagers()
-            if (this.salesGroupId) {
+            this.paramLevel = params['level'];
+            this.getManagers().subscribe(response => {
+                //mangers have been retrieve so go on
+                 if (this.salesGroupId) {
              
-                this.createOrModify = this._constants.modify
-                this.currentLevel = this.paramLevel;
-                this.getSalesGroupToEdit(this.salesGroupId);
-            } else {
-                this.createOrModify = this._constants.create
-                this.salesGroupCreate();
-            }
+                                this.createOrModify = this._constants.modify
+                                this.currentLevel = this.paramLevel;
+                                this.getSalesGroupToEdit(this.salesGroupId);
+                            } else {
+                                this.createOrModify = this._constants.create
+                                this.salesGroupCreate();
+                            }
+
+            });         
+           
         })
        
-    }
-    ngOnDestroy() {
+        }
+        ngOnDestroy() {
         if (this.sub) this.sub.unsubscribe();
-    }
-    getSalesGroups(){
+        }
+        goBack() {
+            
+            window.history.back();
+
+        }
+        getSalesGroups(){
         let self = this;
      
         this._salesGroupDataService.getCompanySalesGroupAdminTreeWhereManagerInTree().subscribe(response => {
@@ -80,45 +89,47 @@ export class ModifySalesGroupComponent implements OnInit {
                         self.allSalesGroups.push({ id: level2SalesGroup.id, name: level2SalesGroup.name, level: 2, parentGroupName: level1SalesGroup.name });
                     })
                 }
-             
-       
-                self.salesGroup.parentGroupOptions = self.allSalesGroups.filter((group: { level: number }) => group.level == self.currentLevel)
+               
+                self.salesGroup.parentGroupOptions = self.allSalesGroups.filter((group: { level: number }) => group.level == self.currentLevel-1)
+         
             })
          
        
         }, error => this.msg = <any>error);
        
-    }
-    getManagers() {
-        let self = this;
-        this._appUserDataService.getAllSalesGroupManagers().subscribe(response => {
-            var response = response;
-            if (!response.isSuccessful) {
-                this.toasterService.pop('error', 'Error retrieving managers.', response.error.userHelp);
-                this.hasLoaded = true;
-            }
-         
-            this.allManagers.level1 = [];
-            self.allManagers.level2 = [];
-            self.allManagers.level3 = [];
-            self.allManagers.level1 = response.data.level1Managers;
-            self.allManagers.level2 = response.data.level1Managers;
-            self.allManagers.level3 = response.data.level1Managers;
-            //initialize all val's to false.
-            self.allManagers.level1.forEach(function (manager) {
-                manager.val = false;
-            });
-            self.allManagers.level2.forEach(function (manager) {
-                manager.val = false;
-            });
-            self.allManagers.level3.forEach(function (manager) {
-                manager.val = false;
-            });
-         
-        }, error => this.msg = <any>error);
+        }
+        getManagers(): Observable<any> {
+            return this._appUserDataService.getAllSalesGroupManagers().map(response => {
+                var response = response;
+                 let self = this;
+                if (!response.isSuccessful) {
+                    this.toasterService.pop('error', 'Error retrieving managers.', response.error.userHelp);
+                    this.hasLoaded = true;
+                    return
+                }
 
-    }
-    getSalesGroupToEdit(saleGroupId: string) {
+                this.allManagers.level1 = [];
+                self.allManagers.level2 = [];
+                self.allManagers.level3 = [];
+                self.allManagers.level1 = response.data.level1Managers;
+                self.allManagers.level2 = response.data.level2Managers;
+                self.allManagers.level3 = response.data.level3Managers;
+                //initialize all val's to false.
+                self.allManagers.level1.forEach(function (manager) {
+                    manager.val = false;
+                });
+                self.allManagers.level2.forEach(function (manager) {
+                    manager.val = false;
+                });
+                self.allManagers.level3.forEach(function (manager) {
+                   manager.val = false;
+
+                });
+
+            })
+
+        }
+        getSalesGroupToEdit(saleGroupId: string) {
         var self = this;
         this._salesGroupDataService.getSalesGroup(this.salesGroupId, this.paramLevel).subscribe(response => {
             var response = response;
@@ -127,92 +138,107 @@ export class ModifySalesGroupComponent implements OnInit {
                 this.hasLoaded = true;
             }         
             var salesGroup = response.data
-             this.checkDeletability(salesGroup);
             this.salesGroup = salesGroup;
+              this.checkDeletability(this.salesGroup);            
             this.salesGroup.level = this.paramLevel;
-            this.salesGroup.parentSalesGroupLabel = "Level " + (this.salesGroup.level - 1);
+            this.salesGroup.parentSalesGroupLabel = "Level " + (salesGroup.level - 1);
             this.getSalesGroups()
+          
             if (this.currentLevel == 1) {
-                this.salesGroup.managerOptions = this.allManagers.level1;
-            } else if (this.currentLevel == 2){
-                this.salesGroup.managerOptions = this.allManagers.level2;
-        } else if (this.currentLevel == 3){
-                this.salesGroup.managerOptions = this.allManagers.level3;
+                var vManagerOptions= this.allManagers.level1;
+            } else if (this.currentLevel == 2) {
+                var vManagerOptions = this.allManagers.level2;
+            } else if (this.currentLevel == 3) {
+                var vManagerOptions = this.allManagers.level3;
+
             }
-            this.setManagers();
+        
+         ///
+            if (typeof vManagerOptions == 'undefined' || vManagerOptions == null || vManagerOptions.length < 1) {
+                this.hasLoaded = true;
+                return
+            }
+            var checkedManagersLength = this.salesGroup.managers.length; 
+            var managersLength = vManagerOptions.length;
+            for (var checkedManagersIndex = 0; checkedManagersIndex < checkedManagersLength; checkedManagersIndex++) {
+                for (var managersIndex = 0; managersIndex < managersLength; managersIndex++) {
+                    if (this.salesGroup.managers[checkedManagersIndex].id == vManagerOptions[managersIndex].id) {
+                        vManagerOptions[managersIndex].val = true;
+                    }
+                }
+            }
+            this.salesGroup.managerOptions = vManagerOptions;
+            ///
+              
             this.hasLoaded = true;
-           // console.log(this.salesGroup)
+    
            
         }, error => this.msg = <any>error);
-    }
- 
-
-    salesGroupCreate() {
-
-
-    }
-    setManagers(): Observable<boolean> {
-        if (typeof this.salesGroup.managers == 'undefined' || this.salesGroup.managers == null || this.salesGroup.managers.length<1) {
-            return
         }
-        var checkedManagersLength = this.salesGroup.managers.length; // managers that the user has checked
-        var managersLength = this.salesGroup.managerOptions.length; // all available managers for current level
-        for (var checkedManagersIndex = 0; checkedManagersIndex < checkedManagersLength; checkedManagersIndex++) {
-            for (var managersIndex = 0; managersIndex < managersLength; managersIndex++) {
-               
-                if (this.salesGroup.managers[checkedManagersIndex].id == this.salesGroup.managerOptions[managersIndex].id) {
-                  
-                    this.salesGroup.managerOptions[managersIndex].val = true;
-                } 
-            }
-        }
-        return Observable.of(true);
+        salesGroupCreate() {
 
-    }
-    checkDeletability(salesGroup: any) {
+
+        }
+
+        checkDeletability(salesGroup: any) {
         if (this.currentLevel == this._constants.salesGroupLevel3) {
             this.canBeDeleted = salesGroup.salesTeams.length == 0 && salesGroup.managers.length == 0;
+          
             return;
         }
 
         this.canBeDeleted = salesGroup.childSalesGroups.length == 0 && salesGroup.managers.length == 0;
-
-    }
-
-    submitSalesGroup(groupForm: any, createOrModify: number, salesGroupLevel: number) {
-       
+     
+        }
+        deleteSalesGroup(createOrModify: number,salesGroupLevel: any ) {       
+                this.submitButtonDisabled = true;
+                this.salesGroup.isDeleted = true;           
+                this._salesGroupDataService.submitSalesGroupForAddOrEdit(this.salesGroup, this.currentLevel, this.createOrModify).subscribe(response => {
+                    var response = response;
+                    if (!response.isSuccessful) {
+                        this.toasterService.pop('error', 'Error saving group.', response.error.userHelp);
+                        this.hasLoaded = true;
+                    }
+                    this.toasterService.pop('success', 'Successfully edited sales group.');
+                    this.router.navigate(["salesgroups"])
+                }, error => this.msg = <any>error);
+  
+        }
+        submitSalesGroup(groupForm: any, createOrModify: number, salesGroupLevel: number) {        
         this.submitButtonDisabled = true;
-        console.log(this.salesGroup.managers)
-        console.log(this.salesGroup.managerOptions)
-        this.salesGroup.managers = this.checkForManagers();
-        console.log(this.salesGroup.managers)
+           var newManagers = this.checkForManagers();
+      
+           this.salesGroup.managers = newManagers;
+    
         this.salesGroup.isDeleted = false;
-
-
+    
         if (groupForm.valid) {
+        
             this._salesGroupDataService.submitSalesGroupForAddOrEdit(this.salesGroup, this.currentLevel, this.createOrModify).subscribe(response => {
                 var response = response;
                 if (!response.isSuccessful) {
                     this.toasterService.pop('error', 'Error saving group.', response.error.userHelp);
                     this.hasLoaded = true;
                 }
-
-
-
+                this.toasterService.pop('success', 'Successfully edited sales group.');
+                this.router.navigate(["salesgroups"])
 
 
             }, error => this.msg = <any>error);
         }
-    }
-   checkForManagers() {
-       var selectedManagers: Array<GroupManager> = []
-       this.salesGroup.managerOptions.forEach(function (manager) {
-           //console.log(manager)
-           if (manager.val = true) {
+        }
+
+        checkForManagers() {
+         
+            var selectedManagers: Array<GroupManager> = []
+            console.log(this.salesGroup.managerOptions)
+        this.salesGroup.managerOptions.forEach(function (manager) {
+          
+            if (manager.val == true) {
             selectedManagers.push(manager);
-           }
-       });
-       console.log(selectedManagers)
-       return selectedManagers;
-   }
+            }
+        });
+        console.log(selectedManagers)
+        return selectedManagers;
+        }
 }

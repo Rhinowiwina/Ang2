@@ -1,5 +1,6 @@
 ﻿import { Component, ViewChild, ViewEncapsulation, Input, Attribute, OnChanges, OnInit, Inject, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser'
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DatePipe, Location } from '@angular/common';
 import { Observable } from 'rxjs/Rx';

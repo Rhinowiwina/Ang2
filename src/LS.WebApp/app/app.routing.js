@@ -16,7 +16,7 @@ var appRoutes = [
     { path: 'salesgroups', component: salesGroup_Component_1.SalesGroupComponent },
     { path: 'modifySalesgroup', component: modifySalesGroup_Component_1.ModifySalesGroupComponent },
     { path: 'loginMsg', component: loginMsg_component_1.LoginMsgComponent },
-    { path: 'modifyLoginMsg/:messageId', component: modifyLoginMsg_component_1.ModifyLoginMsgComponent }
+    { path: 'modifyLoginMsg/:messageId', component: modifyLoginMsg_component_1.ModifyLoginMsgComponent },
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);
 //# sourceMappingURL=app.routing.js.map

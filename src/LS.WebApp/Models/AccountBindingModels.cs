@@ -72,10 +72,10 @@ namespace LS.WebApp.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Required]
+        //[Required]
         public float Longitude { get; set; }
 
-        [Required]
+       // [Required]
         public float Latitude { get; set; }
 
         [Display(Name = "Remember me?")]

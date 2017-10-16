@@ -313,3 +313,4 @@ F:\Home\Ang2\Ang2\src\RESTModule\bin\Debug\zh-Hant\System.Spatial.resources.dll
 F:\Home\Ang2\Ang2\src\RESTModule\obj\Debug\RESTModule.csprojResolveAssemblyReference.cache
 F:\Home\Ang2\Ang2\src\RESTModule\obj\Debug\RESTModule.dll
 F:\Home\Ang2\Ang2\src\RESTModule\obj\Debug\RESTModule.pdb
+F:\Home\Ang2\Ang2\src\RESTModule\obj\Debug\RESTModule.csproj.CoreCompileInputs.cache

@@ -19,7 +19,7 @@ namespace LS.WebApp.Controllers.api
 {
 
     //        [Authorize]
-    [SingleSessionAuthorize]
+  //  [SingleSessionAuthorize]
     [RoutePrefix("api/loginMsg")]
     public class LoginMsgController : BaseAPIController
     {

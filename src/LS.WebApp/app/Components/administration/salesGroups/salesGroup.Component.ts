@@ -44,7 +44,7 @@ export class SalesGroupComponent implements OnInit {
                 this.hasLoaded = true;
             }
             this.salesGroups = response.data;
-          
+           
             if (this.salesGroups.length < 1) {
                 this.unassingedManager = true;
             }
@@ -166,6 +166,7 @@ export class SalesGroupComponent implements OnInit {
         this.showLevel3Team[salesGroupLevel3Id] = !this.showLevel3Team[salesGroupLevel3Id];
     }
     modifySalesGroup(level: number, groupid: string, event: any) {
+    
         if (event) {
             event.preventDefault();
             event.stopPropagation();

@@ -211,3 +211,4 @@ F:\Home\Ang2\Ang2\src\LS.AzureStorage\LS.AzureStorage\bin\Debug\zh-Hant\System.S
 F:\Home\Ang2\Ang2\src\LS.AzureStorage\LS.AzureStorage\obj\Debug\LS.AzureStorage.csprojResolveAssemblyReference.cache
 F:\Home\Ang2\Ang2\src\LS.AzureStorage\LS.AzureStorage\obj\Debug\LS.AzureStorage.dll
 F:\Home\Ang2\Ang2\src\LS.AzureStorage\LS.AzureStorage\obj\Debug\LS.AzureStorage.pdb
+F:\Home\Ang2\Ang2\src\LS.AzureStorage\LS.AzureStorage\obj\Debug\LS.AzureStorage.csproj.CoreCompileInputs.cache

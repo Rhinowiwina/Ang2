@@ -15,7 +15,7 @@ namespace LS.WebApp.Controllers.api
 //        [Authorize]
     [SingleSessionAuthorize]
     [RoutePrefix("api/account")]
-    public class AccountController : BaseApiController
+    public class AccountController : BaseAPIController
     {
         private static readonly string UserCreationFailedUserMessage = "An error occurred during user creation.";
 

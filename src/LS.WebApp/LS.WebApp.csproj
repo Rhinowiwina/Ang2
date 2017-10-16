@@ -27,6 +27,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -209,6 +210,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\api\AccountController.cs" />
     <Compile Include="Controllers\api\AppUserController.cs" />
     <Compile Include="Controllers\api\Level1SalesGroupController.cs" />
     <Compile Include="Controllers\api\Level2SalesGroupController.cs" />
@@ -495,6 +497,27 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\UpdateDatabase\UpdateDatabase.cshtml" />
+    <Content Include="Views\UserSignup\Index.cshtml" />
+    <Content Include="Views\SchedTasks\ApiLogArchive.cshtml" />
+    <Content Include="Views\SchedTasks\ApiLogEhdbCheckToEhdbResponseLog.cshtml" />
+    <Content Include="Views\SchedTasks\ClearOrders.cshtml" />
+    <Content Include="Views\SchedTasks\CommissionPayment.cshtml" />
+    <Content Include="Views\SchedTasks\DetailReport.cshtml" />
+    <Content Include="Views\SchedTasks\ImportDataFiles.cshtml" />
+    <Content Include="Views\SchedTasks\ImportDataFilesCheck.cshtml" />
+    <Content Include="Views\SchedTasks\MoveDataFiles.cshtml" />
+    <Content Include="Views\SchedTasks\ProcessData.cshtml" />
+    <Content Include="Views\SchedTasks\ProcessDataCheck.cshtml" />
+    <Content Include="Views\SchedTasks\SetUserInactiveDrugExpiration.cshtml" />
+    <Content Include="Views\SchedTasks\TempFileCleanup.cshtml" />
+    <Content Include="Views\Authentication\ForcedLogoutLogin.cshtml" />
+    <Content Include="Views\Authentication\ForceSessionLogoutLogin.cshtml" />
+    <Content Include="Views\Authentication\ForgotPassword.cshtml" />
+    <Content Include="Views\Authentication\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Authentication\Login.cshtml" />
+    <Content Include="Views\Authentication\ResetPassword.cshtml" />
+    <Content Include="Views\Authentication\ResetPasswordConfirmation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LS.ApiBindingModels\LS.ApiBindingModels.csproj">

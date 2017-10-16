@@ -109,3 +109,4 @@ F:\Home\Ang2\Ang2\src\LS.Utilities\bin\Debug\System.Web.Http.xml
 F:\Home\Ang2\Ang2\src\LS.Utilities\obj\Debug\LS.Utilities.csprojResolveAssemblyReference.cache
 F:\Home\Ang2\Ang2\src\LS.Utilities\obj\Debug\LS.Utilities.dll
 F:\Home\Ang2\Ang2\src\LS.Utilities\obj\Debug\LS.Utilities.pdb
+F:\Home\Ang2\Ang2\src\LS.Utilities\obj\Debug\LS.Utilities.csproj.CoreCompileInputs.cache

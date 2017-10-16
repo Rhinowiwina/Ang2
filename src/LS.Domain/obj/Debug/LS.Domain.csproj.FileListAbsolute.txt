@@ -127,3 +127,4 @@ F:\Home\Ang2\Ang2\src\LS.Domain\bin\Debug\CsvHelper.xml
 F:\Home\Ang2\Ang2\src\LS.Domain\obj\Debug\LS.Domain.csprojResolveAssemblyReference.cache
 F:\Home\Ang2\Ang2\src\LS.Domain\obj\Debug\LS.Domain.dll
 F:\Home\Ang2\Ang2\src\LS.Domain\obj\Debug\LS.Domain.pdb
+F:\Home\Ang2\Ang2\src\LS.Domain\obj\Debug\LS.Domain.csproj.CoreCompileInputs.cache

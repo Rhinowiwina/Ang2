@@ -27,11 +27,11 @@ export class HeaderComponent implements OnInit {
 		}
 	
 	
-	LogOut() {
-	
-		window.location.href = "/logout?userid=" + this._global.loggedInUser.id;}
-	
-	
+    LogOut() {
 
-	
+        window.location.href = "/logout?userid=" + this._global.loggedInUser.id;}
+
+
+
+    
 }

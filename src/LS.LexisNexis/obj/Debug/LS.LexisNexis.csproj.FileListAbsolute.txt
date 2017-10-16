@@ -319,3 +319,4 @@ F:\Home\Ang2\Ang2\src\LS.LexisNexis\bin\Debug\zh-Hant\System.Spatial.resources.d
 F:\Home\Ang2\Ang2\src\LS.LexisNexis\obj\Debug\LS.LexisNexis.csprojResolveAssemblyReference.cache
 F:\Home\Ang2\Ang2\src\LS.LexisNexis\obj\Debug\LS.LexisNexis.dll
 F:\Home\Ang2\Ang2\src\LS.LexisNexis\obj\Debug\LS.LexisNexis.pdb
+F:\Home\Ang2\Ang2\src\LS.LexisNexis\obj\Debug\LS.LexisNexis.csproj.CoreCompileInputs.cache

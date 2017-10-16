@@ -103,3 +103,4 @@ F:\Home\Ang2\Ang2\src\LS.ApiBindingModels\bin\Debug\System.Web.Http.xml
 F:\Home\Ang2\Ang2\src\LS.ApiBindingModels\obj\Debug\LS.ApiBindingModels.csprojResolveAssemblyReference.cache
 F:\Home\Ang2\Ang2\src\LS.ApiBindingModels\obj\Debug\LS.ApiBindingModels.dll
 F:\Home\Ang2\Ang2\src\LS.ApiBindingModels\obj\Debug\LS.ApiBindingModels.pdb
+F:\Home\Ang2\Ang2\src\LS.ApiBindingModels\obj\Debug\LS.ApiBindingModels.csproj.CoreCompileInputs.cache
