@@ -32,19 +32,21 @@ export class ModifySalesGroupComponent implements OnInit {
     paramLevel: number;
     currentLevel: number;
     submitButtonDisabled: boolean;
-     salesGroup:GroupModified;
+    salesGroup:GroupModified;
 
     constructor(private router: Router, private _appUserDataService:AppUserDataService, private route: ActivatedRoute, private _global: Global, private _salesGroupDataService: SalesGroupDataService, private toasterService: ToasterService, private _constants: Constants) {
 
     }
 
-        ngOnInit(): void {
+    ngOnInit(): void {
+        console.log(this._constants)
         this.allManagers = new GroupsOfManagers();
       
         this.sub = this.route.queryParams.subscribe(params => {
         
             this.salesGroupId = params['groupid'];
             this.paramLevel = params['level'];
+         
             this.getManagers().subscribe(response => {
                 //mangers have been retrieve so go on
                  if (this.salesGroupId) {
@@ -69,6 +71,9 @@ export class ModifySalesGroupComponent implements OnInit {
             
             window.history.back();
 
+        }
+        test(param:any) {
+            alert(param)
         }
         getSalesGroups(){
         let self = this;
@@ -176,8 +181,10 @@ export class ModifySalesGroupComponent implements OnInit {
         }, error => this.msg = <any>error);
         }
         salesGroupCreate() {
-
-
+            this.salesGroup = new GroupModified();
+         
+            this.hasLoaded = true;
+          
         }
 
         checkDeletability(salesGroup: any) {

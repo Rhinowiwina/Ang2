@@ -7,25 +7,33 @@
   
 
         <div *ngIf="hasLoaded">
+          <div *ngIf="_constants">
+           -----   rank {{_global.loggedInUser.role.rank}} constantlevel {{_constants.salesGroupLevel1}}  current{{salesGroup.level}}
+          </div>
+            
+            
             <!--    Sales Group Level Description-->
             <div class="form-group" *ngIf="createOrModify == _constants.modify">
-                <label  class="control-label">Sales Group Level: {{salesGroup.level}}</label>
+                <label  class="control-label">Sales Group Level: {{salesGroup.level}} </label>
             </div>
             <!--    Sales Group Level Choice-->
-            <div class="form-group" *ngIf="createOrModify === _constants.create">
-                <label class="control-label">Choose a Sales Group Level*</label>
+            
+            <div class="form-group" *ngIf="createOrModify === _constants.create && _constants.salesGroupLevel1">
+                <label class="control-label">Choose a Sales Group Level* </label>
 
                 <div class="radio">
-                    <label [hidden]="$root.loggedInUser.role.rank >administratorRoleRank">
+                    
+                    <label >   
+                      
                         <input type="radio"
                                [(ngModel)]="salesGroup.level"
-                               ng-value="salesGroupConstants.salesGroupLevel1"
-                               [hidden]="$root.loggedInUser.role.rank >administratorRoleRank"
-                               [disabled]="_global.loggedInUser.role.rank >administratorRoleRank || createOrModify === globalConstants.modify"
-                               name="salesGroupLevel"
+                               [value]="_constants.salesGroupLevel1"
+                                
+                                [hidden]="_global.loggedInUser.role.rank > administratorRoleRank"
+                                name="salesGroupLevel"
                                #salesGroupLevel="ngModel"
                                required />
-                        Level 1
+                        Level 1 --{{salesGroup.level}}
                     </label>
                 </div>
 
@@ -33,37 +41,38 @@
                     <label>
                         <input type="radio"
                                [(ngModel)]="salesGroup.level"
-                               ng-value="salesGroupConstants.salesGroupLevel2"
-                               [disabled]="_global.loggedInUser.role.rank > level1ManagerRole.rank  || createOrModify === globalConstants.modify"
+                               [value]="_constants.salesGroupLevel2"
+                               [disabled]="_global.loggedInUser.role.rank > level1ManagerRole.rank  || createOrModify === _constants.modify"
                                name="salesGroupLevel"
                                #salesGroupLevel="ngModel"
                                required />
-                       Level 2
+                   
+                       Level 2 --{{salesGroup.level}}
                     </label>
                 </div>
 
-                <div class="radio">
+                <!--<div class="radio">
                     <label>
                         <input type="radio"
                                [(ngModel)]="salesGroup.level"
-                               ng-value="salesGroupConstants.salesGroupLevel3"
+                               ng-value="_constants.salesGroupLevel3"
                                [disabled]="_global.loggedInUser.role.rank >level1ManagerRole.rank   || createOrModify === globalConstants.modify"
                                name="salesGroupLevel"
                                #salesGroupLevel="ngModel"
                                required />
                         Level 3
                     </label>
-                </div>
+                </div>-->
 
                 <!--        Sales Group Level Error Message-->
                 <div class="alert alert-danger" role="alert"
-                     *ngIf="salesGroupLevel.error.required && salesGroupLevel.dirty">
+                     *ngIf="salesGroupLevel.error?.required && salesGroupLevel.dirty">
                     {{errorMessage.invalidSalesGroupLevel}}
                 </div>
             </div>
 
             <!--POST-LEVEL CHOICE-->
-            <div [hidden]="!salesGroup.level">
+            <div [hidden]="salesGroup.level==null">
 
                 <!--        Sales Group Name-->
                 <div class="form-group row">
@@ -71,7 +80,7 @@
                         Sales Group Name*
                     </label>
 
-                    <div class="col-sm-5">
+                    <!--<div class="col-sm-5">
                         <input type="text" class="form-control"
                                [(ngModel)]="salesGroup.name"
                                [disabled]="_global.loggedInUser.role.rank >_constants.level1ManagerRoleRank "
@@ -79,12 +88,12 @@
                                #salesGroupName="ngModel"
                                required />
 
-                        <!--        Sales Group Name Error Message-->
+                                Sales Group Name Error Message
                         <div class="alert alert-danger" role="alert"
                              *ngIf="salesGroupName?.error?.required && salesGroupName.dirty">
                             Enter the valid sales group name.
                         </div>
-                    </div>
+                    </div>-->
                 </div>
 
                 <!--        Sales Group Parent-->
@@ -93,7 +102,7 @@
                   
                     <label class="col-sm-2 control-label">{{salesGroup.parentSalesGroupLabel}}*</label>               
                     <div class="col-sm-5">
-                        <select class="form-control"
+                        <!--<select class="form-control"
                                 [(ngModel)]="salesGroup.parentSalesGroupId"
                                 [disabled]="_global.loggedInUser.role.rank >2"                                                        
                                 name="levelParent"
@@ -101,7 +110,7 @@
                             <option value=''>- Select the {{salesGroup.parentSalesGroupLabel}} -</option>
                             <option *ngFor="let parentLevel of salesGroup.parentGroupOptions" [value]="parentLevel.id">{{parentLevel.name}}</option>
                             
-                        </select>
+                        </select>-->
                      
                         <!--        Sales Group Parent Error Message-->
                         <div class="alert alert-danger" role="alert"
@@ -119,10 +128,10 @@
                    
                     <div  class="checkbox"  *ngFor="let manager of salesGroup.managerOptions; let i=index">
                          <label>                         
-                            <input type="checkbox"
+                            <!--<input type="checkbox"
                                    [(ngModel)]="manager.val"                                 
                                   [disabled]="_global.loggedInUser.role.rank >_constants.level1ManagerRoleRank "
-                                   name="salesGroupManager{{i}}" />
+                                   name="salesGroupManager{{i}}" />-->
                             <span class="checkbox-label">{{manager.firstName}} {{manager.lastName}}</span>
                         </label>
                       
@@ -131,11 +140,12 @@
                 <div class="form-group" *ngIf="salesGroup.managerOptions?.length == 0">
                     <p>There are no Level {{salesGroup.level}} Managers to assign to this Sales Group.</p>
                 </div>
-
+                <button type="button" class="btn generic-button" (click)="test(_constants.salesGroupLevel1)">test</button>
                 <button type="submit" [disabled]="submitButtonDisabled" *ngIf="_global.loggedInUser.role.rank <=_constants.level1ManagerRoleRank "  class="btn admin-button" >SUBMIT</button>
                 <button type="button" (click)="goBack()" class="btn cancel-button" >CANCEL</button>
                 <button type="button" class="btn generic-button" (click)="deleteSalesGroup(modifySalesGroupForm,createOrModify, salesGroup.level)" *ngIf="_global.loggedInUser.role.rank <=_constants.level1ManagerRoleRank  && canBeDeleted" >DELETE</button>
                
             </div>
+            
         </div>
     </form>

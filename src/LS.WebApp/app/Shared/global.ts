@@ -8,6 +8,8 @@ import { LoggedInUser } from '../BindingModels/userBindingModels';
 @Injectable()
 export class Global {
    // https://angularclass.com/blog/create-a-simple-reactive-store-for-angular-2/ implement in future
+    //https://stackoverflow.com/questions/35985009/angular-2-what-is-equivalent-to-root-scope
+   // http://plnkr.co/edit/7A21ofKNdi0uvbMgLUDZ?p=preview//
 	private _loggedInUser: LoggedInUser;
 	private _criticalMsgRead: boolean=false;
 	private _minToChangeTeam: number
@@ -34,8 +36,10 @@ export class Global {
 }
 @Injectable()
 export class Constants {
+  
     get salesGroupLevel1() {
         return 1
+        
     }
     get salesGroupLevel2() {
         return 2

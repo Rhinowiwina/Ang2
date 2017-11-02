@@ -16,6 +16,7 @@ var Services_1 = require("../../../Service/Services");
 var global_2 = require("../../../Shared/global");
 //
 var UserComponent = (function () {
+    // 
     function UserComponent(_userDataService, _global, toasterService, _constants) {
         this._userDataService = _userDataService;
         this._global = _global;
@@ -25,9 +26,15 @@ var UserComponent = (function () {
     }
     UserComponent.prototype.ngOnInit = function () {
         this.loading = false;
+        var a = this.test;
+        console.log(a);
     };
     return UserComponent;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], UserComponent.prototype, "test", void 0);
 UserComponent = __decorate([
     core_1.Component({
         template: "<div *ngIf=\"_global.loggedInUser && !loading\" >\n\t<user-detail > </user-detail>\n      </div>\n\t<img src= \"/Content/img/spiffygif_30x30.gif\" style= \"text-align: center\" [hidden] = \"!loading\"/>\n\t\t",

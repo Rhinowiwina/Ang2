@@ -166,7 +166,7 @@ export class SalesGroupComponent implements OnInit {
         this.showLevel3Team[salesGroupLevel3Id] = !this.showLevel3Team[salesGroupLevel3Id];
     }
     modifySalesGroup(level: number, groupid: string, event: any) {
-    
+     
         if (event) {
             event.preventDefault();
             event.stopPropagation();

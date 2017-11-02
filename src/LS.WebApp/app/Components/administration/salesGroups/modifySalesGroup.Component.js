@@ -14,6 +14,7 @@ var Services_1 = require("../../../Service/Services");
 require("rxjs/add/operator/mergeMap");
 var global_1 = require("../../../Shared/global");
 var angular2_toaster_1 = require("angular2-toaster");
+var salesGroupBindingModels_1 = require("../../../BindingModels/salesGroupBindingModels");
 var userBindingModels_1 = require("../../../BindingModels/userBindingModels");
 var Services_2 = require("../../../Service/Services");
 //https://www.npmjs.com/package/ng2-accordion
@@ -31,6 +32,7 @@ var ModifySalesGroupComponent = (function () {
     }
     ModifySalesGroupComponent.prototype.ngOnInit = function () {
         var _this = this;
+        console.log(this._constants);
         this.allManagers = new userBindingModels_1.GroupsOfManagers();
         this.sub = this.route.queryParams.subscribe(function (params) {
             _this.salesGroupId = params['groupid'];
@@ -55,6 +57,9 @@ var ModifySalesGroupComponent = (function () {
     };
     ModifySalesGroupComponent.prototype.goBack = function () {
         window.history.back();
+    };
+    ModifySalesGroupComponent.prototype.test = function (param) {
+        alert(param);
     };
     ModifySalesGroupComponent.prototype.getSalesGroups = function () {
         var _this = this;
@@ -150,6 +155,8 @@ var ModifySalesGroupComponent = (function () {
         }, function (error) { return _this.msg = error; });
     };
     ModifySalesGroupComponent.prototype.salesGroupCreate = function () {
+        this.salesGroup = new salesGroupBindingModels_1.GroupModified();
+        this.hasLoaded = true;
     };
     ModifySalesGroupComponent.prototype.checkDeletability = function (salesGroup) {
         if (this.currentLevel == this._constants.salesGroupLevel3) {

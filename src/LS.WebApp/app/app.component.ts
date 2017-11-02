@@ -50,7 +50,8 @@ export class AppComponent implements OnInit {
 		//timeout:5000
 	});
 	branding:Company;
-	loggedInUser:LoggedInUser;
+    loggedInUser: LoggedInUser;
+    test:string='test'
 	msg: string;
 	constructor(toasterService: ToasterService, private _companyDataService: CompanyDataService, private _appUserDataService: AppUserDataService,private  _global: Global) {
 

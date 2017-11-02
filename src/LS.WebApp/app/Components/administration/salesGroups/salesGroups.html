@@ -3,7 +3,7 @@
     <div class="col-xs-12 col-sm-7"><h1 >MANAGE SALES GROUPS</h1></div>
 
     <div class="col-xs-12 col-sm-5 add-level-button-group">
-        <button type="button" name="btnHide" class="btn admin-button far-right admin-button-large" *ngIf="unassingedManager"  ng-click="modifySalesGroup()" >Add a Sales Group</button>
+        <button type="button" name="addGroup" class="btn admin-button far-right admin-button-large" *ngIf="!unassingedManager && _global.loggedInUser.role.rank <=_constants.level1ManagerRoleRank"  (click)="modifySalesGroup()" >Add a Sales Group</button>
     </div>
 </div><div class="row" style="text-align:center;font-style:italic;font-size:large" *ngIf="unassingedManager">
     You have not been assigned a group to manage.

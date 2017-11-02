@@ -19,11 +19,12 @@ import { Constants } from '../../../Shared/global';
 	styleUrls: ['../../Content/sass/siteAngular.css']
 })
 export class UserComponent implements OnInit {
-
+    @Input() test:string;
 	loading: boolean = true;
 	
-	private toasterService: ToasterService;
-	constructor(private _userDataService: AppUserDataService, private _global: Global, toasterService: ToasterService, private _constants: Constants) {
+    private toasterService: ToasterService;
+   // 
+	constructor(private _userDataService: AppUserDataService,private _global: Global,  toasterService: ToasterService, private _constants: Constants) {
 	
 	this.toasterService = toasterService;
 
@@ -31,7 +32,8 @@ export class UserComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.loading = false;
-
+        var a = this.test;
+        console.log(a)
 	}
 
 	
