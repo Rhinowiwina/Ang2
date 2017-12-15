@@ -83,7 +83,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: "my-app",
-        template: "\t <div *ngIf=\"branding && loggedInUser\" >\n\t\t      <app-header [brandingmodel]=\"branding\" [loggedInUser]=\"loggedInUser\"> \n              </app-header></div>\n     <toaster-container [toasterconfig]=\"toasterconfig\">[test]=\"test\"</toaster-container>\n \n            <div class='container container-content panel panel-default'>\n                <router-outlet></router-outlet>\n            </div>\n\t\t\t",
+        template: "\t <div *ngIf=\"branding && loggedInUser\" >\n\t\t      <app-header [brandingmodel]=\"branding\" [loggedInUser]=\"loggedInUser\"> \n              </app-header></div>\n     <toaster-container [toasterconfig]=\"toasterconfig\"></toaster-container>\n \n            <div class='container container-content panel panel-default'>\n                <router-outlet></router-outlet>\n            </div>\n\t\t\t",
         styleUrls: ['app/app.component.css'],
         encapsulation: core_1.ViewEncapsulation.None,
     }),
